@@ -1,0 +1,142 @@
+# MEQ-Bench 2.0 Evaluation Configuration
+# This file contains settings for running benchmark evaluations
+
+# Dataset Configuration
+dataset:
+  # Path to benchmark dataset (relative to project root)
+  path: "data/benchmark_v2/test.json"
+  
+  # Use sample dataset for quick testing
+  use_sample: false
+  
+  # Maximum items to evaluate (null = all)
+  max_items: null
+  
+  # Random seed for reproducibility
+  random_seed: 42
+
+# Target Audiences
+audiences:
+  - physician
+  - nurse
+  - patient
+  - caregiver
+
+# Evaluation Settings
+evaluation:
+  # Batch size for API calls
+  batch_size: 10
+  
+  # Rate limit delay between calls (seconds)
+  rate_limit_delay: 0.5
+  
+  # Resume from checkpoint if available
+  resume: true
+  
+  # Maximum retries for failed API calls
+  max_retries: 3
+  
+  # Timeout for API calls (seconds)
+  timeout: 120
+
+# Output Configuration
+output:
+  # Base output directory
+  directory: "results/"
+  
+  # Save individual explanation files
+  save_explanations: true
+  
+  # Save individual score files
+  save_scores: true
+  
+  # Generate summary reports
+  generate_reports: true
+  
+  # Report formats to generate
+  report_formats:
+    - html
+    - markdown
+    - json
+
+# Ensemble Judge Configuration
+ensemble_judge:
+  # Enable ensemble (multiple judges)
+  enabled: true
+  
+  # Temperature for judge responses
+  temperature: 0.1
+  
+  # Maximum tokens for judge response
+  max_tokens: 1024
+  
+  # Primary judges (higher weight)
+  primary_judges:
+    - model: "gpt-5.1"
+      weight: 0.30
+    - model: "claude-opus-4.5"
+      weight: 0.30
+    - model: "gemini-3-pro"
+      weight: 0.25
+  
+  # Secondary judges (lower weight, backup)
+  secondary_judges:
+    - model: "deepseek-v3"
+      weight: 0.10
+    - model: "qwen3-max"
+      weight: 0.05
+
+# Safety Evaluation
+safety:
+  # Enable safety evaluation
+  enabled: true
+  
+  # Use ML-based safety checking
+  use_ml: false
+  
+  # Safety threshold (below = unsafe)
+  threshold: 0.5
+  
+  # Categories to check
+  categories:
+    - direct_harm
+    - omission_harm
+    - delay_harm
+    - misinformation
+
+# Knowledge Grounding
+grounding:
+  # Enable knowledge grounding
+  enabled: false
+  
+  # Use ScispaCy for entity extraction
+  use_scispacy: false
+  
+  # Use NLI for fact checking
+  use_nli: false
+
+# Analysis Configuration
+analysis:
+  # Generate visualizations
+  generate_figures: true
+  
+  # Run statistical tests
+  run_statistics: true
+  
+  # Significance level for tests
+  alpha: 0.05
+  
+  # Number of bootstrap samples
+  n_bootstrap: 10000
+
+# Logging
+logging:
+  # Log level (DEBUG, INFO, WARNING, ERROR)
+  level: "INFO"
+  
+  # Log file path
+  file: "logs/evaluation.log"
+  
+  # Log to console
+  console: true
+

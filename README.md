@@ -1,374 +1,264 @@
-# MEQ-Bench: A Resource-Efficient Benchmark for Evaluating Audience-Adaptive Explanation Quality in Medical Large Language Models
+# MEQ-Bench
 
-## Abstract
+**A Benchmark for Evaluating Audience-Adaptive Explanation Quality in Medical LLMs**
 
-The deployment of Large Language Models (LLMs) in healthcare requires not only medical accuracy but also the ability to communicate effectively with diverse audiences. Current benchmarks, which often focus on multiple-choice questions, fail to evaluate this critical capability and are becoming saturated. We present MEQ-Bench, the first benchmark specifically designed to assess an LLM's ability to generate audience-adaptive medical explanations for four key stakeholders: physicians, nurses, patients, and caregivers. This multi-audience framework addresses a significant gap in medical AI evaluation. Unlike traditional approaches requiring extensive human annotation, MEQ-Bench employs a resource-efficient methodology leveraging existing, high-quality medical datasets, a multi-dimensional automated evaluation framework, and a validated LLM-as-a-judge paradigm. Our framework is optimized for open-weight models that can run on consumer hardware, making rigorous medical AI evaluation more accessible to independent researchers.
+[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
-## Key Features
+---
 
-- **Novel Evaluation Framework**: First benchmark to systematically evaluate audience-adaptive medical explanations
-- **Comprehensive Data Loading**: Built-in support for MedQA-USMLE, iCliniq, and Cochrane Reviews datasets
-- **Advanced Safety Metrics**: Contradiction detection, information preservation, and hallucination detection
-- **Automated Complexity Stratification**: Flesch-Kincaid Grade Level based content categorization
-- **Interactive Leaderboards**: Beautiful, responsive HTML leaderboards for result visualization
-- **Resource-Efficient Methodology**: Uses existing validated medical datasets, eliminating costly de novo content creation
-- **Validated Automated Evaluation**: Multi-dimensional scoring with LLM-as-a-judge paradigm
-- **Democratized Access**: Optimized for open-weight models on consumer hardware (e.g., Apple Silicon)
+## Overview
 
-## Target Audiences
+MEQ-Bench is a comprehensive evaluation framework for measuring how effectively large language models generate medical explanations tailored to different audiences. The benchmark assesses explanations across six dimensions: factual accuracy, terminological appropriateness, explanatory completeness, actionability, safety, and empathy.
 
-MEQ-Bench evaluates explanations tailored for four key healthcare stakeholders:
+**Key Capabilities:**
+- Multi-audience evaluation (physicians, nurses, patients, caregivers)
+- Ensemble LLM-as-Judge with weighted scoring
+- Medical knowledge grounding via UMLS/RxNorm
+- Comprehensive safety evaluation
+- Support for 20+ frontier models (December 2025)
 
-1. **Physicians**: Technical, evidence-based explanations with precise medical terminology
-2. **Nurses**: Practical care implications, monitoring parameters, and patient education points
-3. **Patients**: Simple, jargon-free, empathetic language focusing on condition meaning and next steps
-4. **Caregivers**: Concrete tasks, symptoms to watch for, and when to seek help
+---
+
+## Installation
+
+```bash
+git clone https://github.com/heilcheng/MEQ-Bench.git
+cd MEQ-Bench
+pip install -r requirements.txt
+```
+
+**Configure API Keys:**
+
+```bash
+export OPENAI_API_KEY="your-key"
+export ANTHROPIC_API_KEY="your-key"
+export GOOGLE_API_KEY="your-key"        # Optional
+export DEEPSEEK_API_KEY="your-key"      # Optional
+```
+
+---
+
+## Quick Start
+
+### 1. Validate Environment
+
+```bash
+make validate-env
+```
+
+### 2. Estimate API Costs
+
+```bash
+make estimate
+```
+
+### 3. Run Evaluation
+
+```bash
+# Smoke test (10 items, quick validation)
+make smoke-test
+
+# Full benchmark
+make evaluate MODELS="gpt-5.1 claude-opus-4.5"
+```
+
+### 4. Generate Reports
+
+```bash
+make report
+make view-report
+```
+
+---
 
 ## Project Structure
 
 ```
 MEQ-Bench/
-├── src/                    # Core implementation
-├── data/                   # Dataset and evaluation data
-├── evaluation/             # Evaluation metrics and LLM-as-judge
-├── tests/                  # Test suites
-├── docs/                   # Documentation
-├── examples/               # Usage examples
-├── requirements.txt        # Python dependencies
-└── README.md              # This file
+├── src/                          # Core library
+│   ├── model_clients.py          # Unified API client for all providers
+│   ├── ensemble_judge.py         # Multi-LLM evaluation ensemble
+│   ├── audience_personas.py      # Audience modeling with health literacy
+│   ├── safety_evaluator.py       # Medical safety assessment
+│   ├── knowledge_grounding.py    # UMLS/RxNorm integration
+│   └── rubrics/                  # G-Eval style scoring rubrics
+│
+├── scripts/                      # Researcher toolkit
+│   ├── curate_dataset.py         # Dataset curation pipeline
+│   ├── run_evaluation.py         # Main evaluation runner
+│   ├── generate_explanations.py  # Batch explanation generation
+│   ├── compute_scores.py         # Score computation
+│   ├── estimate_cost.py          # API cost estimator
+│   └── run_full_benchmark.sh     # End-to-end script
+│
+├── analysis/                     # Analysis tools
+│   ├── analyzer.py               # Score aggregation and statistics
+│   ├── visualizations.py         # Charts and figures
+│   ├── error_analysis.py         # Failure case identification
+│   ├── report_generator.py       # HTML/Markdown reports
+│   └── statistical_tests.py      # Significance testing
+│
+├── configs/                      # Configuration templates
+│   ├── evaluation_config.yaml
+│   └── models_config.yaml
+│
+├── data/
+│   └── benchmark_v2/             # Curated benchmark dataset
+│
+└── results/                      # Evaluation outputs
 ```
 
-## Quick Start
+---
 
-### Installation
+## Evaluation Framework
 
-```bash
-git clone https://github.com/heilcheng/MEQ-Bench.git
-cd MEQ-Bench
-pip install .
-```
+### Dimensions
 
-For development with additional tools:
-```bash
-pip install .[dev]
-```
+| Dimension | Description |
+|-----------|-------------|
+| **Factual Accuracy** | Clinical correctness and evidence alignment |
+| **Terminological Appropriateness** | Language complexity matching audience needs |
+| **Explanatory Completeness** | Comprehensive yet accessible coverage |
+| **Actionability** | Clear, practical guidance for the reader |
+| **Safety** | Appropriate warnings and harm avoidance |
+| **Empathy & Tone** | Audience-appropriate communication style |
 
-For full installation with all optional dependencies:
-```bash
-pip install .[full]
-```
+### Ensemble Judge
 
-### Basic Usage
+Evaluation uses a weighted ensemble of frontier models:
 
-Here's a complete example demonstrating how to use MEQ-Bench to evaluate a model's ability to generate audience-adaptive medical explanations:
+| Model | Provider | Weight |
+|-------|----------|--------|
+| GPT-5.1 | OpenAI | 0.30 |
+| Claude Opus 4.5 | Anthropic | 0.30 |
+| Gemini 3 Pro | Google | 0.25 |
+| DeepSeek-V3 | DeepSeek | 0.10 |
+| Qwen3-Max | Alibaba | 0.05 |
+
+### Target Audiences
+
+- **Physicians**: Specialist and general practice
+- **Nurses**: Various specializations
+- **Patients**: Low, medium, and high health literacy
+- **Caregivers**: Family members and professional caregivers
+
+---
+
+## Supported Models
+
+| Provider | Models | Multimodal |
+|----------|--------|------------|
+| OpenAI | GPT-5.2, GPT-5.1, GPT-5, GPT-4o | ✓ |
+| Anthropic | Claude Opus 4.5, Sonnet 4.5, Haiku 4.5 | ✓ |
+| Google | Gemini 3 Ultra, Pro, Flash | ✓ |
+| Meta | Llama 4 Behemoth, Maverick, Scout | ✓ |
+| DeepSeek | DeepSeek-V3 | |
+| Alibaba | Qwen3-Max | ✓ |
+| Amazon | Nova Pro, Nova Omni | ✓ |
+
+---
+
+## Usage
+
+### Programmatic API
 
 ```python
-from src.benchmark import MEQBench
-from src.evaluator import MEQBenchEvaluator
+from src import UnifiedModelClient, EnsembleLLMJudge
 
-# Step 1: Import the necessary classes
-print("Setting up MEQ-Bench evaluation...")
+# Initialize
+client = UnifiedModelClient()
+judge = EnsembleLLMJudge(client)
 
-# Step 2: Initialize MEQBench
-bench = MEQBench()
-print(f"Initialized MEQ-Bench with {len(bench.benchmark_items)} items")
-
-# Step 3: Define a dummy model function for demonstration
-def dummy_model_function(prompt: str) -> str:
-    """
-    Example model function that returns audience-adaptive explanations.
-    In practice, replace this with your actual model (e.g., OpenAI, HuggingFace, etc.)
-    """
-    return """For a Physician: Hypertension (HTN) is a chronic medical condition characterized by persistently elevated arterial blood pressure ≥140/90 mmHg. The pathophysiology involves increased peripheral vascular resistance and/or cardiac output. Consider ACE inhibitors, ARBs, or thiazide diuretics as first-line therapy per JNC guidelines.
-
-For a Nurse: Monitor patient's blood pressure regularly and watch for signs of hypertensive crisis. Educate patients about medication adherence, lifestyle modifications including low-sodium diet, and importance of regular follow-up appointments. Document all readings and report abnormal values to the physician immediately.
-
-For a Patient: High blood pressure means your heart is working harder than it should to pump blood. This can damage your heart and blood vessels over time. Take your medications as prescribed, eat less salt, exercise regularly, and come to all your check-ups to keep your blood pressure under control.
-
-For a Caregiver: Help the patient take their blood pressure medication at the same time each day. Watch for symptoms like severe headaches, dizziness, or confusion and call 911 if these occur. Support them in making healthy food choices and encourage daily walks or light exercise as approved by their doctor."""
-
-# Step 4: Define sample medical content to evaluate
-sample_medical_content = """
-Hypertension is a common cardiovascular condition where blood pressure in the arteries is persistently elevated. 
-It affects approximately 45% of adults and is a major risk factor for heart disease, stroke, and kidney disease. 
-Management typically involves lifestyle modifications and antihypertensive medications.
-"""
-
-print("\nGenerating audience-adaptive explanations...")
-
-# Step 5: Generate explanations for different audiences
-explanations = bench.generate_explanations(
-    medical_content=sample_medical_content,
-    model_func=dummy_model_function
+# Generate explanation
+explanation = await client.generate_text(
+    prompt="Explain hypertension for a patient with low health literacy",
+    model="gpt-5.1"
 )
 
-print(f"Generated explanations for {len(explanations)} audiences:")
-for audience in explanations:
-    print(f"  - {audience}: {len(explanations[audience])} characters")
-
-# Step 6: Initialize MEQBenchEvaluator
-print("\nInitializing evaluator...")
-evaluator = MEQBenchEvaluator()
-
-# Step 7: Evaluate explanations for all audiences
-print("Evaluating explanations...")
-evaluation_results = evaluator.evaluate_all_audiences(
-    original=sample_medical_content,
-    explanations=explanations
+# Evaluate
+score = await judge.evaluate(
+    original_medical_content="Hypertension management guidelines...",
+    generated_explanation=explanation,
+    audience_persona=persona,
+    rubric=rubric
 )
 
-# Step 8: Print overall scores for each audience
-print("\n" + "="*60)
-print("EVALUATION RESULTS")
-print("="*60)
-
-for audience, scores in evaluation_results.items():
-    print(f"\n{audience.upper()} AUDIENCE:")
-    print(f"  Overall Score: {scores.overall:.3f}")
-    print(f"  Readability:   {scores.readability:.3f}")
-    print(f"  Terminology:   {scores.terminology:.3f}")
-    print(f"  Safety:        {scores.safety:.3f}")
-    print(f"  Coverage:      {scores.coverage:.3f}")
-    print(f"  Quality:       {scores.quality:.3f}")
-
-# Calculate and display average performance
-all_scores = [scores.overall for scores in evaluation_results.values()]
-average_score = sum(all_scores) / len(all_scores)
-print(f"\nAVERAGE PERFORMANCE ACROSS ALL AUDIENCES: {average_score:.3f}")
-
-print("\n" + "="*60)
-print("Evaluation completed successfully!")
+print(f"Overall: {score.overall_quality:.2f}")
+print(f"By dimension: {score.dimension_scores}")
 ```
 
-**Expected Output:**
-```
-Setting up MEQ-Bench evaluation...
-Initialized MEQ-Bench with 0 items
-
-Generating audience-adaptive explanations...
-Generated explanations for 4 audiences:
-  - physician: 245 characters
-  - nurse: 198 characters  
-  - patient: 156 characters
-  - caregiver: 187 characters
-
-Initializing evaluator...
-Evaluating explanations...
-
-============================================================
-EVALUATION RESULTS
-============================================================
-
-PHYSICIAN AUDIENCE:
-  Overall Score: 0.782
-  Readability:   0.850
-  Terminology:   0.920
-  Safety:        0.750
-  Coverage:      0.680
-  Quality:       0.710
-
-NURSE AUDIENCE:
-  Overall Score: 0.745
-  Readability:   0.820
-  Terminology:   0.780
-  Safety:        0.800
-  Coverage:      0.650
-  Quality:       0.675
-
-PATIENT AUDIENCE:
-  Overall Score: 0.692
-  Readability:   0.950
-  Terminology:   0.890
-  Safety:        0.720
-  Coverage:      0.580
-  Quality:       0.620
-
-CAREGIVER AUDIENCE:
-  Overall Score: 0.718
-  Readability:   0.880
-  Terminology:   0.850
-  Safety:        0.780
-  Coverage:      0.620
-  Quality:       0.660
-
-AVERAGE PERFORMANCE ACROSS ALL AUDIENCES: 0.734
-
-============================================================
-Evaluation completed successfully!
-```
-
-## New Features & Enhancements
-
-### 🔧 Data Loading Pipeline
-
-MEQ-Bench now includes comprehensive data loading functionality for popular medical datasets:
+### Command Line
 
 ```bash
-# Process datasets from multiple sources
-python scripts/process_datasets.py \
-    --medqa data/medqa_usmle.json \
-    --icliniq data/icliniq.json \
-    --cochrane data/cochrane.json \
-    --output data/benchmark_items.json \
-    --max-items 1000 \
-    --balance-complexity \
-    --validate \
-    --stats
+# Full pipeline
+./scripts/run_full_benchmark.sh --models gpt-5.1,claude-opus-4.5 --items 100
+
+# Individual steps
+python scripts/curate_dataset.py --output data/benchmark_v2/full_dataset.json
+python scripts/run_evaluation.py --benchmark data/benchmark_v2/test.json --models gpt-5.1
+python scripts/compute_scores.py --explanations results/gpt-5.1/explanations/
 ```
 
-**Supported Datasets:**
-- **MedQA-USMLE**: Medical question answering based on USMLE exam format
-- **iCliniq**: Real clinical questions from patients with professional answers  
-- **Cochrane Reviews**: Evidence-based systematic reviews and meta-analyses
-
-**Features:**
-- Automatic complexity stratification using Flesch-Kincaid Grade Level
-- Data validation and quality checks
-- Balanced distribution across complexity levels
-- Comprehensive statistics and reporting
-
-### 🛡️ Enhanced Safety Metrics
-
-Three new specialized safety and factual consistency metrics:
-
-```python
-from src.evaluator import (
-    ContradictionDetection,
-    InformationPreservation, 
-    HallucinationDetection
-)
-
-# Detect medical contradictions
-contradiction_score = ContradictionDetection().calculate(
-    text="Antibiotics are effective for viral infections",
-    audience="patient"
-)
-
-# Check information preservation
-preservation_score = InformationPreservation().calculate(
-    text="Take 10mg twice daily with food",
-    audience="patient", 
-    original="Take lisinopril 10mg BID with meals"
-)
-
-# Detect hallucinated medical entities
-hallucination_score = HallucinationDetection().calculate(
-    text="Patient should take metformin for headaches",
-    audience="physician",
-    original="Patient reports headaches"
-)
-```
-
-**New Metrics:**
-- **Contradiction Detection**: Identifies contradictions against medical knowledge base
-- **Information Preservation**: Ensures critical information (dosages, warnings) is retained
-- **Hallucination Detection**: Detects medical entities not present in source text
-
-### 📊 Interactive Leaderboards  
-
-Generate beautiful, responsive HTML leaderboards from evaluation results:
+### Make Targets
 
 ```bash
-# Generate leaderboard from results directory
-python -m src.leaderboard \
-    --input results/ \
-    --output docs/index.html \
-    --verbose
+make validate-env    # Check environment setup
+make estimate        # Estimate API costs
+make curate          # Curate benchmark dataset
+make evaluate        # Run evaluation
+make analyze         # Analyze results
+make report          # Generate HTML/Markdown reports
+make smoke-test      # Quick validation run
 ```
 
-**Features:**
-- Overall model rankings with performance breakdowns
-- Audience-specific performance analysis
-- Complexity-level performance comparison
-- Interactive charts powered by Chart.js
-- Responsive design for all devices
-- Self-contained HTML for easy deployment
+---
 
-### 🧪 Comprehensive Testing
-
-MEQ-Bench now includes 90+ unit tests covering:
+## Docker
 
 ```bash
-# Run the full test suite
-pytest tests/ -v
+# Build image
+docker build -t meq-bench:2.0 .
 
-# Run specific test modules
-pytest tests/test_data_loaders.py -v
-pytest tests/test_evaluator_metrics.py -v
-pytest tests/test_leaderboard.py -v
-pytest tests/test_process_datasets.py -v
+# Run with Docker Compose
+docker-compose up -d meqbench
+
+# With local LLM (Llama 4 via vLLM)
+docker-compose --profile gpu up -d
 ```
 
-**Test Coverage:**
-- Data loading and processing functionality
-- All evaluation metrics including new safety metrics
-- Leaderboard generation and visualization
-- Error handling and edge cases
-- Performance and integration tests
+---
 
-For more advanced usage examples, see the [examples](examples/) directory.
+## Validation
 
-## Implementation Timeline
+MEQ-Bench includes a comprehensive validation framework:
 
-- **Phase 1** (Weeks 1-4): Data curation and automated metrics suite
-- **Phase 2** (Weeks 5-8): Model setup and LLM-as-a-judge validation
-- **Phase 3** (Weeks 9-12): Full evaluation and public release
+1. **Synthetic Agreement Testing**: Unambiguous test cases with known scores
+2. **Human Correlation**: Comparison with expert annotations (target ρ > 0.80)
+3. **Inter-Rater Reliability**: Cross-model agreement (target α > 0.75)
+4. **Statistical Testing**: Paired t-tests with bootstrap confidence intervals
 
-## Evaluation Methodology
-
-### Automated Metrics Suite
-- **Readability Assessment**: Flesch-Kincaid Grade Level, SMOG Index
-- **Terminology Appropriateness**: Medical term density analysis
-- **Safety & Factual Consistency**: Contradiction detection and information preservation
-- **Information Coverage**: BERTScore and key concept matching
-
-### LLM-as-Judge Framework
-Multi-dimensional scoring across six criteria:
-1. Factual & Clinical Accuracy
-2. Terminological Appropriateness
-3. Explanatory Completeness
-4. Actionability & Utility
-5. Safety & Harmfulness
-6. Empathy & Tone
-
-## Hardware Requirements
-
-Optimized for consumer hardware:
-- **Memory**: 4-16GB RAM (depending on model size)
-- **Models**: Quantized open-weight models (Gemma-2B, Phi-3-mini, BioMistral-7B)
-- **Inference**: Apple MLX framework for M-series optimization
-- **Cost**: <$150 total estimated cost for full evaluation
-
-## Ethical Considerations
-
-- Built on core medical ethics principles: Beneficence, Non-maleficence, Autonomy, Justice
-- Uses publicly available, de-identified datasets
-- Includes clear disclaimers about research vs. clinical use
-- Managed as a living benchmark with versioning and governance
-
-## Contributing
-
-We welcome contributions! Please see our [Contributing Guidelines](docs/CONTRIBUTING.md) for details.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+---
 
 ## Citation
 
 ```bibtex
-@article{meq-bench-2025,
-  title={MEQ-Bench: A Resource-Efficient Benchmark for Evaluating Audience-Adaptive Explanation Quality in Medical Large Language Models},
-  author={[Author Names]},
-  journal={[Journal Name]},
+@inproceedings{meqbench2025,
+  title={MEQ-Bench: A Benchmark for Evaluating Audience-Adaptive 
+         Explanation Quality in Medical LLMs},
+  author={MEQ-Bench Team},
   year={2025}
 }
 ```
 
-## Contact
+---
 
-For questions or collaboration opportunities, please contact [contact information].
+## License
+
+MIT License. See [LICENSE](LICENSE) for details.
 
 ---
 
-*This benchmark is a research tool intended to drive progress in medical AI evaluation. High performance does not certify an LLM for clinical use.*
+## Disclaimer
+
+MEQ-Bench is designed for **research evaluation purposes only**. Generated explanations should not be used for actual medical advice. Always consult qualified healthcare professionals for medical decisions.

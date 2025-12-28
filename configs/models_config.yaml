@@ -1,0 +1,238 @@
+# MEQ-Bench 2.0 Model Configuration
+# This file defines available models and their configurations
+
+# Model Registry
+models:
+  # OpenAI Models
+  openai:
+    gpt-5.2:
+      tier: flagship
+      multimodal: true
+      context_length: 256000
+      input_price_per_1m: 15.00
+      output_price_per_1m: 60.00
+      recommended_for:
+        - production
+        - research
+    
+    gpt-5.1:
+      tier: advanced
+      multimodal: true
+      context_length: 256000
+      input_price_per_1m: 10.00
+      output_price_per_1m: 40.00
+      recommended_for:
+        - production
+        - judging
+    
+    gpt-5:
+      tier: standard
+      multimodal: true
+      context_length: 128000
+      input_price_per_1m: 5.00
+      output_price_per_1m: 20.00
+      recommended_for:
+        - development
+        - testing
+    
+    gpt-4o:
+      tier: legacy
+      multimodal: true
+      context_length: 128000
+      input_price_per_1m: 2.50
+      output_price_per_1m: 10.00
+      recommended_for:
+        - development
+        - baseline
+
+  # Anthropic Models
+  anthropic:
+    claude-opus-4.5:
+      tier: flagship
+      multimodal: true
+      context_length: 200000
+      input_price_per_1m: 15.00
+      output_price_per_1m: 75.00
+      recommended_for:
+        - production
+        - judging
+        - complex_reasoning
+    
+    claude-sonnet-4.5:
+      tier: efficient
+      multimodal: true
+      context_length: 200000
+      input_price_per_1m: 3.00
+      output_price_per_1m: 15.00
+      recommended_for:
+        - development
+        - cost_effective
+    
+    claude-haiku-4.5:
+      tier: fast
+      multimodal: true
+      context_length: 200000
+      input_price_per_1m: 0.25
+      output_price_per_1m: 1.25
+      recommended_for:
+        - prototyping
+        - high_volume
+
+  # Google Models
+  google:
+    gemini-3-ultra:
+      tier: flagship
+      multimodal: true
+      context_length: 2000000
+      input_price_per_1m: 10.00
+      output_price_per_1m: 30.00
+      recommended_for:
+        - production
+        - long_context
+    
+    gemini-3-pro:
+      tier: standard
+      multimodal: true
+      context_length: 1000000
+      input_price_per_1m: 1.25
+      output_price_per_1m: 5.00
+      recommended_for:
+        - development
+        - judging
+        - cost_effective
+    
+    gemini-3-flash:
+      tier: fast
+      multimodal: true
+      context_length: 1000000
+      input_price_per_1m: 0.075
+      output_price_per_1m: 0.30
+      recommended_for:
+        - prototyping
+        - high_volume
+
+  # Meta Models (via vLLM)
+  meta:
+    llama-4-behemoth:
+      tier: flagship
+      multimodal: true
+      context_length: 128000
+      self_hosted: true
+      min_gpu_vram_gb: 160
+      recommended_for:
+        - research
+        - offline
+    
+    llama-4-maverick:
+      tier: multimodal
+      multimodal: true
+      context_length: 128000
+      self_hosted: true
+      min_gpu_vram_gb: 80
+      recommended_for:
+        - multimodal_research
+    
+    llama-4-scout:
+      tier: efficient
+      multimodal: false
+      context_length: 128000
+      self_hosted: true
+      min_gpu_vram_gb: 16
+      recommended_for:
+        - development
+        - cost_free
+        - offline
+
+  # Other Providers
+  deepseek:
+    deepseek-v3:
+      tier: frontier
+      multimodal: false
+      context_length: 128000
+      input_price_per_1m: 0.27
+      output_price_per_1m: 1.10
+      recommended_for:
+        - development
+        - cost_effective
+        - judging
+
+  alibaba:
+    qwen3-max:
+      tier: frontier
+      multimodal: true
+      context_length: 128000
+      input_price_per_1m: 0.40
+      output_price_per_1m: 1.20
+      recommended_for:
+        - development
+        - cost_effective
+
+  amazon:
+    nova-pro:
+      tier: standard
+      multimodal: false
+      context_length: 128000
+      input_price_per_1m: 0.80
+      output_price_per_1m: 3.20
+      recommended_for:
+        - aws_integration
+    
+    nova-omni:
+      tier: multimodal
+      multimodal: true
+      context_length: 128000
+      input_price_per_1m: 1.20
+      output_price_per_1m: 4.80
+      recommended_for:
+        - aws_integration
+        - multimodal
+
+# Default Model Presets
+presets:
+  # Full benchmark with all baseline models
+  full_benchmark:
+    - gpt-5.1
+    - gpt-4o
+    - claude-opus-4.5
+    - claude-sonnet-4.5
+    - gemini-3-pro
+    - deepseek-v3
+    - qwen3-max
+  
+  # Quick test with fast/cheap models
+  quick_test:
+    - gpt-4o
+    - claude-haiku-4.5
+    - gemini-3-flash
+  
+  # Flagship models only
+  flagship:
+    - gpt-5.2
+    - claude-opus-4.5
+    - gemini-3-ultra
+  
+  # Cost-effective models
+  budget:
+    - claude-haiku-4.5
+    - gemini-3-flash
+    - deepseek-v3
+  
+  # Local/self-hosted only
+  local:
+    - llama-4-scout
+    - llama-4-maverick
+  
+  # Ensemble judge configuration
+  judge_ensemble:
+    - gpt-5.1
+    - claude-opus-4.5
+    - gemini-3-pro
+
+# vLLM Configuration (for local models)
+vllm:
+  host: "localhost"
+  port: 8000
+  tensor_parallel_size: 1
+  max_model_len: 32768
+  gpu_memory_utilization: 0.9
+

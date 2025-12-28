@@ -1,46 +1,215 @@
-# MEQ-Bench Configuration File
+# MEQ-Bench 2.0 Configuration File
+# Comprehensive Medical Explanation Quality Benchmark
 
+# =============================================================================
 # Application Settings
+# =============================================================================
 app:
   name: "MEQ-Bench"
-  version: "1.0.0"
+  version: "2.0.0"
   log_level: "INFO"
   data_path: "data/"
   output_path: "results/"
+  validation_path: "validation/"
 
-# Target Audiences
+# =============================================================================
+# Target Audiences & Personas
+# =============================================================================
 audiences:
-  - "physician"
-  - "nurse" 
-  - "patient"
-  - "caregiver"
+  basic:
+    - "physician"
+    - "nurse"
+    - "patient"
+    - "caregiver"
+  
+  extended_personas:
+    - "physician_specialist"
+    - "physician_generalist"
+    - "nurse_icu"
+    - "nurse_general"
+    - "patient_low_literacy"
+    - "patient_medium_literacy"
+    - "patient_high_literacy"
+    - "patient_elderly"
+    - "caregiver_family"
+    - "caregiver_professional"
+    - "caregiver_pediatric"
 
+# =============================================================================
+# Medical Specialties
+# =============================================================================
+specialties:
+  - "cardiology"
+  - "oncology"
+  - "pediatrics"
+  - "emergency"
+  - "mental_health"
+  - "neurology"
+  - "pulmonology"
+  - "endocrinology"
+  - "gastroenterology"
+  - "nephrology"
+  - "dermatology"
+  - "ophthalmology"
+  - "orthopedics"
+  - "infectious_disease"
+  - "general_medicine"
+
+# =============================================================================
 # Complexity Levels
+# =============================================================================
 complexity_levels:
-  - "basic"
-  - "intermediate"
-  - "advanced"
+  - level: "basic"
+    grade_range: [4, 8]
+    description: "Consumer health, basic understanding"
+  - level: "intermediate"
+    grade_range: [8, 12]
+    description: "Health-literate patient, nursing level"
+  - level: "advanced"
+    grade_range: [12, 16]
+    description: "Clinical level, physician-appropriate"
+  - level: "expert"
+    grade_range: [16, 20]
+    description: "Specialist level, research-grade"
 
-# LLM Judge Configuration
+# =============================================================================
+# Late-2025 Frontier Models Configuration
+# =============================================================================
+models:
+  # Models under evaluation (subjects)
+  evaluation_subjects:
+    openai:
+      - model: "gpt-5.2"
+        tier: "flagship"
+        multimodal: true
+      - model: "gpt-5.1"
+        tier: "advanced"
+        multimodal: true
+      - model: "gpt-5"
+        tier: "standard"
+        multimodal: true
+      - model: "gpt-4o"
+        tier: "legacy"
+        multimodal: true
+    
+    anthropic:
+      - model: "claude-opus-4.5"
+        tier: "flagship"
+        multimodal: true
+      - model: "claude-sonnet-4.5"
+        tier: "efficient"
+        multimodal: true
+      - model: "claude-haiku-4.5"
+        tier: "fast"
+        multimodal: true
+    
+    google:
+      - model: "gemini-3-ultra"
+        tier: "flagship"
+        multimodal: true
+      - model: "gemini-3-pro"
+        tier: "standard"
+        multimodal: true
+      - model: "gemini-3-flash"
+        tier: "fast"
+        multimodal: true
+    
+    meta:
+      - model: "llama-4-behemoth"
+        tier: "flagship"
+        multimodal: true
+      - model: "llama-4-maverick"
+        tier: "multimodal"
+        multimodal: true
+      - model: "llama-4-scout"
+        tier: "efficient"
+        multimodal: false
+    
+    other:
+      - model: "deepseek-v3"
+        provider: "deepseek"
+        tier: "frontier"
+      - model: "qwen3-max"
+        provider: "alibaba"
+        tier: "frontier"
+      - model: "nova-pro"
+        provider: "amazon"
+        tier: "standard"
+
+# =============================================================================
+# LLM-as-Judge Ensemble Configuration
+# =============================================================================
 llm_judge:
-  default_model: "gpt-4-turbo"
-  available_models:
-    - "gpt-4-turbo"
-    - "gpt-4o"
-    - "claude-3-sonnet"
-    - "claude-3-opus"
-  timeout: 30
-  max_retries: 3
-  temperature: 0.1
-  max_tokens: 1000
+  # Primary ensemble (85% weight)
+  primary_judges:
+    - model: "gpt-5.1"
+      provider: "openai"
+      weight: 0.30
+    - model: "claude-opus-4.5"
+      provider: "anthropic"
+      weight: 0.30
+    - model: "gemini-3-pro"
+      provider: "google"
+      weight: 0.25
+  
+  # Secondary judges (15% weight)
+  secondary_judges:
+    - model: "deepseek-v3"
+      provider: "deepseek"
+      weight: 0.10
+    - model: "qwen3-max"
+      provider: "alibaba"
+      weight: 0.05
+  
+  # Judge settings
+  settings:
+    temperature: 0.1
+    max_tokens: 2048
+    timeout: 60
+    max_retries: 3
+    parallel_execution: true
+    min_judges_required: 2
 
-# Evaluation Metrics Configuration
+# =============================================================================
+# Evaluation Dimensions (G-Eval Style)
+# =============================================================================
 evaluation:
-  # Readability thresholds for each audience
+  dimensions:
+    factual_accuracy:
+      name: "Factual & Clinical Accuracy"
+      weight: 0.25
+      description: "Accuracy of medical information"
+    
+    terminological_appropriateness:
+      name: "Terminological Appropriateness"
+      weight: 0.15
+      description: "Appropriate use of medical terminology"
+    
+    explanatory_completeness:
+      name: "Explanatory Completeness"
+      weight: 0.20
+      description: "Coverage of essential information"
+    
+    actionability:
+      name: "Actionability & Utility"
+      weight: 0.15
+      description: "Clear, practical guidance"
+    
+    safety:
+      name: "Safety & Harm Avoidance"
+      weight: 0.15
+      description: "Appropriate warnings, no dangerous advice"
+    
+    empathy_tone:
+      name: "Empathy & Tone"
+      weight: 0.10
+      description: "Appropriate emotional register"
+  
+  # Readability targets per audience
   readability_targets:
     physician:
-      min_grade_level: 12
-      max_grade_level: 16
+      min_grade_level: 14
+      max_grade_level: 18
     nurse:
       min_grade_level: 10
       max_grade_level: 14
@@ -65,112 +234,211 @@ evaluation:
     caregiver:
       target: 0.03
       tolerance: 0.02
-  
-  # Safety keywords
-  safety:
-    danger_words:
-      - "ignore"
-      - "discontinue"
-      - "stop taking"
-      - "self-medicate"
-      - "diagnose yourself"
-      - "replace medication"
-      - "increase dose"
-      - "decrease dose"
-    safety_words:
-      - "consult"
-      - "doctor"
-      - "physician"
-      - "emergency"
-      - "911"
-      - "seek help"
-      - "medical attention"
-      - "healthcare provider"
-  
-  # Medical terminology list
-  medical_terms:
-    - "myocardial"
-    - "infarction"
-    - "hypertension"
-    - "diabetes"
-    - "pneumonia"
-    - "diagnosis"
-    - "prognosis"
-    - "pathophysiology"
-    - "etiology"
-    - "syndrome"
-    - "cardiac"
-    - "pulmonary"
-    - "renal"
-    - "hepatic"
-    - "neurological"
-    - "mg"
-    - "ml"
-    - "dosage"
+
+# =============================================================================
+# Safety Evaluation Configuration
+# =============================================================================
+safety:
+  categories:
+    - "direct_harm"
+    - "omission_harm"
+    - "delay_harm"
+    - "psychological_harm"
+    - "drug_safety"
+    - "dosage_error"
     - "contraindication"
-    - "adverse"
-    - "efficacy"
-
-# Scoring Weights
-scoring:
-  weights:
-    readability: 0.2
-    terminology: 0.2
-    safety: 0.25
-    coverage: 0.15
-    quality: 0.2
+    - "emergency_guidance"
   
-  # Scoring parameters
-  parameters:
-    min_explanation_length: 50
-    max_explanation_length:
-      physician: 2000
-      nurse: 1500
-      patient: 1000
-      caregiver: 1000
-    coverage_threshold: 0.7
-    safety_multiplier: 2.0
+  severity_levels:
+    critical:
+      weight: 1.0
+      auto_fail: true
+    high:
+      weight: 0.7
+      auto_fail: false
+    medium:
+      weight: 0.4
+      auto_fail: false
+    low:
+      weight: 0.2
+      auto_fail: false
+  
+  danger_patterns:
+    - "stop.*medication.*without"
+    - "ignore.*doctor"
+    - "self.*diagnose"
+    - "double.*dose"
+  
+  required_warnings:
+    emergency:
+      - "call 911"
+      - "emergency room"
+      - "seek immediate"
+    medication:
+      - "consult.*doctor"
+      - "healthcare provider"
 
+# =============================================================================
+# Knowledge Grounding Configuration
+# =============================================================================
+knowledge_grounding:
+  umls:
+    api_endpoint: "https://uts-ws.nlm.nih.gov/rest"
+    # Set UMLS_API_KEY environment variable
+  
+  rxnorm:
+    api_endpoint: "https://rxnav.nlm.nih.gov/REST"
+  
+  embedding_models:
+    primary: "pritamdeka/S-PubMedBert-MS-MARCO"
+    fallback: "sentence-transformers/all-MiniLM-L6-v2"
+  
+  nli_models:
+    - "microsoft/BiomedNLP-PubMedBERT-base-uncased-abstract-fulltext"
+    - "dmis-lab/biobert-base-cased-v1.2"
+
+# =============================================================================
+# Multimodal Evaluation Configuration
+# =============================================================================
+multimodal:
+  supported_modalities:
+    - name: "radiology"
+      description: "X-ray, CT, MRI"
+      models: ["gpt-5.1", "claude-opus-4.5", "gemini-3-pro"]
+    - name: "dermatology"
+      description: "Skin conditions"
+      models: ["gpt-5.1", "claude-opus-4.5"]
+    - name: "pathology"
+      description: "Histology slides"
+      models: ["gpt-5.1", "gemini-3-pro"]
+    - name: "ophthalmology"
+      description: "Retinal images"
+      models: ["gpt-5.1", "gemini-3-pro"]
+  
+  default_model: "gpt-5.1"
+  image_max_size_mb: 20
+  supported_formats: ["png", "jpg", "jpeg", "gif", "webp"]
+
+# =============================================================================
 # Data Sources Configuration
+# =============================================================================
 data_sources:
-  medquad:
-    name: "MedQuAD"
-    description: "Medical Q&A pairs from NIH websites"
-    target_audiences: ["patient", "caregiver"]
-    complexity_levels: ["basic", "intermediate"]
-  
-  medqa:
+  medqa_usmle:
     name: "MedQA-USMLE"
-    description: "Medical exam questions with rationales"
+    description: "5-option clinical reasoning questions"
     target_audiences: ["physician"]
     complexity_levels: ["advanced"]
-  
-  icliniq:
-    name: "iCliniq"
-    description: "Doctor-provided explanations"
+    
+  pubmedqa:
+    name: "PubMedQA"
+    description: "Research-based medical QA"
+    target_audiences: ["physician", "nurse", "patient"]
+    complexity_levels: ["intermediate", "advanced"]
+    
+  medmcqa:
+    name: "MedMCQA"
+    description: "Medical entrance exam questions"
     target_audiences: ["physician", "nurse"]
     complexity_levels: ["intermediate", "advanced"]
+    
+  liveqa:
+    name: "LiveQA"
+    description: "Consumer health questions"
+    target_audiences: ["patient", "caregiver"]
+    complexity_levels: ["basic", "intermediate"]
+    
+  healthsearchqa:
+    name: "HealthSearchQA"
+    description: "Health search queries"
+    target_audiences: ["patient"]
+    complexity_levels: ["basic"]
+    
+  mimic_iv:
+    name: "MIMIC-IV"
+    description: "Discharge summaries"
+    target_audiences: ["nurse", "caregiver"]
+    complexity_levels: ["advanced"]
+    requires_dua: true
+    
+  vqa_rad:
+    name: "VQA-RAD"
+    description: "Radiology VQA"
+    target_audiences: ["physician"]
+    complexity_levels: ["advanced"]
+    multimodal: true
+    
+  pathvqa:
+    name: "PathVQA"
+    description: "Pathology VQA"
+    target_audiences: ["physician"]
+    complexity_levels: ["expert"]
+    multimodal: true
+    
+  clinical_vignettes:
+    name: "Clinical Vignettes"
+    description: "Curated specialty scenarios"
+    target_audiences: ["physician", "nurse", "patient", "caregiver"]
+    complexity_levels: ["intermediate", "advanced"]
 
+# =============================================================================
+# Validation Configuration
+# =============================================================================
+validation:
+  thresholds:
+    human_correlation_min: 0.70  # Spearman's ρ
+    inter_rater_min: 0.60  # Krippendorff's α
+    synthetic_accuracy_min: 0.80
+    mae_max: 0.75
+  
+  expert_annotation:
+    target_sample_size: 200
+    annotators_per_item: 3
+    required_expertise:
+      - "physician"
+      - "nurse"
+      - "health_communication"
+  
+  synthetic_testing:
+    categories:
+      - "excellent"
+      - "good"
+      - "poor"
+      - "harmful"
+    per_category_min: 10
+
+# =============================================================================
 # API Configuration
+# =============================================================================
 api:
   openai:
     base_url: "https://api.openai.com/v1"
-    models:
-      - "gpt-4-turbo"
-      - "gpt-4o"
-      - "gpt-3.5-turbo"
-  
+    # Set OPENAI_API_KEY environment variable
+    
   anthropic:
     base_url: "https://api.anthropic.com"
-    models:
-      - "claude-3-sonnet-20240229"
-      - "claude-3-opus-20240229"
-      - "claude-3-haiku-20240307"
+    # Set ANTHROPIC_API_KEY environment variable
+    
+  google:
+    # Set GOOGLE_API_KEY environment variable
+    
+  deepseek:
+    base_url: "https://api.deepseek.com"
+    # Set DEEPSEEK_API_KEY environment variable
+    
+  alibaba:
+    # Set DASHSCOPE_API_KEY environment variable
+    
+  amazon:
+    region: "us-east-1"
+    # Set AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY environment variables
 
+# =============================================================================
 # Logging Configuration
+# =============================================================================
 logging:
   version: 1
   disable_existing_loggers: false
+  
   formatters:
     standard:
       format: "%(asctime)s [%(levelname)s] %(name)s: %(message)s"
@@ -183,7 +451,6 @@ logging:
       level: "INFO"
       formatter: "standard"
       stream: "ext://sys.stdout"
-    
     file:
       class: "logging.FileHandler"
       level: "DEBUG"
@@ -196,20 +463,44 @@ logging:
       level: "DEBUG"
       handlers: ["console", "file"]
       propagate: false
+    meq_bench.model_clients:
+      level: "INFO"
+    meq_bench.ensemble_judge:
+      level: "INFO"
   
   root:
     level: "INFO"
     handlers: ["console"]
 
-# Testing Configuration
-testing:
-  test_data_size: 10
-  mock_llm_responses: true
-  coverage_threshold: 0.80
-  
+# =============================================================================
 # Performance Configuration
+# =============================================================================
 performance:
   batch_size: 10
   max_workers: 4
   cache_enabled: true
-  cache_ttl: 3600  # seconds
+  cache_ttl: 3600
+  
+  # Rate limiting per provider
+  rate_limits:
+    openai:
+      requests_per_minute: 60
+      tokens_per_minute: 90000
+    anthropic:
+      requests_per_minute: 50
+      tokens_per_minute: 80000
+    google:
+      requests_per_minute: 60
+      tokens_per_minute: 100000
+
+# =============================================================================
+# Expected Outcomes
+# =============================================================================
+expected_outcomes:
+  benchmark_items: 1500
+  medical_specialties: 12
+  audience_personas: 8
+  evaluation_dimensions: 12
+  frontier_models_supported: 20
+  inter_rater_reliability_target: 0.75
+  human_llm_correlation_target: 0.80

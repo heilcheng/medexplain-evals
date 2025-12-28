@@ -1,0 +1,121 @@
+# MEQ-Bench 2.0 Docker Compose Configuration
+#
+# This file sets up the complete MEQ-Bench environment with optional
+# support for local LLM inference via vLLM.
+#
+# Usage:
+#   docker-compose up -d            # Start all services
+#   docker-compose up meqbench      # Just the benchmark runner
+#   docker-compose up vllm          # Start local LLM server
+#
+# Environment variables (set in .env file):
+#   - OPENAI_API_KEY
+#   - ANTHROPIC_API_KEY
+#   - GOOGLE_API_KEY
+#   - DEEPSEEK_API_KEY
+#   - HF_TOKEN (for model downloads)
+
+version: "3.9"
+
+services:
+  # Main MEQ-Bench service
+  meqbench:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: meq-bench:2.0
+    container_name: meqbench
+    volumes:
+      - ./data:/app/data
+      - ./results:/app/results
+      - ./reports:/app/reports
+      - ./configs:/app/configs
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
+      - GOOGLE_API_KEY=${GOOGLE_API_KEY:-}
+      - DEEPSEEK_API_KEY=${DEEPSEEK_API_KEY:-}
+      - ALIBABA_API_KEY=${ALIBABA_API_KEY:-}
+      - META_API_BASE_URL=http://vllm:8000/v1
+    depends_on:
+      - vllm
+    networks:
+      - meqbench-network
+    command: ["python", "scripts/run_evaluation.py", "--help"]
+
+  # vLLM server for local Llama 4 models
+  vllm:
+    image: vllm/vllm-openai:latest
+    container_name: meqbench-vllm
+    ports:
+      - "8000:8000"
+    volumes:
+      - ~/.cache/huggingface:/root/.cache/huggingface
+    environment:
+      - HF_TOKEN=${HF_TOKEN:-}
+      - CUDA_VISIBLE_DEVICES=0
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    networks:
+      - meqbench-network
+    # Default to Llama 4 Scout (smaller model for testing)
+    command: >
+      --model meta-llama/Llama-4-Scout-8B
+      --host 0.0.0.0
+      --port 8000
+      --tensor-parallel-size 1
+    profiles:
+      - gpu
+      - local
+
+  # Jupyter notebook for interactive analysis
+  jupyter:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: meq-bench:2.0
+    container_name: meqbench-jupyter
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./:/app
+      - ./notebooks:/app/notebooks
+    environment:
+      - JUPYTER_TOKEN=meqbench
+    networks:
+      - meqbench-network
+    command: >
+      jupyter lab 
+      --ip=0.0.0.0 
+      --port=8888 
+      --no-browser 
+      --allow-root
+      --NotebookApp.token='meqbench'
+    profiles:
+      - dev
+
+  # Redis for caching API responses (optional)
+  redis:
+    image: redis:7-alpine
+    container_name: meqbench-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    networks:
+      - meqbench-network
+    profiles:
+      - cache
+
+networks:
+  meqbench-network:
+    driver: bridge
+
+volumes:
+  redis-data:
+

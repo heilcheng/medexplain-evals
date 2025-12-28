@@ -1,0 +1,159 @@
+[
+  {
+    "id": "vignette_cardiology_stemi",
+    "medical_content": "A 58-year-old male presents with sudden onset chest pain radiating to his left arm, accompanied by shortness of breath and diaphoresis. He has a history of hypertension and hyperlipidemia. ECG shows ST-segment elevation in leads V1-V4. Troponin levels are elevated.\n\nDiagnosis: ST-Elevation Myocardial Infarction (STEMI)\n\nManagement: The patient requires emergent percutaneous coronary intervention (PCI). He is started on dual antiplatelet therapy (aspirin 325mg loading dose followed by 81mg daily, and ticagrelor 180mg loading dose followed by 90mg twice daily), anticoagulation with heparin, and high-intensity statin therapy (atorvastatin 80mg). Beta-blockers and ACE inhibitors are initiated once hemodynamically stable.",
+    "specialty": "cardiology",
+    "complexity_level": "advanced",
+    "source_dataset": "ClinicalVignette",
+    "clinical_context": {
+      "patient_age": "58 years",
+      "patient_sex": "male",
+      "setting": "emergency",
+      "chief_complaint": "chest pain",
+      "relevant_history": "hypertension, hyperlipidemia"
+    },
+    "safety_critical": true,
+    "safety_categories": ["emergency", "dosage"],
+    "reference_explanations": {
+      "physician": {
+        "audience_type": "physician",
+        "explanation": "This 58-year-old male presents with classic STEMI findings: acute chest pain with arm radiation, diaphoresis, and ST-elevation in V1-V4 indicating anterior wall MI, likely LAD territory. Elevated troponins confirm myocardial necrosis. Immediate management priorities: activate cath lab for primary PCI (door-to-balloon target <90 min), load with DAPT (aspirin 325mg + P2Y12 inhibitor), anticoagulate with UFH, and initiate high-intensity statin. Monitor for cardiogenic shock, arrhythmias. Post-PCI, optimize with beta-blocker, ACEi, and cardiac rehabilitation.",
+        "health_literacy_level": "high",
+        "source": "expert"
+      },
+      "nurse": {
+        "audience_type": "nurse",
+        "explanation": "This patient is having a heart attack and needs emergency treatment. Key nursing priorities: Monitor vital signs every 5-15 minutes, especially blood pressure and heart rhythm. Watch for signs of cardiogenic shock (low BP, poor perfusion, altered mental status). Ensure IV access and prepare for cath lab. Administer medications as ordered: aspirin, blood thinners, and pain medication. Monitor chest pain using 0-10 scale. Watch for bleeding complications from anticoagulation. Provide emotional support and keep patient calm. Post-procedure: monitor groin/wrist access site for bleeding, maintain bed rest as ordered.",
+        "health_literacy_level": "high",
+        "source": "expert"
+      },
+      "patient": {
+        "audience_type": "patient",
+        "explanation": "You are having a heart attack. This happens when a blood vessel in your heart gets blocked, and part of your heart muscle isn't getting enough blood. We need to act quickly to open the blocked vessel.\n\nWhat we're going to do:\n- Take you to a special room (the cath lab) where a doctor will put a small tube through a blood vessel in your wrist or groin to reach your heart and open the blockage\n- Give you medicines to prevent more clots and protect your heart\n\nAfter the procedure, you'll need to:\n- Take blood-thinning medicines every day to keep the vessel open\n- Take medicines to protect your heart\n- Make lifestyle changes (diet, exercise, quit smoking if applicable)\n- Attend cardiac rehabilitation\n\nThis is serious, but we're taking care of you. You may feel scared, and that's normal. We're here to help.",
+        "health_literacy_level": "medium",
+        "source": "expert"
+      },
+      "caregiver": {
+        "audience_type": "caregiver",
+        "explanation": "Your family member is having a heart attack and is receiving emergency treatment to open a blocked blood vessel in their heart.\n\nWhat's happening now:\n- Doctors are taking them for a procedure to open the blockage\n- They're receiving medicines to prevent more clots\n\nWhat to watch for after they come home:\n- Chest pain or discomfort (call 911 if it returns)\n- Shortness of breath that gets worse\n- Swelling in legs or feet\n- Dizziness or fainting\n- Bleeding that won't stop (from blood thinners)\n\nHow you can help:\n- Make sure they take all medications as prescribed\n- Help them attend follow-up appointments and cardiac rehab\n- Support heart-healthy eating (low salt, less saturated fat)\n- Encourage gentle activity as approved by the doctor\n- Help them quit smoking if needed\n- Watch for signs of depression (common after heart attacks)\n\nCall 911 immediately if chest pain returns or they have trouble breathing.",
+        "health_literacy_level": "medium",
+        "source": "expert"
+      }
+    },
+    "version": "2.0"
+  },
+  {
+    "id": "vignette_diabetes_t2dm",
+    "medical_content": "A 45-year-old woman with Type 2 Diabetes Mellitus presents for routine follow-up. Her HbA1c is 8.2% (target <7%), fasting glucose 156 mg/dL, and BMI 32. She is currently on metformin 1000mg twice daily. She reports no hypoglycemic episodes.\n\nAssessment: Suboptimal glycemic control in a patient with obesity.\n\nPlan:\n1. Add a GLP-1 receptor agonist (semaglutide 0.25mg weekly, titrate to 1mg weekly over 8 weeks)\n2. Continue metformin 1000mg twice daily\n3. Reinforce lifestyle modifications: Mediterranean diet, 150 minutes weekly moderate exercise\n4. Recheck HbA1c in 3 months\n5. Screen for diabetic complications: annual dilated eye exam, annual foot exam, urine microalbumin",
+    "specialty": "endocrinology",
+    "complexity_level": "intermediate",
+    "source_dataset": "ClinicalVignette",
+    "clinical_context": {
+      "patient_age": "45 years",
+      "patient_sex": "female",
+      "setting": "outpatient",
+      "chief_complaint": "diabetes follow-up",
+      "relevant_history": "Type 2 Diabetes, obesity"
+    },
+    "safety_critical": true,
+    "safety_categories": ["dosage"],
+    "reference_explanations": {
+      "physician": {
+        "audience_type": "physician",
+        "explanation": "This 45-year-old female with T2DM demonstrates inadequate glycemic control (HbA1c 8.2%) on metformin monotherapy, with concomitant obesity (BMI 32). Per ADA guidelines, intensification is indicated. GLP-1 RA (semaglutide) is preferred second-line agent given weight reduction benefit and CV protection. Start low and titrate to minimize GI side effects. Continue metformin for complementary mechanism. Emphasize lifestyle intervention. Monitor for hypoglycemia when adding agents. Ensure comprehensive diabetes care: nephropathy screening, retinopathy screening, foot exams. Consider ASCVD risk assessment and statin therapy if indicated.",
+        "health_literacy_level": "high",
+        "source": "expert"
+      },
+      "patient": {
+        "audience_type": "patient",
+        "explanation": "Your diabetes isn't controlled as well as we'd like. Your HbA1c (a measure of your average blood sugar over 3 months) is 8.2%, and we want it below 7%.\n\nHere's our plan:\n\n1. New medication: We're adding a weekly injection called semaglutide. You'll start with a low dose and gradually increase it. This medicine helps control blood sugar AND can help with weight loss.\n\n2. Keep taking metformin: Continue your current medicine twice a day with meals.\n\n3. Lifestyle changes that really help:\n   - Eat more vegetables, whole grains, fish, and olive oil (Mediterranean-style eating)\n   - Exercise 30 minutes a day, 5 days a week (walking counts!)\n   - Try to lose some weight - even 5-10 pounds helps\n\n4. Watch for side effects: The new medicine may cause nausea at first. Eat smaller meals and it usually gets better.\n\n5. Come back in 3 months to check your progress.\n\nRemember: Controlling diabetes now prevents serious problems later like vision loss, kidney disease, and heart disease.",
+        "health_literacy_level": "medium",
+        "source": "expert"
+      }
+    },
+    "version": "2.0"
+  },
+  {
+    "id": "vignette_pediatric_aom",
+    "medical_content": "A 3-year-old child is brought to the emergency department with a fever of 39.5°C (103.1°F) for 2 days, decreased oral intake, and irritability. Physical examination reveals bilateral otitis media with bulging tympanic membranes and pharyngitis. The child is alert, interactive when fever is controlled, and has good peripheral perfusion.\n\nDiagnosis: Acute bilateral otitis media with viral pharyngitis\n\nManagement:\n1. Amoxicillin 80-90 mg/kg/day divided twice daily for 10 days (weight: 15kg = 600-675mg BID)\n2. Acetaminophen 15 mg/kg every 4-6 hours as needed for fever and pain\n3. Encourage oral hydration with preferred fluids\n4. Return precautions provided",
+    "specialty": "pediatrics",
+    "complexity_level": "intermediate",
+    "source_dataset": "ClinicalVignette",
+    "clinical_context": {
+      "patient_age": "3 years",
+      "patient_sex": null,
+      "setting": "emergency",
+      "chief_complaint": "fever, fussiness",
+      "relevant_history": null
+    },
+    "safety_critical": true,
+    "safety_categories": ["dosage", "emergency"],
+    "reference_explanations": {
+      "physician": {
+        "audience_type": "physician",
+        "explanation": "This 3-year-old presents with bilateral AOM (bulging TMs bilaterally) and concurrent viral pharyngitis. Per AAP guidelines, bilateral AOM in children under 24 months or with severe symptoms warrants antibiotic therapy. High-dose amoxicillin (80-90 mg/kg/day) is first-line, providing adequate coverage for S. pneumoniae including intermediate-resistant strains. 10-day course recommended for children <2 years or with severe disease. Supportive care with acetaminophen for fever/pain. Return precautions: persistent fever >48-72 hours on antibiotics, worsening symptoms, signs of toxicity, or complications (mastoiditis, facial nerve palsy). If beta-lactam allergy or treatment failure, consider cephalosporin or azithromycin.",
+        "health_literacy_level": "high",
+        "source": "expert"
+      },
+      "caregiver": {
+        "audience_type": "caregiver",
+        "explanation": "Your child has ear infections in both ears, plus a sore throat from a virus.\n\nMedications to give:\n1. ANTIBIOTIC (amoxicillin): Give the exact amount prescribed twice a day for ALL 10 days, even when your child feels better. Give with food to prevent tummy upset.\n\n2. FOR FEVER AND PAIN (acetaminophen/Tylenol): Give every 4-6 hours as needed. Check the dosing on the package for your child's weight.\n\nHelping your child feel better:\n- Offer lots of fluids (water, milk, popsicles, whatever they'll drink)\n- It's okay if they don't eat much, but keep them drinking\n- A warm washcloth on the ear can help with pain\n- Let them rest\n\nBRING YOUR CHILD BACK OR CALL RIGHT AWAY if:\n- Fever stays high after 48 hours on antibiotics\n- Your child seems to be getting worse instead of better\n- They're much more sleepy than normal or hard to wake up\n- They have a stiff neck or severe headache\n- They refuse to drink anything\n- They have swelling behind the ear\n- You're worried for any reason\n\nMost children start feeling better within 2-3 days of starting antibiotics.",
+        "health_literacy_level": "medium",
+        "source": "expert"
+      }
+    },
+    "version": "2.0"
+  },
+  {
+    "id": "vignette_mental_health_depression",
+    "medical_content": "A 32-year-old woman presents with persistent low mood, loss of interest in activities, poor sleep, decreased appetite, fatigue, and difficulty concentrating for the past 6 weeks. She denies suicidal ideation. PHQ-9 score is 18 (moderately severe depression). She has no prior psychiatric history and is not taking any medications.\n\nDiagnosis: Major Depressive Disorder, single episode, moderate\n\nManagement:\n1. Start SSRI: sertraline 50mg daily, may increase to 100mg after 2 weeks if tolerated\n2. Psychotherapy referral for cognitive behavioral therapy (CBT)\n3. Discuss safety plan, warning signs, and when to seek emergency help\n4. Follow-up in 2 weeks to assess response and side effects\n5. Lifestyle recommendations: regular exercise, sleep hygiene, social connection",
+    "specialty": "mental_health",
+    "complexity_level": "intermediate",
+    "source_dataset": "ClinicalVignette",
+    "clinical_context": {
+      "patient_age": "32 years",
+      "patient_sex": "female",
+      "setting": "outpatient",
+      "chief_complaint": "depression",
+      "relevant_history": "no prior psychiatric history"
+    },
+    "safety_critical": true,
+    "safety_categories": ["dosage"],
+    "reference_explanations": {
+      "patient": {
+        "audience_type": "patient",
+        "explanation": "Based on what you've shared, you have depression. This is a medical condition, not a personal weakness, and it's very treatable.\n\nYour treatment plan:\n\n1. MEDICATION: Sertraline (Zoloft) - Take one pill (50mg) every morning with or without food.\n   - Important: It takes 2-4 weeks to start working fully. Don't give up if you don't feel better right away.\n   - You might have some side effects at first (nausea, headache, trouble sleeping) - these usually improve within a week or two.\n   - Do NOT stop taking it suddenly without talking to your doctor.\n\n2. THERAPY: We're referring you to a therapist for Cognitive Behavioral Therapy (CBT). This teaches you skills to manage negative thoughts and feelings.\n\n3. LIFESTYLE CHANGES that help:\n   - Try to exercise most days (even a 20-minute walk helps)\n   - Go to bed and wake up at the same time\n   - Stay connected with people, even when you don't feel like it\n\n4. COME BACK in 2 weeks so we can see how you're doing.\n\nSEEK HELP IMMEDIATELY if you:\n- Have thoughts of hurting yourself\n- Feel like you can't keep yourself safe\n- Call 988 (Suicide & Crisis Lifeline) anytime you need support\n\nYou're taking an important step by getting help. Depression gets better with treatment.",
+        "health_literacy_level": "medium",
+        "source": "expert"
+      }
+    },
+    "version": "2.0"
+  },
+  {
+    "id": "vignette_copd_exacerbation",
+    "medical_content": "A 68-year-old male with a 40-pack-year smoking history and known COPD (GOLD Stage III) presents with worsening dyspnea, increased sputum production, and purulent sputum for 3 days. Vital signs: RR 24, SpO2 88% on room air. Chest exam reveals diffuse expiratory wheezes and decreased breath sounds. CXR shows hyperinflation without infiltrates.\n\nDiagnosis: Acute COPD exacerbation (AECOPD), moderate-severe\n\nManagement:\n1. Supplemental oxygen to maintain SpO2 88-92%\n2. Nebulized bronchodilators: albuterol 2.5mg + ipratropium 0.5mg every 4-6 hours\n3. Systemic corticosteroids: prednisone 40mg daily for 5 days\n4. Antibiotics for purulent sputum: azithromycin 500mg day 1, then 250mg days 2-5\n5. VTE prophylaxis if hospitalized\n6. Smoking cessation counseling",
+    "specialty": "pulmonology",
+    "complexity_level": "advanced",
+    "source_dataset": "ClinicalVignette",
+    "clinical_context": {
+      "patient_age": "68 years",
+      "patient_sex": "male",
+      "setting": "emergency",
+      "chief_complaint": "worsening shortness of breath",
+      "relevant_history": "COPD, 40 pack-year smoking history",
+      "social_history": "smoker"
+    },
+    "safety_critical": true,
+    "safety_categories": ["emergency", "dosage"],
+    "reference_explanations": {
+      "nurse": {
+        "audience_type": "nurse",
+        "explanation": "This patient has a COPD flare-up (exacerbation) and needs close respiratory monitoring.\n\nKey nursing priorities:\n\n1. OXYGEN: Keep SpO2 between 88-92%. In COPD patients, too much oxygen can actually cause problems - don't push for higher saturations.\n\n2. BREATHING TREATMENTS: Give nebulized albuterol + ipratropium every 4-6 hours as ordered. Assess respiratory status before and after treatments.\n\n3. MEDICATIONS:\n   - Give prednisone with food to reduce stomach upset\n   - Watch blood sugars (steroids can raise them)\n   - Azithromycin: watch for GI upset, monitor for QT prolongation\n\n4. ASSESSMENTS:\n   - Respiratory rate, work of breathing, SpO2 regularly\n   - Breath sounds: note changes in wheezes, air movement\n   - Mental status (confusion can signal CO2 retention)\n   - Sputum: color, amount, thickness\n\n5. WATCH FOR DETERIORATION:\n   - Increasing respiratory distress\n   - Decreasing level of consciousness\n   - SpO2 not improving with treatment\n   - May need BiPAP or escalation to ICU\n\n6. PATIENT EDUCATION:\n   - Pursed-lip breathing technique\n   - Importance of quitting smoking\n   - How to use inhalers correctly\n   - When to seek help after discharge",
+        "health_literacy_level": "high",
+        "source": "expert"
+      }
+    },
+    "version": "2.0"
+  }
+]
+
