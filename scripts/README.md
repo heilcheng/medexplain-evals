@@ -1,6 +1,6 @@
-# MEQ-Bench Scripts
+# MedExplain-Evals Scripts
 
-This directory contains utility scripts for MEQ-Bench development, maintenance, and release management.
+This directory contains utility scripts for MedExplain-Evals development, maintenance, and release management.
 
 ## Available Scripts
 
@@ -62,7 +62,7 @@ Validates that a release is ready for publication.
 python scripts/validate_release.py
 
 # Validate specific package
-python scripts/validate_release.py --package-path dist/meq_bench-1.1.0-py3-none-any.whl
+python scripts/validate_release.py --package-path dist/medexplain-1.1.0-py3-none-any.whl
 
 # Verbose output
 python scripts/validate_release.py --verbose
@@ -70,7 +70,7 @@ python scripts/validate_release.py --verbose
 
 **Validation checks:**
 1. ✅ All core modules can be imported
-2. ✅ Basic functionality works (MEQBench, MEQBenchEvaluator)
+2. ✅ Basic functionality works (MedExplain, MedExplainEvaluator)
 3. ✅ Configuration system loads correctly
 4. ✅ Version numbers are consistent across files
 5. ✅ Example scripts have valid syntax
@@ -79,7 +79,7 @@ python scripts/validate_release.py --verbose
 ### 📊 Data Processing
 
 #### `process_datasets.py`
-Processes and validates external medical datasets for use with MEQ-Bench.
+Processes and validates external medical datasets for use with MedExplain-Evals.
 
 **Usage:**
 ```bash
@@ -109,7 +109,7 @@ python scripts/prepare_release.py --version 1.1.0 --type minor
 python scripts/validate_release.py
 
 # Test specific package if built
-python scripts/validate_release.py --package-path dist/meq_bench-1.1.0-py3-none-any.whl
+python scripts/validate_release.py --package-path dist/medexplain-1.1.0-py3-none-any.whl
 ```
 
 ### 3. Complete Release
@@ -131,7 +131,7 @@ git push origin main
 
 ### Common Requirements
 - Python 3.8+
-- All MEQ-Bench dependencies installed
+- All MedExplain-Evals dependencies installed
 
 ### Additional Tools for Release Scripts
 ```bash
@@ -252,7 +252,7 @@ chmod +x scripts/*.py
 #### Import Errors
 ```bash
 # Ensure you're in the project root
-cd /path/to/MEQ-Bench
+cd /path/to/MedExplain-Evals
 python scripts/script_name.py
 ```
 

@@ -1,12 +1,12 @@
 """Data loaders for external medical datasets.
 
 This module provides data loading functionality for integrating external medical
-datasets into the MEQ-Bench framework. It includes loaders for popular medical datasets
-and provides standardized conversion to MEQBenchItem objects with automatic complexity
+datasets into the MedExplain-Evals framework. It includes loaders for popular medical datasets
+and provides standardized conversion to MedExplainItem objects with automatic complexity
 stratification based on Flesch-Kincaid readability scores.
 
 The module ensures consistent data formatting and validation across different
-dataset sources, making it easy to extend MEQ-Bench with new data sources.
+dataset sources, making it easy to extend MedExplain-Evals with new data sources.
 
 Supported Datasets:
     - MedQuAD: Medical Question Answering Dataset
@@ -47,19 +47,19 @@ try:
 except ImportError:
     textstat = None
 
-from .benchmark import MEQBenchItem
+from .benchmark import MedExplainItem
 
-logger = logging.getLogger("meq_bench.data_loaders")
+logger = logging.getLogger("medexplain.data_loaders")
 
 
 def load_medquad(
     data_path: Union[str, Path], max_items: Optional[int] = None, complexity_level: str = "basic"
-) -> List[MEQBenchItem]:
-    """Load MedQuAD dataset and convert to MEQBenchItem objects.
+) -> List[MedExplainItem]:
+    """Load MedQuAD dataset and convert to MedExplainItem objects.
 
     The MedQuAD (Medical Question Answering Dataset) contains consumer health
     questions and answers from various medical sources. This function loads
-    the dataset and converts it to the MEQ-Bench format for evaluation.
+    the dataset and converts it to the MedExplain-Evals format for evaluation.
 
     Args:
         data_path: Path to the MedQuAD JSON file. Can be a string or Path object.
@@ -68,7 +68,7 @@ def load_medquad(
             since MedQuAD primarily contains consumer health questions.
 
     Returns:
-        List of MEQBenchItem objects converted from MedQuAD data.
+        List of MedExplainItem objects converted from MedQuAD data.
 
     Raises:
         FileNotFoundError: If the data file does not exist.
@@ -87,7 +87,7 @@ def load_medquad(
         items = load_medquad('data/medquad.json', complexity_level='intermediate')
 
         # Add to benchmark
-        bench = MEQBench()
+        bench = MedExplain()
         for item in items:
             bench.add_benchmark_item(item)
         ```
@@ -113,7 +113,7 @@ def load_medquad(
         logger.warning(f"Invalid complexity level '{complexity_level}', using 'basic'")
         complexity_level = "basic"
 
-    # Convert to MEQBenchItem objects
+    # Convert to MedExplainItem objects
     items = []
     items_to_process = data[:max_items] if max_items else data
 
@@ -137,8 +137,8 @@ def load_medquad(
             # Combine question and answer to create medical content
             medical_content = f"Question: {question.strip()}\\n\\nAnswer: {answer.strip()}"
 
-            # Create MEQBenchItem
-            item = MEQBenchItem(
+            # Create MedExplainItem
+            item = MedExplainItem(
                 id=str(item_id),
                 medical_content=medical_content,
                 complexity_level=complexity_level,
@@ -155,7 +155,7 @@ def load_medquad(
             logger.error(f"Error processing MedQuAD item {i}: {e}")
             continue
 
-    logger.info(f"Successfully loaded {len(items)} MEQBenchItem objects from MedQuAD")
+    logger.info(f"Successfully loaded {len(items)} MedExplainItem objects from MedQuAD")
 
     if len(items) == 0:
         logger.warning("No valid items were loaded from MedQuAD dataset")
@@ -172,12 +172,12 @@ def load_medquad(
 
 def load_healthsearchqa(
     data_path: Union[str, Path], max_items: Optional[int] = None, complexity_level: str = "intermediate"
-) -> List[MEQBenchItem]:
-    """Load HealthSearchQA dataset and convert to MEQBenchItem objects.
+) -> List[MedExplainItem]:
+    """Load HealthSearchQA dataset and convert to MedExplainItem objects.
 
     The HealthSearchQA dataset contains health-related search queries and answers
     from various health websites and search engines. This loader converts the dataset
-    into MEQBenchItem objects for use in the benchmark.
+    into MedExplainItem objects for use in the benchmark.
 
     Args:
         data_path: Path to the HealthSearchQA JSON file.
@@ -186,7 +186,7 @@ def load_healthsearchqa(
             since HealthSearchQA contains more varied complexity levels.
 
     Returns:
-        List of MEQBenchItem objects converted from HealthSearchQA data.
+        List of MedExplainItem objects converted from HealthSearchQA data.
 
     Raises:
         FileNotFoundError: If the data file does not exist.
@@ -202,7 +202,7 @@ def load_healthsearchqa(
         items = load_healthsearchqa('data/healthsearchqa.json', complexity_level='advanced')
 
         # Add to benchmark
-        bench = MEQBench()
+        bench = MedExplain()
         for item in items:
             bench.add_benchmark_item(item)
         ```
@@ -251,8 +251,8 @@ def load_healthsearchqa(
             # Create medical content
             medical_content = f"Search Query: {query.strip()}\\n\\nAnswer: {answer.strip()}"
 
-            # Create MEQBenchItem
-            item = MEQBenchItem(
+            # Create MedExplainItem
+            item = MedExplainItem(
                 id=str(item_id),
                 medical_content=medical_content,
                 complexity_level=complexity_level,
@@ -269,7 +269,7 @@ def load_healthsearchqa(
             logger.error(f"Error processing HealthSearchQA item {i}: {e}")
             continue
 
-    logger.info(f"Successfully loaded {len(items)} MEQBenchItem objects from HealthSearchQA")
+    logger.info(f"Successfully loaded {len(items)} MedExplainItem objects from HealthSearchQA")
 
     if len(items) == 0:
         logger.warning("No valid items were loaded from HealthSearchQA dataset")
@@ -292,15 +292,15 @@ def load_custom_dataset(
     auto_complexity: bool = False,
     nested_field_separator: str = ".",
     array_index_format: bool = True,
-) -> List[MEQBenchItem]:
-    """Load custom dataset and convert to MEQBenchItem objects with enhanced field mapping.
+) -> List[MedExplainItem]:
+    """Load custom dataset and convert to MedExplainItem objects with enhanced field mapping.
 
     This function provides robust field mapping capabilities including nested field access,
     array indexing, multiple field combinations, and automatic content generation.
 
     Args:
         data_path: Path to the JSON file containing the dataset.
-        field_mapping: Dictionary mapping dataset fields to MEQBenchItem fields.
+        field_mapping: Dictionary mapping dataset fields to MedExplainItem fields.
                       Supports nested fields (e.g., 'data.question'), arrays (e.g., 'items[0]'),
                       and multiple source fields (e.g., ['title', 'description']).
                       Example mappings:
@@ -315,7 +315,7 @@ def load_custom_dataset(
         array_index_format: Whether to support array index format like 'field[0]' (default: True).
 
     Returns:
-        List of MEQBenchItem objects.
+        List of MedExplainItem objects.
         
     Raises:
         FileNotFoundError: If the data file doesn't exist.
@@ -407,7 +407,7 @@ def load_custom_dataset(
                     logger.warning(f"Error calculating complexity for item {i}: {e}, using default")
                     item_complexity = complexity_level
 
-            item = MEQBenchItem(
+            item = MedExplainItem(
                 id=str(item_id),
                 medical_content=medical_content,
                 complexity_level=item_complexity,
@@ -426,11 +426,11 @@ def load_custom_dataset(
     return items
 
 
-def save_benchmark_items(items: List[MEQBenchItem], output_path: Union[str, Path], pretty_print: bool = True) -> None:
-    """Save MEQBenchItem objects to a JSON file.
+def save_benchmark_items(items: List[MedExplainItem], output_path: Union[str, Path], pretty_print: bool = True) -> None:
+    """Save MedExplainItem objects to a JSON file.
 
     Args:
-        items: List of MEQBenchItem objects to save.
+        items: List of MedExplainItem objects to save.
         output_path: Path where to save the JSON file.
         pretty_print: Whether to format JSON with indentation.
     """
@@ -590,8 +590,8 @@ def _calculate_complexity_fallback(text: str) -> str:
 
 def load_medqa_usmle(
     data_path: Union[str, Path], max_items: Optional[int] = None, auto_complexity: bool = True
-) -> List[MEQBenchItem]:
-    """Load MedQA-USMLE dataset and convert to MEQBenchItem objects.
+) -> List[MedExplainItem]:
+    """Load MedQA-USMLE dataset and convert to MedExplainItem objects.
 
     The MedQA-USMLE dataset contains medical questions based on USMLE exam format
     with multiple choice questions and explanations. This loader processes the
@@ -604,7 +604,7 @@ def load_medqa_usmle(
             using Flesch-Kincaid scores. If False, assigns 'intermediate' to all.
 
     Returns:
-        List of MEQBenchItem objects converted from MedQA-USMLE data.
+        List of MedExplainItem objects converted from MedQA-USMLE data.
 
     Raises:
         FileNotFoundError: If the data file does not exist.
@@ -689,8 +689,8 @@ def load_medqa_usmle(
             else:
                 complexity_level = "intermediate"
 
-            # Create MEQBenchItem
-            item = MEQBenchItem(
+            # Create MedExplainItem
+            item = MedExplainItem(
                 id=str(item_id),
                 medical_content=medical_content,
                 complexity_level=complexity_level,
@@ -707,7 +707,7 @@ def load_medqa_usmle(
             logger.error(f"Error processing MedQA-USMLE item {i}: {e}")
             continue
 
-    logger.info(f"Successfully loaded {len(items)} MEQBenchItem objects from MedQA-USMLE")
+    logger.info(f"Successfully loaded {len(items)} MedExplainItem objects from MedQA-USMLE")
 
     if len(items) == 0:
         logger.warning("No valid items were loaded from MedQA-USMLE dataset")
@@ -728,8 +728,8 @@ def load_medqa_usmle(
 
 def load_icliniq(
     data_path: Union[str, Path], max_items: Optional[int] = None, auto_complexity: bool = True
-) -> List[MEQBenchItem]:
-    """Load iCliniq dataset and convert to MEQBenchItem objects.
+) -> List[MedExplainItem]:
+    """Load iCliniq dataset and convert to MedExplainItem objects.
 
     The iCliniq dataset contains real clinical questions from patients and
     answers from medical professionals. This loader processes the dataset
@@ -741,7 +741,7 @@ def load_icliniq(
         auto_complexity: Whether to automatically calculate complexity levels.
 
     Returns:
-        List of MEQBenchItem objects converted from iCliniq data.
+        List of MedExplainItem objects converted from iCliniq data.
 
     Raises:
         FileNotFoundError: If the data file does not exist.
@@ -811,8 +811,8 @@ def load_icliniq(
             else:
                 complexity_level = "basic"  # iCliniq tends to be more patient-focused
 
-            # Create MEQBenchItem
-            item = MEQBenchItem(
+            # Create MedExplainItem
+            item = MedExplainItem(
                 id=str(item_id),
                 medical_content=medical_content,
                 complexity_level=complexity_level,
@@ -829,7 +829,7 @@ def load_icliniq(
             logger.error(f"Error processing iCliniq item {i}: {e}")
             continue
 
-    logger.info(f"Successfully loaded {len(items)} MEQBenchItem objects from iCliniq")
+    logger.info(f"Successfully loaded {len(items)} MedExplainItem objects from iCliniq")
 
     if len(items) == 0:
         logger.warning("No valid items were loaded from iCliniq dataset")
@@ -850,8 +850,8 @@ def load_icliniq(
 
 def load_cochrane_reviews(
     data_path: Union[str, Path], max_items: Optional[int] = None, auto_complexity: bool = True
-) -> List[MEQBenchItem]:
-    """Load Cochrane Reviews dataset and convert to MEQBenchItem objects.
+) -> List[MedExplainItem]:
+    """Load Cochrane Reviews dataset and convert to MedExplainItem objects.
 
     The Cochrane Reviews dataset contains evidence-based medical reviews and
     systematic analyses. This loader processes the dataset and optionally
@@ -863,7 +863,7 @@ def load_cochrane_reviews(
         auto_complexity: Whether to automatically calculate complexity levels.
 
     Returns:
-        List of MEQBenchItem objects converted from Cochrane Reviews data.
+        List of MedExplainItem objects converted from Cochrane Reviews data.
 
     Raises:
         FileNotFoundError: If the data file does not exist.
@@ -945,8 +945,8 @@ def load_cochrane_reviews(
             else:
                 complexity_level = "advanced"  # Cochrane reviews tend to be more technical
 
-            # Create MEQBenchItem
-            item = MEQBenchItem(
+            # Create MedExplainItem
+            item = MedExplainItem(
                 id=str(item_id),
                 medical_content=medical_content,
                 complexity_level=complexity_level,
@@ -963,7 +963,7 @@ def load_cochrane_reviews(
             logger.error(f"Error processing Cochrane Reviews item {i}: {e}")
             continue
 
-    logger.info(f"Successfully loaded {len(items)} MEQBenchItem objects from Cochrane Reviews")
+    logger.info(f"Successfully loaded {len(items)} MedExplainItem objects from Cochrane Reviews")
 
     if len(items) == 0:
         logger.warning("No valid items were loaded from Cochrane Reviews dataset")
@@ -1152,11 +1152,11 @@ def _create_medical_content(
     return ""
 
 
-def _validate_benchmark_item(item: MEQBenchItem) -> None:
-    """Validate a MEQBenchItem object for basic requirements.
+def _validate_benchmark_item(item: MedExplainItem) -> None:
+    """Validate a MedExplainItem object for basic requirements.
 
     Args:
-        item: MEQBenchItem to validate
+        item: MedExplainItem to validate
 
     Raises:
         ValueError: If the item doesn't meet basic requirements

@@ -3,7 +3,7 @@
 
 # Default target
 help:
-	@echo "MEQ-Bench 2.0 Development Commands"
+	@echo "MedExplain-Evals Development Commands"
 	@echo "==================================="
 	@echo ""
 	@echo "Setup:"
@@ -44,7 +44,7 @@ help:
 	@echo "  clean        Clean build artifacts"
 	@echo ""
 	@echo "Run:"
-	@echo "  run          Run MEQ-Bench CLI"
+	@echo "  run          Run MedExplain-Evals CLI"
 	@echo "  info         Show configuration info"
 
 # Python/UV detection
@@ -131,7 +131,7 @@ clean:
 
 # Docker
 docker:
-	docker build -t meq-bench:2.0 .
+	docker build -t medexplain-evals:2.0 .
 
 docker-run:
 	docker run --rm -it \
@@ -139,10 +139,10 @@ docker-run:
 		-e ANTHROPIC_API_KEY=$(ANTHROPIC_API_KEY) \
 		-v $(PWD)/data:/app/data \
 		-v $(PWD)/results:/app/results \
-		meq-bench:2.0
+		medexplain-evals:2.0
 
 docker-up:
-	docker-compose up -d meqbench
+	docker-compose up -d medexplain
 
 docker-up-gpu:
 	docker-compose --profile gpu up -d
@@ -211,11 +211,11 @@ analyze:
 report:
 	$(PYTHON) -c "\
 	import json; \
-	from analysis import ScoreAnalyzer, MEQBenchVisualizer, ReportGenerator; \
+	from analysis import ScoreAnalyzer, MedExplainVisualizer, ReportGenerator; \
 	analyzer = ScoreAnalyzer('results'); \
 	analyzer.load_scores(); \
 	results = analyzer.analyze(); \
-	viz = MEQBenchVisualizer('reports/figures'); \
+	viz = MedExplainVisualizer('reports/figures'); \
 	viz.generate_all_figures(results.to_dict()); \
 	reporter = ReportGenerator('reports'); \
 	reporter.generate_all_reports(results.to_dict(), figures_dir='reports/figures'); \
@@ -227,16 +227,16 @@ view-report:
 
 # Run
 run:
-	$(UV) run meq-bench $(ARGS)
+	$(UV) run medexplain-evals $(ARGS)
 
 info:
-	$(UV) run meq-bench info
+	$(UV) run medexplain-evals info
 
 evaluate:
-	$(UV) run meq-bench evaluate $(ARGS)
+	$(UV) run medexplain-evals evaluate $(ARGS)
 
 leaderboard:
-	$(UV) run meq-bench leaderboard $(ARGS)
+	$(UV) run medexplain-evals leaderboard $(ARGS)
 
 # Development utilities
 update:

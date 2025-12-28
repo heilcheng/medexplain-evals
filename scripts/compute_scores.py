@@ -387,7 +387,7 @@ class ScoreComputer:
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Compute evaluation scores for MEQ-Bench"
+        description="Compute evaluation scores for MedExplain-Evals"
     )
     parser.add_argument(
         "--explanations", "-e",

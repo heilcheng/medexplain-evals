@@ -1,4 +1,4 @@
-"""MEQ-Bench 2.0: Comprehensive Medical Explanation Quality Benchmark.
+"""MedExplain-Evals: Comprehensive Medical Explanation Quality Benchmark.
 
 A research-grade benchmark for evaluating audience-adaptive explanation
 quality in medical LLMs, featuring:
@@ -21,10 +21,10 @@ Late 2025 Model Support:
 
 Example:
     ```python
-    from src import MEQBench, EnsembleLLMJudge, UnifiedModelClient
+    from src import MedExplain, EnsembleLLMJudge, UnifiedModelClient
     
     # Initialize benchmark
-    bench = MEQBench()
+    bench = MedExplain()
     
     # Create model client
     client = UnifiedModelClient()
@@ -48,11 +48,11 @@ Example:
 """
 
 __version__ = "2.0.0"
-__author__ = "MEQ-Bench Team"
+__author__ = "MedExplain-Evals Team"
 
 # Core data structures
 from .data_schema import (
-    MEQBenchItemV2,
+    MedExplainItemV2,
     MedicalEntity,
     ClinicalContext,
     MultimodalContent,
@@ -184,15 +184,15 @@ from .validation import (
 )
 
 # Legacy compatibility - keep original exports working
-from .benchmark import MEQBench, MEQBenchItem
-from .evaluator import MEQBenchEvaluator
+from .benchmark import MedExplain, MedExplainItem
+from .evaluator import MedExplainEvaluator
 
 __all__ = [
     # Version
     "__version__",
     
     # Data Schema
-    "MEQBenchItemV2",
+    "MedExplainItemV2",
     "MedicalEntity",
     "ClinicalContext",
     "MultimodalContent",
@@ -307,7 +307,7 @@ __all__ = [
     "load_expert_annotations",
     
     # Legacy
-    "MEQBench",
-    "MEQBenchItem",
-    "MEQBenchEvaluator",
+    "MedExplain",
+    "MedExplainItem",
+    "MedExplainEvaluator",
 ]

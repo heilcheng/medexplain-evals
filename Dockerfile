@@ -1,4 +1,4 @@
-# MEQ-Bench Dockerfile
+# MedExplain-Evals Dockerfile
 # Multi-stage build for minimal production image
 
 # =============================================================================
@@ -33,24 +33,24 @@ RUN --mount=type=cache,target=/root/.cache/uv \
 FROM python:3.12-slim AS runtime
 
 # Create non-root user for security
-RUN groupadd --gid 1000 meqbench && \
-    useradd --uid 1000 --gid 1000 --shell /bin/bash --create-home meqbench
+RUN groupadd --gid 1000 medexplain && \
+    useradd --uid 1000 --gid 1000 --shell /bin/bash --create-home medexplain
 
 WORKDIR /app
 
 # Copy virtual environment from builder
-COPY --from=builder --chown=meqbench:meqbench /app/.venv /app/.venv
+COPY --from=builder --chown=medexplain:medexplain /app/.venv /app/.venv
 
 # Copy application code
-COPY --chown=meqbench:meqbench src/ ./src/
-COPY --chown=meqbench:meqbench scripts/ ./scripts/
-COPY --chown=meqbench:meqbench analysis/ ./analysis/
-COPY --chown=meqbench:meqbench config.yaml ./
-COPY --chown=meqbench:meqbench configs/ ./configs/
+COPY --chown=medexplain:medexplain src/ ./src/
+COPY --chown=medexplain:medexplain scripts/ ./scripts/
+COPY --chown=medexplain:medexplain analysis/ ./analysis/
+COPY --chown=medexplain:medexplain config.yaml ./
+COPY --chown=medexplain:medexplain configs/ ./configs/
 
 # Create necessary directories
 RUN mkdir -p /app/data /app/results /app/logs /app/reports && \
-    chown -R meqbench:meqbench /app && \
+    chown -R medexplain:medexplain /app && \
     chmod +x /app/scripts/*.sh 2>/dev/null || true
 
 # Set environment variables
@@ -60,20 +60,20 @@ ENV PATH="/app/.venv/bin:$PATH" \
     PYTHONPATH="/app"
 
 # Switch to non-root user
-USER meqbench
+USER medexplain
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
     CMD python -c "from src.settings import get_settings; get_settings()" || exit 1
 
 # Default command (flexible for different entry points)
-CMD ["python", "-c", "print('MEQ-Bench 2.0 Ready. Use: python scripts/run_evaluation.py --help')"]
+CMD ["python", "-c", "print('MedExplain-Evals Ready. Use: python scripts/run_evaluation.py --help')"]
 
 # Labels
-LABEL org.opencontainers.image.title="MEQ-Bench" \
-      org.opencontainers.image.description="Resource-Efficient Benchmark for Medical LLM Evaluation" \
+LABEL org.opencontainers.image.title="MedExplain-Evals" \
+      org.opencontainers.image.description="A Benchmark for Audience-Adaptive Medical Explanation Quality in LLMs" \
       org.opencontainers.image.version="2.0.0" \
-      org.opencontainers.image.source="https://github.com/heilcheng/MEQ-Bench" \
+      org.opencontainers.image.source="https://github.com/heilcheng/medexplain-evals" \
       org.opencontainers.image.licenses="MIT"
 
 # =============================================================================

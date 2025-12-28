@@ -1,6 +1,6 @@
 # Data Directory
 
-This directory contains benchmark datasets and evaluation data for MEQ-Bench.
+This directory contains benchmark datasets and evaluation data for MedExplain-Evals.
 
 ## Structure
 
@@ -14,7 +14,7 @@ data/
 
 ## Data Sources
 
-MEQ-Bench leverages existing, validated medical datasets:
+MedExplain-Evals leverages existing, validated medical datasets:
 
 - **MedQuAD**: 47,000+ Q&A pairs from NIH websites (patient/caregiver level)
 - **HealthSearchQA**: 3,000+ consumer health questions
@@ -27,9 +27,9 @@ MEQ-Bench leverages existing, validated medical datasets:
 To load benchmark data:
 
 ```python
-from src.benchmark import MEQBench
+from src.benchmark import MedExplain
 
-bench = MEQBench(data_path="data/")
+bench = MedExplain(data_path="data/")
 stats = bench.get_benchmark_stats()
 ```
 

@@ -1,6 +1,6 @@
-# MEQ-Bench Tests
+# MedExplain-Evals Tests
 
-This directory contains comprehensive test suites for the MEQ-Bench framework.
+This directory contains comprehensive test suites for the MedExplain-Evals framework.
 
 ## Test Structure
 
@@ -40,7 +40,7 @@ pytest --cov=src tests/
 ## Test Categories
 
 ### Unit Tests (`tests/unit/`)
-- `test_benchmark.py` - MEQBench class functionality
+- `test_benchmark.py` - MedExplain class functionality
 - `test_evaluator.py` - Evaluation metrics and scoring
 - `test_prompt_templates.py` - Prompt formatting and parsing
 - `test_utils.py` - Utility functions

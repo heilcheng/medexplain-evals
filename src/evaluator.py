@@ -1,5 +1,5 @@
 """
-Refactored evaluation framework for MEQ-Bench using SOLID principles
+Refactored evaluation framework for MedExplain-Evals using SOLID principles
 """
 
 import re
@@ -21,7 +21,7 @@ from .config import config
 from .strategies import StrategyFactory, AudienceStrategy
 
 # Set up logging
-logger = logging.getLogger("meq_bench.evaluator")
+logger = logging.getLogger("medexplain.evaluator")
 
 
 # TypedDict definitions for better structure typing
@@ -907,7 +907,7 @@ Where each score is a number from 1-5, and overall is the average."""
         return 0.6  # Default reasonable score
 
 
-class MEQBenchEvaluator:
+class MedExplainEvaluator:
     """Main evaluation class using dependency injection and SOLID principles"""
 
     def __init__(
@@ -958,7 +958,7 @@ class MEQBenchEvaluator:
         self.scoring_config = config.get_scoring_config()  # type: ignore[misc]
         self.weights: Dict[str, float] = self.scoring_config["weights"]
 
-        logger.info("MEQBenchEvaluator initialized with dependency injection")
+        logger.info("MedExplainEvaluator initialized with dependency injection")
 
     def evaluate_explanation(self, original: str, generated: str, audience: str) -> EvaluationScore:
         """

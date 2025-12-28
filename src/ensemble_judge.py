@@ -1,4 +1,4 @@
-"""Ensemble LLM-as-Judge framework for MEQ-Bench 2.0.
+"""Ensemble LLM-as-Judge framework for MedExplain-Evals.
 
 This module implements a multi-model judge ensemble using late-2025 frontier
 models for robust, calibrated evaluation of medical explanations.
@@ -47,7 +47,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from .model_clients import UnifiedModelClient, GenerationResult
 from .audience_personas import AudiencePersona, PersonaFactory
 
-logger = logging.getLogger("meq_bench.ensemble_judge")
+logger = logging.getLogger("medexplain.ensemble_judge")
 
 
 @dataclass

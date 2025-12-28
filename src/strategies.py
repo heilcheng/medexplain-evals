@@ -37,7 +37,7 @@ class AudienceStrategy(ABC):
     """Abstract base class for audience-specific scoring strategies.
 
     This abstract class defines the interface for audience-specific scoring
-    strategies used in MEQ-Bench evaluation. Each concrete strategy implements
+    strategies used in MedExplain-Evals evaluation. Each concrete strategy implements
     scoring logic tailored to the expectations and needs of a specific healthcare
     audience.
 

@@ -1,4 +1,4 @@
-"""Pytest configuration and fixtures for MEQ-Bench tests.
+"""Pytest configuration and fixtures for MedExplain-Evals tests.
 
 This module provides comprehensive test fixtures and configuration using
 modern pytest features including:
@@ -32,8 +32,8 @@ os.environ["GOOGLE_API_KEY"] = "test-google-key-for-testing"
 
 if TYPE_CHECKING:
     from src.api_client import BaseLLMClient
-    from src.benchmark import MEQBench, MEQBenchItem
-    from src.evaluator import MEQBenchEvaluator
+    from src.benchmark import MedExplain, MedExplainItem
+    from src.evaluator import MedExplainEvaluator
     from src.settings import Settings
 
 
@@ -132,11 +132,11 @@ def sample_medical_content() -> str:
 
 
 @pytest.fixture
-def sample_benchmark_item() -> MEQBenchItem:
+def sample_benchmark_item() -> MedExplainItem:
     """Sample benchmark item for testing."""
-    from src.benchmark import MEQBenchItem
+    from src.benchmark import MedExplainItem
 
-    return MEQBenchItem(
+    return MedExplainItem(
         id="test_item_001",
         medical_content=(
             "Type 2 diabetes mellitus is a metabolic disorder characterized by "
@@ -175,19 +175,19 @@ def sample_explanations() -> dict[str, str]:
 
 
 @pytest.fixture
-def benchmark_instance() -> MEQBench:
-    """MEQBench instance for testing."""
-    from src.benchmark import MEQBench
+def benchmark_instance() -> MedExplain:
+    """MedExplain instance for testing."""
+    from src.benchmark import MedExplain
 
-    return MEQBench()
+    return MedExplain()
 
 
 @pytest.fixture
-def evaluator_instance() -> MEQBenchEvaluator:
-    """MEQBenchEvaluator instance for testing."""
-    from src.evaluator import MEQBenchEvaluator
+def evaluator_instance() -> MedExplainEvaluator:
+    """MedExplainEvaluator instance for testing."""
+    from src.evaluator import MedExplainEvaluator
 
-    return MEQBenchEvaluator()
+    return MedExplainEvaluator()
 
 
 @pytest.fixture
@@ -281,7 +281,7 @@ def mock_httpx_client() -> AsyncMock:
 @pytest.fixture
 def benchmark_item_factory():
     """Factory for creating benchmark items with custom attributes."""
-    from src.benchmark import MEQBenchItem
+    from src.benchmark import MedExplainItem
 
     def _create_item(
         id: str = "test_001",
@@ -289,8 +289,8 @@ def benchmark_item_factory():
         complexity_level: str = "basic",
         source_dataset: str = "test",
         **kwargs: Any,
-    ) -> MEQBenchItem:
-        return MEQBenchItem(
+    ) -> MedExplainItem:
+        return MedExplainItem(
             id=id,
             medical_content=medical_content,
             complexity_level=complexity_level,

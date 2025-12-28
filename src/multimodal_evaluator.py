@@ -1,4 +1,4 @@
-"""Multimodal evaluation support for MEQ-Bench 2.0.
+"""Multimodal evaluation support for MedExplain-Evals.
 
 This module provides evaluation capabilities for image-to-text medical
 explanations, supporting radiology, dermatology, pathology, and
@@ -45,7 +45,7 @@ from .model_clients import UnifiedModelClient
 from .audience_personas import AudiencePersona, PersonaFactory
 from .ensemble_judge import EnsembleLLMJudge, EnsembleScore, EVALUATION_DIMENSIONS
 
-logger = logging.getLogger("meq_bench.multimodal_evaluator")
+logger = logging.getLogger("medexplain.multimodal_evaluator")
 
 
 class ImagingModality(str, Enum):

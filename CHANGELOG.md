@@ -29,7 +29,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.0.0] - 2025-07-03
 
 ### Added
-- **Initial release of MEQ-Bench framework**
+- **Initial release of MedExplain-Evals framework**
 - **Core evaluation framework** for evaluating audience-adaptive medical explanations
 - **Four target audiences support**: physicians, nurses, patients, and caregivers
 - **Automated metrics suite** including:
@@ -50,7 +50,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Anthropic API support (Claude-3 models)
   - Dummy model for testing and development
 - **Comprehensive benchmark management**:
-  - MEQBenchItem data structure for medical content
+  - MedExplainItem data structure for medical content
   - Benchmark validation and statistics reporting
   - Sample dataset generation for testing
   - JSON-based data persistence
@@ -121,4 +121,4 @@ When contributing to this project:
 
 ---
 
-For detailed information about any release, please see the corresponding [GitHub release](https://github.com/heilcheng/MEQ-Bench/releases) and the commit history.
+For detailed information about any release, please see the corresponding [GitHub release](https://github.com/heilcheng/MedExplain-Evals/releases) and the commit history.

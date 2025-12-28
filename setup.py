@@ -1,5 +1,5 @@
 """
-Setup script for MEQ-Bench: A Resource-Efficient Benchmark for Evaluating 
+Setup script for MedExplain-Evals: A Resource-Efficient Benchmark for Evaluating 
 Audience-Adaptive Explanation Quality in Medical Large Language Models.
 """
 
@@ -9,14 +9,14 @@ from setuptools import setup, find_packages
 
 # Ensure Python version compatibility
 if sys.version_info < (3, 8):
-    raise RuntimeError("MEQ-Bench requires Python 3.8 or higher")
+    raise RuntimeError("MedExplain-Evals requires Python 3.8 or higher")
 
 # Package metadata
-PACKAGE_NAME = "meq-bench"
+PACKAGE_NAME = "medexplain-evals"
 VERSION = "1.0.0"
-AUTHOR = "MEQ-Bench Team"
-AUTHOR_EMAIL = "contact@meq-bench.org"
-URL = "https://github.com/heilcheng/MEQ-Bench"
+AUTHOR = "MedExplain-Evals Team"
+AUTHOR_EMAIL = "contact@medexplain-evals.org"
+URL = "https://github.com/heilcheng/MedExplain-Evals"
 DESCRIPTION = "A Resource-Efficient Benchmark for Evaluating Audience-Adaptive Explanation Quality in Medical Large Language Models"
 
 # Read long description from README
@@ -184,14 +184,14 @@ EXTRAS_REQUIRE.update({
 # Entry points for command-line interface
 ENTRY_POINTS = {
     "console_scripts": [
-        "meq-bench=src.benchmark:main",
+        "medexplain-evals=src.benchmark:main",
         "meq-evaluate=src.evaluator:main", 
     ],
 }
 
 # Package data to include
 PACKAGE_DATA = {
-    "meq-bench": [
+    "medexplain-evals": [
         "data/*.json",
         "data/*.yaml", 
         "docs/*.md",

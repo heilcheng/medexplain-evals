@@ -1,4 +1,4 @@
-"""Visualization tools for MEQ-Bench analysis.
+"""Visualization tools for MedExplain-Evals analysis.
 
 This module generates charts and graphs for evaluating model performance
 including radar charts, heatmaps, and comparative bar charts.
@@ -62,8 +62,8 @@ AUDIENCE_COLORS = {
 }
 
 
-class MEQBenchVisualizer:
-    """Generate visualizations for MEQ-Bench results."""
+class MedExplainVisualizer:
+    """Generate visualizations for MedExplain-Evals results."""
     
     DIMENSIONS = [
         "factual_accuracy",
@@ -438,7 +438,7 @@ class MEQBenchVisualizer:
             row=2, col=2
         )
         
-        fig.update_layout(height=800, showlegend=False, title_text="MEQ-Bench 2.0 Evaluation Dashboard")
+        fig.update_layout(height=800, showlegend=False, title_text="MedExplain-Evals Evaluation Dashboard")
         
         output_path = self.output_dir / filename
         fig.write_html(str(output_path))

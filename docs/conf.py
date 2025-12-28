@@ -18,9 +18,9 @@ sys.path.insert(0, os.path.abspath('../src'))
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = 'MEQ-Bench'
-copyright = '2025, MEQ-Bench Team'
-author = 'MEQ-Bench Team'
+project = 'MedExplain-Evals'
+copyright = '2025, MedExplain-Evals Team'
+author = 'MedExplain-Evals Team'
 release = '1.0.0'
 version = '1.0.0'
 
@@ -139,7 +139,7 @@ html_show_copyright = True
 # html_file_suffix = None
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'MEQBenchdoc'
+htmlhelp_basename = 'MedExplaindoc'
 
 # -- Options for autodoc ----------------------------------------------------
 

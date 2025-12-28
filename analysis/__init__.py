@@ -1,4 +1,4 @@
-"""MEQ-Bench Analysis Module.
+"""MedExplain-Evals Analysis Module.
 
 This module provides analysis and visualization tools for
 evaluating benchmark results.
@@ -12,7 +12,7 @@ Components:
 """
 
 from .analyzer import ScoreAnalyzer, AnalysisResults
-from .visualizations import MEQBenchVisualizer
+from .visualizations import MedExplainVisualizer
 from .error_analysis import ErrorAnalyzer
 from .report_generator import ReportGenerator
 from .statistical_tests import StatisticalTests
@@ -20,7 +20,7 @@ from .statistical_tests import StatisticalTests
 __all__ = [
     "ScoreAnalyzer",
     "AnalysisResults",
-    "MEQBenchVisualizer",
+    "MedExplainVisualizer",
     "ErrorAnalyzer",
     "ReportGenerator",
     "StatisticalTests",

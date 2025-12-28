@@ -1,4 +1,4 @@
-"""ML-based medical safety evaluation for MEQ-Bench 2.0.
+"""ML-based medical safety evaluation for MedExplain-Evals.
 
 This module provides comprehensive safety evaluation for medical explanations,
 replacing simple keyword matching with ML-powered classification and
@@ -41,7 +41,7 @@ from dataclasses import dataclass, field
 from typing import Dict, List, Optional, Tuple, Any, Set
 from enum import Enum
 
-logger = logging.getLogger("meq_bench.safety_evaluator")
+logger = logging.getLogger("medexplain.safety_evaluator")
 
 
 class SafetyCategory(str, Enum):

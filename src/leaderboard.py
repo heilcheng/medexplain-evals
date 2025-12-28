@@ -1,8 +1,8 @@
 """
-Public leaderboard generation for MEQ-Bench evaluation results.
+Public leaderboard generation for MedExplain-Evals evaluation results.
 
 This module provides functionality to generate a static HTML leaderboard from
-MEQ-Bench evaluation results. The leaderboard displays overall scores for different
+MedExplain-Evals evaluation results. The leaderboard displays overall scores for different
 models with detailed breakdowns by audience type and complexity level.
 
 The generated leaderboard includes:
@@ -15,7 +15,7 @@ The generated leaderboard includes:
 Usage:
     python -m src.leaderboard --input results/ --output docs/index.html
 
-Author: MEQ-Bench Team
+Author: MedExplain-Evals Team
 """
 
 import json
@@ -29,7 +29,7 @@ import re
 
 # Set up logging
 logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger("meq_bench.leaderboard")
+logger = logging.getLogger("medexplain.leaderboard")
 
 
 class LeaderboardGenerator:
@@ -250,7 +250,7 @@ class LeaderboardGenerator:
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MEQ-Bench Leaderboard</title>
+    <title>MedExplain-Evals Leaderboard</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         {self._get_css_styles()}
@@ -259,7 +259,7 @@ class LeaderboardGenerator:
 <body>
     <div class="container">
         <header>
-            <h1>🏆 MEQ-Bench Leaderboard</h1>
+            <h1>🏆 MedExplain-Evals Leaderboard</h1>
             <p class="subtitle">Evaluating Medical Language Models for Audience-Adaptive Explanations</p>
             <div class="stats-bar">
                 <div class="stat-item">
@@ -342,10 +342,10 @@ class LeaderboardGenerator:
 
         <footer>
             <div class="footer-content">
-                <p><strong>About MEQ-Bench:</strong> A benchmark for evaluating medical language models on audience-adaptive explanation quality.</p>
+                <p><strong>About MedExplain-Evals:</strong> A benchmark for evaluating medical language models on audience-adaptive explanation quality.</p>
                 <p>Evaluation metrics include readability, terminology appropriateness, safety compliance, information coverage, and overall quality.</p>
-                <p>📧 Contact: <a href="mailto:meq-bench@research.org">meq-bench@research.org</a> | 
-                   🐙 GitHub: <a href="https://github.com/heilcheng/MEQ-Bench">heilcheng/MEQ-Bench</a></p>
+                <p>📧 Contact: <a href="mailto:medexplain-evals@research.org">medexplain-evals@research.org</a> | 
+                   🐙 GitHub: <a href="https://github.com/heilcheng/MedExplain-Evals">heilcheng/MedExplain-Evals</a></p>
             </div>
         </footer>
     </div>
@@ -1071,7 +1071,7 @@ class LeaderboardGenerator:
 def setup_argument_parser() -> argparse.ArgumentParser:
     """Set up command line argument parser"""
     parser = argparse.ArgumentParser(
-        description="Generate static HTML leaderboard from MEQ-Bench evaluation results",
+        description="Generate static HTML leaderboard from MedExplain-Evals evaluation results",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
@@ -1079,7 +1079,7 @@ Examples:
     python -m src.leaderboard --input results/ --output docs/index.html
     
     # Generate with custom title
-    python -m src.leaderboard --input results/ --output leaderboard.html --title "Custom MEQ-Bench Results"
+    python -m src.leaderboard --input results/ --output leaderboard.html --title "Custom MedExplain-Evals Results"
         """,
     )
 
@@ -1093,7 +1093,7 @@ Examples:
         help="Output path for the HTML leaderboard (default: docs/index.html)",
     )
 
-    parser.add_argument("--title", type=str, default="MEQ-Bench Leaderboard", help="Custom title for the leaderboard page")
+    parser.add_argument("--title", type=str, default="MedExplain-Evals Leaderboard", help="Custom title for the leaderboard page")
 
     parser.add_argument("--verbose", "-v", action="store_true", help="Enable verbose logging")
 

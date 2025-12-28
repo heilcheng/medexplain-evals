@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""MEQ-Bench evaluation script for running full benchmarks on multiple models.
+"""MedExplain-Evals evaluation script for running full benchmarks on multiple models.
 
-This script provides a command-line interface for running comprehensive MEQ-Bench
+This script provides a command-line interface for running comprehensive MedExplain-Evals
 evaluations on different language models. It supports various model backends
 including Hugging Face models, OpenAI API, Anthropic API, Google Gemini API,
 MLX (Apple Silicon), and custom model functions.
@@ -42,8 +42,8 @@ from typing import Dict, Any, Optional, Callable
 # Add src to path for imports
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'src'))
 
-from benchmark import MEQBench
-from evaluator import MEQBenchEvaluator
+from benchmark import MedExplain
+from evaluator import MedExplainEvaluator
 from config import config
 
 # Set up logging
@@ -55,7 +55,7 @@ logging.basicConfig(
         logging.FileHandler('benchmark_run.log')
     ]
 )
-logger = logging.getLogger('meq_bench.run_benchmark')
+logger = logging.getLogger('medexplain.run_benchmark')
 
 
 def create_model_function(model_name: str) -> Callable[[str], str]:
@@ -596,7 +596,7 @@ def run_evaluation(
     output_dir: str = "results",
     config_path: Optional[str] = None
 ) -> Dict[str, Any]:
-    """Run the full MEQ-Bench evaluation.
+    """Run the full MedExplain-Evals evaluation.
     
     This function coordinates the entire evaluation process including benchmark
     initialization, data loading, model evaluation, and results collection.
@@ -625,8 +625,8 @@ def run_evaluation(
             config.load_config(config_path)
         
         # Initialize benchmark
-        logger.info("Initializing MEQ-Bench...")
-        bench = MEQBench(data_path=data_path)
+        logger.info("Initializing MedExplain-Evals...")
+        bench = MedExplain(data_path=data_path)
         
         # Load custom data if provided
         if data_path:
@@ -700,7 +700,7 @@ def save_results(
     # Generate filename with timestamp
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     safe_model_name = model_name.replace(':', '_').replace('/', '_')
-    filename = f"meq_bench_results_{safe_model_name}_{timestamp}.json"
+    filename = f"medexplain_results_{safe_model_name}_{timestamp}.json"
     
     results_file = output_path / filename
     
@@ -757,9 +757,9 @@ def print_summary(results: Dict[str, Any]) -> None:
 
 
 def main():
-    """Main function to run the MEQ-Bench evaluation script."""
+    """Main function to run the MedExplain-Evals evaluation script."""
     parser = argparse.ArgumentParser(
-        description="Run MEQ-Bench evaluation on language models",
+        description="Run MedExplain-Evals evaluation on language models",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:

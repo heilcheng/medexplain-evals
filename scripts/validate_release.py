@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Release validation script for MEQ-Bench.
+Release validation script for MedExplain-Evals.
 
 This script validates that a release is ready by checking:
 - Package can be imported
@@ -10,7 +10,7 @@ This script validates that a release is ready by checking:
 
 Usage:
     python scripts/validate_release.py
-    python scripts/validate_release.py --package-path dist/meq_bench-1.1.0-py3-none-any.whl
+    python scripts/validate_release.py --package-path dist/medexplain-1.1.0-py3-none-any.whl
 """
 
 import argparse
@@ -31,7 +31,7 @@ logger = logging.getLogger(__name__)
 
 
 class ReleaseValidator:
-    """Validates MEQ-Bench releases"""
+    """Validates MedExplain-Evals releases"""
     
     def __init__(self, project_root: Path):
         self.project_root = project_root
@@ -75,9 +75,9 @@ class ReleaseValidator:
         
         try:
             # Test benchmark creation
-            from src.benchmark import MEQBench
-            bench = MEQBench()
-            logger.info("✅ MEQBench initialization")
+            from src.benchmark import MedExplain
+            bench = MedExplain()
+            logger.info("✅ MedExplain initialization")
             
             # Test sample dataset creation
             sample_items = bench.create_sample_dataset()
@@ -85,9 +85,9 @@ class ReleaseValidator:
             logger.info("✅ Sample dataset creation")
             
             # Test evaluator
-            from src.evaluator import MEQBenchEvaluator
-            evaluator = MEQBenchEvaluator()
-            logger.info("✅ MEQBenchEvaluator initialization")
+            from src.evaluator import MedExplainEvaluator
+            evaluator = MedExplainEvaluator()
+            logger.info("✅ MedExplainEvaluator initialization")
             
             # Test data loader
             from src.data_loaders import load_medquad
@@ -313,7 +313,7 @@ class ReleaseValidator:
     
     def run_all_validations(self, package_path: str = None) -> bool:
         """Run all validation checks"""
-        logger.info("🚀 Starting MEQ-Bench release validation...")
+        logger.info("🚀 Starting MedExplain-Evals release validation...")
         
         validations = [
             self.validate_imports,
@@ -359,7 +359,7 @@ class ReleaseValidator:
 def main():
     """Main function"""
     parser = argparse.ArgumentParser(
-        description="Validate MEQ-Bench release",
+        description="Validate MedExplain-Evals release",
         formatter_class=argparse.RawDescriptionHelpFormatter
     )
     

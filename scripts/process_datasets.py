@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Script to process and combine medical datasets into MEQ-Bench format.
+Script to process and combine medical datasets into MedExplain-Evals format.
 
 This script loads data from MedQA-USMLE, iCliniq, and Cochrane Reviews datasets,
 applies complexity stratification using Flesch-Kincaid scores, and creates a
@@ -13,7 +13,7 @@ Usage:
                                       --output data/benchmark_items.json \
                                       --max-items 1000
 
-Author: MEQ-Bench Team
+Author: MedExplain-Evals Team
 """
 
 import argparse
@@ -33,7 +33,7 @@ from data_loaders import (
     save_benchmark_items,
     calculate_complexity_level
 )
-from benchmark import MEQBenchItem
+from benchmark import MedExplainItem
 
 # Set up logging
 logging.basicConfig(
@@ -46,7 +46,7 @@ logger = logging.getLogger('process_datasets')
 def setup_argument_parser() -> argparse.ArgumentParser:
     """Set up command line argument parser."""
     parser = argparse.ArgumentParser(
-        description="Process medical datasets for MEQ-Bench",
+        description="Process medical datasets for MedExplain-Evals",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
@@ -184,7 +184,7 @@ def calculate_dataset_limits(total_items: int, num_datasets: int) -> Dict[str, i
     return limits
 
 
-def balance_complexity_distribution(items: List[MEQBenchItem], target_distribution: Optional[Dict[str, float]] = None) -> List[MEQBenchItem]:
+def balance_complexity_distribution(items: List[MedExplainItem], target_distribution: Optional[Dict[str, float]] = None) -> List[MedExplainItem]:
     """Balance the complexity distribution of items."""
     if target_distribution is None:
         # Default: roughly equal distribution
@@ -233,7 +233,7 @@ def balance_complexity_distribution(items: List[MEQBenchItem], target_distributi
     return balanced_items
 
 
-def validate_dataset(items: List[MEQBenchItem]) -> Dict[str, Any]:
+def validate_dataset(items: List[MedExplainItem]) -> Dict[str, Any]:
     """Validate the created dataset and return validation report."""
     validation_report = {
         'valid': True,
@@ -304,7 +304,7 @@ def validate_dataset(items: List[MEQBenchItem]) -> Dict[str, Any]:
     return validation_report
 
 
-def print_dataset_statistics(items: List[MEQBenchItem]) -> None:
+def print_dataset_statistics(items: List[MedExplainItem]) -> None:
     """Print detailed statistics about the dataset."""
     if not items:
         print("Dataset is empty")
@@ -362,7 +362,7 @@ def main():
     import random
     random.seed(args.seed)
     
-    logger.info("Starting MEQ-Bench dataset processing")
+    logger.info("Starting MedExplain-Evals dataset processing")
     logger.info(f"Target total items: {args.max_items}")
     
     # Check which datasets are provided

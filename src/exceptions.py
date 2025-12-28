@@ -1,10 +1,10 @@
-"""MEQ-Bench Exception Hierarchy.
+"""MedExplain-Evals Exception Hierarchy.
 
-This module defines a comprehensive exception hierarchy for the MEQ-Bench framework,
+This module defines a comprehensive exception hierarchy for the MedExplain-Evals framework,
 providing structured error handling with rich context and recovery suggestions.
 
 Exception Hierarchy:
-    MEQBenchError (base)
+    MedExplainError (base)
     ├── ConfigurationError
     │   ├── ConfigFileNotFoundError
     │   ├── ConfigValidationError
@@ -51,8 +51,8 @@ class ErrorContext:
         return " | ".join(parts)
 
 
-class MEQBenchError(Exception):
-    """Base exception for all MEQ-Bench errors.
+class MedExplainError(Exception):
+    """Base exception for all MedExplain-Evals errors.
 
     Provides structured error handling with context, cause chaining,
     and optional recovery suggestions.
@@ -90,7 +90,7 @@ class MEQBenchError(Exception):
 
 
 # Configuration Errors
-class ConfigurationError(MEQBenchError):
+class ConfigurationError(MedExplainError):
     """Base class for configuration-related errors."""
 
     pass
@@ -139,7 +139,7 @@ class MissingAPIKeyError(ConfigurationError):
 
 
 # Data Errors
-class DataError(MEQBenchError):
+class DataError(MedExplainError):
     """Base class for data-related errors."""
 
     pass
@@ -198,7 +198,7 @@ class DatasetNotFoundError(DataError):
 
 
 # Evaluation Errors
-class EvaluationError(MEQBenchError):
+class EvaluationError(MedExplainError):
     """Base class for evaluation-related errors."""
 
     pass
@@ -259,7 +259,7 @@ class EvaluationTimeoutError(EvaluationError):
 
 
 # API Errors
-class APIError(MEQBenchError):
+class APIError(MedExplainError):
     """Base class for API-related errors."""
 
     pass
@@ -319,7 +319,7 @@ class APIResponseError(APIError):
 
 
 # Leaderboard Errors
-class LeaderboardError(MEQBenchError):
+class LeaderboardError(MedExplainError):
     """Base class for leaderboard-related errors."""
 
     pass
@@ -358,7 +358,7 @@ class ExportError(LeaderboardError):
 
 
 __all__ = [
-    "MEQBenchError",
+    "MedExplainError",
     "ErrorContext",
     # Configuration
     "ConfigurationError",

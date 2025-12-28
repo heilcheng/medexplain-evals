@@ -1,4 +1,4 @@
-"""Configuration management system for MEQ-Bench.
+"""Configuration management system for MedExplain-Evals.
 
 This module provides a centralized configuration management system that loads settings
 from YAML files and environment variables. It implements a singleton pattern to ensure
@@ -33,9 +33,9 @@ class ConfigurationError(Exception):
 
 
 class Config:
-    """Singleton configuration manager for MEQ-Bench.
+    """Singleton configuration manager for MedExplain-Evals.
 
-    This class manages all configuration settings for the MEQ-Bench application.
+    This class manages all configuration settings for the MedExplain-Evals application.
     It loads configuration from YAML files and provides methods to access
     configuration values using dot notation.
 
@@ -145,7 +145,7 @@ class Config:
         config_path = project_root / "config.yaml"
 
         minimal_config = {
-            "app": {"name": "MEQ-Bench", "version": "1.0.0", "data_path": "data/", "output_path": "results/"},
+            "app": {"name": "MedExplain-Evals", "version": "1.0.0", "data_path": "data/", "output_path": "results/"},
             "audiences": ["physician", "nurse", "patient", "caregiver"],
             "complexity_levels": ["basic", "intermediate", "advanced"],
             "llm_judge": {"default_model": "gpt-3.5-turbo", "max_tokens": 800, "temperature": 0.3},

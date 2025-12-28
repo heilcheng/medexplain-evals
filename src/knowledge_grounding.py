@@ -1,4 +1,4 @@
-"""Medical knowledge grounding module for MEQ-Bench 2.0.
+"""Medical knowledge grounding module for MedExplain-Evals.
 
 This module provides integration with medical knowledge bases for factuality
 verification, entity extraction, and semantic grounding of medical explanations.
@@ -42,7 +42,7 @@ from enum import Enum
 import json
 from pathlib import Path
 
-logger = logging.getLogger("meq_bench.knowledge_grounding")
+logger = logging.getLogger("medexplain.knowledge_grounding")
 
 
 class EntityType(str, Enum):

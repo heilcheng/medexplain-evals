@@ -1,10 +1,10 @@
-# MEQ-Bench Release Process
+# MedExplain-Evals Release Process
 
-This document outlines the complete process for preparing and publishing MEQ-Bench releases.
+This document outlines the complete process for preparing and publishing MedExplain-Evals releases.
 
 ## Overview
 
-MEQ-Bench follows [Semantic Versioning](https://semver.org/) (MAJOR.MINOR.PATCH):
+MedExplain-Evals follows [Semantic Versioning](https://semver.org/) (MAJOR.MINOR.PATCH):
 - **MAJOR**: Breaking changes or significant API modifications
 - **MINOR**: New features, backward compatible
 - **PATCH**: Bug fixes, backward compatible
@@ -137,7 +137,7 @@ python -m venv test_env
 source test_env/bin/activate  # On Windows: test_env\Scripts\activate
 
 # Install from built package
-pip install dist/meq_bench-1.1.0-py3-none-any.whl
+pip install dist/medexplain-1.1.0-py3-none-any.whl
 
 # Test basic functionality
 python -c "import src; print('Package works!')"
@@ -146,10 +146,10 @@ python -c "import src; print('Package works!')"
 ## Publishing Release
 
 ### 1. GitHub Release
-1. Go to [GitHub Releases](https://github.com/heilcheng/MEQ-Bench/releases)
+1. Go to [GitHub Releases](https://github.com/heilcheng/MedExplain-Evals/releases)
 2. Click "Draft a new release"
 3. Choose the tag: `v1.1.0`
-4. Release title: `MEQ-Bench v1.1.0`
+4. Release title: `MedExplain-Evals v1.1.0`
 5. Use generated release notes from `release_notes_1.1.0.md`
 6. Upload built packages from `dist/` directory
 7. Publish release
@@ -166,7 +166,7 @@ twine check dist/*
 twine upload --repository testpypi dist/*
 
 # Test installation from Test PyPI
-pip install --index-url https://test.pypi.org/simple/ meq-bench
+pip install --index-url https://test.pypi.org/simple/ medexplain-evals
 
 # Upload to production PyPI
 twine upload dist/*

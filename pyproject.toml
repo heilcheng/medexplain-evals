@@ -3,17 +3,17 @@ requires = ["hatchling>=1.21.0"]
 build-backend = "hatchling.build"
 
 [project]
-name = "meq-bench"
+name = "medexplain-evals"
 version = "2.0.0"
-description = "A Resource-Efficient Benchmark for Evaluating Audience-Adaptive Explanation Quality in Medical LLMs"
+description = "A Benchmark for Audience-Adaptive Medical Explanation Quality in LLMs"
 readme = "README.md"
 license = "MIT"
 requires-python = ">=3.10"
 authors = [
-    { name = "MEQ-Bench Team", email = "contact@meq-bench.org" }
+    { name = "MedExplain-Evals Team", email = "contact@medexplain-evals.org" }
 ]
 maintainers = [
-    { name = "MEQ-Bench Team", email = "contact@meq-bench.org" }
+    { name = "MedExplain-Evals Team", email = "contact@medexplain-evals.org" }
 ]
 keywords = [
     "medical",
@@ -118,18 +118,18 @@ analysis = [
     "tqdm>=4.66.0",
 ]
 all = [
-    "meq-bench[dev,test,docs,ml,llm,analysis]",
+    "medexplain-evals[dev,test,docs,ml,llm,analysis]",
 ]
 
 [project.urls]
-Homepage = "https://github.com/heilcheng/MEQ-Bench"
-Documentation = "https://meq-bench.readthedocs.io"
-Repository = "https://github.com/heilcheng/MEQ-Bench.git"
-Issues = "https://github.com/heilcheng/MEQ-Bench/issues"
-Changelog = "https://github.com/heilcheng/MEQ-Bench/blob/main/CHANGELOG.md"
+Homepage = "https://github.com/heilcheng/MedExplain-Evals"
+Documentation = "https://medexplain-evals.readthedocs.io"
+Repository = "https://github.com/heilcheng/MedExplain-Evals.git"
+Issues = "https://github.com/heilcheng/MedExplain-Evals/issues"
+Changelog = "https://github.com/heilcheng/MedExplain-Evals/blob/main/CHANGELOG.md"
 
 [project.scripts]
-meq-bench = "src.cli:app"
+medexplain = "src.cli:app"
 meq-evaluate = "src.evaluator:main"
 
 [tool.hatch.build.targets.sdist]

@@ -25,7 +25,7 @@ except ImportError:
     # If direct import fails, we'll test through subprocess calls
     process_datasets = None
 
-from src.benchmark import MEQBenchItem
+from src.benchmark import MedExplainItem
 
 
 class TestDatasetLimitsCalculation:
@@ -94,7 +94,7 @@ class TestComplexityBalancing:
         # Create 10 basic items
         for i in range(10):
             items.append(
-                MEQBenchItem(
+                MedExplainItem(
                     id=f"basic_{i}",
                     medical_content=f"Basic medical content {i}",
                     complexity_level="basic",
@@ -105,7 +105,7 @@ class TestComplexityBalancing:
         # Create 5 intermediate items
         for i in range(5):
             items.append(
-                MEQBenchItem(
+                MedExplainItem(
                     id=f"intermediate_{i}",
                     medical_content=f"Intermediate medical content {i}",
                     complexity_level="intermediate",
@@ -116,7 +116,7 @@ class TestComplexityBalancing:
         # Create 2 advanced items
         for i in range(2):
             items.append(
-                MEQBenchItem(
+                MedExplainItem(
                     id=f"advanced_{i}",
                     medical_content=f"Advanced medical content {i}",
                     complexity_level="advanced",
@@ -158,7 +158,7 @@ class TestComplexityBalancing:
     def test_balance_single_complexity_level(self):
         """Test balancing when only one complexity level exists"""
         items = [
-            MEQBenchItem(
+            MedExplainItem(
                 id=f"basic_{i}", medical_content=f"Basic content {i}", complexity_level="basic", source_dataset="test"
             )
             for i in range(5)
@@ -185,13 +185,13 @@ class TestDatasetValidation:
     def test_validate_valid_dataset(self):
         """Test validation of valid dataset"""
         items = [
-            MEQBenchItem(
+            MedExplainItem(
                 id="test_001",
                 medical_content="This is valid medical content for testing purposes and is long enough.",
                 complexity_level="basic",
                 source_dataset="test",
             ),
-            MEQBenchItem(
+            MedExplainItem(
                 id="test_002",
                 medical_content="This is another valid medical content item for comprehensive testing.",
                 complexity_level="intermediate",
@@ -210,13 +210,13 @@ class TestDatasetValidation:
     def test_validate_duplicate_ids(self):
         """Test detection of duplicate IDs"""
         items = [
-            MEQBenchItem(
+            MedExplainItem(
                 id="duplicate_id",
                 medical_content="First item with duplicate ID and sufficient content length.",
                 complexity_level="basic",
                 source_dataset="test",
             ),
-            MEQBenchItem(
+            MedExplainItem(
                 id="duplicate_id",  # Same ID
                 medical_content="Second item with duplicate ID and sufficient content length.",
                 complexity_level="intermediate",
@@ -232,7 +232,7 @@ class TestDatasetValidation:
     def test_validate_short_content(self):
         """Test detection of very short content"""
         items = [
-            MEQBenchItem(id="test_001", medical_content="Short", complexity_level="basic", source_dataset="test")  # Too short
+            MedExplainItem(id="test_001", medical_content="Short", complexity_level="basic", source_dataset="test")  # Too short
         ]
 
         report = validate_dataset(items)
@@ -243,7 +243,7 @@ class TestDatasetValidation:
     def test_validate_missing_complexity_levels(self):
         """Test warning for missing complexity levels"""
         items = [
-            MEQBenchItem(
+            MedExplainItem(
                 id="test_001",
                 medical_content="This is valid medical content with sufficient length for testing.",
                 complexity_level="basic",  # Only basic level
@@ -259,13 +259,13 @@ class TestDatasetValidation:
     def test_validate_content_length_statistics(self):
         """Test content length statistics calculation"""
         items = [
-            MEQBenchItem(
+            MedExplainItem(
                 id="test_001",
                 medical_content="Short but valid medical content for testing purposes.",  # ~50 chars
                 complexity_level="basic",
                 source_dataset="test",
             ),
-            MEQBenchItem(
+            MedExplainItem(
                 id="test_002",
                 medical_content="This is a much longer medical content item that contains significantly more text to test the average content length calculation functionality."
                 * 3,  # ~400+ chars
@@ -299,19 +299,19 @@ class TestStatisticsPrinting:
     def test_print_valid_dataset_statistics(self, capsys):
         """Test printing statistics for valid dataset"""
         items = [
-            MEQBenchItem(
+            MedExplainItem(
                 id="test_001",
                 medical_content="Valid medical content for testing statistics display functionality.",
                 complexity_level="basic",
                 source_dataset="MedQA-USMLE",
             ),
-            MEQBenchItem(
+            MedExplainItem(
                 id="test_002",
                 medical_content="Another valid medical content item for comprehensive statistics testing.",
                 complexity_level="intermediate",
                 source_dataset="iCliniq",
             ),
-            MEQBenchItem(
+            MedExplainItem(
                 id="test_003",
                 medical_content="Third valid medical content item for advanced complexity testing and statistics.",
                 complexity_level="advanced",
@@ -514,7 +514,7 @@ class TestScriptIntegration:
         result = subprocess.run([sys.executable, str(script_path), "--help"], capture_output=True, text=True)
 
         assert result.returncode == 0
-        assert "Process medical datasets for MEQ-Bench" in result.stdout
+        assert "Process medical datasets for MedExplain-Evals" in result.stdout
         assert "--medqa" in result.stdout
         assert "--icliniq" in result.stdout
         assert "--cochrane" in result.stdout

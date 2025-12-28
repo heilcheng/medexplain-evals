@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate train/dev/test splits for MEQ-Bench dataset.
+"""Generate train/dev/test splits for MedExplain-Evals dataset.
 
 This script creates stratified splits of the benchmark dataset,
 ensuring balanced representation across specialties and complexity levels.
@@ -205,7 +205,7 @@ def save_splits(
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Generate train/dev/test splits for MEQ-Bench"
+        description="Generate train/dev/test splits for MedExplain-Evals"
     )
     parser.add_argument(
         "--input", "-i",

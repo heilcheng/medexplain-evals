@@ -11,12 +11,12 @@ Requirements
 Basic Installation
 ------------------
 
-Install MEQ-Bench using pip:
+Install MedExplain-Evals using pip:
 
 .. code-block:: bash
 
-   git clone https://github.com/heilcheng/MEQ-Bench.git
-   cd MEQ-Bench
+   git clone https://github.com/heilcheng/MedExplain-Evals.git
+   cd MedExplain-Evals
    pip install .
 
 This command uses the setup.py file to install the package and its dependencies correctly. The setup.py file automatically handles all core dependencies defined in the install_requires section.
@@ -28,8 +28,8 @@ For development, install in editable mode with additional dependencies:
 
 .. code-block:: bash
 
-   git clone https://github.com/heilcheng/MEQ-Bench.git
-   cd MEQ-Bench
+   git clone https://github.com/heilcheng/MedExplain-Evals.git
+   cd MedExplain-Evals
    pip install -e .[dev]
 
 This installs additional tools for development:
@@ -83,7 +83,7 @@ Configuration
 
 .. code-block:: bash
 
-   python -c "from src.benchmark import MEQBench; print('Installation successful!')"
+   python -c "from src.benchmark import MedExplain; print('Installation successful!')"
 
 Docker Installation (Optional)
 -------------------------------
@@ -93,10 +93,10 @@ For a containerized environment:
 .. code-block:: bash
 
    # Build the Docker image
-   docker build -t meq-bench .
+   docker build -t medexplain-evals .
    
    # Run the container
-   docker run -it meq-bench
+   docker run -it medexplain-evals
 
 Troubleshooting
 ---------------

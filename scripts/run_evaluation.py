@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Main evaluation orchestrator for MEQ-Bench 2.0.
+"""Main evaluation orchestrator for MedExplain-Evals.
 
 This script runs the full evaluation pipeline:
 1. Load benchmark items
@@ -456,7 +456,7 @@ def print_summary(summary: EvaluationSummary) -> None:
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Run MEQ-Bench 2.0 evaluation"
+        description="Run MedExplain-Evals evaluation"
     )
     parser.add_argument(
         "--benchmark", "-b",
@@ -540,7 +540,7 @@ def main():
         skip_scoring=args.skip_scoring,
     )
     
-    logger.info("MEQ-Bench 2.0 Evaluation Runner")
+    logger.info("MedExplain-Evals Evaluation Runner")
     logger.info(f"Models: {', '.join(models)}")
     logger.info(f"Output: {args.output}")
     

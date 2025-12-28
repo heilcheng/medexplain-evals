@@ -1,4 +1,4 @@
-"""Pydantic v2 Settings Management for MEQ-Bench.
+"""Pydantic v2 Settings Management for MedExplain-Evals.
 
 This module provides type-safe, validated configuration using Pydantic v2
 with support for environment variables, .env files, and YAML configuration.
@@ -73,7 +73,7 @@ class AppSettings(BaseModel):
 
     model_config = ConfigDict(frozen=True, extra="forbid")
 
-    name: str = "MEQ-Bench"
+    name: str = "MedExplain-Evals"
     version: str = "2.0.0"
     log_level: LogLevel = LogLevel.INFO
     data_path: Path = Path("data/")

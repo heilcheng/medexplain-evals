@@ -1,4 +1,4 @@
-"""Sophisticated audience persona system for MEQ-Bench 2.0.
+"""Sophisticated audience persona system for MedExplain-Evals.
 
 This module provides a comprehensive audience modeling framework that goes beyond
 simple readability metrics. It includes health literacy levels, cultural contexts,
@@ -34,7 +34,7 @@ from enum import Enum
 import re
 import logging
 
-logger = logging.getLogger("meq_bench.audience_personas")
+logger = logging.getLogger("medexplain.audience_personas")
 
 
 class AudienceType(str, Enum):

@@ -1,7 +1,7 @@
 Evaluation Metrics
 ==================
 
-MEQ-Bench includes a comprehensive suite of evaluation metrics designed to assess the quality, safety, and appropriateness of medical explanations across different audiences.
+MedExplain-Evals includes a comprehensive suite of evaluation metrics designed to assess the quality, safety, and appropriateness of medical explanations across different audiences.
 
 Core Evaluation Framework
 -------------------------
@@ -10,10 +10,10 @@ The evaluation system is built on SOLID principles with dependency injection, ma
 
 .. code-block:: python
 
-   from src.evaluator import MEQBenchEvaluator, EvaluationScore
+   from src.evaluator import MedExplainEvaluator, EvaluationScore
 
    # Initialize with default components
-   evaluator = MEQBenchEvaluator()
+   evaluator = MedExplainEvaluator()
 
    # Evaluate a single explanation
    score = evaluator.evaluate_explanation(
@@ -144,7 +144,7 @@ Uses a large language model to provide comprehensive quality evaluation across m
 Enhanced Safety Metrics
 -----------------------
 
-MEQ-Bench includes three specialized safety and factual consistency metrics:
+MedExplain-Evals includes three specialized safety and factual consistency metrics:
 
 Contradiction Detection
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -278,7 +278,7 @@ Evaluation Scoring System
 Weighted Scoring
 ~~~~~~~~~~~~~~~~
 
-MEQ-Bench uses a configurable weighted scoring system:
+MedExplain-Evals uses a configurable weighted scoring system:
 
 .. code-block:: python
 
@@ -376,7 +376,7 @@ Replace or customize evaluation components:
 .. code-block:: python
 
    from src.evaluator import (
-       MEQBenchEvaluator, 
+       MedExplainEvaluator, 
        ContradictionDetection,
        InformationPreservation,
        HallucinationDetection
@@ -391,7 +391,7 @@ Replace or customize evaluation components:
            return knowledge
 
    # Initialize evaluator with custom components
-   evaluator = MEQBenchEvaluator(
+   evaluator = MedExplainEvaluator(
        contradiction_detector=CustomContradictionDetection(),
        # ... other custom components
    )
@@ -409,7 +409,7 @@ Add your own evaluation metrics:
            return score
 
    # Use in custom evaluator
-   class CustomEvaluator(MEQBenchEvaluator):
+   class CustomEvaluator(MedExplainEvaluator):
        def __init__(self, **kwargs):
            super().__init__(**kwargs)
            self.custom_metric = CustomMetric()
@@ -466,7 +466,7 @@ Error Handling
 Graceful Degradation
 ~~~~~~~~~~~~~~~~~~~~
 
-MEQ-Bench handles missing dependencies gracefully:
+MedExplain-Evals handles missing dependencies gracefully:
 
 .. code-block:: python
 
@@ -488,7 +488,7 @@ Enable detailed logging for troubleshooting:
 .. code-block:: python
 
    import logging
-   logging.getLogger('meq_bench.evaluator').setLevel(logging.DEBUG)
+   logging.getLogger('medexplain.evaluator').setLevel(logging.DEBUG)
 
    # Detailed scores logged automatically
    score = evaluator.evaluate_explanation(original, generated, audience)

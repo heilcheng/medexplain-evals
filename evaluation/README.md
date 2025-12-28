@@ -1,10 +1,10 @@
 # Evaluation Framework
 
-This directory contains the evaluation methodology and scoring components for MEQ-Bench.
+This directory contains the evaluation methodology and scoring components for MedExplain-Evals.
 
 ## Framework Overview
 
-MEQ-Bench uses a dual evaluation approach:
+MedExplain-Evals uses a dual evaluation approach:
 
 1. **Automated Metrics Suite** - Fast, objective scoring
 2. **LLM-as-a-Judge** - Nuanced, rubric-based evaluation
@@ -22,9 +22,9 @@ evaluation/
 ## Evaluation Pipeline
 
 ```python
-from src.evaluator import MEQBenchEvaluator
+from src.evaluator import MedExplainEvaluator
 
-evaluator = MEQBenchEvaluator()
+evaluator = MedExplainEvaluator()
 scores = evaluator.evaluate_explanation(
     original="medical content",
     generated="model explanation", 

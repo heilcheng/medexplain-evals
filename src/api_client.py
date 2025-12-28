@@ -1,4 +1,4 @@
-"""Async API Client for MEQ-Bench.
+"""Async API Client for MedExplain-Evals.
 
 This module provides async HTTP clients for various LLM providers with:
     - Automatic retry with exponential backoff

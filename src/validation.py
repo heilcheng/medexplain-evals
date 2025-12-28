@@ -1,4 +1,4 @@
-"""Comprehensive validation framework for MEQ-Bench 2.0.
+"""Comprehensive validation framework for MedExplain-Evals.
 
 This module provides validation tools to ensure the reliability and
 validity of the LLM-as-Judge evaluation framework.
@@ -42,7 +42,7 @@ from pathlib import Path
 from datetime import datetime
 from enum import Enum
 
-logger = logging.getLogger("meq_bench.validation")
+logger = logging.getLogger("medexplain.validation")
 
 
 @dataclass
@@ -825,7 +825,7 @@ class ValidationRunner:
         """
         lines = [
             "=" * 60,
-            "MEQ-Bench 2.0 Validation Report",
+            "MedExplain-Evals Validation Report",
             "=" * 60,
             "",
             f"Date: {result.validation_date}",

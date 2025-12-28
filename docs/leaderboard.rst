@@ -1,7 +1,7 @@
 Public Leaderboard
 ==================
 
-MEQ-Bench includes a comprehensive leaderboard system that generates static HTML pages displaying model performance across different audiences and complexity levels.
+MedExplain-Evals includes a comprehensive leaderboard system that generates static HTML pages displaying model performance across different audiences and complexity levels.
 
 Overview
 --------
@@ -27,7 +27,7 @@ Generate a leaderboard from evaluation results:
    python -m src.leaderboard \
        --input evaluation_results/ \
        --output leaderboard.html \
-       --title "Custom MEQ-Bench Results" \
+       --title "Custom MedExplain-Evals Results" \
        --verbose
 
 Command Line Interface
@@ -374,10 +374,10 @@ The generated HTML includes SEO-friendly features:
 .. code-block:: html
 
    <head>
-       <title>MEQ-Bench Leaderboard - Medical LLM Evaluation Results</title>
+       <title>MedExplain-Evals Leaderboard - Medical LLM Evaluation Results</title>
        <meta name="description" content="Comprehensive evaluation results for medical language models on audience-adaptive explanation quality.">
        <meta name="keywords" content="medical AI, language models, evaluation, leaderboard">
-       <meta property="og:title" content="MEQ-Bench Leaderboard">
+       <meta property="og:title" content="MedExplain-Evals Leaderboard">
        <meta property="og:description" content="Medical LLM evaluation results">
    </head>
 
@@ -417,13 +417,13 @@ Complete Evaluation to Leaderboard Pipeline
 
 .. code-block:: python
 
-   from src.benchmark import MEQBench
+   from src.benchmark import MedExplain
    from src.leaderboard import LeaderboardGenerator
    from pathlib import Path
 
    # 1. Run evaluations for multiple models
    models = ['gpt-4', 'claude-3-opus', 'llama-2-70b']
-   bench = MEQBench()
+   bench = MedExplain()
 
    for model_name in models:
        model_func = get_model_function(model_name)  # Your model interface
@@ -454,8 +454,8 @@ Multi-Language Support
        def _load_translations(self):
            # Load language-specific strings
            return {
-               'en': {'title': 'MEQ-Bench Leaderboard', ...},
-               'es': {'title': 'Tabla de Clasificación MEQ-Bench', ...},
+               'en': {'title': 'MedExplain-Evals Leaderboard', ...},
+               'es': {'title': 'Tabla de Clasificación MedExplain-Evals', ...},
                # ... other languages
            }
 

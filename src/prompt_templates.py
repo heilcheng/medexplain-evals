@@ -6,7 +6,7 @@ instruct language models to create explanations tailored for different
 healthcare audiences (physicians, nurses, patients, caregivers).
 
 The module ensures consistent prompt formatting and response parsing
-across the MEQ-Bench evaluation framework.
+across the MedExplain-Evals evaluation framework.
 
 Key Classes:
     AudienceAdaptivePrompt: Main prompt template class for generating
@@ -33,7 +33,7 @@ from typing import Dict, List, Optional
 
 from .config import config
 
-logger = logging.getLogger("meq_bench.prompts")
+logger = logging.getLogger("medexplain.prompts")
 
 
 class AudienceAdaptivePrompt:

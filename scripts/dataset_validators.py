@@ -1,4 +1,4 @@
-"""Dataset validation utilities for MEQ-Bench 2.0.
+"""Dataset validation utilities for MedExplain-Evals.
 
 This module provides quality checks and validation functions for
 benchmark dataset curation.
@@ -18,7 +18,7 @@ from dataclasses import dataclass, field
 from typing import Dict, List, Set, Optional, Any, Tuple
 from collections import Counter
 
-logger = logging.getLogger("meq_bench.validators")
+logger = logging.getLogger("medexplain.validators")
 
 
 @dataclass

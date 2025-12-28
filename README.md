@@ -1,6 +1,6 @@
-# MEQ-Bench
+# MedExplain-Evals
 
-**A Benchmark for Evaluating Audience-Adaptive Explanation Quality in Medical LLMs**
+**A Benchmark for Audience-Adaptive Medical Explanation Quality in LLMs**
 
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
@@ -9,7 +9,7 @@
 
 ## Overview
 
-MEQ-Bench is a comprehensive evaluation framework for measuring how effectively large language models generate medical explanations tailored to different audiences. The benchmark assesses explanations across six dimensions: factual accuracy, terminological appropriateness, explanatory completeness, actionability, safety, and empathy.
+MedExplain-Evals is a comprehensive evaluation framework for measuring how effectively large language models generate medical explanations tailored to different audiences. The benchmark assesses explanations across six dimensions: factual accuracy, terminological appropriateness, explanatory completeness, actionability, safety, and empathy.
 
 **Key Capabilities:**
 - Multi-audience evaluation (physicians, nurses, patients, caregivers)
@@ -23,8 +23,8 @@ MEQ-Bench is a comprehensive evaluation framework for measuring how effectively 
 ## Installation
 
 ```bash
-git clone https://github.com/heilcheng/MEQ-Bench.git
-cd MEQ-Bench
+git clone https://github.com/heilcheng/medexplain-evals.git
+cd medexplain-evals
 pip install -r requirements.txt
 ```
 
@@ -75,7 +75,7 @@ make view-report
 ## Project Structure
 
 ```
-MEQ-Bench/
+medexplain-evals/
 ├── src/                          # Core library
 │   ├── model_clients.py          # Unified API client for all providers
 │   ├── ensemble_judge.py         # Multi-LLM evaluation ensemble
@@ -218,10 +218,10 @@ make smoke-test      # Quick validation run
 
 ```bash
 # Build image
-docker build -t meq-bench:2.0 .
+docker build -t medexplain-evals:2.0 .
 
 # Run with Docker Compose
-docker-compose up -d meqbench
+docker-compose up -d medexplain
 
 # With local LLM (Llama 4 via vLLM)
 docker-compose --profile gpu up -d
@@ -231,7 +231,7 @@ docker-compose --profile gpu up -d
 
 ## Validation
 
-MEQ-Bench includes a comprehensive validation framework:
+MedExplain-Evals includes a comprehensive validation framework:
 
 1. **Synthetic Agreement Testing**: Unambiguous test cases with known scores
 2. **Human Correlation**: Comparison with expert annotations (target ρ > 0.80)
@@ -243,11 +243,12 @@ MEQ-Bench includes a comprehensive validation framework:
 ## Citation
 
 ```bibtex
-@inproceedings{meqbench2025,
-  title={MEQ-Bench: A Benchmark for Evaluating Audience-Adaptive 
-         Explanation Quality in Medical LLMs},
-  author={MEQ-Bench Team},
-  year={2025}
+@inproceedings{medexplain2025,
+  title     = {MedExplain-Evals: A Benchmark for Audience-Adaptive 
+               Medical Explanation Quality in LLMs},
+  author    = {Cheng, Heil and others},
+  year      = {2025},
+  url       = {https://github.com/heilcheng/medexplain-evals}
 }
 ```
 
@@ -261,4 +262,4 @@ MIT License. See [LICENSE](LICENSE) for details.
 
 ## Disclaimer
 
-MEQ-Bench is designed for **research evaluation purposes only**. Generated explanations should not be used for actual medical advice. Always consult qualified healthcare professionals for medical decisions.
+MedExplain-Evals is designed for **research evaluation purposes only**. Generated explanations should not be used for actual medical advice. Always consult qualified healthcare professionals for medical decisions.

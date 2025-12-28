@@ -1,7 +1,7 @@
-MEQ-Bench Documentation
+MedExplain-Evals Documentation
 =======================
 
-Welcome to MEQ-Bench, a resource-efficient benchmark for evaluating audience-adaptive explanation quality in medical Large Language Models.
+Welcome to MedExplain-Evals, a resource-efficient benchmark for evaluating audience-adaptive explanation quality in medical Large Language Models.
 
 .. toctree::
    :maxdepth: 2
@@ -35,7 +35,7 @@ Welcome to MEQ-Bench, a resource-efficient benchmark for evaluating audience-ada
 Overview
 --------
 
-MEQ-Bench addresses a critical gap in medical AI evaluation by providing the first benchmark specifically designed to assess an LLM's ability to generate audience-adaptive medical explanations for four key stakeholders:
+MedExplain-Evals addresses a critical gap in medical AI evaluation by providing the first benchmark specifically designed to assess an LLM's ability to generate audience-adaptive medical explanations for four key stakeholders:
 
 * **Physicians** - Technical, evidence-based explanations
 * **Nurses** - Practical care implications and monitoring
@@ -63,23 +63,23 @@ Quick Start
 
 .. code-block:: python
 
-   from src.benchmark import MEQBench
-   from src.evaluator import MEQBenchEvaluator
+   from src.benchmark import MedExplain
+   from src.evaluator import MedExplainEvaluator
 
    # Initialize benchmark
-   bench = MEQBench()
+   bench = MedExplain()
    
    # Generate audience-adaptive explanations
    explanations = bench.generate_explanations(medical_content, model)
    
    # Evaluate explanations
-   evaluator = MEQBenchEvaluator()
+   evaluator = MedExplainEvaluator()
    scores = evaluator.evaluate_all_audiences(explanations)
 
 Architecture
 ------------
 
-MEQ-Bench is built with SOLID principles and uses:
+MedExplain-Evals is built with SOLID principles and uses:
 
 * **Strategy Pattern** for audience-specific scoring
 * **Dependency Injection** for flexible component management
@@ -89,7 +89,7 @@ MEQ-Bench is built with SOLID principles and uses:
 Getting Help
 ------------
 
-We provide comprehensive support channels to help you successfully use MEQ-Bench. Choose the most appropriate channel based on your needs:
+We provide comprehensive support channels to help you successfully use MedExplain-Evals. Choose the most appropriate channel based on your needs:
 
 📚 **Documentation and Self-Help**
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -100,12 +100,12 @@ Before reaching out, please check these resources:
 * **API Reference**: Detailed function and class documentation with examples
 * **Quickstart Guide**: :doc:`quickstart` - Get up and running in minutes  
 * **Installation Guide**: :doc:`installation` - Step-by-step setup instructions
-* **Evaluation Guide**: :doc:`evaluation_metrics` - Understanding MEQ-Bench metrics
+* **Evaluation Guide**: :doc:`evaluation_metrics` - Understanding MedExplain-Evals metrics
 * **Data Loading Guide**: :doc:`data_loading` - Working with datasets
 
 **Code Examples and Tutorials**
 
-* **Basic Usage**: `examples/basic_usage.py <https://github.com/heilcheng/MEQ-Bench/blob/main/examples/basic_usage.py>`_ - Simple getting started example
+* **Basic Usage**: `examples/basic_usage.py <https://github.com/heilcheng/MedExplain-Evals/blob/main/examples/basic_usage.py>`_ - Simple getting started example
 * **Model Integration**: Examples for OpenAI, Anthropic, Google Gemini, and MLX backends
 * **Custom Datasets**: How to load and process your own medical datasets
 * **Evaluation Examples**: Custom scoring and validation scenarios
@@ -115,7 +115,7 @@ Before reaching out, please check these resources:
 .. code-block:: bash
 
    # Verify installation
-   python -c "import src; print('✅ MEQ-Bench is working')"
+   python -c "import src; print('✅ MedExplain-Evals is working')"
    
    # Run basic test
    python run_benchmark.py --model_name dummy --max_items 2
@@ -128,7 +128,7 @@ Before reaching out, please check these resources:
 
 **🐛 Bug Reports and Technical Issues**
 
-* **Where**: `GitHub Issues <https://github.com/heilcheng/MEQ-Bench/issues>`_
+* **Where**: `GitHub Issues <https://github.com/heilcheng/MedExplain-Evals/issues>`_
 * **When**: Errors, crashes, unexpected behavior, or performance problems
 * **Include**:
   
@@ -146,7 +146,7 @@ Before reaching out, please check these resources:
 
 **💡 Feature Requests and Ideas**
 
-* **Where**: `GitHub Issues <https://github.com/heilcheng/MEQ-Bench/issues>`_ (use "enhancement" label)
+* **Where**: `GitHub Issues <https://github.com/heilcheng/MedExplain-Evals/issues>`_ (use "enhancement" label)
 * **When**: You have ideas for new features, metrics, or improvements
 * **Include**:
   
@@ -157,8 +157,8 @@ Before reaching out, please check these resources:
 
 **❓ Usage Questions and Best Practices**
 
-* **Where**: `GitHub Discussions <https://github.com/heilcheng/MEQ-Bench/discussions>`_
-* **When**: Questions about how to use MEQ-Bench effectively
+* **Where**: `GitHub Discussions <https://github.com/heilcheng/MedExplain-Evals/discussions>`_
+* **When**: Questions about how to use MedExplain-Evals effectively
 * **Categories**:
   
   * **Q&A**: General usage and troubleshooting questions
@@ -168,13 +168,13 @@ Before reaching out, please check these resources:
 
 **🔬 Research and Academic Support**
 
-* **Where**: Email to `research@meq-bench.org <mailto:research@meq-bench.org>`_
+* **Where**: Email to `research@medexplain-evals.org <mailto:research@medexplain-evals.org>`_
 * **When**: Academic collaborations, methodology questions, or validation studies
 * **Topics**: Metric interpretation, benchmark design, evaluation methodologies
 
 **🚨 Security and Safety Issues**
 
-* **Where**: Email to `security@meq-bench.org <mailto:security@meq-bench.org>`_  
+* **Where**: Email to `security@medexplain-evals.org <mailto:security@medexplain-evals.org>`_  
 * **When**: Security vulnerabilities, medical safety concerns, or ethical issues
 * **Note**: Please do not report security issues in public forums
 
@@ -186,7 +186,7 @@ Before reaching out, please check these resources:
 .. code-block:: bash
 
    # Clean reinstall
-   pip uninstall meq-bench
+   pip uninstall medexplain-evals
    pip install --no-cache-dir -e .
    
    # Install with specific dependency groups
@@ -199,7 +199,7 @@ Before reaching out, please check these resources:
 .. code-block:: bash
 
    # Ensure correct directory
-   cd /path/to/MEQ-Bench
+   cd /path/to/MedExplain-Evals
    python -c "import src"
    
    # Check Python path
@@ -262,7 +262,7 @@ If you receive help, consider contributing to the community:
 
 We welcome:
 
-* **Code Contributions**: See our `Contributing Guidelines <https://github.com/heilcheng/MEQ-Bench/blob/main/CONTRIBUTING.md>`_
+* **Code Contributions**: See our `Contributing Guidelines <https://github.com/heilcheng/MedExplain-Evals/blob/main/CONTRIBUTING.md>`_
 * **Research Partnerships**: Academic collaborations and validation studies
 * **Dataset Contributions**: New medical datasets and evaluation benchmarks
 * **Methodology Improvements**: Enhanced metrics and evaluation frameworks
@@ -282,8 +282,8 @@ Our community values:
 .. code-block:: bash
 
    # Development setup
-   git clone https://github.com/YOUR_USERNAME/MEQ-Bench.git
-   cd MEQ-Bench
+   git clone https://github.com/YOUR_USERNAME/MedExplain-Evals.git
+   cd MedExplain-Evals
    pip install -e .[dev]
    pre-commit install
    
@@ -298,10 +298,10 @@ Our community values:
 📧 **Direct Contact Information**
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-* **General Support**: `contact@meq-bench.org <mailto:contact@meq-bench.org>`_
-* **Research Collaboration**: `research@meq-bench.org <mailto:research@meq-bench.org>`_  
-* **Security Issues**: `security@meq-bench.org <mailto:security@meq-bench.org>`_
-* **Media and Press**: `press@meq-bench.org <mailto:press@meq-bench.org>`_
+* **General Support**: `contact@medexplain-evals.org <mailto:contact@medexplain-evals.org>`_
+* **Research Collaboration**: `research@medexplain-evals.org <mailto:research@medexplain-evals.org>`_  
+* **Security Issues**: `security@medexplain-evals.org <mailto:security@medexplain-evals.org>`_
+* **Media and Press**: `press@medexplain-evals.org <mailto:press@medexplain-evals.org>`_
 
 For urgent medical AI safety concerns, include "URGENT" in your email subject line.
 
@@ -310,8 +310,8 @@ Citation
 
 .. code-block:: bibtex
 
-   @article{meq-bench-2025,
-     title={MEQ-Bench: A Resource-Efficient Benchmark for Evaluating Audience-Adaptive Explanation Quality in Medical Large Language Models},
+   @article{medexplain-evals-2025,
+     title={MedExplain-Evals: A Resource-Efficient Benchmark for Evaluating Audience-Adaptive Explanation Quality in Medical Large Language Models},
      author={[Author Names]},
      journal={[Journal Name]},
      year={2025}

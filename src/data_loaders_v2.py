@@ -1,4 +1,4 @@
-"""Enhanced data loaders for MEQ-Bench 2.0.
+"""Enhanced data loaders for MedExplain-Evals.
 
 This module provides data loading functionality for multiple medical datasets
 with automatic complexity stratification, medical entity extraction, and
@@ -26,7 +26,7 @@ from typing import List, Dict, Optional, Union, Callable, Any
 from datetime import datetime
 
 from .data_schema import (
-    MEQBenchItemV2,
+    MedExplainItemV2,
     MedicalEntity,
     ClinicalContext,
     MultimodalContent,
@@ -36,7 +36,7 @@ from .data_schema import (
     DatasetSource,
 )
 
-logger = logging.getLogger("meq_bench.data_loaders_v2")
+logger = logging.getLogger("medexplain.data_loaders_v2")
 
 # Specialty detection patterns
 SPECIALTY_PATTERNS = {
@@ -177,7 +177,7 @@ def load_pubmedqa(
     data_path: Union[str, Path],
     max_items: Optional[int] = None,
     auto_complexity: bool = True
-) -> List[MEQBenchItemV2]:
+) -> List[MedExplainItemV2]:
     """Load PubMedQA dataset.
     
     PubMedQA is a biomedical question answering dataset with questions
@@ -243,7 +243,7 @@ def load_pubmedqa(
             complexity = calculate_complexity_v2(medical_content) if auto_complexity else ComplexityLevel.INTERMEDIATE.value
             safety_critical, safety_categories = detect_safety_categories(medical_content)
             
-            item = MEQBenchItemV2(
+            item = MedExplainItemV2(
                 id=f"pubmedqa_{item_id}",
                 medical_content=medical_content.strip(),
                 specialty=specialty,
@@ -268,7 +268,7 @@ def load_medmcqa(
     data_path: Union[str, Path],
     max_items: Optional[int] = None,
     auto_complexity: bool = True
-) -> List[MEQBenchItemV2]:
+) -> List[MedExplainItemV2]:
     """Load MedMCQA dataset.
     
     MedMCQA is a large-scale medical multiple choice question dataset
@@ -343,7 +343,7 @@ def load_medmcqa(
             complexity = calculate_complexity_v2(medical_content) if auto_complexity else ComplexityLevel.INTERMEDIATE.value
             safety_critical, safety_categories = detect_safety_categories(medical_content)
             
-            item = MEQBenchItemV2(
+            item = MedExplainItemV2(
                 id=f"medmcqa_{item_data.get('id', i)}",
                 medical_content=medical_content.strip(),
                 specialty=specialty,
@@ -368,7 +368,7 @@ def load_liveqa(
     data_path: Union[str, Path],
     max_items: Optional[int] = None,
     auto_complexity: bool = True
-) -> List[MEQBenchItemV2]:
+) -> List[MedExplainItemV2]:
     """Load LiveQA medical dataset.
     
     LiveQA contains consumer health questions submitted to the NLM.
@@ -419,7 +419,7 @@ def load_liveqa(
             complexity = ComplexityLevel.BASIC.value if not auto_complexity else calculate_complexity_v2(medical_content)
             safety_critical, safety_categories = detect_safety_categories(medical_content)
             
-            item = MEQBenchItemV2(
+            item = MedExplainItemV2(
                 id=f"liveqa_{item_data.get('qid', i)}",
                 medical_content=medical_content.strip(),
                 specialty=specialty,
@@ -444,7 +444,7 @@ def load_healthsearchqa(
     data_path: Union[str, Path],
     max_items: Optional[int] = None,
     auto_complexity: bool = True
-) -> List[MEQBenchItemV2]:
+) -> List[MedExplainItemV2]:
     """Load HealthSearchQA dataset.
     
     Contains health-related search queries with medical professional answers.
@@ -479,7 +479,7 @@ def load_healthsearchqa(
             complexity = calculate_complexity_v2(medical_content) if auto_complexity else ComplexityLevel.BASIC.value
             safety_critical, safety_categories = detect_safety_categories(medical_content)
             
-            item = MEQBenchItemV2(
+            item = MedExplainItemV2(
                 id=f"healthsearchqa_{i}",
                 medical_content=medical_content.strip(),
                 specialty=specialty,
@@ -504,7 +504,7 @@ def load_mimic_discharge(
     data_path: Union[str, Path],
     max_items: Optional[int] = None,
     auto_complexity: bool = True
-) -> List[MEQBenchItemV2]:
+) -> List[MedExplainItemV2]:
     """Load MIMIC-IV style discharge summaries.
     
     Clinical discharge summaries with complex medical content.
@@ -575,7 +575,7 @@ def load_mimic_discharge(
             if "dosage" not in safety_categories:
                 safety_categories.append("dosage")
             
-            item = MEQBenchItemV2(
+            item = MedExplainItemV2(
                 id=f"mimic_{item_data.get('hadm_id', item_data.get('id', i))}",
                 medical_content=medical_content.strip(),
                 specialty=specialty,
@@ -601,7 +601,7 @@ def load_vqa_rad(
     data_path: Union[str, Path],
     image_dir: Union[str, Path],
     max_items: Optional[int] = None
-) -> List[MEQBenchItemV2]:
+) -> List[MedExplainItemV2]:
     """Load VQA-RAD dataset for radiology visual question answering.
     
     Expected format:
@@ -657,7 +657,7 @@ def load_vqa_rad(
                     findings=answer,
                 )
             
-            item = MEQBenchItemV2(
+            item = MedExplainItemV2(
                 id=f"vqa_rad_{item_data.get('qid', i)}",
                 medical_content=medical_content.strip(),
                 specialty=MedicalSpecialty.RADIOLOGY.value,
@@ -682,7 +682,7 @@ def load_pathvqa(
     data_path: Union[str, Path],
     image_dir: Union[str, Path],
     max_items: Optional[int] = None
-) -> List[MEQBenchItemV2]:
+) -> List[MedExplainItemV2]:
     """Load PathVQA dataset for pathology visual question answering."""
     data_file = Path(data_path)
     image_directory = Path(image_dir)
@@ -723,7 +723,7 @@ def load_pathvqa(
                     findings=answer,
                 )
             
-            item = MEQBenchItemV2(
+            item = MedExplainItemV2(
                 id=f"pathvqa_{i}",
                 medical_content=medical_content.strip(),
                 specialty=MedicalSpecialty.PATHOLOGY.value,
@@ -753,7 +753,7 @@ def create_clinical_vignette(
     safety_critical: bool = False,
     safety_categories: Optional[List[str]] = None,
     vignette_id: Optional[str] = None,
-) -> MEQBenchItemV2:
+) -> MedExplainItemV2:
     """Create a clinical vignette benchmark item.
     
     Clinical vignettes are curated medical scenarios designed for
@@ -768,7 +768,7 @@ def create_clinical_vignette(
                 source="expert",
             )
     
-    item = MEQBenchItemV2(
+    item = MedExplainItemV2(
         id=vignette_id or f"vignette_{datetime.now().strftime('%Y%m%d%H%M%S')}",
         medical_content=scenario,
         specialty=specialty,
@@ -841,7 +841,7 @@ Management:
 }
 
 
-def generate_sample_vignettes() -> List[MEQBenchItemV2]:
+def generate_sample_vignettes() -> List[MedExplainItemV2]:
     """Generate sample clinical vignettes for testing."""
     vignettes = []
     
@@ -869,10 +869,10 @@ class DatasetCurator:
     """Curate and combine multiple datasets into a unified benchmark."""
     
     def __init__(self):
-        self.items: List[MEQBenchItemV2] = []
+        self.items: List[MedExplainItemV2] = []
         self.dataset_stats: Dict[str, int] = {}
     
-    def add_items(self, items: List[MEQBenchItemV2], source: str) -> None:
+    def add_items(self, items: List[MedExplainItemV2], source: str) -> None:
         """Add items from a dataset."""
         self.items.extend(items)
         self.dataset_stats[source] = self.dataset_stats.get(source, 0) + len(items)
@@ -881,7 +881,7 @@ class DatasetCurator:
     def balance_by_complexity(
         self,
         target_distribution: Optional[Dict[str, float]] = None
-    ) -> List[MEQBenchItemV2]:
+    ) -> List[MedExplainItemV2]:
         """Balance items across complexity levels."""
         import random
         
@@ -894,7 +894,7 @@ class DatasetCurator:
             }
         
         # Group by complexity
-        groups: Dict[str, List[MEQBenchItemV2]] = {}
+        groups: Dict[str, List[MedExplainItemV2]] = {}
         for item in self.items:
             level = item.complexity_level
             if level not in groups:
@@ -919,11 +919,11 @@ class DatasetCurator:
     def balance_by_specialty(
         self,
         max_per_specialty: int = 200
-    ) -> List[MEQBenchItemV2]:
+    ) -> List[MedExplainItemV2]:
         """Balance items across specialties."""
         import random
         
-        groups: Dict[str, List[MEQBenchItemV2]] = {}
+        groups: Dict[str, List[MedExplainItemV2]] = {}
         for item in self.items:
             specialty = item.specialty
             if specialty not in groups:

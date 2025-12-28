@@ -1,4 +1,4 @@
-"""Structured Logging for MEQ-Bench.
+"""Structured Logging for MedExplain-Evals.
 
 This module provides structured logging using structlog with support for:
     - JSON output for production environments
@@ -281,14 +281,14 @@ def log_exception(
         exc: Exception to log
         context: Additional context to include
     """
-    from src.exceptions import MEQBenchError
+    from src.exceptions import MedExplainError
 
     error_info: dict[str, Any] = {
         "error_type": type(exc).__name__,
         "error_message": str(exc),
     }
 
-    if isinstance(exc, MEQBenchError):
+    if isinstance(exc, MedExplainError):
         if exc.context:
             error_info["error_context"] = {
                 "operation": exc.context.operation,

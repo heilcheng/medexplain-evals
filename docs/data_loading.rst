@@ -1,7 +1,7 @@
 Data Loading and Processing
 ===========================
 
-MEQ-Bench provides comprehensive data loading functionality for popular medical datasets, with automatic complexity stratification and standardized conversion to the MEQ-Bench format.
+MedExplain-Evals provides comprehensive data loading functionality for popular medical datasets, with automatic complexity stratification and standardized conversion to the MedExplain-Evals format.
 
 Supported Datasets
 ------------------
@@ -12,7 +12,7 @@ The following medical datasets are currently supported:
 * **iCliniq**: Real clinical questions from patients with professional answers
 * **Cochrane Reviews**: Evidence-based systematic reviews and meta-analyses
 
-Each dataset loader handles the specific format and field mappings of its source data, converting everything to standardized :class:`~src.benchmark.MEQBenchItem` objects.
+Each dataset loader handles the specific format and field mappings of its source data, converting everything to standardized :class:`~src.benchmark.MedExplainItem` objects.
 
 Basic Usage
 -----------
@@ -61,7 +61,7 @@ Combine Multiple Datasets
 Complexity Stratification
 --------------------------
 
-MEQ-Bench automatically categorizes content complexity using Flesch-Kincaid Grade Level scores:
+MedExplain-Evals automatically categorizes content complexity using Flesch-Kincaid Grade Level scores:
 
 * **Basic**: FK score ≤ 8 (elementary/middle school level)
 * **Intermediate**: FK score 9-12 (high school level)  
@@ -85,7 +85,7 @@ MEQ-Bench automatically categorizes content complexity using Flesch-Kincaid Grad
 Fallback Complexity Calculation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-When the ``textstat`` library is unavailable, MEQ-Bench uses a fallback method based on:
+When the ``textstat`` library is unavailable, MedExplain-Evals uses a fallback method based on:
 
 * Average sentence length
 * Average syllables per word
@@ -99,7 +99,7 @@ When the ``textstat`` library is unavailable, MEQ-Bench uses a fallback method b
 Data Processing Script
 ----------------------
 
-MEQ-Bench includes a comprehensive command-line script for processing and combining datasets:
+MedExplain-Evals includes a comprehensive command-line script for processing and combining datasets:
 
 Basic Usage
 ~~~~~~~~~~~
@@ -182,7 +182,7 @@ The data processing includes comprehensive validation:
 
    from scripts.process_datasets import validate_dataset
 
-   # Validate any list of MEQBenchItem objects
+   # Validate any list of MedExplainItem objects
    validation_report = validate_dataset(items)
 
    if validation_report['valid']:

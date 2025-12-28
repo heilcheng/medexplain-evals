@@ -1,5 +1,5 @@
 """
-Basic usage example for MEQ-Bench with Hugging Face model integration
+Basic usage example for MedExplain-Evals with Hugging Face model integration
 """
 
 import os
@@ -11,15 +11,15 @@ import warnings
 # Add parent directory to path for imports
 sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
 
-from src.benchmark import MEQBench
-from src.evaluator import MEQBenchEvaluator
+from src.benchmark import MedExplain
+from src.evaluator import MedExplainEvaluator
 
 # Suppress some common warnings for cleaner output
 warnings.filterwarnings("ignore", category=FutureWarning)
 warnings.filterwarnings("ignore", category=UserWarning)
 
 # Set up logging
-logger = logging.getLogger("meq_bench.examples")
+logger = logging.getLogger("medexplain.examples")
 
 
 def generate_with_huggingface(prompt: str, model_name: str = "mistralai/Mistral-7B-Instruct-v0.2") -> str:
@@ -27,7 +27,7 @@ def generate_with_huggingface(prompt: str, model_name: str = "mistralai/Mistral-
 
     This function loads a pretrained language model from the Hugging Face Hub
     and generates a response to the given prompt. It's designed to work with
-    instruction-tuned models that can follow the MEQ-Bench prompt format.
+    instruction-tuned models that can follow the MedExplain-Evals prompt format.
 
     Args:
         prompt: The input prompt containing medical content and audience instructions.
@@ -198,13 +198,13 @@ def main():
     # Check if running in CI environment (non-interactive)
     is_ci = os.getenv('CI') or os.getenv('GITHUB_ACTIONS') or not os.isatty(0)
     
-    print("MEQ-Bench Basic Usage Example with Hugging Face Integration")
+    print("MedExplain-Evals Basic Usage Example with Hugging Face Integration")
     if is_ci:
         print("Running in CI mode (non-interactive)")
     print("=" * 60)
 
     # Initialize benchmark
-    bench = MEQBench()
+    bench = MedExplain()
 
     # Create sample dataset
     print("Creating sample dataset...")
@@ -292,7 +292,7 @@ def main():
     # Evaluate explanations
     print("\nEvaluating explanations...")
     try:
-        evaluator = MEQBenchEvaluator()
+        evaluator = MedExplainEvaluator()
         results = evaluator.evaluate_all_audiences(medical_content, explanations)
 
         print("\nEvaluation Results:")

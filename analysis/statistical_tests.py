@@ -1,4 +1,4 @@
-"""Statistical testing utilities for MEQ-Bench analysis.
+"""Statistical testing utilities for MedExplain-Evals analysis.
 
 This module provides statistical significance testing for
 comparing model performance.

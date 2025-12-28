@@ -1,7 +1,7 @@
 API Reference
 =============
 
-This section contains the complete API documentation for MEQ-Bench.
+This section contains the complete API documentation for MedExplain-Evals.
 
 .. toctree::
    :maxdepth: 2
@@ -30,12 +30,12 @@ Main Classes
 Benchmark
 ~~~~~~~~~
 
-.. autoclass:: src.benchmark.MEQBench
+.. autoclass:: src.benchmark.MedExplain
    :members:
    :undoc-members:
    :show-inheritance:
 
-.. autoclass:: src.benchmark.MEQBenchItem
+.. autoclass:: src.benchmark.MedExplainItem
    :members:
    :undoc-members:
    :show-inheritance:
@@ -43,7 +43,7 @@ Benchmark
 Evaluator
 ~~~~~~~~~
 
-.. autoclass:: src.evaluator.MEQBenchEvaluator
+.. autoclass:: src.evaluator.MedExplainEvaluator
    :members:
    :undoc-members:
    :show-inheritance:

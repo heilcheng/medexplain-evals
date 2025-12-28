@@ -27,7 +27,7 @@ class TestSettings:
 
         settings = Settings()
 
-        assert settings.app.name == "MEQ-Bench"
+        assert settings.app.name == "MedExplain-Evals"
         assert settings.app.version == "2.0.0"
         assert len(settings.audiences) == 4
         assert len(settings.complexity_levels) == 3

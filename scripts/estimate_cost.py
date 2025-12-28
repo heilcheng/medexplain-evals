@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""API cost estimator for MEQ-Bench evaluation.
+"""API cost estimator for MedExplain-Evals evaluation.
 
 This script estimates API costs before running evaluations to help
 researchers budget their experiments.
@@ -95,7 +95,7 @@ class CostEstimate:
 
 
 class CostEstimator:
-    """Estimate API costs for MEQ-Bench evaluation."""
+    """Estimate API costs for MedExplain-Evals evaluation."""
     
     def __init__(
         self,
@@ -292,7 +292,7 @@ def print_estimates(estimates: Dict[str, Any]) -> None:
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Estimate API costs for MEQ-Bench evaluation"
+        description="Estimate API costs for MedExplain-Evals evaluation"
     )
     parser.add_argument(
         "--models", "-m",

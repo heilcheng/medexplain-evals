@@ -1,7 +1,7 @@
 """Validation framework for LLM-as-a-Judge evaluation.
 
 This module provides validation functionality for the LLM-as-a-Judge component
-used in MEQ-Bench. It allows comparison of LLM scores with human ratings to
+used in MedExplain-Evals. It allows comparison of LLM scores with human ratings to
 assess the reliability and validity of automated evaluation.
 
 The validation process includes correlation analysis, statistical significance
@@ -11,7 +11,7 @@ reliable and consistent scores.
 Example:
     ```python
     from validate_judge import validate_llm_judge
-    from src.evaluator import MEQBenchEvaluator
+    from src.evaluator import MedExplainEvaluator
     
     # Prepare validation data
     predictions = [
@@ -20,7 +20,7 @@ Example:
     ]
     
     # Initialize LLM judge
-    llm_judge = MEQBenchEvaluator()
+    llm_judge = MedExplainEvaluator()
     
     # Run validation
     correlation, p_value = validate_llm_judge(predictions, llm_judge)
@@ -36,7 +36,7 @@ from dataclasses import dataclass
 import json
 from pathlib import Path
 
-logger = logging.getLogger('meq_bench.validation')
+logger = logging.getLogger('medexplain.validation')
 
 
 @dataclass
@@ -85,7 +85,7 @@ def validate_llm_judge(
             - 'medical_content': Original medical content (if not provided globally)
             - 'audience': Target audience (if different from global setting)
             
-        llm_judge: Instance of the LLM judge class (e.g., MEQBenchEvaluator).
+        llm_judge: Instance of the LLM judge class (e.g., MedExplainEvaluator).
             Must have a method to score explanations.
             
         medical_content: Original medical content for context. If None, each

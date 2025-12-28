@@ -1,11 +1,11 @@
-# MEQ-Bench 2.0 Docker Compose Configuration
+# MedExplain-Evals Docker Compose Configuration
 #
-# This file sets up the complete MEQ-Bench environment with optional
+# This file sets up the complete MedExplain-Evals environment with optional
 # support for local LLM inference via vLLM.
 #
 # Usage:
 #   docker-compose up -d            # Start all services
-#   docker-compose up meqbench      # Just the benchmark runner
+#   docker-compose up medexplain      # Just the benchmark runner
 #   docker-compose up vllm          # Start local LLM server
 #
 # Environment variables (set in .env file):
@@ -18,13 +18,13 @@
 version: "3.9"
 
 services:
-  # Main MEQ-Bench service
-  meqbench:
+  # Main MedExplain-Evals service
+  medexplain:
     build:
       context: .
       dockerfile: Dockerfile
-    image: meq-bench:2.0
-    container_name: meqbench
+    image: medexplain-evals:2.0
+    container_name: medexplain
     volumes:
       - ./data:/app/data
       - ./results:/app/results
@@ -40,13 +40,13 @@ services:
     depends_on:
       - vllm
     networks:
-      - meqbench-network
+      - medexplain-network
     command: ["python", "scripts/run_evaluation.py", "--help"]
 
   # vLLM server for local Llama 4 models
   vllm:
     image: vllm/vllm-openai:latest
-    container_name: meqbench-vllm
+    container_name: medexplain-vllm
     ports:
       - "8000:8000"
     volumes:
@@ -62,7 +62,7 @@ services:
               count: 1
               capabilities: [gpu]
     networks:
-      - meqbench-network
+      - medexplain-network
     # Default to Llama 4 Scout (smaller model for testing)
     command: >
       --model meta-llama/Llama-4-Scout-8B
@@ -78,42 +78,42 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: meq-bench:2.0
-    container_name: meqbench-jupyter
+    image: medexplain-evals:2.0
+    container_name: medexplain-jupyter
     ports:
       - "8888:8888"
     volumes:
       - ./:/app
       - ./notebooks:/app/notebooks
     environment:
-      - JUPYTER_TOKEN=meqbench
+      - JUPYTER_TOKEN=medexplain
     networks:
-      - meqbench-network
+      - medexplain-network
     command: >
       jupyter lab 
       --ip=0.0.0.0 
       --port=8888 
       --no-browser 
       --allow-root
-      --NotebookApp.token='meqbench'
+      --NotebookApp.token='medexplain'
     profiles:
       - dev
 
   # Redis for caching API responses (optional)
   redis:
     image: redis:7-alpine
-    container_name: meqbench-redis
+    container_name: medexplain-redis
     ports:
       - "6379:6379"
     volumes:
       - redis-data:/data
     networks:
-      - meqbench-network
+      - medexplain-network
     profiles:
       - cache
 
 networks:
-  meqbench-network:
+  medexplain-network:
     driver: bridge
 
 volumes:

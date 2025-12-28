@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Dataset curation pipeline for MEQ-Bench 2.0.
+"""Dataset curation pipeline for MedExplain-Evals.
 
 This script orchestrates the creation of the final benchmark dataset from
 multiple sources, applying quality filtering, balanced sampling, and
@@ -400,7 +400,7 @@ class DatasetCurator:
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Curate MEQ-Bench 2.0 dataset"
+        description="Curate MedExplain-Evals dataset"
     )
     parser.add_argument(
         "--output", "-o",

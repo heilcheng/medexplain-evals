@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Release preparation script for MEQ-Bench.
+Release preparation script for MedExplain-Evals.
 
 This script automates the release preparation process including:
 - Version validation and updating
@@ -316,9 +316,9 @@ class ReleasePreparation:
         match = re.search(version_pattern, content, re.DOTALL)
         
         if match:
-            return f"# MEQ-Bench {new_version}\n\n{match.group(1).strip()}"
+            return f"# MedExplain-Evals {new_version}\n\n{match.group(1).strip()}"
         else:
-            return f"# MEQ-Bench {new_version}\n\nRelease notes not found in CHANGELOG.md"
+            return f"# MedExplain-Evals {new_version}\n\nRelease notes not found in CHANGELOG.md"
     
     def perform_release_checks(self) -> Dict[str, bool]:
         """Perform all pre-release checks"""
@@ -456,7 +456,7 @@ class ReleasePreparation:
 def main():
     """Main function"""
     parser = argparse.ArgumentParser(
-        description="Prepare MEQ-Bench for release",
+        description="Prepare MedExplain-Evals for release",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:

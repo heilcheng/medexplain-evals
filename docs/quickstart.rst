@@ -1,7 +1,7 @@
 Quick Start Guide
 =================
 
-This guide will help you get started with MEQ-Bench quickly.
+This guide will help you get started with MedExplain-Evals quickly.
 
 Basic Usage
 -----------
@@ -10,8 +10,8 @@ Basic Usage
 
 .. code-block:: python
 
-   from src.benchmark import MEQBench
-   from src.evaluator import MEQBenchEvaluator
+   from src.benchmark import MedExplain
+   from src.evaluator import MedExplainEvaluator
    from src.config import config
 
 2. **Initialize the benchmark:**
@@ -19,10 +19,10 @@ Basic Usage
 .. code-block:: python
 
    # Initialize with default configuration
-   bench = MEQBench()
+   bench = MedExplain()
    
    # Initialize evaluator
-   evaluator = MEQBenchEvaluator()
+   evaluator = MedExplainEvaluator()
 
 3. **Define your model function:**
 
@@ -56,7 +56,7 @@ Basic Usage
 Working with Sample Data
 ------------------------
 
-MEQ-Bench includes sample data for testing:
+MedExplain-Evals includes sample data for testing:
 
 .. code-block:: python
 
@@ -93,14 +93,14 @@ Use dependency injection for custom components:
 
 .. code-block:: python
 
-   from src.evaluator import MEQBenchEvaluator, LLMJudge
+   from src.evaluator import MedExplainEvaluator, LLMJudge
    from src.strategies import StrategyFactory
    
    # Custom LLM judge with different model
    custom_judge = LLMJudge(model="gpt-4o")
    
    # Initialize evaluator with custom components
-   evaluator = MEQBenchEvaluator(llm_judge=custom_judge)
+   evaluator = MedExplainEvaluator(llm_judge=custom_judge)
 
 Batch Evaluation
 ----------------
@@ -110,7 +110,7 @@ Evaluate multiple items efficiently:
 .. code-block:: python
 
    # Load data
-   bench = MEQBench(data_path="data/")
+   bench = MedExplain(data_path="data/")
    
    # Run full evaluation
    results = bench.evaluate_model(
@@ -124,7 +124,7 @@ Evaluate multiple items efficiently:
 Error Handling
 --------------
 
-MEQ-Bench includes comprehensive error handling:
+MedExplain-Evals includes comprehensive error handling:
 
 .. code-block:: python
 
@@ -153,7 +153,7 @@ Enable detailed logging:
    config.setup_logging()
    
    # Set log level
-   logging.getLogger('meq_bench').setLevel(logging.DEBUG)
+   logging.getLogger('medexplain').setLevel(logging.DEBUG)
 
 Next Steps
 ----------

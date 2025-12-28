@@ -1,4 +1,4 @@
-"""G-Eval style rubrics for MEQ-Bench 2.0.
+"""G-Eval style rubrics for MedExplain-Evals.
 
 This module contains structured evaluation rubrics for audience-adaptive
 medical explanation assessment, following the G-Eval framework.

@@ -1,20 +1,20 @@
 """
-Unit tests for MEQBench class
+Unit tests for MedExplain class
 """
 
 import pytest
 import json
 from pathlib import Path
 
-from src.benchmark import MEQBench, MEQBenchItem
+from src.benchmark import MedExplain, MedExplainItem
 
 
-class TestMEQBenchItem:
-    """Test MEQBenchItem dataclass"""
+class TestMedExplainItem:
+    """Test MedExplainItem dataclass"""
 
     def test_creation(self):
         """Test basic item creation"""
-        item = MEQBenchItem(id="test_001", medical_content="Test content", complexity_level="basic", source_dataset="test")
+        item = MedExplainItem(id="test_001", medical_content="Test content", complexity_level="basic", source_dataset="test")
 
         assert item.id == "test_001"
         assert item.medical_content == "Test content"
@@ -26,7 +26,7 @@ class TestMEQBenchItem:
         """Test item creation with reference explanations"""
         references = {"physician": "Technical explanation", "patient": "Simple explanation"}
 
-        item = MEQBenchItem(
+        item = MedExplainItem(
             id="test_002",
             medical_content="Test content",
             complexity_level="intermediate",
@@ -37,19 +37,19 @@ class TestMEQBenchItem:
         assert item.reference_explanations == references
 
 
-class TestMEQBench:
-    """Test MEQBench class"""
+class TestMedExplain:
+    """Test MedExplain class"""
 
     def test_initialization(self):
         """Test benchmark initialization"""
-        bench = MEQBench()
+        bench = MedExplain()
         assert bench.benchmark_items == []
         assert bench.evaluator is not None
         assert bench.prompt_template is not None
 
     def test_add_benchmark_item(self, sample_benchmark_item):
         """Test adding benchmark items"""
-        bench = MEQBench()
+        bench = MedExplain()
         bench.add_benchmark_item(sample_benchmark_item)
 
         assert len(bench.benchmark_items) == 1
@@ -57,7 +57,7 @@ class TestMEQBench:
 
     def test_generate_explanations(self, sample_medical_content, dummy_model_function):
         """Test explanation generation"""
-        bench = MEQBench()
+        bench = MedExplain()
         explanations = bench.generate_explanations(sample_medical_content, dummy_model_function)
 
         assert isinstance(explanations, dict)
@@ -66,14 +66,14 @@ class TestMEQBench:
 
     def test_create_sample_dataset(self, tmp_path):
         """Test sample dataset creation"""
-        bench = MEQBench()
+        bench = MedExplain()
         output_path = tmp_path / "sample_dataset.json"
 
         sample_items = bench.create_sample_dataset(str(output_path))
 
         # Check items were created
         assert len(sample_items) > 0
-        assert all(isinstance(item, MEQBenchItem) for item in sample_items)
+        assert all(isinstance(item, MedExplainItem) for item in sample_items)
 
         # Check file was saved
         assert output_path.exists()
@@ -88,7 +88,7 @@ class TestMEQBench:
 
     def test_get_benchmark_stats_empty(self):
         """Test stats for empty benchmark"""
-        bench = MEQBench()
+        bench = MedExplain()
         stats = bench.get_benchmark_stats()
 
         assert stats["total_items"] == 0
@@ -96,7 +96,7 @@ class TestMEQBench:
 
     def test_get_benchmark_stats_with_items(self, sample_benchmark_item):
         """Test stats with benchmark items"""
-        bench = MEQBench()
+        bench = MedExplain()
         bench.add_benchmark_item(sample_benchmark_item)
 
         stats = bench.get_benchmark_stats()
@@ -109,7 +109,7 @@ class TestMEQBench:
 
     def test_evaluate_model_basic(self, sample_benchmark_item, dummy_model_function):
         """Test basic model evaluation"""
-        bench = MEQBench()
+        bench = MedExplain()
         bench.add_benchmark_item(sample_benchmark_item)
 
         results = bench.evaluate_model(dummy_model_function, max_items=1)
@@ -125,7 +125,7 @@ class TestMEQBench:
 
     def test_save_results(self, tmp_path):
         """Test results saving"""
-        bench = MEQBench()
+        bench = MedExplain()
         output_path = tmp_path / "test_results.json"
 
         test_results = {"total_items": 1, "test_data": "test_value"}
@@ -141,14 +141,14 @@ class TestMEQBench:
 
     def test_add_duplicate_benchmark_item(self, sample_benchmark_item):
         """Test that adding a benchmark item with a duplicate ID raises a ValueError"""
-        bench = MEQBench()
+        bench = MedExplain()
 
         # Add the first item
         bench.add_benchmark_item(sample_benchmark_item)
         assert len(bench.benchmark_items) == 1
 
         # Try to add another item with the same ID
-        duplicate_item = MEQBenchItem(
+        duplicate_item = MedExplainItem(
             id=sample_benchmark_item.id,  # Same ID as the first item
             medical_content="Different content",
             complexity_level="intermediate",
@@ -164,7 +164,7 @@ class TestMEQBench:
 
     def test_generate_explanations_empty_content(self, dummy_model_function):
         """Test that generate_explanations raises a ValueError when medical_content is empty"""
-        bench = MEQBench()
+        bench = MedExplain()
 
         # Test with completely empty string
         with pytest.raises(ValueError, match="medical_content cannot be empty or contain only whitespace"):
@@ -180,7 +180,7 @@ class TestMEQBench:
 
     def test_evaluate_model_no_items(self, dummy_model_function):
         """Test that evaluate_model returns appropriate result when there are no benchmark items"""
-        bench = MEQBench()
+        bench = MedExplain()
 
         # Ensure no items are loaded
         assert len(bench.benchmark_items) == 0

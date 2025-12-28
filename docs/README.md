@@ -1,6 +1,6 @@
-# MEQ-Bench Documentation
+# MedExplain-Evals Documentation
 
-This directory contains comprehensive documentation for the MEQ-Bench framework, built with Sphinx.
+This directory contains comprehensive documentation for the MedExplain-Evals framework, built with Sphinx.
 
 ## Building the Documentation
 
@@ -61,7 +61,7 @@ docs/
 
 ### Audience-Adaptive Explanations
 
-MEQ-Bench evaluates how well models can tailor medical explanations for:
+MedExplain-Evals evaluates how well models can tailor medical explanations for:
 
 1. **Physicians** - Technical, evidence-based explanations
 2. **Nurses** - Practical care implications and monitoring
@@ -95,8 +95,8 @@ When adding new modules or functions:
 ## Citation
 
 ```bibtex
-@article{meq-bench-2025,
-  title={MEQ-Bench: A Resource-Efficient Benchmark for Evaluating Audience-Adaptive Explanation Quality in Medical Large Language Models},
+@article{medexplain-evals-2025,
+  title={MedExplain-Evals: A Resource-Efficient Benchmark for Evaluating Audience-Adaptive Explanation Quality in Medical Large Language Models},
   author={[Author Names]},
   journal={[Journal Name]},
   year={2025}

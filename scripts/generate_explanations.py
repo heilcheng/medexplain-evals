@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Batch explanation generation for MEQ-Bench evaluation.
+"""Batch explanation generation for MedExplain-Evals evaluation.
 
 This script generates audience-adaptive medical explanations from 
 benchmark items using specified LLM models.
@@ -293,7 +293,7 @@ class ExplanationGenerator:
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Generate explanations for MEQ-Bench evaluation"
+        description="Generate explanations for MedExplain-Evals evaluation"
     )
     parser.add_argument(
         "--input", "-i",

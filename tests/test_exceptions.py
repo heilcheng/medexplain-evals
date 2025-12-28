@@ -60,14 +60,14 @@ class TestErrorContext:
         assert "Fix it" in str_repr
 
 
-class TestMEQBenchError:
-    """Tests for base MEQBenchError."""
+class TestMedExplainError:
+    """Tests for base MedExplainError."""
 
     def test_basic_error(self) -> None:
         """Test basic error creation."""
-        from src.exceptions import MEQBenchError
+        from src.exceptions import MedExplainError
 
-        error = MEQBenchError("Something went wrong")
+        error = MedExplainError("Something went wrong")
 
         assert str(error) == "Something went wrong"
         assert error.message == "Something went wrong"
@@ -76,24 +76,24 @@ class TestMEQBenchError:
 
     def test_error_with_context(self) -> None:
         """Test error with context."""
-        from src.exceptions import ErrorContext, MEQBenchError
+        from src.exceptions import ErrorContext, MedExplainError
 
         ctx = ErrorContext(
             operation="test",
             component="Test",
             suggestion="Try again",
         )
-        error = MEQBenchError("Test error", context=ctx)
+        error = MedExplainError("Test error", context=ctx)
 
         assert error.context is not None
         assert error.suggestion == "Try again"
 
     def test_error_with_cause(self) -> None:
         """Test error with cause chaining."""
-        from src.exceptions import MEQBenchError
+        from src.exceptions import MedExplainError
 
         cause = ValueError("Original error")
-        error = MEQBenchError("Wrapped error", cause=cause)
+        error = MedExplainError("Wrapped error", cause=cause)
 
         assert error.cause is cause
         assert "ValueError" in str(error)
@@ -275,28 +275,28 @@ class TestExceptionHierarchy:
             DataError,
             EvaluationError,
             LeaderboardError,
-            MEQBenchError,
+            MedExplainError,
             RateLimitError,
         )
 
-        # All should inherit from MEQBenchError
-        assert issubclass(ConfigurationError, MEQBenchError)
-        assert issubclass(DataError, MEQBenchError)
-        assert issubclass(EvaluationError, MEQBenchError)
-        assert issubclass(APIError, MEQBenchError)
-        assert issubclass(LeaderboardError, MEQBenchError)
+        # All should inherit from MedExplainError
+        assert issubclass(ConfigurationError, MedExplainError)
+        assert issubclass(DataError, MedExplainError)
+        assert issubclass(EvaluationError, MedExplainError)
+        assert issubclass(APIError, MedExplainError)
+        assert issubclass(LeaderboardError, MedExplainError)
 
         # Specific errors should inherit from their category
         assert issubclass(RateLimitError, APIError)
 
     def test_exception_catching(self) -> None:
         """Test that exceptions can be caught at different levels."""
-        from src.exceptions import MEQBenchError, RateLimitError
+        from src.exceptions import MedExplainError, RateLimitError
 
         error = RateLimitError("openai", 30.0)
 
-        # Should be catchable as MEQBenchError
+        # Should be catchable as MedExplainError
         try:
             raise error
-        except MEQBenchError as e:
+        except MedExplainError as e:
             assert isinstance(e, RateLimitError)

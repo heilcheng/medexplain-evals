@@ -1,12 +1,12 @@
-"""Main MEQ-Bench benchmark implementation.
+"""Main MedExplain-Evals benchmark implementation.
 
-This module contains the core benchmark classes and functionality for MEQ-Bench.
+This module contains the core benchmark classes and functionality for MedExplain-Evals.
 It provides tools for loading medical datasets, generating audience-adaptive
 explanations, and running comprehensive evaluations.
 
 Key classes:
-    MEQBenchItem: Represents a single benchmark item with medical content
-    MEQBench: Main benchmark class for running evaluations
+    MedExplainItem: Represents a single benchmark item with medical content
+    MedExplain: Main benchmark class for running evaluations
 """
 
 import json
@@ -23,9 +23,9 @@ from pathlib import Path
 
 from .config import config
 from .prompt_templates import AudienceAdaptivePrompt
-from .evaluator import MEQBenchEvaluator
+from .evaluator import MedExplainEvaluator
 
-logger = logging.getLogger("meq_bench.benchmark")
+logger = logging.getLogger("medexplain.benchmark")
 
 
 # TypedDict definitions for structured data
@@ -59,7 +59,7 @@ class BenchmarkStatsDict(TypedDict):
 
 
 @dataclass
-class MEQBenchItem:
+class MedExplainItem:
     """Represents a single benchmark item for evaluation.
 
     A benchmark item contains medical content to be explained, along with metadata
@@ -82,10 +82,10 @@ class MEQBenchItem:
     reference_explanations: Optional[Dict[str, str]] = None
 
 
-class MEQBench:
-    """Main benchmark class for MEQ-Bench evaluation.
+class MedExplain:
+    """Main benchmark class for MedExplain-Evals evaluation.
 
-    This class provides the core functionality for running MEQ-Bench evaluations,
+    This class provides the core functionality for running MedExplain-Evals evaluations,
     including loading benchmark data, generating audience-adaptive explanations,
     and evaluating model performance across different audiences and complexity levels.
 
@@ -94,14 +94,14 @@ class MEQBench:
 
     Attributes:
         data_path: Path to the benchmark data directory.
-        evaluator: MEQBenchEvaluator instance for scoring explanations.
+        evaluator: MedExplainEvaluator instance for scoring explanations.
         prompt_template: AudienceAdaptivePrompt instance for generating prompts.
-        benchmark_items: List of loaded MEQBenchItem objects.
+        benchmark_items: List of loaded MedExplainItem objects.
 
     Example:
         ```python
         # Initialize benchmark
-        bench = MEQBench(data_path="/path/to/data")
+        bench = MedExplain(data_path="/path/to/data")
 
         # Generate explanations for a model
         explanations = bench.generate_explanations(medical_content, model_func)
@@ -112,7 +112,7 @@ class MEQBench:
     """
 
     def __init__(self, data_path: Optional[str] = None) -> None:
-        """Initialize MEQ-Bench instance.
+        """Initialize MedExplain-Evals instance.
 
         Sets up the benchmark with the specified data directory and initializes
         the evaluator and prompt template components. Automatically loads benchmark
@@ -125,12 +125,12 @@ class MEQBench:
         self.data_path = self._resolve_data_path(data_path)
         # Initialize evaluator with graceful fallback for missing dependencies
         try:
-            self.evaluator: MEQBenchEvaluator = MEQBenchEvaluator()
+            self.evaluator: MedExplainEvaluator = MedExplainEvaluator()
         except Exception as e:
             logger.warning(f"Could not initialize full evaluator: {e}")
             logger.info("Some evaluation features may be limited due to missing dependencies or configuration")
         self.prompt_template: AudienceAdaptivePrompt = AudienceAdaptivePrompt()
-        self.benchmark_items: List[MEQBenchItem] = []
+        self.benchmark_items: List[MedExplainItem] = []
 
         # Load benchmark data if available
         self._load_benchmark_data()
@@ -183,7 +183,7 @@ class MEQBench:
         """Load benchmark data from JSON files with error handling.
 
         Loads benchmark items from benchmark_items.json in the data directory.
-        Each item is converted to a MEQBenchItem object and added to the
+        Each item is converted to a MedExplainItem object and added to the
         benchmark_items list. Includes comprehensive error handling for missing
         files, invalid JSON, and malformed data.
 
@@ -216,7 +216,7 @@ class MEQBench:
                         if field not in item_data:
                             raise KeyError(f"Missing required field '{field}' in item {i}")
 
-                    item = MEQBenchItem(
+                    item = MedExplainItem(
                         id=item_data["id"],
                         medical_content=item_data["medical_content"],
                         complexity_level=item_data["complexity_level"],
@@ -237,21 +237,21 @@ class MEQBench:
         except Exception as e:
             logger.error(f"Unexpected error loading benchmark data: {e}")
 
-    def add_benchmark_item(self, item: MEQBenchItem) -> None:
+    def add_benchmark_item(self, item: MedExplainItem) -> None:
         """Add a new benchmark item to the evaluation set.
 
         Validates the item data and adds it to the benchmark items list.
         Includes checks for data integrity and duplicate IDs.
 
         Args:
-            item: MEQBenchItem object to add to the benchmark.
+            item: MedExplainItem object to add to the benchmark.
 
         Raises:
-            TypeError: If item is not an instance of MEQBenchItem.
+            TypeError: If item is not an instance of MedExplainItem.
             ValueError: If item data is invalid or ID already exists.
         """
-        if not isinstance(item, MEQBenchItem):
-            raise TypeError("item must be an instance of MEQBenchItem")
+        if not isinstance(item, MedExplainItem):
+            raise TypeError("item must be an instance of MedExplainItem")
 
         # Validate item data
         if not item.id or not isinstance(item.id, str):
@@ -517,7 +517,7 @@ class MEQBench:
             logger.error(f"Failed to save results to {output_file}: {e}")
             raise
 
-    def create_sample_dataset(self, output_path: Optional[str] = None) -> List[MEQBenchItem]:
+    def create_sample_dataset(self, output_path: Optional[str] = None) -> List[MedExplainItem]:
         """Create a sample dataset for testing.
 
         Generates a small set of sample medical content items with different
@@ -528,7 +528,7 @@ class MEQBench:
                 If provided, saves the dataset to this file.
 
         Returns:
-            List of MEQBenchItem objects containing sample medical content
+            List of MedExplainItem objects containing sample medical content
             with basic, intermediate, and advanced complexity levels.
 
         Example:
@@ -541,7 +541,7 @@ class MEQBench:
             ```
         """
         sample_items = [
-            MEQBenchItem(
+            MedExplainItem(
                 id="sample_001",
                 medical_content=(
                     "Hypertension, also known as high blood pressure, is a condition where the force of blood "
@@ -551,7 +551,7 @@ class MEQBench:
                 complexity_level="basic",
                 source_dataset="sample",
             ),
-            MEQBenchItem(
+            MedExplainItem(
                 id="sample_002",
                 medical_content=(
                     "Myocardial infarction occurs when blood flow to a part of the heart muscle is blocked, usually "
@@ -561,7 +561,7 @@ class MEQBench:
                 complexity_level="intermediate",
                 source_dataset="sample",
             ),
-            MEQBenchItem(
+            MedExplainItem(
                 id="sample_003",
                 medical_content=(
                     "Diabetic ketoacidosis (DKA) is a serious complication of diabetes mellitus characterized by "

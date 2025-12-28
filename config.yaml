@@ -1,11 +1,11 @@
-# MEQ-Bench 2.0 Configuration File
+# MedExplain-Evals Configuration File
 # Comprehensive Medical Explanation Quality Benchmark
 
 # =============================================================================
 # Application Settings
 # =============================================================================
 app:
-  name: "MEQ-Bench"
+  name: "MedExplain-Evals"
   version: "2.0.0"
   log_level: "INFO"
   data_path: "data/"
@@ -455,17 +455,17 @@ logging:
       class: "logging.FileHandler"
       level: "DEBUG"
       formatter: "detailed"
-      filename: "logs/meq_bench.log"
+      filename: "logs/medexplain.log"
       mode: "a"
   
   loggers:
-    meq_bench:
+    medexplain:
       level: "DEBUG"
       handlers: ["console", "file"]
       propagate: false
-    meq_bench.model_clients:
+    medexplain.model_clients:
       level: "INFO"
-    meq_bench.ensemble_judge:
+    medexplain.ensemble_judge:
       level: "INFO"
   
   root:

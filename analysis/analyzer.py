@@ -1,4 +1,4 @@
-"""Core analysis functions for MEQ-Bench results.
+"""Core analysis functions for MedExplain-Evals results.
 
 This module provides comprehensive analysis of evaluation results including
 score aggregation, comparative analysis, and performance breakdowns.
@@ -72,7 +72,7 @@ class AnalysisResults:
 
 
 class ScoreAnalyzer:
-    """Analyze MEQ-Bench evaluation scores."""
+    """Analyze MedExplain-Evals evaluation scores."""
     
     DIMENSIONS = [
         "factual_accuracy",

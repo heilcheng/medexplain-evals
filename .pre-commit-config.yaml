@@ -1,4 +1,4 @@
-# Pre-commit hooks for MEQ-Bench
+# Pre-commit hooks for MedExplain-Evals
 # Install: pre-commit install && pre-commit install --hook-type commit-msg
 
 default_language_version:

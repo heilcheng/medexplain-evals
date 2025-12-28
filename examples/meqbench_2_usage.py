@@ -1,6 +1,6 @@
-"""MEQ-Bench 2.0 Usage Examples.
+"""MedExplain-Evals Usage Examples.
 
-This script demonstrates the key features of MEQ-Bench 2.0, including:
+This script demonstrates the key features of MedExplain-Evals, including:
 - Late-2025 frontier model support
 - Ensemble LLM-as-Judge evaluation
 - Audience persona-based scoring
@@ -45,7 +45,7 @@ from src import (
     MedicalSafetyEvaluator,
     
     # Data schema
-    MEQBenchItemV2,
+    MedExplainItemV2,
     MedicalSpecialty,
     ComplexityLevel,
     
@@ -409,9 +409,9 @@ def example_8_validation_framework():
 
 
 def example_9_full_pipeline():
-    """Demonstrate full MEQ-Bench 2.0 evaluation pipeline."""
+    """Demonstrate full MedExplain-Evals evaluation pipeline."""
     print("\n" + "="*60)
-    print("Example 9: Full MEQ-Bench 2.0 Pipeline")
+    print("Example 9: Full MedExplain-Evals Pipeline")
     print("="*60 + "\n")
     
     print("Complete Evaluation Pipeline:")
@@ -488,7 +488,7 @@ def example_9_full_pipeline():
 def main():
     """Run all examples."""
     print("\n" + "="*60)
-    print("       MEQ-Bench 2.0 Usage Examples")
+    print("       MedExplain-Evals Usage Examples")
     print("       Comprehensive Medical Explanation Quality Benchmark")
     print("="*60)
     

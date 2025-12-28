@@ -1,4 +1,4 @@
-"""Unified model client infrastructure for MEQ-Bench 2.0.
+"""Unified model client infrastructure for MedExplain-Evals.
 
 This module provides a unified interface for interacting with late-2025
 frontier LLMs across multiple providers, supporting both API-based and
@@ -46,7 +46,7 @@ from typing import Dict, List, Optional, Any, Union
 from enum import Enum
 from pathlib import Path
 
-logger = logging.getLogger("meq_bench.model_clients")
+logger = logging.getLogger("medexplain.model_clients")
 
 
 class Provider(str, Enum):

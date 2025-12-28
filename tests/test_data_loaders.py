@@ -16,7 +16,7 @@ from src.data_loaders import (
     calculate_complexity_level,
     _validate_benchmark_item,
 )
-from src.benchmark import MEQBenchItem
+from src.benchmark import MedExplainItem
 
 
 class TestCalculateComplexityLevel:
@@ -87,7 +87,7 @@ class TestValidateBenchmarkItem:
 
     def test_valid_item(self):
         """Test validation of a valid item"""
-        item = MEQBenchItem(
+        item = MedExplainItem(
             id="test_001",
             medical_content="This is valid medical content for testing purposes.",
             complexity_level="basic",
@@ -98,25 +98,25 @@ class TestValidateBenchmarkItem:
 
     def test_empty_id_raises_error(self):
         """Test that empty ID raises ValueError"""
-        item = MEQBenchItem(id="", medical_content="Valid content", complexity_level="basic", source_dataset="test")
+        item = MedExplainItem(id="", medical_content="Valid content", complexity_level="basic", source_dataset="test")
         with pytest.raises(ValueError, match="Item ID must be a non-empty string"):
             _validate_benchmark_item(item)
 
     def test_non_string_id_raises_error(self):
         """Test that non-string ID raises ValueError"""
-        item = MEQBenchItem(id=123, medical_content="Valid content", complexity_level="basic", source_dataset="test")
+        item = MedExplainItem(id=123, medical_content="Valid content", complexity_level="basic", source_dataset="test")
         with pytest.raises(ValueError, match="Item ID must be a non-empty string"):
             _validate_benchmark_item(item)
 
     def test_empty_content_raises_error(self):
         """Test that empty medical content raises ValueError"""
-        item = MEQBenchItem(id="test_001", medical_content="", complexity_level="basic", source_dataset="test")
+        item = MedExplainItem(id="test_001", medical_content="", complexity_level="basic", source_dataset="test")
         with pytest.raises(ValueError, match="Medical content must be a non-empty string"):
             _validate_benchmark_item(item)
 
     def test_short_content_raises_error(self):
         """Test that very short content raises ValueError"""
-        item = MEQBenchItem(
+        item = MedExplainItem(
             id="test_001", medical_content="Short", complexity_level="basic", source_dataset="test"  # Less than 20 characters
         )
         with pytest.raises(ValueError, match="Medical content is too short"):
@@ -184,7 +184,7 @@ class TestLoadMedQAUSMLE:
             items = load_medqa_usmle(f.name, auto_complexity=False)
 
             assert len(items) == 2
-            assert all(isinstance(item, MEQBenchItem) for item in items)
+            assert all(isinstance(item, MedExplainItem) for item in items)
             assert items[0].id == "medqa_001"
             assert items[0].source_dataset == "MedQA-USMLE"
             assert items[0].complexity_level == "intermediate"  # Default when auto_complexity=False
@@ -253,7 +253,7 @@ class TestLoadiCliniq:
             items = load_icliniq(f.name, auto_complexity=False)
 
             assert len(items) == 2
-            assert all(isinstance(item, MEQBenchItem) for item in items)
+            assert all(isinstance(item, MedExplainItem) for item in items)
             assert items[0].source_dataset == "iCliniq"
             assert "Patient Question:" in items[0].medical_content
             assert "Doctor's Answer:" in items[0].medical_content
@@ -313,7 +313,7 @@ class TestLoadCochraneReviews:
             items = load_cochrane_reviews(f.name, auto_complexity=False)
 
             assert len(items) == 2
-            assert all(isinstance(item, MEQBenchItem) for item in items)
+            assert all(isinstance(item, MedExplainItem) for item in items)
             assert items[0].source_dataset == "Cochrane Reviews"
             assert items[0].complexity_level == "advanced"  # Default for Cochrane when auto_complexity=False
             assert "Title:" in items[0].medical_content
@@ -360,14 +360,14 @@ class TestSaveBenchmarkItems:
     def test_save_valid_items(self):
         """Test saving valid benchmark items"""
         items = [
-            MEQBenchItem(
+            MedExplainItem(
                 id="test_001",
                 medical_content="Test content 1",
                 complexity_level="basic",
                 source_dataset="test",
                 reference_explanations={"physician": "Technical explanation"},
             ),
-            MEQBenchItem(id="test_002", medical_content="Test content 2", complexity_level="advanced", source_dataset="test"),
+            MedExplainItem(id="test_002", medical_content="Test content 2", complexity_level="advanced", source_dataset="test"),
         ]
 
         with tempfile.TemporaryDirectory() as temp_dir:
@@ -393,7 +393,7 @@ class TestSaveBenchmarkItems:
         with tempfile.TemporaryDirectory() as temp_dir:
             output_path = Path(temp_dir) / "subdir" / "test_items.json"
             items = [
-                MEQBenchItem(id="test_001", medical_content="Test content", complexity_level="basic", source_dataset="test")
+                MedExplainItem(id="test_001", medical_content="Test content", complexity_level="basic", source_dataset="test")
             ]
 
             save_benchmark_items(items, output_path)

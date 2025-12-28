@@ -1,6 +1,6 @@
-# Contributing to MEQ-Bench
+# Contributing to MedExplain-Evals
 
-Thank you for your interest in contributing to MEQ-Bench! This document provides guidelines and instructions for contributing to the project. We welcome contributions from researchers, developers, and healthcare professionals who want to help improve medical AI evaluation.
+Thank you for your interest in contributing to MedExplain-Evals! This document provides guidelines and instructions for contributing to the project. We welcome contributions from researchers, developers, and healthcare professionals who want to help improve medical AI evaluation.
 
 ## Table of Contents
 
@@ -42,7 +42,7 @@ Help improve our documentation by:
 - Translating documentation
 
 #### 🔬 Research Contributions
-Contribute to the scientific validity of MEQ-Bench:
+Contribute to the scientific validity of MedExplain-Evals:
 - New evaluation metrics or methodologies
 - Validation studies with human experts
 - Dataset improvements or additions
@@ -74,8 +74,8 @@ Contribute to the scientific validity of MEQ-Bench:
 
 1. **Fork and clone the repository:**
 ```bash
-git clone https://github.com/YOUR_USERNAME/MEQ-Bench.git
-cd MEQ-Bench
+git clone https://github.com/YOUR_USERNAME/MedExplain-Evals.git
+cd MedExplain-Evals
 ```
 
 2. **Create a virtual environment:**
@@ -85,8 +85,8 @@ python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 
 # Using conda
-conda create -n meq-bench python=3.9
-conda activate meq-bench
+conda create -n medexplain-evals python=3.9
+conda activate medexplain-evals
 ```
 
 3. **Install development dependencies:**
@@ -307,8 +307,8 @@ def test_function_name_expected_behavior():
 ```python
 @pytest.fixture
 def sample_benchmark_item():
-    """Provide a sample MEQBenchItem for testing."""
-    return MEQBenchItem(
+    """Provide a sample MedExplainItem for testing."""
+    return MedExplainItem(
         id="test_001",
         medical_content="Sample medical content for testing",
         complexity_level="basic",
@@ -475,11 +475,11 @@ We are committed to providing a welcoming and inclusive environment for all cont
 
 ### Reporting Issues
 
-Report unacceptable behavior to [contact@meq-bench.org]. All reports will be reviewed confidentially.
+Report unacceptable behavior to [contact@medexplain-evals.org]. All reports will be reviewed confidentially.
 
 ## Getting Help
 
-We provide multiple channels for getting help and support while working with MEQ-Bench.
+We provide multiple channels for getting help and support while working with MedExplain-Evals.
 
 ### 📚 Documentation and Resources
 
@@ -506,7 +506,7 @@ We provide multiple channels for getting help and support while working with MEQ
 #### For Different Types of Issues
 
 **🐛 Bug Reports and Technical Issues**
-- **Where**: [GitHub Issues](https://github.com/heilcheng/MEQ-Bench/issues)
+- **Where**: [GitHub Issues](https://github.com/heilcheng/MedExplain-Evals/issues)
 - **When**: When you encounter errors, unexpected behavior, or performance issues
 - **What to include**:
   - Clear description of the problem
@@ -516,7 +516,7 @@ We provide multiple channels for getting help and support while working with MEQ
   - Minimal code example demonstrating the issue
 
 **💡 Feature Requests and Enhancement Ideas**
-- **Where**: [GitHub Issues](https://github.com/heilcheng/MEQ-Bench/issues) (use "enhancement" label)
+- **Where**: [GitHub Issues](https://github.com/heilcheng/MedExplain-Evals/issues) (use "enhancement" label)
 - **When**: When you have ideas for new features or improvements
 - **What to include**:
   - Use case description
@@ -525,21 +525,21 @@ We provide multiple channels for getting help and support while working with MEQ
   - Examples of similar features in other tools
 
 **❓ General Questions and Usage Help**
-- **Where**: [GitHub Discussions](https://github.com/heilcheng/MEQ-Bench/discussions)
+- **Where**: [GitHub Discussions](https://github.com/heilcheng/MedExplain-Evals/discussions)
 - **When**: For questions about usage, best practices, or concepts
 - **Categories**:
   - **Q&A**: General usage questions
   - **Ideas**: Discussion of potential features
-  - **Show and Tell**: Share your work with MEQ-Bench
+  - **Show and Tell**: Share your work with MedExplain-Evals
   - **General**: Other discussions
 
 **🔬 Research and Scientific Questions**
-- **Where**: [GitHub Discussions](https://github.com/heilcheng/MEQ-Bench/discussions) (Research category)
+- **Where**: [GitHub Discussions](https://github.com/heilcheng/MedExplain-Evals/discussions) (Research category)
 - **When**: Questions about evaluation methodologies, metrics, or scientific validity
 - **Topics**: Validation studies, metric interpretation, benchmark design
 
 **🚨 Security Issues**
-- **Where**: Email to [security@meq-bench.org](mailto:security@meq-bench.org)
+- **Where**: Email to [security@medexplain-evals.org](mailto:security@medexplain-evals.org)
 - **When**: For security vulnerabilities or sensitive issues
 - **Note**: Please do not report security issues in public GitHub issues
 
@@ -547,8 +547,8 @@ We provide multiple channels for getting help and support while working with MEQ
 
 #### Communication Channels
 - **GitHub Discussions**: Primary forum for community interaction
-- **Email**: [contact@meq-bench.org](mailto:contact@meq-bench.org) for project inquiries
-- **Research Collaboration**: [research@meq-bench.org](mailto:research@meq-bench.org) for academic partnerships
+- **Email**: [contact@medexplain-evals.org](mailto:contact@medexplain-evals.org) for project inquiries
+- **Research Collaboration**: [research@medexplain-evals.org](mailto:research@medexplain-evals.org) for academic partnerships
 
 #### Community Guidelines
 - **Be respectful**: Maintain professional and courteous communication
@@ -576,7 +576,7 @@ We provide multiple channels for getting help and support while working with MEQ
    python examples/basic_usage.py
    
    # Check if your environment is working
-   python -c "import src; print('MEQ-Bench imported successfully')"
+   python -c "import src; print('MedExplain-Evals imported successfully')"
    ```
 
 4. **Validate Your Setup**
@@ -593,7 +593,7 @@ We provide multiple channels for getting help and support while working with MEQ
 **Installation Problems**
 ```bash
 # Clean installation
-pip uninstall meq-bench
+pip uninstall medexplain-evals
 pip install --no-cache-dir -e .
 
 # Check Python version
@@ -607,7 +607,7 @@ pip install -e .[ml]   # Machine learning dependencies
 **Import Errors**
 ```bash
 # Ensure you're in the project directory
-cd /path/to/MEQ-Bench
+cd /path/to/MedExplain-Evals
 python -c "import src"
 
 # Check PYTHONPATH
@@ -652,7 +652,7 @@ echo $GOOGLE_API_KEY
 python run_benchmark.py --help
 
 # Check installation
-python -c "import src; print('✅ MEQ-Bench is working')"
+python -c "import src; print('✅ MedExplain-Evals is working')"
 
 # Run a quick test
 python run_benchmark.py --model_name dummy --max_items 2
@@ -661,7 +661,7 @@ python run_benchmark.py --model_name dummy --max_items 2
 python scripts/validate_release.py
 
 # Get version information
-python -c "import src; print(f'MEQ-Bench version: {getattr(src, \"__version__\", \"unknown\")}')"
+python -c "import src; print(f'MedExplain-Evals version: {getattr(src, \"__version__\", \"unknown\")}')"
 
 # Run basic tests
 pytest tests/test_benchmark.py -v
@@ -693,7 +693,7 @@ If you receive help, consider helping others:
 - Report and fix bugs you encounter
 - Contribute to the codebase
 
-Remember: Every question helps improve MEQ-Bench for the entire community!
+Remember: Every question helps improve MedExplain-Evals for the entire community!
 
 ---
 
@@ -728,4 +728,4 @@ python -m build                     # Build package
 twine check dist/*                  # Check package
 ```
 
-Thank you for contributing to MEQ-Bench! Your contributions help advance the field of medical AI evaluation and make healthcare AI more reliable and accessible.
+Thank you for contributing to MedExplain-Evals! Your contributions help advance the field of medical AI evaluation and make healthcare AI more reliable and accessible.

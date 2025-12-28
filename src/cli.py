@@ -1,12 +1,12 @@
-"""Modern CLI for MEQ-Bench using Typer.
+"""Modern CLI for MedExplain-Evals using Typer.
 
 This module provides a rich command-line interface for running benchmarks,
 evaluating models, and generating leaderboards.
 
 Usage:
-    meq-bench run --model gpt-4o --output results/
-    meq-bench evaluate --input responses.json
-    meq-bench leaderboard --input results/
+    medexplain-evals run --model gpt-4o --output results/
+    medexplain-evals evaluate --input responses.json
+    medexplain-evals leaderboard --input results/
 """
 
 from __future__ import annotations
@@ -25,8 +25,8 @@ from rich.table import Table
 
 
 app = typer.Typer(
-    name="meq-bench",
-    help="MEQ-Bench: Evaluate Audience-Adaptive Medical Explanations in LLMs",
+    name="medexplain-evals",
+    help="MedExplain-Evals: Evaluate Audience-Adaptive Medical Explanations in LLMs",
     no_args_is_help=True,
     rich_markup_mode="rich",
 )
@@ -58,7 +58,7 @@ def version_callback(value: bool) -> None:
     if value:
         from src import __version__
 
-        console.print(f"[bold blue]MEQ-Bench[/] version [green]{__version__}[/]")
+        console.print(f"[bold blue]MedExplain-Evals[/] version [green]{__version__}[/]")
         raise typer.Exit()
 
 
@@ -83,7 +83,7 @@ def main(
         ),
     ] = False,
 ) -> None:
-    """MEQ-Bench: A Resource-Efficient Benchmark for Medical LLM Evaluation."""
+    """MedExplain-Evals: A Resource-Efficient Benchmark for Medical LLM Evaluation."""
     if verbose:
         from src.logging import configure_logging
 
@@ -150,9 +150,9 @@ def run(
     """Run benchmark evaluation on a model.
 
     Examples:
-        meq-bench run --model gpt-4o --backend openai
-        meq-bench run --model claude-3-opus --backend anthropic --samples 100
-        meq-bench run --model meta-llama/Llama-3-8B --backend huggingface
+        medexplain-evals run --model gpt-4o --backend openai
+        medexplain-evals run --model claude-3-opus --backend anthropic --samples 100
+        medexplain-evals run --model meta-llama/Llama-3-8B --backend huggingface
     """
     from src.logging import configure_logging, get_logger
 
@@ -161,7 +161,7 @@ def run(
 
     console.print(
         Panel.fit(
-            f"[bold blue]Running MEQ-Bench Evaluation[/]\n"
+            f"[bold blue]Running MedExplain-Evals Evaluation[/]\n"
             f"Model: [green]{model}[/]\n"
             f"Backend: [yellow]{backend}[/]\n"
             f"Output: [cyan]{output}[/]",
@@ -195,13 +195,13 @@ async def _run_async_benchmark(
     batch_size: int,
 ) -> None:
     """Run benchmark with async API calls."""
-    from src.benchmark import MEQBench
-    from src.evaluator import MEQBenchEvaluator
+    from src.benchmark import MedExplain
+    from src.evaluator import MedExplainEvaluator
     from src.api_client import create_async_client
 
     async with create_async_client(backend, model) as client:
-        bench = MEQBench()
-        evaluator = MEQBenchEvaluator()
+        bench = MedExplain()
+        evaluator = MedExplainEvaluator()
 
         items = bench.load_dataset(dataset) if dataset else bench.get_all_items()
         if samples:
@@ -251,11 +251,11 @@ def _run_sync_benchmark(
     batch_size: int,
 ) -> None:
     """Run benchmark synchronously."""
-    from src.benchmark import MEQBench
-    from src.evaluator import MEQBenchEvaluator
+    from src.benchmark import MedExplain
+    from src.evaluator import MedExplainEvaluator
 
-    bench = MEQBench()
-    evaluator = MEQBenchEvaluator()
+    bench = MedExplain()
+    evaluator = MedExplainEvaluator()
 
     items = bench.load_dataset(dataset) if dataset else bench.get_all_items()
     if samples:
@@ -295,12 +295,12 @@ def evaluate(
     """Evaluate model responses from a file.
 
     Examples:
-        meq-bench evaluate responses.json
-        meq-bench evaluate responses.json --output scores.json --judge gpt-4o
+        medexplain-evals evaluate responses.json
+        medexplain-evals evaluate responses.json --output scores.json --judge gpt-4o
     """
     import json
 
-    from src.evaluator import MEQBenchEvaluator
+    from src.evaluator import MedExplainEvaluator
     from src.logging import configure_logging
 
     configure_logging(level="INFO")
@@ -314,7 +314,7 @@ def evaluate(
     with input_file.open() as f:
         responses = json.load(f)
 
-    evaluator = MEQBenchEvaluator()
+    evaluator = MedExplainEvaluator()
 
     with Progress(
         SpinnerColumn(),
@@ -368,13 +368,13 @@ def leaderboard(
             "-t",
             help="Leaderboard title",
         ),
-    ] = "MEQ-Bench Leaderboard",
+    ] = "MedExplain-Evals Leaderboard",
 ) -> None:
     """Generate a leaderboard from evaluation results.
 
     Examples:
-        meq-bench leaderboard results/
-        meq-bench leaderboard results/ --format markdown --output README.md
+        medexplain-evals leaderboard results/
+        medexplain-evals leaderboard results/ --format markdown --output README.md
     """
     import json
 
@@ -420,7 +420,7 @@ def info() -> None:
 
     settings = get_settings()
 
-    table = Table(title="MEQ-Bench Configuration")
+    table = Table(title="MedExplain-Evals Configuration")
     table.add_column("Setting", style="cyan")
     table.add_column("Value", style="green")
 
@@ -454,8 +454,8 @@ def validate(
     """Validate a configuration file.
 
     Examples:
-        meq-bench validate config.yaml
-        meq-bench validate custom_config.yaml
+        medexplain-evals validate config.yaml
+        medexplain-evals validate custom_config.yaml
     """
     from pydantic import ValidationError
 

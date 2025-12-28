@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# MEQ-Bench 2.0 - Full Benchmark Run Script
+# MedExplain-Evals - Full Benchmark Run Script
 #
 # This script orchestrates a complete benchmark evaluation:
 # 1. Validate environment
@@ -240,7 +240,7 @@ if [ "$DRY_RUN" = false ]; then
     python -c "
 import sys
 sys.path.insert(0, '.')
-from analysis import ScoreAnalyzer, MEQBenchVisualizer, ReportGenerator, ErrorAnalyzer, StatisticalTests
+from analysis import ScoreAnalyzer, MedExplainVisualizer, ReportGenerator, ErrorAnalyzer, StatisticalTests
 
 # Load and analyze
 analyzer = ScoreAnalyzer('$OUTPUT_DIR')
@@ -248,7 +248,7 @@ analyzer.load_scores()
 results = analyzer.analyze()
 
 # Visualizations
-viz = MEQBenchVisualizer('reports/figures')
+viz = MedExplainVisualizer('reports/figures')
 viz.generate_all_figures(results.to_dict())
 
 # Error analysis

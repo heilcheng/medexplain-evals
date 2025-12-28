@@ -1,7 +1,7 @@
-"""Enhanced data schema for MEQ-Bench 2.0.
+"""Enhanced data schema for MedExplain-Evals.
 
 This module defines the core data structures for the benchmark, including
-the enhanced MEQBenchItem with support for multimodal content, medical
+the enhanced MedExplainItem with support for multimodal content, medical
 specialty tagging, and safety-critical flagging.
 """
 
@@ -200,8 +200,8 @@ class ReferenceExplanation:
 
 
 @dataclass
-class MEQBenchItemV2:
-    """Enhanced benchmark item for MEQ-Bench 2.0.
+class MedExplainItemV2:
+    """Enhanced benchmark item for MedExplain-Evals.
     
     This is the core data structure for benchmark items, supporting:
     - Multimodal content (text + images)
@@ -264,7 +264,7 @@ class MEQBenchItemV2:
         }
     
     @classmethod
-    def from_dict(cls, data: Dict[str, Any]) -> "MEQBenchItemV2":
+    def from_dict(cls, data: Dict[str, Any]) -> "MedExplainItemV2":
         """Create from dictionary."""
         clinical_context = None
         if data.get("clinical_context"):
@@ -320,11 +320,11 @@ class MEQBenchItemV2:
 
 
 def save_benchmark_items_v2(
-    items: List[MEQBenchItemV2],
+    items: List[MedExplainItemV2],
     output_path: str,
     pretty_print: bool = True
 ) -> None:
-    """Save MEQBenchItemV2 objects to a JSON file."""
+    """Save MedExplainItemV2 objects to a JSON file."""
     output_file = Path(output_path)
     output_file.parent.mkdir(parents=True, exist_ok=True)
     
@@ -337,8 +337,8 @@ def save_benchmark_items_v2(
             json.dump(items_data, f, ensure_ascii=False)
 
 
-def load_benchmark_items_v2(input_path: str) -> List[MEQBenchItemV2]:
-    """Load MEQBenchItemV2 objects from a JSON file."""
+def load_benchmark_items_v2(input_path: str) -> List[MedExplainItemV2]:
+    """Load MedExplainItemV2 objects from a JSON file."""
     input_file = Path(input_path)
     
     if not input_file.exists():
@@ -347,5 +347,5 @@ def load_benchmark_items_v2(input_path: str) -> List[MEQBenchItemV2]:
     with open(input_file, "r", encoding="utf-8") as f:
         data = json.load(f)
     
-    return [MEQBenchItemV2.from_dict(item) for item in data]
+    return [MedExplainItemV2.from_dict(item) for item in data]
 

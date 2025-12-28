@@ -244,7 +244,7 @@ class TestLeaderboardGenerator:
 
             # Check that HTML contains expected elements
             assert "<!DOCTYPE html>" in html_content
-            assert "MEQ-Bench Leaderboard" in html_content
+            assert "MedExplain-Evals Leaderboard" in html_content
             assert "Claude-3" in html_content  # Top-ranked model
             assert "GPT-4" in html_content
             assert "LLaMA-2" in html_content
@@ -419,7 +419,7 @@ class TestLeaderboardIntegration:
             html_content = output_path.read_text()
 
             # Check that all major components are present
-            assert "MEQ-Bench Leaderboard" in html_content
+            assert "MedExplain-Evals Leaderboard" in html_content
             assert "Overall Rankings" in html_content
             assert "By Audience" in html_content
             assert "By Complexity" in html_content

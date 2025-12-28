@@ -263,7 +263,7 @@ class TestHallucinationDetection:
 
 
 class TestEvaluatorIntegration:
-    """Integration tests for new metrics with MEQBenchEvaluator"""
+    """Integration tests for new metrics with MedExplainEvaluator"""
 
     def test_evaluation_score_with_new_metrics(self):
         """Test that EvaluationScore includes new metrics"""
@@ -317,9 +317,9 @@ class TestEvaluatorIntegration:
         mock_config.get_audiences.return_value = ["physician", "nurse", "patient", "caregiver"]
 
         # Create evaluator instance
-        from src.evaluator import MEQBenchEvaluator
+        from src.evaluator import MedExplainEvaluator
 
-        evaluator = MEQBenchEvaluator()
+        evaluator = MedExplainEvaluator()
 
         # Test that new metrics are properly initialized
         assert hasattr(evaluator, "contradiction_detector")

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Environment validation for MEQ-Bench.
+"""Environment validation for MedExplain-Evals.
 
 This script checks that all required dependencies, configurations,
 and API credentials are properly set up.
@@ -53,7 +53,7 @@ class Check:
 
 
 class EnvironmentValidator:
-    """Validate MEQ-Bench environment setup."""
+    """Validate MedExplain-Evals environment setup."""
     
     REQUIRED_PACKAGES = [
         ("numpy", None),
@@ -245,9 +245,9 @@ class EnvironmentValidator:
         self.add_check(check)
         return check
     
-    def check_meqbench_imports(self) -> Check:
-        """Check MEQ-Bench modules can be imported."""
-        check = Check("MEQ-Bench Modules", required=True, category="meqbench")
+    def check_medexplain_imports(self) -> Check:
+        """Check MedExplain-Evals modules can be imported."""
+        check = Check("MedExplain-Evals Modules", required=True, category="medexplain")
         
         modules_to_check = [
             "src.data_loaders",
@@ -302,8 +302,8 @@ class EnvironmentValidator:
         # Data availability
         self.check_data_availability()
         
-        # MEQ-Bench imports
-        self.check_meqbench_imports()
+        # MedExplain-Evals imports
+        self.check_medexplain_imports()
     
     def print_results(self):
         """Print validation results."""
@@ -357,7 +357,7 @@ class EnvironmentValidator:
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Validate MEQ-Bench environment"
+        description="Validate MedExplain-Evals environment"
     )
     parser.add_argument(
         "--verbose", "-v",
