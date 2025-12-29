@@ -1,6 +1,6 @@
 # MedExplain-Evals
 
-> This project is developed as part of [Google Summer of Code 2025](https://summerofcode.withgoogle.com/) at [Google DeepMind](https://deepmind.google/).
+> This project is developed as part of [Google Summer of Code 2025](https://summerofcode.withgoogle.com/), mentored by [Google DeepMind](https://deepmind.google/).
 >
 > See [my GSoC work record](https://github.com/heilcheng/DeepMind) for documentation of my contributions during the program.
 
@@ -27,6 +27,8 @@ MedExplain-Evals provides infrastructure for:
 - 10 GB+ disk space (datasets and results)
 
 ### Hardware (for local models)
+
+*Rule-of-thumb estimates for dense decoder-only models at moderate context length. Long context and batching can dominate VRAM via KV cache.*
 
 | Model Size | Minimum VRAM | Recommended | With Quantization |
 |------------|--------------|-------------|-------------------|
@@ -68,10 +70,10 @@ pip install -r requirements.txt
 │  │  │ Knowledge      │  │  Ensemble      │  │     Safety                 │││
 │  │  │ Grounding      │  │  LLM-as-Judge  │  │     Evaluator              │││
 │  │  │                │  │                │  │                            │││
-│  │  │ • UMLS Lookup  │  │ • GPT-5.x      │  │ • Drug interactions       │││
+│  │  │ • UMLS Lookup  │  │ • GPT-5.2      │  │ • Drug interactions       │││
 │  │  │ • RxNorm Match │  │ • Claude 4.5   │  │ • Contraindications       │││
 │  │  │ • SNOMED-CT    │  │ • Gemini 3     │  │ • Harm classification     │││
-│  │  │ • NLI Verify   │  │ • DeepSeek-V3  │  │ • Warning detection       │││
+│  │  │ • NLI Verify   │  │ • DeepSeek-V3.2│  │ • Warning detection       │││
 │  │  └────────────────┘  └────────────────┘  └────────────────────────────┘││
 │  │                                                                         ││
 │  └─────────────────────────────────────────────────────────────────────────┘│
@@ -174,17 +176,29 @@ SNOMED CT is the most comprehensive clinical terminology, covering diseases, pro
 | **LOINC** | Lab/clinical observations | [Regenstrief LOINC](https://loinc.org/) |
 | **DrugBank** | Drug interaction data | [DrugBank 5.0](https://go.drugbank.com/) |
 
+### Data and Terminology Licensing
+
+> **Important**: MedExplain-Evals does not redistribute any licensed medical terminologies. Users must obtain their own access:
+>
+> - **UMLS**: Requires a free [UMLS Terminology Services (UTS) account](https://uts.nlm.nih.gov/) and license acceptance
+> - **SNOMED CT**: Licensing requirements apply, especially for deployment outside IHTSDO member territories. See [SNOMED International](https://www.snomed.org/snomed-ct/get-snomed)
+> - **DrugBank**: Academic use requires acceptance of terms; commercial usage requires a [commercial license](https://www.drugbank.com/legal/terms_of_use)
+>
+> The default pipeline can run with open alternatives if licensed resources are not provided.
+
 ## Supported Models
 
-| Provider   | Models                                        | Multimodal |
-|------------|-----------------------------------------------|------------|
-| OpenAI     | GPT-5.2, GPT-5.1, GPT-5, GPT-4o              | ✓          |
-| Anthropic  | Claude Opus 4.5, Sonnet 4.5, Haiku 4.5       | ✓          |
-| Google     | Gemini 3 Pro, Flash                          | ✓          |
-| Meta       | Llama 4 Behemoth, Maverick, Scout            | ✓          |
-| DeepSeek   | DeepSeek-V3                                  |            |
-| Alibaba    | Qwen3-Max, Qwen3 family                      | ✓          |
-| Amazon     | Nova Pro, Nova Omni                          | ✓          |
+*Model naming convention: This table shows marketing names. For API calls, use provider-specific model IDs (e.g., `claude-opus-4-5`, `gemini-3-pro-preview`).*
+
+| Provider   | Models                                        | Multimodal | Notes |
+|------------|-----------------------------------------------|------------|-------|
+| OpenAI     | GPT-5.2, GPT-5.1, GPT-5, GPT-4o              | ✓          | API ID: `gpt-5.2` |
+| Anthropic  | Claude Opus 4.5, Sonnet 4.5, Haiku 4.5       | ✓          | API ID: `claude-opus-4-5` |
+| Google     | Gemini 3 Pro, Flash                          | ✓          | API ID: `gemini-3-pro-preview` |
+| Meta       | Llama 4 Maverick, Scout                      | ✓          | Behemoth: preview only |
+| DeepSeek   | DeepSeek-V3.2                                |            | API ID: `deepseek-v3.2` |
+| Alibaba    | Qwen3-Max, Qwen3 family                      | ✓          | |
+| Amazon     | Nova 2 Pro, Nova 2 Omni                      | ✓          | |
 
 ## Evaluation Dimensions
 
@@ -219,7 +233,7 @@ python scripts/validate_environment.py
 # Run evaluation
 python scripts/run_evaluation.py \
   --config configs/evaluation_config.yaml \
-  --models gpt-5.1 claude-opus-4.5 \
+  --models gpt-5.2 claude-opus-4-5 \
   --audiences patient_low_literacy physician_specialist \
   --output results/
 ```
@@ -228,12 +242,12 @@ python scripts/run_evaluation.py \
 
 ```yaml
 models:
-  gpt-5.1:
+  gpt-5.2:
     provider: openai
     temperature: 0.3
     max_tokens: 2048
 
-  claude-opus-4.5:
+  claude-opus-4-5:
     provider: anthropic
     temperature: 0.3
 
@@ -254,13 +268,13 @@ evaluation:
 
 judge:
   ensemble:
-    - model: gpt-5.1
+    - model: gpt-5.2
       weight: 0.30
-    - model: claude-opus-4.5
+    - model: claude-opus-4-5
       weight: 0.30
-    - model: gemini-3-pro
+    - model: gemini-3-pro-preview
       weight: 0.25
-    - model: deepseek-v3
+    - model: deepseek-v3.2
       weight: 0.15
 
 output:
@@ -280,7 +294,7 @@ persona = PersonaFactory.get_predefined_persona("patient_low_literacy")
 
 # Generate explanation
 explanation = client.generate(
-    model="gpt-5.1",
+    model="gpt-5.2",
     messages=[{"role": "user", "content": "Explain type 2 diabetes simply"}]
 )
 
@@ -326,8 +340,8 @@ results/
 ├── 20251229_143022/
 │   ├── scores.json
 │   ├── explanations/
-│   │   ├── gpt-5.1/
-│   │   └── claude-opus-4.5/
+│   │   ├── gpt-5.2/
+│   │   └── claude-opus-4-5/
 │   ├── analysis/
 │   │   ├── dimension_breakdown.png
 │   │   ├── audience_comparison.png

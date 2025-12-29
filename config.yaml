@@ -79,10 +79,10 @@ models:
   # Models under evaluation (subjects)
   evaluation_subjects:
     openai:
-      - model: "gpt-5.2"
+      - model: "gpt-5.2"  # Current flagship, API ID: gpt-5.2
         tier: "flagship"
         multimodal: true
-      - model: "gpt-5.1"
+      - model: "gpt-5.1"  # API ID: gpt-5.1
         tier: "advanced"
         multimodal: true
       - model: "gpt-5"
@@ -93,24 +93,24 @@ models:
         multimodal: true
     
     anthropic:
-      - model: "claude-opus-4.5"
+      - model: "claude-opus-4-5"  # API ID: claude-opus-4-5 (alias for claude-opus-4-5-20251101)
         tier: "flagship"
         multimodal: true
-      - model: "claude-sonnet-4.5"
+      - model: "claude-sonnet-4-5"  # API ID: claude-sonnet-4-5
         tier: "efficient"
         multimodal: true
-      - model: "claude-haiku-4.5"
+      - model: "claude-haiku-4-5"
         tier: "fast"
         multimodal: true
     
     google:
-      - model: "gemini-3-ultra"
+      - model: "gemini-3-ultra-preview"  # Preview model ID
         tier: "flagship"
         multimodal: true
-      - model: "gemini-3-pro"
+      - model: "gemini-3-pro-preview"  # API ID: gemini-3-pro-preview
         tier: "standard"
         multimodal: true
-      - model: "gemini-3-flash"
+      - model: "gemini-3-flash-preview"
         tier: "fast"
         multimodal: true
     
@@ -118,6 +118,7 @@ models:
       - model: "llama-4-behemoth"
         tier: "flagship"
         multimodal: true
+        status: "preview"  # Not publicly available, teacher model still training
       - model: "llama-4-maverick"
         tier: "multimodal"
         multimodal: true
@@ -126,13 +127,13 @@ models:
         multimodal: false
     
     other:
-      - model: "deepseek-v3"
+      - model: "deepseek-v3.2"  # API ID: deepseek-v3.2
         provider: "deepseek"
         tier: "frontier"
       - model: "qwen3-max"
         provider: "alibaba"
         tier: "frontier"
-      - model: "nova-pro"
+      - model: "nova-2-pro"  # Amazon Nova 2 Pro
         provider: "amazon"
         tier: "standard"
 
@@ -142,19 +143,19 @@ models:
 llm_judge:
   # Primary ensemble (85% weight)
   primary_judges:
-    - model: "gpt-5.1"
+    - model: "gpt-5.2"  # API ID: gpt-5.2
       provider: "openai"
       weight: 0.30
-    - model: "claude-opus-4.5"
+    - model: "claude-opus-4-5"  # API ID: claude-opus-4-5
       provider: "anthropic"
       weight: 0.30
-    - model: "gemini-3-pro"
+    - model: "gemini-3-pro-preview"  # API ID: gemini-3-pro-preview
       provider: "google"
       weight: 0.25
   
   # Secondary judges (15% weight)
   secondary_judges:
-    - model: "deepseek-v3"
+    - model: "deepseek-v3.2"  # API ID: deepseek-v3.2
       provider: "deepseek"
       weight: 0.10
     - model: "qwen3-max"
@@ -304,18 +305,18 @@ multimodal:
   supported_modalities:
     - name: "radiology"
       description: "X-ray, CT, MRI"
-      models: ["gpt-5.1", "claude-opus-4.5", "gemini-3-pro"]
+      models: ["gpt-5.2", "claude-opus-4-5", "gemini-3-pro-preview"]
     - name: "dermatology"
       description: "Skin conditions"
-      models: ["gpt-5.1", "claude-opus-4.5"]
+      models: ["gpt-5.2", "claude-opus-4-5"]
     - name: "pathology"
       description: "Histology slides"
-      models: ["gpt-5.1", "gemini-3-pro"]
+      models: ["gpt-5.2", "gemini-3-pro-preview"]
     - name: "ophthalmology"
       description: "Retinal images"
-      models: ["gpt-5.1", "gemini-3-pro"]
+      models: ["gpt-5.2", "gemini-3-pro-preview"]
   
-  default_model: "gpt-5.1"
+  default_model: "gpt-5.2"
   image_max_size_mb: 20
   supported_formats: ["png", "jpg", "jpeg", "gif", "webp"]
 

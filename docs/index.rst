@@ -3,7 +3,7 @@ MedExplain-Evals Documentation
 
 Welcome to MedExplain-Evals, a resource-efficient benchmark for evaluating audience-adaptive explanation quality in medical Large Language Models.
 
-This project is developed as part of `Google Summer of Code 2025 <https://summerofcode.withgoogle.com/>`_.
+This project is developed as part of `Google Summer of Code 2025 <https://summerofcode.withgoogle.com/>`_, mentored by `Google DeepMind <https://deepmind.google/>`_.
 
 .. toctree::
    :maxdepth: 2
