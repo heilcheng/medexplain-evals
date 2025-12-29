@@ -80,7 +80,7 @@ export OPENAI_API_KEY=your_key
 export ANTHROPIC_API_KEY=your_key
 
 # Validate environment
-python scripts/validate_env.py
+python scripts/validate_environment.py
 
 # Run evaluation
 python scripts/run_evaluation.py \
@@ -178,6 +178,13 @@ npm install && npm run dev
 
 Access at http://localhost:3000
 
+Features:
+- **Dashboard**: Overview of evaluation runs and statistics
+- **Playground**: Interactive testing of medical explanations
+- **Models**: Configure API and local model providers
+- **Audiences**: Browse 11 medical audience personas
+- **Results**: Visualize evaluation scores and rankings
+
 ## Output Structure
 
 ```
@@ -205,20 +212,39 @@ pytest --cov=src tests/
 
 ```
 medexplain-evals/
-├── src/
+├── src/                       # Core Python library
 │   ├── model_clients.py       # Unified LLM API client
+│   ├── api_client.py          # HTTP client utilities
 │   ├── ensemble_judge.py      # Multi-model evaluation
+│   ├── evaluator.py           # Core evaluation engine
 │   ├── audience_personas.py   # Audience modeling
 │   ├── safety_evaluator.py    # Safety assessment
 │   ├── knowledge_grounding.py # UMLS/RxNorm integration
+│   ├── data_loaders.py        # Dataset loading
+│   ├── leaderboard.py         # Model rankings
+│   ├── benchmark.py           # Benchmark runner
+│   ├── cli.py                 # Command-line interface
 │   └── rubrics/               # G-Eval scoring rubrics
 ├── scripts/                   # CLI tools
+│   ├── run_evaluation.py      # Main evaluation script
+│   ├── validate_environment.py# Environment checker
+│   ├── generate_explanations.py
+│   ├── compute_scores.py
+│   └── curate_dataset.py
+├── web/                       # Web platform
+│   ├── frontend/              # Next.js dashboard
+│   └── backend/               # FastAPI server
+├── docs/                      # Sphinx documentation
 ├── analysis/                  # Visualization and reporting
-├── web/                       # Web platform (FastAPI + Next.js)
 ├── configs/                   # Configuration templates
+├── data/                      # Sample datasets
 ├── tests/                     # Test suite
 └── examples/                  # Usage examples
 ```
+
+## Documentation
+
+Full documentation is available at: https://heilcheng.github.io/medexplain-evals/
 
 ## Citation
 
