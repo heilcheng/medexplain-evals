@@ -1,10 +1,9 @@
 # MedExplain-Evals
 
 [![Google Summer of Code](https://img.shields.io/badge/Google%20Summer%20of%20Code-2025-4285F4?style=flat&logo=google&logoColor=white)](https://summerofcode.withgoogle.com/)
-[![Google DeepMind](https://img.shields.io/badge/Google%20DeepMind-4285F4?style=flat&logo=google&logoColor=white)](https://deepmind.google/)
-[![Documentation](https://img.shields.io/badge/docs-GitHub%20Pages-blue)](https://heilcheng.github.io/medexplain-evals/)
+[![Documentation](https://img.shields.io/badge/docs-GitHub%20Pages-4285F4)](https://heilcheng.github.io/medexplain-evals/)
 
-> **This project is developed as part of [Google Summer of Code 2025](https://summerofcode.withgoogle.com/) with [Google DeepMind](https://deepmind.google/).**
+> **This project is developed as part of [Google Summer of Code 2025](https://summerofcode.withgoogle.com/).**
 
 A benchmark for evaluating audience-adaptive medical explanation quality in large language models.
 
@@ -18,7 +17,7 @@ MedExplain-Evals provides infrastructure for:
 - Grounding evaluations against medical knowledge bases (UMLS, RxNorm, SNOMED-CT)
 - Generating publication-ready analysis reports and visualizations
 
-📖 **[Read the full documentation →](https://heilcheng.github.io/medexplain-evals/)**
+**[Read the full documentation](https://heilcheng.github.io/medexplain-evals/)**
 
 ## Requirements
 
@@ -376,7 +375,7 @@ If you use MedExplain-Evals in your research, please cite:
 
 ```bibtex
 @software{medexplain2025,
-  author = {Hailey Cheng},
+  author = {Cheng Hei Lam},
   title = {MedExplain-Evals: A Benchmark for Audience-Adaptive Medical Explanation Quality in LLMs},
   year = {2025},
   url = {https://github.com/heilcheng/medexplain-evals}

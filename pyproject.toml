@@ -10,10 +10,10 @@ readme = "README.md"
 license = "MIT"
 requires-python = ">=3.10"
 authors = [
-    { name = "MedExplain-Evals Team", email = "contact@medexplain-evals.org" }
+    { name = "Cheng Hei Lam" }
 ]
 maintainers = [
-    { name = "MedExplain-Evals Team", email = "contact@medexplain-evals.org" }
+    { name = "Cheng Hei Lam" }
 ]
 keywords = [
     "medical",
