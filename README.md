@@ -40,6 +40,134 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
+## Benchmark Architecture
+
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                        MedExplain-Evals Pipeline                            │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                             │
+│  ┌─────────────┐    ┌─────────────────┐    ┌──────────────────────────────┐│
+│  │   Input     │    │   LLM Under     │    │     Generated Explanation   ││
+│  │  Clinical   │───▶│     Test        │───▶│     for Target Audience     ││
+│  │  Scenario   │    │  (API/Local)    │    │                             ││
+│  └─────────────┘    └─────────────────┘    └──────────────┬───────────────┘│
+│                                                            │                │
+│                                                            ▼                │
+│  ┌─────────────────────────────────────────────────────────────────────────┐│
+│  │                    Evaluation Engine                                    ││
+│  ├─────────────────────────────────────────────────────────────────────────┤│
+│  │                                                                         ││
+│  │  ┌────────────────┐  ┌────────────────┐  ┌────────────────────────────┐││
+│  │  │ Knowledge      │  │  Ensemble      │  │     Safety                 │││
+│  │  │ Grounding      │  │  LLM-as-Judge  │  │     Evaluator              │││
+│  │  │                │  │                │  │                            │││
+│  │  │ • UMLS Lookup  │  │ • GPT-5.x      │  │ • Drug interactions       │││
+│  │  │ • RxNorm Match │  │ • Claude 4.5   │  │ • Contraindications       │││
+│  │  │ • SNOMED-CT    │  │ • Gemini 3     │  │ • Harm classification     │││
+│  │  │ • NLI Verify   │  │ • DeepSeek-V3  │  │ • Warning detection       │││
+│  │  └────────────────┘  └────────────────┘  └────────────────────────────┘││
+│  │                                                                         ││
+│  └─────────────────────────────────────────────────────────────────────────┘│
+│                                                            │                │
+│                                                            ▼                │
+│  ┌─────────────────────────────────────────────────────────────────────────┐│
+│  │                    Dimension Scoring (Weighted)                         ││
+│  ├─────────────────────────────────────────────────────────────────────────┤│
+│  │  Factual Accuracy (25%) │ Terminology (15%) │ Completeness (20%)       ││
+│  │  Actionability (15%)    │ Safety (15%)      │ Empathy & Tone (10%)     ││
+│  └─────────────────────────────────────────────────────────────────────────┘│
+│                                                                             │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
+## Medical Knowledge Grounding
+
+MedExplain-Evals grounds factual claims against established medical ontologies:
+
+### UMLS (Unified Medical Language System)
+
+The UMLS integrates over 200 source vocabularies and provides a comprehensive framework for medical concept normalization.
+
+| Resource | Description | Usage in MedExplain |
+|----------|-------------|---------------------|
+| Metathesaurus | Unified concepts from 200+ sources | Entity linking, concept validation |
+| Semantic Network | Semantic types and relations | Relationship verification |
+| SPECIALIST Lexicon | Biomedical language tools | Term normalization |
+
+**Citation:**
+```bibtex
+@article{bodenreider2004umls,
+  author = {Bodenreider, Olivier},
+  title = {The Unified Medical Language System (UMLS): integrating biomedical terminology},
+  journal = {Nucleic Acids Research},
+  volume = {32},
+  number = {suppl\_1},
+  pages = {D267--D270},
+  year = {2004},
+  doi = {10.1093/nar/gkh061},
+  url = {https://www.nlm.nih.gov/research/umls/}
+}
+```
+
+### RxNorm
+
+RxNorm provides normalized names and identifiers for clinical drugs, enabling drug safety verification.
+
+| Component | Description | Usage in MedExplain |
+|-----------|-------------|---------------------|
+| RxCUI | Unique drug identifiers | Drug entity validation |
+| Drug classes | Therapeutic categories | Drug-condition matching |
+| Ingredient links | Active ingredient mapping | Interaction checking |
+
+**Citation:**
+```bibtex
+@article{nelson2011rxnorm,
+  author = {Nelson, Stuart J and Zeng, Kelly and Kilbourne, John and Powell, Tammy and Moore, Robin},
+  title = {Normalized names for clinical drugs: RxNorm at 6 years},
+  journal = {Journal of the American Medical Informatics Association},
+  volume = {18},
+  number = {4},
+  pages = {441--448},
+  year = {2011},
+  doi = {10.1136/amiajnl-2011-000116},
+  url = {https://www.nlm.nih.gov/research/umls/rxnorm/}
+}
+```
+
+### SNOMED CT (Clinical Terms)
+
+SNOMED CT is the most comprehensive clinical terminology, covering diseases, procedures, and clinical findings.
+
+| Hierarchy | Description | Usage in MedExplain |
+|-----------|-------------|---------------------|
+| Clinical finding | Disorders, symptoms | Diagnosis validation |
+| Procedure | Medical interventions | Treatment verification |
+| Body structure | Anatomical concepts | Anatomical accuracy |
+| Pharmaceutical product | Medications | Drug reference checking |
+
+**Citation:**
+```bibtex
+@article{donnelly2006snomed,
+  author = {Donnelly, Kevin},
+  title = {SNOMED-CT: The advanced terminology and coding system for eHealth},
+  journal = {Studies in Health Technology and Informatics},
+  volume = {121},
+  pages = {279--290},
+  year = {2006},
+  url = {https://www.snomed.org/}
+}
+```
+
+### Additional Medical Resources
+
+| Resource | Purpose | Citation |
+|----------|---------|----------|
+| **MedDRA** | Adverse event terminology | [ICH MedDRA](https://www.meddra.org/) |
+| **ICD-10/11** | Disease classification | [WHO ICD](https://www.who.int/standards/classifications/icd) |
+| **LOINC** | Lab/clinical observations | [Regenstrief LOINC](https://loinc.org/) |
+| **DrugBank** | Drug interaction data | [DrugBank 5.0](https://go.drugbank.com/) |
+
 ## Supported Models
 
 | Provider   | Models                                        | Multimodal |
@@ -213,27 +341,15 @@ pytest --cov=src tests/
 ```
 medexplain-evals/
 ├── src/                       # Core Python library
-│   ├── model_clients.py       # Unified LLM API client
-│   ├── api_client.py          # HTTP client utilities
-│   ├── ensemble_judge.py      # Multi-model evaluation
-│   ├── evaluator.py           # Core evaluation engine
-│   ├── audience_personas.py   # Audience modeling
-│   ├── safety_evaluator.py    # Safety assessment
-│   ├── knowledge_grounding.py # UMLS/RxNorm integration
-│   ├── data_loaders.py        # Dataset loading
-│   ├── leaderboard.py         # Model rankings
-│   ├── benchmark.py           # Benchmark runner
-│   ├── cli.py                 # Command-line interface
+│   ├── clients/               # LLM API clients
+│   ├── evaluation/            # Scoring and judging
+│   ├── personas/              # Audience modeling
+│   ├── data/                  # Data loading
+│   ├── knowledge/             # UMLS/RxNorm grounding
+│   ├── core/                  # Shared utilities
 │   └── rubrics/               # G-Eval scoring rubrics
 ├── scripts/                   # CLI tools
-│   ├── run_evaluation.py      # Main evaluation script
-│   ├── validate_environment.py# Environment checker
-│   ├── generate_explanations.py
-│   ├── compute_scores.py
-│   └── curate_dataset.py
-├── web/                       # Web platform
-│   ├── frontend/              # Next.js dashboard
-│   └── backend/               # FastAPI server
+├── web/                       # Web platform (Next.js + FastAPI)
 ├── docs/                      # Sphinx documentation
 ├── analysis/                  # Visualization and reporting
 ├── configs/                   # Configuration templates
@@ -247,6 +363,8 @@ medexplain-evals/
 Full documentation is available at: https://heilcheng.github.io/medexplain-evals/
 
 ## Citation
+
+If you use MedExplain-Evals in your research, please cite:
 
 ```bibtex
 @software{medexplain2025,

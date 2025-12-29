@@ -33,7 +33,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install sphinx sphinx-rtd-theme myst-parser sphinx-autodoc-typehints
+          pip install sphinx sphinx-rtd-theme myst-parser sphinx-autodoc-typehints linkify-it-py
           # Install project in editable mode for autodoc imports
           pip install -e . || pip install -r requirements.txt || true
 
