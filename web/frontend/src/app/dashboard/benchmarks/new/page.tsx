@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { ArrowLeft, Play, X, Check, Cpu, ListChecks } from "lucide-react";
+import { ArrowLeft, Play, X, Check, Cpu, Users, BarChart3 } from "lucide-react";
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
@@ -15,45 +15,62 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import {
-  benchmarkAPI,
-  modelAPI,
-  taskAPI,
-  type ModelTypeInfo,
-  type TaskInfo,
-} from "@/lib/api";
+import { benchmarkAPI } from "@/lib/api";
 
-// Default model types
-const defaultModelTypes: ModelTypeInfo[] = [
-  { type: "gemma", name: "Gemma", sizes: ["2b", "7b", "9b", "27b"], default_size: "7b" },
-  { type: "gemma3", name: "Gemma 3", sizes: ["1b", "4b", "12b", "27b"], default_size: "4b" },
-  { type: "llama3", name: "Llama 3", sizes: ["8b", "70b"], default_size: "8b" },
-  { type: "llama3.1", name: "Llama 3.1", sizes: ["8b", "70b", "405b"], default_size: "8b" },
-  { type: "llama3.2", name: "Llama 3.2", sizes: ["1b", "3b", "11b", "90b"], default_size: "3b" },
-  { type: "mistral", name: "Mistral", sizes: ["7b"], default_size: "7b" },
-  { type: "mixtral", name: "Mixtral", sizes: ["8x7b", "8x22b"], default_size: "8x7b" },
-  { type: "qwen2", name: "Qwen 2", sizes: ["0.5b", "1.5b", "7b", "72b"], default_size: "7b" },
-  { type: "qwen2.5", name: "Qwen 2.5", sizes: ["0.5b", "1.5b", "3b", "7b", "14b", "32b", "72b"], default_size: "7b" },
-  { type: "deepseek", name: "DeepSeek", sizes: ["7b", "67b"], default_size: "7b" },
-  { type: "deepseek-r1", name: "DeepSeek-R1", sizes: ["1.5b", "7b", "8b", "14b", "32b", "70b", "671b"], default_size: "7b" },
-  { type: "phi3", name: "Phi-3", sizes: ["mini", "small", "medium"], default_size: "mini" },
-  { type: "olmo", name: "OLMo", sizes: ["1b", "7b"], default_size: "7b" },
-  { type: "huggingface", name: "HuggingFace", sizes: ["custom"], default_size: "custom" },
+// API-based models from README
+const MODELS = [
+  // OpenAI
+  { id: "gpt-5.2", name: "GPT-5.2", provider: "OpenAI" },
+  { id: "gpt-5.1", name: "GPT-5.1", provider: "OpenAI" },
+  { id: "gpt-5", name: "GPT-5", provider: "OpenAI" },
+  { id: "gpt-4o", name: "GPT-4o", provider: "OpenAI" },
+  // Anthropic
+  { id: "claude-opus-4.5", name: "Claude Opus 4.5", provider: "Anthropic" },
+  { id: "claude-sonnet-4.5", name: "Claude Sonnet 4.5", provider: "Anthropic" },
+  { id: "claude-haiku-4.5", name: "Claude Haiku 4.5", provider: "Anthropic" },
+  // Google
+  { id: "gemini-3-pro", name: "Gemini 3 Pro", provider: "Google" },
+  { id: "gemini-3-flash", name: "Gemini 3 Flash", provider: "Google" },
+  // Meta
+  { id: "llama-4-behemoth", name: "Llama 4 Behemoth", provider: "Meta" },
+  { id: "llama-4-maverick", name: "Llama 4 Maverick", provider: "Meta" },
+  { id: "llama-4-scout", name: "Llama 4 Scout", provider: "Meta" },
+  // DeepSeek
+  { id: "deepseek-v3", name: "DeepSeek-V3", provider: "DeepSeek" },
+  // Alibaba
+  { id: "qwen3-max", name: "Qwen3-Max", provider: "Alibaba" },
+  // Amazon
+  { id: "nova-pro", name: "Nova Pro", provider: "Amazon" },
+  { id: "nova-omni", name: "Nova Omni", provider: "Amazon" },
 ];
 
-// Default tasks
-const defaultTasks: TaskInfo[] = [
-  { type: "mmlu", name: "MMLU", description: "Multitask language understanding across 57 subjects", metrics: ["accuracy"] },
-  { type: "gsm8k", name: "GSM8K", description: "Grade school math word problems", metrics: ["accuracy"] },
-  { type: "truthfulqa", name: "TruthfulQA", description: "Truthfulness evaluation", metrics: ["mc1", "mc2"] },
-  { type: "hellaswag", name: "HellaSwag", description: "Commonsense reasoning", metrics: ["accuracy"] },
-  { type: "arc", name: "ARC", description: "Science reasoning questions", metrics: ["accuracy"] },
-  { type: "winogrande", name: "WinoGrande", description: "Commonsense reasoning", metrics: ["accuracy"] },
-  { type: "humaneval", name: "HumanEval", description: "Python code generation", metrics: ["pass@1"] },
-  { type: "gpqa", name: "GPQA", description: "Graduate-level science Q&A", metrics: ["accuracy"] },
-  { type: "math", name: "MATH", description: "Competition mathematics", metrics: ["accuracy"] },
-  { type: "ifeval", name: "IFEval", description: "Instruction following", metrics: ["accuracy"] },
-  { type: "bbh", name: "BBH", description: "BIG-Bench Hard reasoning tasks", metrics: ["accuracy"] },
+// Target audiences from README
+const AUDIENCES = [
+  // Physicians
+  { id: "physician_specialist", name: "Physician (Specialist)", category: "Physicians" },
+  { id: "physician_generalist", name: "Physician (Generalist)", category: "Physicians" },
+  // Nurses
+  { id: "nurse_icu", name: "Nurse (ICU)", category: "Nurses" },
+  { id: "nurse_general", name: "Nurse (General Ward)", category: "Nurses" },
+  { id: "nurse_specialty", name: "Nurse (Specialty)", category: "Nurses" },
+  // Patients
+  { id: "patient_low_literacy", name: "Patient (Low Literacy)", category: "Patients" },
+  { id: "patient_medium_literacy", name: "Patient (Medium Literacy)", category: "Patients" },
+  { id: "patient_high_literacy", name: "Patient (High Literacy)", category: "Patients" },
+  // Caregivers
+  { id: "caregiver_family", name: "Caregiver (Family)", category: "Caregivers" },
+  { id: "caregiver_professional", name: "Caregiver (Professional)", category: "Caregivers" },
+  { id: "caregiver_pediatric", name: "Caregiver (Pediatric)", category: "Caregivers" },
+];
+
+// Medical evaluation dimensions from README
+const DIMENSIONS = [
+  { id: "factual_accuracy", name: "Factual Accuracy", weight: "25%", description: "Clinical correctness and evidence alignment" },
+  { id: "terminological_appropriateness", name: "Terminological Appropriateness", weight: "15%", description: "Language complexity matching audience needs" },
+  { id: "explanatory_completeness", name: "Explanatory Completeness", weight: "20%", description: "Comprehensive yet accessible coverage" },
+  { id: "actionability", name: "Actionability", weight: "15%", description: "Clear, practical guidance" },
+  { id: "safety", name: "Safety", weight: "15%", description: "Appropriate warnings and harm avoidance" },
+  { id: "empathy_tone", name: "Empathy & Tone", weight: "10%", description: "Audience-appropriate communication style" },
 ];
 
 export default function NewBenchmarkPage() {
@@ -61,44 +78,9 @@ export default function NewBenchmarkPage() {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [selectedModels, setSelectedModels] = useState<string[]>([]);
-  const [selectedTasks, setSelectedTasks] = useState<string[]>([]);
-  const [modelTypes, setModelTypes] = useState<ModelTypeInfo[]>([]);
-  const [tasks, setTasks] = useState<TaskInfo[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [selectedAudiences, setSelectedAudiences] = useState<string[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const tasksData = await taskAPI.list().catch(() => []);
-
-        // Merge API tasks with defaults, ensuring metrics exist
-        const mergedTasks = defaultTasks.map((defaultTask) => {
-          const apiTask = tasksData.find((t) => t.type === defaultTask.type);
-          return apiTask
-            ? { ...defaultTask, ...apiTask, metrics: apiTask.metrics || defaultTask.metrics }
-            : defaultTask;
-        });
-
-        // Add any API tasks not in defaults
-        const additionalTasks = tasksData.filter(
-          (t) => !defaultTasks.find((d) => d.type === t.type)
-        );
-
-        setModelTypes(defaultModelTypes);
-        setTasks([...mergedTasks, ...additionalTasks]);
-      } catch (error) {
-        console.error("Failed to fetch data:", error);
-        setModelTypes(defaultModelTypes);
-        setTasks(defaultTasks);
-      } finally {
-        setIsLoading(false);
-      }
-    }
-
-    fetchData();
-  }, []);
 
   const toggleModel = (modelId: string) => {
     setSelectedModels((prev) =>
@@ -108,17 +90,17 @@ export default function NewBenchmarkPage() {
     );
   };
 
-  const toggleTask = (taskType: string) => {
-    setSelectedTasks((prev) =>
-      prev.includes(taskType)
-        ? prev.filter((t) => t !== taskType)
-        : [...prev, taskType]
+  const toggleAudience = (audienceId: string) => {
+    setSelectedAudiences((prev) =>
+      prev.includes(audienceId)
+        ? prev.filter((id) => id !== audienceId)
+        : [...prev, audienceId]
     );
   };
 
   const handleSubmit = async () => {
-    if (selectedModels.length === 0 || selectedTasks.length === 0) {
-      setError("Please select at least one model and one task");
+    if (selectedModels.length === 0 || selectedAudiences.length === 0) {
+      setError("Please select at least one model and one audience");
       return;
     }
 
@@ -127,30 +109,22 @@ export default function NewBenchmarkPage() {
 
     try {
       const result = await benchmarkAPI.create({
-        name: name || `Benchmark ${new Date().toLocaleDateString()}`,
+        name: name || `Medical Evaluation ${new Date().toLocaleDateString()}`,
         description,
         models: selectedModels,
-        tasks: selectedTasks,
+        tasks: selectedAudiences, // audiences are the "tasks" for medical eval
       });
 
       router.push(`/dashboard/benchmarks/${result.id}`);
     } catch (error) {
-      console.error("Failed to create benchmark:", error);
+      console.error("Failed to create evaluation:", error);
       setError(
-        error instanceof Error ? error.message : "Failed to create benchmark"
+        error instanceof Error ? error.message : "Failed to create evaluation"
       );
     } finally {
       setIsSubmitting(false);
     }
   };
-
-  if (isLoading) {
-    return (
-      <div className="flex h-[50vh] items-center justify-center">
-        <div className="loader" />
-      </div>
-    );
-  }
 
   return (
     <div className="mx-auto max-w-4xl space-y-6">
@@ -162,9 +136,9 @@ export default function NewBenchmarkPage() {
           </Button>
         </Link>
         <div>
-          <h1 className="text-xl font-semibold">New Benchmark</h1>
+          <h1 className="text-xl font-semibold">New Medical Evaluation</h1>
           <p className="text-sm text-muted-foreground">
-            Configure and run a benchmark evaluation
+            Evaluate medical explanation quality across audiences
           </p>
         </div>
       </div>
@@ -174,16 +148,16 @@ export default function NewBenchmarkPage() {
         {/* Basic Info */}
         <Card>
           <CardHeader className="pb-4">
-            <CardTitle className="text-base">Basic Information</CardTitle>
+            <CardTitle className="text-base">Evaluation Details</CardTitle>
             <CardDescription className="text-xs">
-              Optional name and description for this run
+              Name and describe this evaluation run
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div>
               <label className="text-sm font-medium">Name</label>
               <Input
-                placeholder="My Benchmark Run"
+                placeholder="Diabetes Explanation Evaluation"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 className="mt-1.5"
@@ -192,7 +166,7 @@ export default function NewBenchmarkPage() {
             <div>
               <label className="text-sm font-medium">Description</label>
               <Input
-                placeholder="Evaluating model performance on reasoning tasks..."
+                placeholder="Comparing model explanations of Type 2 diabetes across patient literacy levels..."
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 className="mt-1.5"
@@ -214,24 +188,23 @@ export default function NewBenchmarkPage() {
           </CardHeader>
           <CardContent>
             <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
-              {modelTypes.map((model) => (
+              {MODELS.map((model) => (
                 <button
-                  key={model.type}
-                  onClick={() => toggleModel(model.type)}
-                  className={`relative flex flex-col items-start rounded-md border p-3 text-left transition-colors ${
-                    selectedModels.includes(model.type)
+                  key={model.id}
+                  onClick={() => toggleModel(model.id)}
+                  className={`relative flex flex-col items-start rounded-md border p-3 text-left transition-colors ${selectedModels.includes(model.id)
                       ? "border-foreground bg-accent"
                       : "hover:bg-accent/50"
-                  }`}
+                    }`}
                 >
-                  {selectedModels.includes(model.type) && (
+                  {selectedModels.includes(model.id) && (
                     <div className="absolute right-2 top-2 rounded-full bg-foreground p-0.5">
                       <Check className="h-2.5 w-2.5 text-background" />
                     </div>
                   )}
                   <span className="font-medium text-sm">{model.name}</span>
                   <span className="mt-0.5 text-xs text-muted-foreground">
-                    {model.sizes.join(", ")}
+                    {model.provider}
                   </span>
                 </button>
               ))}
@@ -241,7 +214,7 @@ export default function NewBenchmarkPage() {
               <div className="mt-4 flex flex-wrap gap-1.5">
                 {selectedModels.map((modelId) => (
                   <Badge key={modelId} variant="secondary" className="gap-1 text-xs">
-                    {modelTypes.find((m) => m.type === modelId)?.name || modelId}
+                    {MODELS.find((m) => m.id === modelId)?.name || modelId}
                     <button
                       onClick={(e) => {
                         e.stopPropagation();
@@ -258,58 +231,50 @@ export default function NewBenchmarkPage() {
           </CardContent>
         </Card>
 
-        {/* Task Selection */}
+        {/* Audience Selection */}
         <Card>
           <CardHeader className="pb-4">
             <div className="flex items-center gap-2">
-              <ListChecks className="h-4 w-4" />
-              <CardTitle className="text-base">Select Tasks</CardTitle>
+              <Users className="h-4 w-4" />
+              <CardTitle className="text-base">Select Target Audiences</CardTitle>
             </div>
             <CardDescription className="text-xs">
-              {selectedTasks.length} task{selectedTasks.length !== 1 ? "s" : ""} selected
+              {selectedAudiences.length} audience{selectedAudiences.length !== 1 ? "s" : ""} selected
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="grid gap-2 sm:grid-cols-2">
-              {tasks.map((task) => (
+            <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+              {AUDIENCES.map((audience) => (
                 <button
-                  key={task.type}
-                  onClick={() => toggleTask(task.type)}
-                  className={`relative flex flex-col items-start rounded-md border p-3 text-left transition-colors ${
-                    selectedTasks.includes(task.type)
+                  key={audience.id}
+                  onClick={() => toggleAudience(audience.id)}
+                  className={`relative flex flex-col items-start rounded-md border p-3 text-left transition-colors ${selectedAudiences.includes(audience.id)
                       ? "border-foreground bg-accent"
                       : "hover:bg-accent/50"
-                  }`}
+                    }`}
                 >
-                  {selectedTasks.includes(task.type) && (
+                  {selectedAudiences.includes(audience.id) && (
                     <div className="absolute right-2 top-2 rounded-full bg-foreground p-0.5">
                       <Check className="h-2.5 w-2.5 text-background" />
                     </div>
                   )}
-                  <span className="font-medium text-sm">{task.name}</span>
-                  <span className="mt-0.5 text-xs text-muted-foreground line-clamp-1">
-                    {task.description}
+                  <span className="font-medium text-sm">{audience.name}</span>
+                  <span className="mt-0.5 text-xs text-muted-foreground">
+                    {audience.category}
                   </span>
-                  <div className="mt-1.5 flex flex-wrap gap-1">
-                    {(task.metrics || []).map((metric) => (
-                      <Badge key={metric} variant="outline" className="text-xs py-0">
-                        {metric}
-                      </Badge>
-                    ))}
-                  </div>
                 </button>
               ))}
             </div>
 
-            {selectedTasks.length > 0 && (
+            {selectedAudiences.length > 0 && (
               <div className="mt-4 flex flex-wrap gap-1.5">
-                {selectedTasks.map((taskType) => (
-                  <Badge key={taskType} variant="secondary" className="gap-1 text-xs">
-                    {tasks.find((t) => t.type === taskType)?.name || taskType}
+                {selectedAudiences.map((audienceId) => (
+                  <Badge key={audienceId} variant="secondary" className="gap-1 text-xs">
+                    {AUDIENCES.find((a) => a.id === audienceId)?.name || audienceId}
                     <button
                       onClick={(e) => {
                         e.stopPropagation();
-                        toggleTask(taskType);
+                        toggleAudience(audienceId);
                       }}
                       className="ml-0.5 hover:text-destructive"
                     >
@@ -319,6 +284,37 @@ export default function NewBenchmarkPage() {
                 ))}
               </div>
             )}
+          </CardContent>
+        </Card>
+
+        {/* Evaluation Dimensions Info */}
+        <Card>
+          <CardHeader className="pb-4">
+            <div className="flex items-center gap-2">
+              <BarChart3 className="h-4 w-4" />
+              <CardTitle className="text-base">Evaluation Dimensions</CardTitle>
+            </div>
+            <CardDescription className="text-xs">
+              All explanations are scored across 6 dimensions
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+              {DIMENSIONS.map((dim) => (
+                <div
+                  key={dim.id}
+                  className="rounded-md border p-3"
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="font-medium text-sm">{dim.name}</span>
+                    <Badge variant="outline" className="text-xs">{dim.weight}</Badge>
+                  </div>
+                  <p className="mt-1 text-xs text-muted-foreground">
+                    {dim.description}
+                  </p>
+                </div>
+              ))}
+            </div>
           </CardContent>
         </Card>
 
@@ -339,7 +335,7 @@ export default function NewBenchmarkPage() {
             disabled={
               isSubmitting ||
               selectedModels.length === 0 ||
-              selectedTasks.length === 0
+              selectedAudiences.length === 0
             }
             size="sm"
             className="gap-2"
@@ -352,7 +348,7 @@ export default function NewBenchmarkPage() {
             ) : (
               <>
                 <Play className="h-3 w-3" />
-                Start Benchmark
+                Start Evaluation
               </>
             )}
           </Button>

@@ -46,7 +46,7 @@ pip install -r requirements.txt
 |------------|-----------------------------------------------|------------|
 | OpenAI     | GPT-5.2, GPT-5.1, GPT-5, GPT-4o              | ✓          |
 | Anthropic  | Claude Opus 4.5, Sonnet 4.5, Haiku 4.5       | ✓          |
-| Google     | Gemini 3 Ultra, Pro, Flash                   | ✓          |
+| Google     | Gemini 3 Pro, Flash                          | ✓          |
 | Meta       | Llama 4 Behemoth, Maverick, Scout            | ✓          |
 | DeepSeek   | DeepSeek-V3                                  |            |
 | Alibaba    | Qwen3-Max, Qwen3 family                      | ✓          |

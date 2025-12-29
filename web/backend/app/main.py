@@ -15,6 +15,9 @@ from fastapi.openapi.utils import get_openapi
 from .models import init_db
 from .api.v1 import api_router
 
+# ... existing code ...
+
+
 # Configure logging
 logging.basicConfig(
     level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"

@@ -1,22 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import {
-  ListChecks,
-  Calculator,
-  Brain,
+  Stethoscope,
+  Heart,
+  User,
+  Shield,
   BookOpen,
-  MessageSquare,
-  Target,
-  Lightbulb,
-  CheckCircle2,
-  Code,
-  GraduationCap,
-  Scale,
-  Microscope,
 } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -25,196 +16,141 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { taskAPI, type TaskInfo } from "@/lib/api";
 
-const taskIcons: Record<string, React.ReactNode> = {
-  gsm8k: <Calculator className="h-5 w-5" />,
-  math: <Calculator className="h-5 w-5" />,
-  truthfulqa: <CheckCircle2 className="h-5 w-5" />,
-  mmlu: <Brain className="h-5 w-5" />,
-  hellaswag: <Lightbulb className="h-5 w-5" />,
-  arc: <Target className="h-5 w-5" />,
-  winogrande: <MessageSquare className="h-5 w-5" />,
-  humaneval: <Code className="h-5 w-5" />,
-  gpqa: <GraduationCap className="h-5 w-5" />,
-  ifeval: <Scale className="h-5 w-5" />,
-  bbh: <Microscope className="h-5 w-5" />,
-};
-
-// Default tasks with full information
-const defaultTasks: TaskInfo[] = [
+// Target audiences from README with full details
+const AUDIENCE_GROUPS = [
   {
-    type: "mmlu",
-    name: "MMLU",
-    description: "Massive Multitask Language Understanding - Tests knowledge across 57 subjects from STEM to humanities",
-    metrics: ["accuracy"],
-    default_config: { shot_count: 5 },
+    category: "Physicians",
+    icon: Stethoscope,
+    healthLiteracy: "Expert",
+    audiences: [
+      { id: "physician_specialist", name: "Specialist", description: "Domain experts requiring technical precision and clinical terminology" },
+      { id: "physician_generalist", name: "Generalist", description: "Primary care physicians needing broad medical explanations" },
+    ],
   },
   {
-    type: "gsm8k",
-    name: "GSM8K",
-    description: "Grade School Math 8K - Mathematical reasoning benchmark testing arithmetic and word problem solving",
-    metrics: ["accuracy", "exact_match"],
-    default_config: { shot_count: 8 },
+    category: "Nurses",
+    icon: Heart,
+    healthLiteracy: "Professional",
+    audiences: [
+      { id: "nurse_icu", name: "ICU", description: "Critical care nurses needing detailed physiological information" },
+      { id: "nurse_general", name: "General Ward", description: "Floor nurses requiring practical care instructions" },
+      { id: "nurse_specialty", name: "Specialty", description: "Specialized nurses (oncology, pediatric, etc.)" },
+    ],
   },
   {
-    type: "truthfulqa",
-    name: "TruthfulQA",
-    description: "Measures whether a language model generates truthful answers in adversarial settings",
-    metrics: ["mc1", "mc2"],
-    default_config: {},
+    category: "Patients",
+    icon: User,
+    healthLiteracy: "Variable",
+    audiences: [
+      { id: "patient_low_literacy", name: "Low Literacy", description: "Grade 5-6 reading level, minimal medical knowledge" },
+      { id: "patient_medium_literacy", name: "Medium Literacy", description: "Grade 8-10 reading level, basic health understanding" },
+      { id: "patient_high_literacy", name: "High Literacy", description: "College level, comfortable with medical terminology" },
+    ],
   },
   {
-    type: "hellaswag",
-    name: "HellaSwag",
-    description: "Commonsense reasoning about physical situations - predicting what happens next",
-    metrics: ["accuracy"],
-    default_config: {},
-  },
-  {
-    type: "arc",
-    name: "ARC",
-    description: "AI2 Reasoning Challenge - Science questions requiring reasoning (Easy and Challenge splits)",
-    metrics: ["accuracy"],
-    default_config: { subset: "challenge" },
-  },
-  {
-    type: "winogrande",
-    name: "WinoGrande",
-    description: "Large-scale Winograd Schema Challenge for commonsense reasoning",
-    metrics: ["accuracy"],
-    default_config: {},
-  },
-  {
-    type: "humaneval",
-    name: "HumanEval",
-    description: "Code generation benchmark - Python function completion from docstrings",
-    metrics: ["pass@1", "pass@10"],
-    default_config: {},
-  },
-  {
-    type: "gpqa",
-    name: "GPQA",
-    description: "Graduate-level Google-Proof Q&A - Expert-level questions in physics, biology, and chemistry",
-    metrics: ["accuracy"],
-    default_config: { subset: "diamond" },
-  },
-  {
-    type: "math",
-    name: "MATH",
-    description: "Competition mathematics problems from AMC, AIME, and Olympiad levels",
-    metrics: ["accuracy"],
-    default_config: { shot_count: 4 },
-  },
-  {
-    type: "ifeval",
-    name: "IFEval",
-    description: "Instruction Following Evaluation - Tests ability to follow specific formatting instructions",
-    metrics: ["strict_accuracy", "loose_accuracy"],
-    default_config: {},
-  },
-  {
-    type: "bbh",
-    name: "BBH",
-    description: "BIG-Bench Hard - 23 challenging tasks from BIG-Bench requiring multi-step reasoning",
-    metrics: ["accuracy"],
-    default_config: { shot_count: 3 },
+    category: "Caregivers",
+    icon: Shield,
+    healthLiteracy: "Variable",
+    audiences: [
+      { id: "caregiver_family", name: "Family", description: "Family members caring for loved ones at home" },
+      { id: "caregiver_professional", name: "Professional", description: "Home health aides and professional caregivers" },
+      { id: "caregiver_pediatric", name: "Pediatric", description: "Parents/guardians caring for children" },
+    ],
   },
 ];
 
-export default function TasksPage() {
-  const [tasks, setTasks] = useState<TaskInfo[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+// Evaluation dimensions from README
+const DIMENSIONS = [
+  { name: "Factual Accuracy", weight: "25%", description: "Clinical correctness and evidence alignment" },
+  { name: "Terminological Appropriateness", weight: "15%", description: "Language complexity matching audience needs" },
+  { name: "Explanatory Completeness", weight: "20%", description: "Comprehensive yet accessible coverage" },
+  { name: "Actionability", weight: "15%", description: "Clear, practical guidance" },
+  { name: "Safety", weight: "15%", description: "Appropriate warnings and harm avoidance" },
+  { name: "Empathy & Tone", weight: "10%", description: "Audience-appropriate communication style" },
+];
 
-  useEffect(() => {
-    async function fetchTasks() {
-      try {
-        const data = await taskAPI.list().catch(() => []);
-
-        // Merge API tasks with defaults, ensuring metrics exist
-        const mergedTasks = defaultTasks.map((defaultTask) => {
-          const apiTask = data.find((t) => t.type === defaultTask.type);
-          return apiTask
-            ? { ...defaultTask, ...apiTask, metrics: apiTask.metrics || defaultTask.metrics }
-            : defaultTask;
-        });
-
-        // Add any API tasks not in defaults
-        const additionalTasks = data.filter(
-          (t) => !defaultTasks.find((d) => d.type === t.type)
-        ).map((t) => ({ ...t, metrics: t.metrics || ["accuracy"] }));
-
-        setTasks([...mergedTasks, ...additionalTasks]);
-      } catch (error) {
-        console.error("Failed to fetch tasks:", error);
-        setTasks(defaultTasks);
-      } finally {
-        setIsLoading(false);
-      }
-    }
-
-    fetchTasks();
-  }, []);
-
+export default function AudiencesPage() {
   return (
     <div className="space-y-6">
       {/* Header */}
       <div>
-        <h1 className="text-2xl font-semibold tracking-tight">Benchmark Tasks</h1>
+        <h1 className="text-2xl font-semibold tracking-tight">Target Audiences</h1>
         <p className="text-sm text-muted-foreground mt-1">
-          Available evaluation tasks for testing model capabilities
+          Medical explanation personas for audience-adaptive evaluation
         </p>
       </div>
 
-      {/* Tasks Grid */}
-      {isLoading ? (
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {[1, 2, 3, 4, 5, 6].map((i) => (
-            <div
-              key={i}
-              className="h-40 animate-pulse rounded-lg bg-muted/50"
-            />
-          ))}
-        </div>
-      ) : (
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {tasks.map((task) => (
-            <Card key={task.type} className="card-hover">
-              <CardHeader className="pb-3">
-                <div className="flex items-start gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-md border bg-background">
-                    {taskIcons[task.type] || <ListChecks className="h-5 w-5" />}
+      {/* Audience Groups */}
+      <div className="grid gap-6 lg:grid-cols-2">
+        {AUDIENCE_GROUPS.map((group) => (
+          <Card key={group.category}>
+            <CardHeader className="pb-3">
+              <div className="flex items-start gap-3">
+                <div className="flex h-10 w-10 items-center justify-center rounded-md border bg-background">
+                  <group.icon className="h-5 w-5" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <CardTitle className="text-base">{group.category}</CardTitle>
+                  <div className="flex items-center gap-2 mt-1">
+                    <Badge variant="outline" className="text-xs">
+                      {group.healthLiteracy} Literacy
+                    </Badge>
                   </div>
-                  <div className="flex-1 min-w-0">
-                    <CardTitle className="text-base">{task.name}</CardTitle>
-                    <p className="font-mono text-xs text-muted-foreground">
-                      {task.type}
+                </div>
+              </div>
+            </CardHeader>
+            <CardContent className="pt-0">
+              <div className="space-y-3">
+                {group.audiences.map((audience) => (
+                  <div
+                    key={audience.id}
+                    className="rounded-md border p-3"
+                  >
+                    <div className="flex items-center justify-between">
+                      <span className="font-medium text-sm">{audience.name}</span>
+                      <code className="text-xs bg-muted px-1.5 py-0.5 rounded">
+                        {audience.id}
+                      </code>
+                    </div>
+                    <p className="mt-1 text-xs text-muted-foreground">
+                      {audience.description}
                     </p>
                   </div>
-                </div>
-              </CardHeader>
-              <CardContent className="pt-0">
-                <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2">
-                  {task.description}
-                </p>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
 
-                {/* Metrics */}
-                <div className="mt-3 flex flex-wrap gap-1.5">
-                  {(task.metrics || []).map((metric) => (
-                    <Badge
-                      key={metric}
-                      variant="secondary"
-                      className="font-mono text-xs"
-                    >
-                      {metric}
-                    </Badge>
-                  ))}
+      {/* Evaluation Framework */}
+      <Card>
+        <CardHeader className="pb-4">
+          <CardTitle className="text-base">Evaluation Dimensions</CardTitle>
+          <CardDescription className="text-xs">
+            Each explanation is scored across 6 weighted dimensions
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {DIMENSIONS.map((dim) => (
+              <div
+                key={dim.name}
+                className="rounded-md border p-3"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="font-medium text-sm">{dim.name}</span>
+                  <Badge variant="secondary" className="text-xs">{dim.weight}</Badge>
                 </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      )}
+                <p className="mt-1 text-xs text-muted-foreground">
+                  {dim.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
 
       {/* Info Section */}
       <Card>
@@ -223,10 +159,11 @@ export default function TasksPage() {
             <BookOpen className="h-5 w-5" />
           </div>
           <div className="flex-1">
-            <h3 className="font-medium text-sm">About Benchmarks</h3>
+            <h3 className="font-medium text-sm">About Audience-Adaptive Evaluation</h3>
             <p className="text-sm text-muted-foreground mt-1">
-              Each benchmark task evaluates different capabilities of language models.
-              Select multiple tasks when creating a benchmark run for comprehensive evaluation.
+              MedExplain-Evals measures how well LLMs adapt their medical explanations
+              for different audiences. Each audience persona represents a distinct
+              health literacy level and communication need.
             </p>
           </div>
         </CardContent>

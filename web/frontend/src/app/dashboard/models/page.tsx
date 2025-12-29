@@ -28,7 +28,18 @@ import {
 } from "@/components/ui/select";
 import { modelAPI, type ModelConfigResponse, type ModelTypeInfo } from "@/lib/api";
 
-// Default model types with metadata
+// API-based model providers (from provider APIs)
+const apiProviders = [
+  { provider: "OpenAI", models: ["GPT-5.2", "GPT-5.1", "GPT-5", "GPT-4o"], multimodal: true },
+  { provider: "Anthropic", models: ["Claude Opus 4.5", "Sonnet 4.5", "Haiku 4.5"], multimodal: true },
+  { provider: "Google", models: ["Gemini 3 Pro", "Gemini 3 Flash"], multimodal: true },
+  { provider: "Meta", models: ["Llama 4 Behemoth", "Maverick", "Scout"], multimodal: true },
+  { provider: "DeepSeek", models: ["DeepSeek-V3"], multimodal: false },
+  { provider: "Alibaba", models: ["Qwen3-Max", "Qwen3 family"], multimodal: true },
+  { provider: "Amazon", models: ["Nova Pro", "Nova Omni"], multimodal: true },
+];
+
+// Local open-weight model types with metadata
 const defaultModelTypes: ModelTypeInfo[] = [
   { type: "gemma", name: "Gemma", sizes: ["2b", "7b", "9b", "27b"], default_size: "7b" },
   { type: "gemma3", name: "Gemma 3", sizes: ["1b", "4b", "12b", "27b"], default_size: "4b" },
@@ -208,10 +219,59 @@ export default function ModelsPage() {
         </Card>
       )}
 
-      {/* Model Families Table */}
+      {/* API Providers */}
       <Card>
         <CardHeader className="pb-4">
-          <CardTitle className="text-base">Supported Models</CardTitle>
+          <CardTitle className="text-base">API Providers</CardTitle>
+          <CardDescription className="text-xs">
+            Cloud-based models accessible via API keys
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="border rounded-md">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b bg-muted/50">
+                  <th className="text-left font-medium p-3">Provider</th>
+                  <th className="text-left font-medium p-3">Models</th>
+                  <th className="text-left font-medium p-3 hidden md:table-cell">Multimodal</th>
+                </tr>
+              </thead>
+              <tbody>
+                {apiProviders.map((item, index) => (
+                  <tr
+                    key={item.provider}
+                    className={index !== apiProviders.length - 1 ? "border-b" : ""}
+                  >
+                    <td className="p-3 font-medium">{item.provider}</td>
+                    <td className="p-3">
+                      <div className="flex flex-wrap gap-1">
+                        {item.models.map((model) => (
+                          <Badge
+                            key={model}
+                            variant="outline"
+                            className="text-xs font-normal"
+                          >
+                            {model}
+                          </Badge>
+                        ))}
+                      </div>
+                    </td>
+                    <td className="p-3 hidden md:table-cell">
+                      {item.multimodal ? "✓" : "—"}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Local Model Families Table */}
+      <Card>
+        <CardHeader className="pb-4">
+          <CardTitle className="text-base">Local Models</CardTitle>
           <CardDescription className="text-xs">
             Open-weight model families with built-in loader support
           </CardDescription>

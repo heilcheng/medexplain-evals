@@ -1,5 +1,5 @@
 {
-  "name": "gemma-benchmark-frontend",
+  "name": "medexplain-evals-web",
   "version": "0.1.0",
   "private": true,
   "scripts": {

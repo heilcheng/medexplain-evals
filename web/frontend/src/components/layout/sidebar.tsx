@@ -13,6 +13,7 @@ import {
   FileText,
   Stethoscope,
   Shield,
+  Beaker,
 } from "lucide-react";
 
 import { cn } from "@/lib/utils";
@@ -54,6 +55,11 @@ const navItems = [
     href: "/dashboard/leaderboard",
     icon: Trophy,
   },
+  {
+    title: "Playground",
+    href: "/dashboard/playground",
+    icon: Beaker,
+  },
 ];
 
 export function Sidebar() {
@@ -66,7 +72,7 @@ export function Sidebar() {
           {/* Header */}
           <div className="flex h-14 items-center border-b px-4">
             <Link href="/dashboard" className="flex items-center gap-2">
-              <Stethoscope className="h-5 w-5 text-emerald-500" />
+              <Stethoscope className="h-5 w-5" />
               <span className="hidden text-sm font-semibold tracking-tight lg:block">
                 MedExplain-Evals
               </span>

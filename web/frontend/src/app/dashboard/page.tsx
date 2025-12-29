@@ -110,13 +110,13 @@ export default function DashboardPage() {
     },
     {
       title: "Models",
-      value: 0,
-      description: "LLMs evaluated",
+      value: 19,
+      description: "LLMs supported",
       icon: Cpu,
     },
     {
       title: "Audiences",
-      value: 4,
+      value: 11,
       description: "Target personas",
       icon: Users,
     },
@@ -152,19 +152,45 @@ export default function DashboardPage() {
           },
           {
             title: "Models",
-            value: models,
-            description: "LLMs evaluated",
+            value: models || 19,
+            description: "LLMs supported",
             icon: Cpu,
           },
           {
             title: "Audiences",
-            value: 4,
+            value: 11,
             description: "Target personas",
             icon: Users,
           },
         ]);
       } catch (error) {
-        console.error("Failed to fetch dashboard data:", error);
+        // API unavailable - show default stats
+        setStats([
+          {
+            title: "Evaluations",
+            value: 0,
+            description: "Total evaluation runs",
+            icon: BarChart3,
+          },
+          {
+            title: "Active",
+            value: 0,
+            description: "Currently running",
+            icon: Activity,
+          },
+          {
+            title: "Models",
+            value: 19,
+            description: "LLMs supported",
+            icon: Cpu,
+          },
+          {
+            title: "Audiences",
+            value: 11,
+            description: "Target personas",
+            icon: Users,
+          },
+        ]);
       } finally {
         setIsLoading(false);
       }
@@ -184,7 +210,7 @@ export default function DashboardPage() {
           </p>
         </div>
         <Link href="/dashboard/benchmarks/new">
-          <Button size="sm" className="gap-2 bg-emerald-600 hover:bg-emerald-700">
+          <Button size="sm" className="gap-2">
             <Play className="h-4 w-4" />
             New Evaluation
           </Button>
@@ -224,16 +250,16 @@ export default function DashboardPage() {
         <CardContent>
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {[
-              { title: "Physicians", description: "Clinical precision, medical terminology", icon: Stethoscope, color: "text-blue-500" },
-              { title: "Nurses", description: "Practical nursing interventions", icon: Heart, color: "text-pink-500" },
-              { title: "Patients", description: "Plain language, empathetic", icon: Users, color: "text-amber-500" },
-              { title: "Caregivers", description: "Care guidance, warning signs", icon: Shield, color: "text-emerald-500" },
+              { title: "Physicians", description: "Specialist, Generalist", icon: Stethoscope },
+              { title: "Nurses", description: "ICU, General Ward, Specialty", icon: Heart },
+              { title: "Patients", description: "Low, Medium, High literacy", icon: Users },
+              { title: "Caregivers", description: "Family, Professional, Pediatric", icon: Shield },
             ].map((audience) => (
               <div
                 key={audience.title}
                 className="flex items-start gap-3 rounded-md border p-4"
               >
-                <audience.icon className={`h-5 w-5 mt-0.5 ${audience.color}`} />
+                <audience.icon className="h-5 w-5 mt-0.5 text-muted-foreground" />
                 <div>
                   <h3 className="font-medium text-sm">{audience.title}</h3>
                   <p className="text-xs text-muted-foreground mt-0.5">
