@@ -1,9 +1,8 @@
 # MedExplain-Evals
 
-[![Google Summer of Code](https://img.shields.io/badge/Google%20Summer%20of%20Code-2025-4285F4?style=flat&logo=google&logoColor=white)](https://summerofcode.withgoogle.com/)
-[![Documentation](https://img.shields.io/badge/docs-GitHub%20Pages-4285F4)](https://heilcheng.github.io/medexplain-evals/)
-
-> **This project is developed as part of [Google Summer of Code 2025](https://summerofcode.withgoogle.com/).**
+> This project is developed as part of [Google Summer of Code 2025](https://summerofcode.withgoogle.com/) at [Google DeepMind](https://deepmind.google/).
+>
+> See [my GSoC work record](https://github.com/heilcheng/DeepMind) for documentation of my contributions during the program.
 
 A benchmark for evaluating audience-adaptive medical explanation quality in large language models.
 
