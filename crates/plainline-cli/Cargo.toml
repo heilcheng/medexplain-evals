@@ -1,0 +1,34 @@
+[package]
+name = "plainline-cli"
+description = "Plainline command line: build-pilot, draft, validate-data, run, report, export-labels, agreement."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+authors.workspace = true
+repository.workspace = true
+
+[lib]
+name = "plainline_cli"
+path = "src/lib.rs"
+
+[[bin]]
+name = "plainline"
+path = "src/main.rs"
+
+[dependencies]
+plainline-core.workspace = true
+plainline-client.workspace = true
+plainline-pipeline.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+indexmap.workspace = true
+thiserror.workspace = true
+tokio.workspace = true
+futures.workspace = true
+clap = { version = "4", features = ["derive"] }
+sha1 = "0.11"
+
+[dev-dependencies]
+sha2 = "0.11"
+async-trait.workspace = true

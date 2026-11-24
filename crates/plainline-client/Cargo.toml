@@ -1,0 +1,20 @@
+[package]
+name = "plainline-client"
+description = "Async OpenAI-compatible chat client, mock client and judge calls for Plainline."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+authors.workspace = true
+repository.workspace = true
+
+[dependencies]
+plainline-core.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+regex.workspace = true
+fancy-regex.workspace = true
+thiserror.workspace = true
+tokio.workspace = true
+async-trait.workspace = true
+reqwest = { version = "0.13", default-features = false, features = ["json", "rustls"] }

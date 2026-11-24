@@ -1,0 +1,34 @@
+[workspace]
+resolver = "3"
+members = [
+    "crates/plainline-core",
+    "crates/plainline-client",
+    "crates/plainline-pipeline",
+    "crates/plainline-cli",
+]
+
+[workspace.package]
+version = "0.2.0"
+edition = "2024"
+rust-version = "1.85"
+license = "MIT"
+repository = "https://github.com/heilcheng/plainline"
+authors = ["Cheng Hei Lam"]
+
+[workspace.dependencies]
+plainline-core = { path = "crates/plainline-core", version = "0.2.0" }
+plainline-client = { path = "crates/plainline-client", version = "0.2.0" }
+plainline-pipeline = { path = "crates/plainline-pipeline", version = "0.2.0" }
+serde = { version = "1", features = ["derive"] }
+serde_json = { version = "1", features = ["preserve_order"] }
+indexmap = { version = "2", features = ["serde"] }
+regex = "1"
+fancy-regex = "0.20"
+thiserror = "2"
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "time", "net", "io-util", "fs", "sync"] }
+futures = "0.3"
+async-trait = "0.1"
+
+[profile.release]
+lto = "thin"
+codegen-units = 1

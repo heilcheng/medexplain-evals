@@ -1,0 +1,1226 @@
+[
+ {
+  "judged": [],
+  "human": [],
+  "expected": {
+   "n": 0,
+   "agreement": null,
+   "kappa": null
+  }
+ },
+ {
+  "judged": [],
+  "human": [],
+  "expected": {
+   "n": 0,
+   "agreement": null,
+   "kappa": null
+  }
+ },
+ {
+  "judged": [],
+  "human": [],
+  "expected": {
+   "n": 0,
+   "agreement": null,
+   "kappa": null
+  }
+ },
+ {
+  "judged": [
+   {
+    "key": "0",
+    "stated": false
+   }
+  ],
+  "human": [],
+  "expected": {
+   "n": 0,
+   "agreement": null,
+   "kappa": null
+  }
+ },
+ {
+  "judged": [
+   {
+    "key": "0",
+    "stated": false
+   }
+  ],
+  "human": [],
+  "expected": {
+   "n": 0,
+   "agreement": null,
+   "kappa": null
+  }
+ },
+ {
+  "judged": [
+   {
+    "key": "0",
+    "stated": false
+   }
+  ],
+  "human": [],
+  "expected": {
+   "n": 0,
+   "agreement": null,
+   "kappa": null
+  }
+ },
+ {
+  "judged": [
+   {
+    "key": "0",
+    "stated": true
+   },
+   {
+    "key": "1",
+    "stated": true
+   },
+   {
+    "key": "2",
+    "stated": false
+   },
+   {
+    "key": "3",
+    "stated": false
+   },
+   {
+    "key": "4",
+    "stated": false
+   },
+   {
+    "key": "5",
+    "stated": true
+   }
+  ],
+  "human": [
+   {
+    "key": "0",
+    "stated": true
+   },
+   {
+    "key": "1",
+    "stated": true
+   },
+   {
+    "key": "2",
+    "stated": false
+   },
+   {
+    "key": "3",
+    "stated": false
+   }
+  ],
+  "expected": {
+   "n": 4,
+   "agreement": 1.0,
+   "kappa": 1.0,
+   "judge_stated_rate": 0.5,
+   "human_stated_rate": 0.5
+  }
+ },
+ {
+  "judged": [
+   {
+    "key": "0",
+    "stated": true
+   },
+   {
+    "key": "1",
+    "stated": false
+   },
+   {
+    "key": "2",
+    "stated": false
+   },
+   {
+    "key": "3",
+    "stated": true
+   },
+   {
+    "key": "4",
+    "stated": false
+   },
+   {
+    "key": "5",
+    "stated": true
+   }
+  ],
+  "human": [
+   {
+    "key": "0",
+    "stated": false
+   },
+   {
+    "key": "1",
+    "stated": true
+   },
+   {
+    "key": "2",
+    "stated": true
+   },
+   {
+    "key": "3",
+    "stated": false
+   }
+  ],
+  "expected": {
+   "n": 4,
+   "agreement": 0.0,
+   "kappa": -1.0,
+   "judge_stated_rate": 0.5,
+   "human_stated_rate": 0.5
+  }
+ },
+ {
+  "judged": [
+   {
+    "key": "0",
+    "stated": false
+   },
+   {
+    "key": "1",
+    "stated": false
+   },
+   {
+    "key": "2",
+    "stated": true
+   },
+   {
+    "key": "3",
+    "stated": false
+   },
+   {
+    "key": "4",
+    "stated": true
+   },
+   {
+    "key": "5",
+    "stated": false
+   }
+  ],
+  "human": [
+   {
+    "key": "0",
+    "stated": true
+   },
+   {
+    "key": "1",
+    "stated": false
+   },
+   {
+    "key": "2",
+    "stated": false
+   },
+   {
+    "key": "3",
+    "stated": false
+   }
+  ],
+  "expected": {
+   "n": 4,
+   "agreement": 0.5,
+   "kappa": -0.3333333333333333,
+   "judge_stated_rate": 0.25,
+   "human_stated_rate": 0.25
+  }
+ },
+ {
+  "judged": [
+   {
+    "key": "0",
+    "stated": true
+   },
+   {
+    "key": "1",
+    "stated": true
+   },
+   {
+    "key": "2",
+    "stated": true
+   },
+   {
+    "key": "3",
+    "stated": true
+   },
+   {
+    "key": "4",
+    "stated": true
+   },
+   {
+    "key": "5",
+    "stated": false
+   },
+   {
+    "key": "6",
+    "stated": true
+   },
+   {
+    "key": "7",
+    "stated": false
+   },
+   {
+    "key": "8",
+    "stated": true
+   },
+   {
+    "key": "9",
+    "stated": true
+   },
+   {
+    "key": "10",
+    "stated": false
+   },
+   {
+    "key": "11",
+    "stated": true
+   },
+   {
+    "key": "12",
+    "stated": true
+   },
+   {
+    "key": "13",
+    "stated": true
+   },
+   {
+    "key": "14",
+    "stated": false
+   },
+   {
+    "key": "15",
+    "stated": true
+   },
+   {
+    "key": "16",
+    "stated": false
+   },
+   {
+    "key": "17",
+    "stated": true
+   },
+   {
+    "key": "18",
+    "stated": false
+   },
+   {
+    "key": "19",
+    "stated": false
+   },
+   {
+    "key": "20",
+    "stated": true
+   },
+   {
+    "key": "21",
+    "stated": false
+   },
+   {
+    "key": "22",
+    "stated": true
+   },
+   {
+    "key": "23",
+    "stated": true
+   },
+   {
+    "key": "24",
+    "stated": true
+   },
+   {
+    "key": "25",
+    "stated": true
+   },
+   {
+    "key": "26",
+    "stated": true
+   },
+   {
+    "key": "27",
+    "stated": false
+   },
+   {
+    "key": "28",
+    "stated": true
+   },
+   {
+    "key": "29",
+    "stated": false
+   },
+   {
+    "key": "30",
+    "stated": false
+   },
+   {
+    "key": "31",
+    "stated": false
+   },
+   {
+    "key": "32",
+    "stated": true
+   },
+   {
+    "key": "33",
+    "stated": true
+   },
+   {
+    "key": "34",
+    "stated": true
+   },
+   {
+    "key": "35",
+    "stated": false
+   },
+   {
+    "key": "36",
+    "stated": true
+   },
+   {
+    "key": "37",
+    "stated": false
+   },
+   {
+    "key": "38",
+    "stated": false
+   },
+   {
+    "key": "39",
+    "stated": false
+   }
+  ],
+  "human": [
+   {
+    "key": "0",
+    "stated": true
+   },
+   {
+    "key": "1",
+    "stated": false
+   },
+   {
+    "key": "2",
+    "stated": true
+   },
+   {
+    "key": "3",
+    "stated": true
+   },
+   {
+    "key": "4",
+    "stated": false
+   },
+   {
+    "key": "5",
+    "stated": false
+   },
+   {
+    "key": "6",
+    "stated": true
+   },
+   {
+    "key": "7",
+    "stated": false
+   },
+   {
+    "key": "8",
+    "stated": false
+   },
+   {
+    "key": "9",
+    "stated": true
+   },
+   {
+    "key": "10",
+    "stated": true
+   },
+   {
+    "key": "11",
+    "stated": true
+   },
+   {
+    "key": "12",
+    "stated": true
+   },
+   {
+    "key": "13",
+    "stated": true
+   },
+   {
+    "key": "14",
+    "stated": false
+   },
+   {
+    "key": "15",
+    "stated": false
+   },
+   {
+    "key": "16",
+    "stated": true
+   },
+   {
+    "key": "17",
+    "stated": true
+   },
+   {
+    "key": "18",
+    "stated": false
+   },
+   {
+    "key": "19",
+    "stated": false
+   },
+   {
+    "key": "20",
+    "stated": true
+   },
+   {
+    "key": "21",
+    "stated": true
+   },
+   {
+    "key": "22",
+    "stated": false
+   },
+   {
+    "key": "23",
+    "stated": false
+   },
+   {
+    "key": "24",
+    "stated": true
+   },
+   {
+    "key": "25",
+    "stated": true
+   },
+   {
+    "key": "26",
+    "stated": true
+   },
+   {
+    "key": "27",
+    "stated": false
+   },
+   {
+    "key": "28",
+    "stated": true
+   },
+   {
+    "key": "29",
+    "stated": true
+   },
+   {
+    "key": "30",
+    "stated": false
+   },
+   {
+    "key": "31",
+    "stated": true
+   },
+   {
+    "key": "32",
+    "stated": false
+   },
+   {
+    "key": "33",
+    "stated": false
+   },
+   {
+    "key": "34",
+    "stated": false
+   },
+   {
+    "key": "35",
+    "stated": false
+   },
+   {
+    "key": "36",
+    "stated": true
+   },
+   {
+    "key": "37",
+    "stated": true
+   }
+  ],
+  "expected": {
+   "n": 38,
+   "agreement": 0.6052631578947368,
+   "kappa": 0.18803418803418806,
+   "judge_stated_rate": 0.631578947368421,
+   "human_stated_rate": 0.5526315789473685
+  }
+ },
+ {
+  "judged": [
+   {
+    "key": "0",
+    "stated": true
+   },
+   {
+    "key": "1",
+    "stated": true
+   },
+   {
+    "key": "2",
+    "stated": false
+   },
+   {
+    "key": "3",
+    "stated": false
+   },
+   {
+    "key": "4",
+    "stated": false
+   },
+   {
+    "key": "5",
+    "stated": true
+   },
+   {
+    "key": "6",
+    "stated": true
+   },
+   {
+    "key": "7",
+    "stated": false
+   },
+   {
+    "key": "8",
+    "stated": true
+   },
+   {
+    "key": "9",
+    "stated": true
+   },
+   {
+    "key": "10",
+    "stated": true
+   },
+   {
+    "key": "11",
+    "stated": true
+   },
+   {
+    "key": "12",
+    "stated": true
+   },
+   {
+    "key": "13",
+    "stated": false
+   },
+   {
+    "key": "14",
+    "stated": false
+   },
+   {
+    "key": "15",
+    "stated": false
+   },
+   {
+    "key": "16",
+    "stated": true
+   },
+   {
+    "key": "17",
+    "stated": true
+   },
+   {
+    "key": "18",
+    "stated": true
+   },
+   {
+    "key": "19",
+    "stated": true
+   },
+   {
+    "key": "20",
+    "stated": false
+   },
+   {
+    "key": "21",
+    "stated": false
+   },
+   {
+    "key": "22",
+    "stated": true
+   },
+   {
+    "key": "23",
+    "stated": false
+   },
+   {
+    "key": "24",
+    "stated": false
+   },
+   {
+    "key": "25",
+    "stated": false
+   },
+   {
+    "key": "26",
+    "stated": false
+   },
+   {
+    "key": "27",
+    "stated": false
+   },
+   {
+    "key": "28",
+    "stated": true
+   },
+   {
+    "key": "29",
+    "stated": false
+   },
+   {
+    "key": "30",
+    "stated": true
+   },
+   {
+    "key": "31",
+    "stated": true
+   },
+   {
+    "key": "32",
+    "stated": false
+   },
+   {
+    "key": "33",
+    "stated": false
+   },
+   {
+    "key": "34",
+    "stated": true
+   },
+   {
+    "key": "35",
+    "stated": false
+   },
+   {
+    "key": "36",
+    "stated": false
+   },
+   {
+    "key": "37",
+    "stated": true
+   },
+   {
+    "key": "38",
+    "stated": true
+   },
+   {
+    "key": "39",
+    "stated": true
+   }
+  ],
+  "human": [
+   {
+    "key": "0",
+    "stated": true
+   },
+   {
+    "key": "1",
+    "stated": false
+   },
+   {
+    "key": "2",
+    "stated": true
+   },
+   {
+    "key": "3",
+    "stated": false
+   },
+   {
+    "key": "4",
+    "stated": false
+   },
+   {
+    "key": "5",
+    "stated": false
+   },
+   {
+    "key": "6",
+    "stated": true
+   },
+   {
+    "key": "7",
+    "stated": false
+   },
+   {
+    "key": "8",
+    "stated": false
+   },
+   {
+    "key": "9",
+    "stated": false
+   },
+   {
+    "key": "10",
+    "stated": true
+   },
+   {
+    "key": "11",
+    "stated": false
+   },
+   {
+    "key": "12",
+    "stated": false
+   },
+   {
+    "key": "13",
+    "stated": false
+   },
+   {
+    "key": "14",
+    "stated": false
+   },
+   {
+    "key": "15",
+    "stated": false
+   },
+   {
+    "key": "16",
+    "stated": false
+   },
+   {
+    "key": "17",
+    "stated": false
+   },
+   {
+    "key": "18",
+    "stated": true
+   },
+   {
+    "key": "19",
+    "stated": false
+   },
+   {
+    "key": "20",
+    "stated": false
+   },
+   {
+    "key": "21",
+    "stated": true
+   },
+   {
+    "key": "22",
+    "stated": false
+   },
+   {
+    "key": "23",
+    "stated": false
+   },
+   {
+    "key": "24",
+    "stated": false
+   },
+   {
+    "key": "25",
+    "stated": true
+   },
+   {
+    "key": "26",
+    "stated": false
+   },
+   {
+    "key": "27",
+    "stated": false
+   },
+   {
+    "key": "28",
+    "stated": false
+   },
+   {
+    "key": "29",
+    "stated": true
+   },
+   {
+    "key": "30",
+    "stated": false
+   },
+   {
+    "key": "31",
+    "stated": false
+   },
+   {
+    "key": "32",
+    "stated": false
+   },
+   {
+    "key": "33",
+    "stated": false
+   },
+   {
+    "key": "34",
+    "stated": true
+   },
+   {
+    "key": "35",
+    "stated": true
+   },
+   {
+    "key": "36",
+    "stated": true
+   },
+   {
+    "key": "37",
+    "stated": false
+   }
+  ],
+  "expected": {
+   "n": 38,
+   "agreement": 0.47368421052631576,
+   "kappa": -0.052631578947368474,
+   "judge_stated_rate": 0.5,
+   "human_stated_rate": 0.2894736842105263
+  }
+ },
+ {
+  "judged": [
+   {
+    "key": "0",
+    "stated": false
+   },
+   {
+    "key": "1",
+    "stated": true
+   },
+   {
+    "key": "2",
+    "stated": true
+   },
+   {
+    "key": "3",
+    "stated": true
+   },
+   {
+    "key": "4",
+    "stated": true
+   },
+   {
+    "key": "5",
+    "stated": true
+   },
+   {
+    "key": "6",
+    "stated": true
+   },
+   {
+    "key": "7",
+    "stated": true
+   },
+   {
+    "key": "8",
+    "stated": true
+   },
+   {
+    "key": "9",
+    "stated": true
+   },
+   {
+    "key": "10",
+    "stated": true
+   },
+   {
+    "key": "11",
+    "stated": true
+   },
+   {
+    "key": "12",
+    "stated": false
+   },
+   {
+    "key": "13",
+    "stated": true
+   },
+   {
+    "key": "14",
+    "stated": true
+   },
+   {
+    "key": "15",
+    "stated": false
+   },
+   {
+    "key": "16",
+    "stated": true
+   },
+   {
+    "key": "17",
+    "stated": true
+   },
+   {
+    "key": "18",
+    "stated": true
+   },
+   {
+    "key": "19",
+    "stated": true
+   },
+   {
+    "key": "20",
+    "stated": true
+   },
+   {
+    "key": "21",
+    "stated": false
+   },
+   {
+    "key": "22",
+    "stated": true
+   },
+   {
+    "key": "23",
+    "stated": true
+   },
+   {
+    "key": "24",
+    "stated": false
+   },
+   {
+    "key": "25",
+    "stated": true
+   },
+   {
+    "key": "26",
+    "stated": true
+   },
+   {
+    "key": "27",
+    "stated": true
+   },
+   {
+    "key": "28",
+    "stated": true
+   },
+   {
+    "key": "29",
+    "stated": false
+   },
+   {
+    "key": "30",
+    "stated": false
+   },
+   {
+    "key": "31",
+    "stated": true
+   },
+   {
+    "key": "32",
+    "stated": false
+   },
+   {
+    "key": "33",
+    "stated": false
+   },
+   {
+    "key": "34",
+    "stated": true
+   },
+   {
+    "key": "35",
+    "stated": true
+   },
+   {
+    "key": "36",
+    "stated": true
+   },
+   {
+    "key": "37",
+    "stated": true
+   },
+   {
+    "key": "38",
+    "stated": false
+   },
+   {
+    "key": "39",
+    "stated": false
+   }
+  ],
+  "human": [
+   {
+    "key": "0",
+    "stated": false
+   },
+   {
+    "key": "1",
+    "stated": true
+   },
+   {
+    "key": "2",
+    "stated": false
+   },
+   {
+    "key": "3",
+    "stated": true
+   },
+   {
+    "key": "4",
+    "stated": true
+   },
+   {
+    "key": "5",
+    "stated": false
+   },
+   {
+    "key": "6",
+    "stated": false
+   },
+   {
+    "key": "7",
+    "stated": true
+   },
+   {
+    "key": "8",
+    "stated": false
+   },
+   {
+    "key": "9",
+    "stated": false
+   },
+   {
+    "key": "10",
+    "stated": true
+   },
+   {
+    "key": "11",
+    "stated": true
+   },
+   {
+    "key": "12",
+    "stated": true
+   },
+   {
+    "key": "13",
+    "stated": true
+   },
+   {
+    "key": "14",
+    "stated": false
+   },
+   {
+    "key": "15",
+    "stated": true
+   },
+   {
+    "key": "16",
+    "stated": false
+   },
+   {
+    "key": "17",
+    "stated": false
+   },
+   {
+    "key": "18",
+    "stated": false
+   },
+   {
+    "key": "19",
+    "stated": true
+   },
+   {
+    "key": "20",
+    "stated": false
+   },
+   {
+    "key": "21",
+    "stated": true
+   },
+   {
+    "key": "22",
+    "stated": true
+   },
+   {
+    "key": "23",
+    "stated": true
+   },
+   {
+    "key": "24",
+    "stated": false
+   },
+   {
+    "key": "25",
+    "stated": true
+   },
+   {
+    "key": "26",
+    "stated": true
+   },
+   {
+    "key": "27",
+    "stated": true
+   },
+   {
+    "key": "28",
+    "stated": true
+   },
+   {
+    "key": "29",
+    "stated": false
+   },
+   {
+    "key": "30",
+    "stated": true
+   },
+   {
+    "key": "31",
+    "stated": true
+   },
+   {
+    "key": "32",
+    "stated": false
+   },
+   {
+    "key": "33",
+    "stated": false
+   },
+   {
+    "key": "34",
+    "stated": true
+   },
+   {
+    "key": "35",
+    "stated": false
+   },
+   {
+    "key": "36",
+    "stated": true
+   },
+   {
+    "key": "37",
+    "stated": false
+   }
+  ],
+  "expected": {
+   "n": 38,
+   "agreement": 0.5789473684210527,
+   "kappa": 0.10850439882697939,
+   "judge_stated_rate": 0.7631578947368421,
+   "human_stated_rate": 0.5526315789473685
+  }
+ },
+ {
+  "judged": [
+   {
+    "key": "a",
+    "stated": true
+   }
+  ],
+  "human": [
+   {
+    "key": "a",
+    "stated": true
+   }
+  ],
+  "expected": {
+   "n": 1,
+   "agreement": 1.0,
+   "kappa": 1.0,
+   "judge_stated_rate": 1.0,
+   "human_stated_rate": 1.0
+  }
+ }
+]

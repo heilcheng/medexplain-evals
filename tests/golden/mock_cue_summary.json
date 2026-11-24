@@ -1,0 +1,334 @@
+{
+ "flags": {
+  "mock": true,
+  "all_facts_validated": false,
+  "judge_versions": [
+   "judge-v1"
+  ],
+  "judges": [
+   "mock"
+  ]
+ },
+ "models": {
+  "mock": {
+   "n_items": 30,
+   "conditions": {
+    "neutral": {
+     "cfr": {
+      "point": 0.6615873015873016,
+      "lo": 0.5177083333333334,
+      "hi": 0.7876656746031745
+     },
+     "sfr": {
+      "point": 0.6238095238095238,
+      "lo": 0.5354444444444444,
+      "hi": 0.7018888888888889
+     },
+     "distortion": {
+      "point": 0.0,
+      "lo": 0.0,
+      "hi": 0.0
+     },
+     "mns": {
+      "point": 0.0,
+      "lo": 0.0,
+      "hi": 0.0
+     },
+     "band_pass": null,
+     "mean_words": 276.5,
+     "mean_fk_grade": 14.011666666666667
+    },
+    "pharmacist": {
+     "cfr": {
+      "point": 0.6615873015873016,
+      "lo": 0.5177083333333334,
+      "hi": 0.7876656746031745
+     },
+     "sfr": {
+      "point": 0.6238095238095238,
+      "lo": 0.5354444444444444,
+      "hi": 0.7018888888888889
+     },
+     "distortion": {
+      "point": 0.0,
+      "lo": 0.0,
+      "hi": 0.0
+     },
+     "mns": {
+      "point": 0.0,
+      "lo": 0.0,
+      "hi": 0.0
+     },
+     "band_pass": null,
+     "mean_words": 276.5,
+     "mean_fk_grade": 14.011666666666667,
+     "adaptation_tax": {
+      "point": 0.0,
+      "lo": 0.0,
+      "hi": 0.0
+     },
+     "matched_length_tax": {
+      "point": 0.0,
+      "lo": 0.0,
+      "hi": 0.0,
+      "n_items": 30
+     }
+    },
+    "nurse": {
+     "cfr": {
+      "point": 0.6615873015873016,
+      "lo": 0.5177083333333334,
+      "hi": 0.7876656746031745
+     },
+     "sfr": {
+      "point": 0.6238095238095238,
+      "lo": 0.5354444444444444,
+      "hi": 0.7018888888888889
+     },
+     "distortion": {
+      "point": 0.0,
+      "lo": 0.0,
+      "hi": 0.0
+     },
+     "mns": {
+      "point": 0.0,
+      "lo": 0.0,
+      "hi": 0.0
+     },
+     "band_pass": null,
+     "mean_words": 276.5,
+     "mean_fk_grade": 14.011666666666667,
+     "adaptation_tax": {
+      "point": 0.0,
+      "lo": 0.0,
+      "hi": 0.0
+     },
+     "matched_length_tax": {
+      "point": 0.0,
+      "lo": 0.0,
+      "hi": 0.0,
+      "n_items": 30
+     }
+    },
+    "low_literacy": {
+     "cfr": {
+      "point": 0.6615873015873016,
+      "lo": 0.5177083333333334,
+      "hi": 0.7876656746031745
+     },
+     "sfr": {
+      "point": 0.6238095238095238,
+      "lo": 0.5354444444444444,
+      "hi": 0.7018888888888889
+     },
+     "distortion": {
+      "point": 0.0,
+      "lo": 0.0,
+      "hi": 0.0
+     },
+     "mns": {
+      "point": 0.0,
+      "lo": 0.0,
+      "hi": 0.0
+     },
+     "band_pass": null,
+     "mean_words": 276.5,
+     "mean_fk_grade": 14.011666666666667,
+     "adaptation_tax": {
+      "point": 0.0,
+      "lo": 0.0,
+      "hi": 0.0
+     },
+     "matched_length_tax": {
+      "point": 0.0,
+      "lo": 0.0,
+      "hi": 0.0,
+      "n_items": 30
+     }
+    },
+    "limited_english": {
+     "cfr": {
+      "point": 0.6615873015873016,
+      "lo": 0.5177083333333334,
+      "hi": 0.7876656746031745
+     },
+     "sfr": {
+      "point": 0.6238095238095238,
+      "lo": 0.5354444444444444,
+      "hi": 0.7018888888888889
+     },
+     "distortion": {
+      "point": 0.0,
+      "lo": 0.0,
+      "hi": 0.0
+     },
+     "mns": {
+      "point": 0.0,
+      "lo": 0.0,
+      "hi": 0.0
+     },
+     "band_pass": null,
+     "mean_words": 276.5,
+     "mean_fk_grade": 14.011666666666667,
+     "adaptation_tax": {
+      "point": 0.0,
+      "lo": 0.0,
+      "hi": 0.0
+     },
+     "matched_length_tax": {
+      "point": 0.0,
+      "lo": 0.0,
+      "hi": 0.0,
+      "n_items": 30
+     }
+    },
+    "teen": {
+     "cfr": {
+      "point": 0.6615873015873016,
+      "lo": 0.5177083333333334,
+      "hi": 0.7876656746031745
+     },
+     "sfr": {
+      "point": 0.6238095238095238,
+      "lo": 0.5354444444444444,
+      "hi": 0.7018888888888889
+     },
+     "distortion": {
+      "point": 0.0,
+      "lo": 0.0,
+      "hi": 0.0
+     },
+     "mns": {
+      "point": 0.0,
+      "lo": 0.0,
+      "hi": 0.0
+     },
+     "band_pass": null,
+     "mean_words": 276.5,
+     "mean_fk_grade": 14.011666666666667,
+     "adaptation_tax": {
+      "point": 0.0,
+      "lo": 0.0,
+      "hi": 0.0
+     },
+     "matched_length_tax": {
+      "point": 0.0,
+      "lo": 0.0,
+      "hi": 0.0,
+      "n_items": 30
+     }
+    },
+    "older_adult": {
+     "cfr": {
+      "point": 0.6615873015873016,
+      "lo": 0.5177083333333334,
+      "hi": 0.7876656746031745
+     },
+     "sfr": {
+      "point": 0.6238095238095238,
+      "lo": 0.5354444444444444,
+      "hi": 0.7018888888888889
+     },
+     "distortion": {
+      "point": 0.0,
+      "lo": 0.0,
+      "hi": 0.0
+     },
+     "mns": {
+      "point": 0.0,
+      "lo": 0.0,
+      "hi": 0.0
+     },
+     "band_pass": null,
+     "mean_words": 276.5,
+     "mean_fk_grade": 14.011666666666667,
+     "adaptation_tax": {
+      "point": 0.0,
+      "lo": 0.0,
+      "hi": 0.0
+     },
+     "matched_length_tax": {
+      "point": 0.0,
+      "lo": 0.0,
+      "hi": 0.0,
+      "n_items": 30
+     }
+    },
+    "caregiver": {
+     "cfr": {
+      "point": 0.6615873015873016,
+      "lo": 0.5177083333333334,
+      "hi": 0.7876656746031745
+     },
+     "sfr": {
+      "point": 0.6238095238095238,
+      "lo": 0.5354444444444444,
+      "hi": 0.7018888888888889
+     },
+     "distortion": {
+      "point": 0.0,
+      "lo": 0.0,
+      "hi": 0.0
+     },
+     "mns": {
+      "point": 0.0,
+      "lo": 0.0,
+      "hi": 0.0
+     },
+     "band_pass": null,
+     "mean_words": 276.5,
+     "mean_fk_grade": 14.011666666666667,
+     "adaptation_tax": {
+      "point": 0.0,
+      "lo": 0.0,
+      "hi": 0.0
+     },
+     "matched_length_tax": {
+      "point": 0.0,
+      "lo": 0.0,
+      "hi": 0.0,
+      "n_items": 30
+     }
+    }
+   },
+   "headline": {
+    "worst_reader_cfr": {
+     "point": 0.6615873015873016,
+     "lo": 0.5177083333333334,
+     "hi": 0.7876656746031745
+    },
+    "mean_adaptation_tax": {
+     "point": 1.1102230246251566e-17,
+     "lo": 0.0,
+     "hi": 2.590520390792032e-17
+    },
+    "cfr_spread": {
+     "point": 0.0,
+     "lo": 0.0,
+     "hi": 0.0
+    }
+   },
+   "length_control": {
+    "by_length_tercile": {
+     "short": {
+      "n": 80,
+      "mean_words": 101.3,
+      "cfr": 0.2833333333333333
+     },
+     "medium": {
+      "n": 80,
+      "mean_words": 270.6,
+      "cfr": 0.7282142857142857
+     },
+     "long": {
+      "n": 80,
+      "mean_words": 457.6,
+      "cfr": 0.9732142857142858
+     }
+    },
+    "spearman_cfr_vs_words": 0.6235328165255045
+   },
+   "parse_error_rate": 0.0
+  }
+ }
+}

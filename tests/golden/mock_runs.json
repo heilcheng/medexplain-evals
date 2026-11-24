@@ -1,0 +1,10 @@
+{
+ "adapt": {
+  "scored_sha256": "15895f1b167de97e05cd4cdb2f19b96dcbb84f93710beacbc319304b17b325d0",
+  "rows": 180
+ },
+ "cue": {
+  "scored_sha256": "679705a36a6b0c9f20f1cac45729d6bfd1ba878b001bfef5f502de1f299655d6",
+  "rows": 240
+ }
+}

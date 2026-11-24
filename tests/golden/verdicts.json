@@ -1,0 +1,574 @@
+[
+ {
+  "raw": "{\"verdicts\": [{\"id\": \"f1\", \"verdict\": \"stated\"}, {\"id\": \"f2\", \"verdict\": \"absent\"}, {\"id\": \"f3\", \"verdict\": \"contradicted\"}, {\"id\": \"n1\", \"verdict\": \"asserted\"}, {\"id\": \"n2\", \"verdict\": \"not_asserted\"}]}",
+  "fact_ids": [
+   "f1",
+   "f2",
+   "f3"
+  ],
+  "stmt_ids": [
+   "n1",
+   "n2"
+  ],
+  "facts": {
+   "f1": "stated",
+   "f2": "absent",
+   "f3": "contradicted"
+  },
+  "stmts": {
+   "n1": "asserted",
+   "n2": "not_asserted"
+  },
+  "errors": 0
+ },
+ {
+  "raw": "```json\n{\"verdicts\": [{\"id\": \"f1\", \"verdict\": \"stated\"}, {\"id\": \"n1\", \"verdict\": \"asserted\"}]}\n```",
+  "fact_ids": [
+   "f1",
+   "f2",
+   "f3"
+  ],
+  "stmt_ids": [
+   "n1",
+   "n2"
+  ],
+  "facts": {
+   "f1": "stated",
+   "f2": "absent",
+   "f3": "absent"
+  },
+  "stmts": {
+   "n1": "asserted",
+   "n2": "not_asserted"
+  },
+  "errors": 3
+ },
+ {
+  "raw": "```{\"verdicts\": [{\"id\": \"f1\", \"verdict\": \"stated\"}]}```",
+  "fact_ids": [
+   "f1",
+   "f2",
+   "f3"
+  ],
+  "stmt_ids": [
+   "n1",
+   "n2"
+  ],
+  "facts": {
+   "f1": "stated",
+   "f2": "absent",
+   "f3": "absent"
+  },
+  "stmts": {
+   "n1": "not_asserted",
+   "n2": "not_asserted"
+  },
+  "errors": 4
+ },
+ {
+  "raw": "Here you go: {\"verdicts\": [{\"id\": \"f1\", \"verdict\": \"Stated \"}, {\"id\": \"f2\", \"verdict\": \" ABSENT\"}]} thanks",
+  "fact_ids": [
+   "f1",
+   "f2",
+   "f3"
+  ],
+  "stmt_ids": [
+   "n1",
+   "n2"
+  ],
+  "facts": {
+   "f1": "stated",
+   "f2": "absent",
+   "f3": "absent"
+  },
+  "stmts": {
+   "n1": "not_asserted",
+   "n2": "not_asserted"
+  },
+  "errors": 3
+ },
+ {
+  "raw": "{\"verdicts\": [{\"id\": \"f1\", \"verdict\": \"maybe\"}]}",
+  "fact_ids": [
+   "f1",
+   "f2",
+   "f3"
+  ],
+  "stmt_ids": [
+   "n1",
+   "n2"
+  ],
+  "facts": {
+   "f1": "absent",
+   "f2": "absent",
+   "f3": "absent"
+  },
+  "stmts": {
+   "n1": "not_asserted",
+   "n2": "not_asserted"
+  },
+  "errors": 5
+ },
+ {
+  "raw": "I cannot do that",
+  "fact_ids": [
+   "f1",
+   "f2",
+   "f3"
+  ],
+  "stmt_ids": [
+   "n1",
+   "n2"
+  ],
+  "facts": {
+   "f1": "absent",
+   "f2": "absent",
+   "f3": "absent"
+  },
+  "stmts": {
+   "n1": "not_asserted",
+   "n2": "not_asserted"
+  },
+  "errors": 5
+ },
+ {
+  "raw": "",
+  "fact_ids": [
+   "f1",
+   "f2",
+   "f3"
+  ],
+  "stmt_ids": [
+   "n1",
+   "n2"
+  ],
+  "facts": {
+   "f1": "absent",
+   "f2": "absent",
+   "f3": "absent"
+  },
+  "stmts": {
+   "n1": "not_asserted",
+   "n2": "not_asserted"
+  },
+  "errors": 5
+ },
+ {
+  "raw": "{}",
+  "fact_ids": [
+   "f1",
+   "f2",
+   "f3"
+  ],
+  "stmt_ids": [
+   "n1",
+   "n2"
+  ],
+  "facts": {
+   "f1": "absent",
+   "f2": "absent",
+   "f3": "absent"
+  },
+  "stmts": {
+   "n1": "not_asserted",
+   "n2": "not_asserted"
+  },
+  "errors": 5
+ },
+ {
+  "raw": "[]",
+  "fact_ids": [
+   "f1",
+   "f2",
+   "f3"
+  ],
+  "stmt_ids": [
+   "n1",
+   "n2"
+  ],
+  "facts": {
+   "f1": "absent",
+   "f2": "absent",
+   "f3": "absent"
+  },
+  "stmts": {
+   "n1": "not_asserted",
+   "n2": "not_asserted"
+  },
+  "errors": 5
+ },
+ {
+  "raw": "null",
+  "fact_ids": [
+   "f1",
+   "f2",
+   "f3"
+  ],
+  "stmt_ids": [
+   "n1",
+   "n2"
+  ],
+  "facts": {
+   "f1": "absent",
+   "f2": "absent",
+   "f3": "absent"
+  },
+  "stmts": {
+   "n1": "not_asserted",
+   "n2": "not_asserted"
+  },
+  "errors": 5
+ },
+ {
+  "raw": "123",
+  "fact_ids": [
+   "f1",
+   "f2",
+   "f3"
+  ],
+  "stmt_ids": [
+   "n1",
+   "n2"
+  ],
+  "facts": {
+   "f1": "absent",
+   "f2": "absent",
+   "f3": "absent"
+  },
+  "stmts": {
+   "n1": "not_asserted",
+   "n2": "not_asserted"
+  },
+  "errors": 5
+ },
+ {
+  "raw": "\"x\"",
+  "fact_ids": [
+   "f1",
+   "f2",
+   "f3"
+  ],
+  "stmt_ids": [
+   "n1",
+   "n2"
+  ],
+  "facts": {
+   "f1": "absent",
+   "f2": "absent",
+   "f3": "absent"
+  },
+  "stmts": {
+   "n1": "not_asserted",
+   "n2": "not_asserted"
+  },
+  "errors": 5
+ },
+ {
+  "raw": "{\"verdicts\": null}",
+  "fact_ids": [
+   "f1",
+   "f2",
+   "f3"
+  ],
+  "stmt_ids": [
+   "n1",
+   "n2"
+  ],
+  "facts": {
+   "f1": "absent",
+   "f2": "absent",
+   "f3": "absent"
+  },
+  "stmts": {
+   "n1": "not_asserted",
+   "n2": "not_asserted"
+  },
+  "errors": 5
+ },
+ {
+  "raw": "{\"verdicts\": {}}",
+  "fact_ids": [
+   "f1",
+   "f2",
+   "f3"
+  ],
+  "stmt_ids": [
+   "n1",
+   "n2"
+  ],
+  "facts": {
+   "f1": "absent",
+   "f2": "absent",
+   "f3": "absent"
+  },
+  "stmts": {
+   "n1": "not_asserted",
+   "n2": "not_asserted"
+  },
+  "errors": 5
+ },
+ {
+  "raw": "{\"verdicts\": \"abc\"}",
+  "fact_ids": [
+   "f1",
+   "f2",
+   "f3"
+  ],
+  "stmt_ids": [
+   "n1",
+   "n2"
+  ],
+  "facts": {
+   "f1": "absent",
+   "f2": "absent",
+   "f3": "absent"
+  },
+  "stmts": {
+   "n1": "not_asserted",
+   "n2": "not_asserted"
+  },
+  "errors": 5
+ },
+ {
+  "raw": "{\"verdicts\": [1, 2]}",
+  "fact_ids": [
+   "f1",
+   "f2",
+   "f3"
+  ],
+  "stmt_ids": [
+   "n1",
+   "n2"
+  ],
+  "facts": {
+   "f1": "absent",
+   "f2": "absent",
+   "f3": "absent"
+  },
+  "stmts": {
+   "n1": "not_asserted",
+   "n2": "not_asserted"
+  },
+  "errors": 5
+ },
+ {
+  "raw": "{\"verdicts\": [{\"id\": \"f1\", \"verdict\": \"stated\"}, 7, {\"id\": \"f2\", \"verdict\": \"stated\"}]}",
+  "fact_ids": [
+   "f1",
+   "f2",
+   "f3"
+  ],
+  "stmt_ids": [
+   "n1",
+   "n2"
+  ],
+  "facts": {
+   "f1": "stated",
+   "f2": "absent",
+   "f3": "absent"
+  },
+  "stmts": {
+   "n1": "not_asserted",
+   "n2": "not_asserted"
+  },
+  "errors": 4
+ },
+ {
+  "raw": "{\"verdicts\": [{\"id\": 1, \"verdict\": \"stated\"}, {\"id\": null, \"verdict\": null}, {\"verdict\": \"absent\"}]}",
+  "fact_ids": [
+   "f1",
+   "f2",
+   "f3"
+  ],
+  "stmt_ids": [
+   "n1",
+   "n2"
+  ],
+  "facts": {
+   "f1": "absent",
+   "f2": "absent",
+   "f3": "absent"
+  },
+  "stmts": {
+   "n1": "not_asserted",
+   "n2": "not_asserted"
+  },
+  "errors": 5
+ },
+ {
+  "raw": "{\"verdicts\": [{\"id\": \"f1\", \"verdict\": \"stated\"}, {\"id\": \"f1\", \"verdict\": \"contradicted\"}]}",
+  "fact_ids": [
+   "f1",
+   "f2",
+   "f3"
+  ],
+  "stmt_ids": [
+   "n1",
+   "n2"
+  ],
+  "facts": {
+   "f1": "contradicted",
+   "f2": "absent",
+   "f3": "absent"
+  },
+  "stmts": {
+   "n1": "not_asserted",
+   "n2": "not_asserted"
+  },
+  "errors": 4
+ },
+ {
+  "raw": "{\"verdicts\": [{\"id\": \"f1\", \"verdict\": [\"stated\"]}]}",
+  "fact_ids": [
+   "f1",
+   "f2",
+   "f3"
+  ],
+  "stmt_ids": [
+   "n1",
+   "n2"
+  ],
+  "facts": {
+   "f1": "absent",
+   "f2": "absent",
+   "f3": "absent"
+  },
+  "stmts": {
+   "n1": "not_asserted",
+   "n2": "not_asserted"
+  },
+  "errors": 5
+ },
+ {
+  "raw": "{\"verdicts\": [{\"id\": \"n1\", \"verdict\": \"stated\"}, {\"id\": \"f1\", \"verdict\": \"asserted\"}]}",
+  "fact_ids": [
+   "f1",
+   "f2",
+   "f3"
+  ],
+  "stmt_ids": [
+   "n1",
+   "n2"
+  ],
+  "facts": {
+   "f1": "absent",
+   "f2": "absent",
+   "f3": "absent"
+  },
+  "stmts": {
+   "n1": "not_asserted",
+   "n2": "not_asserted"
+  },
+  "errors": 5
+ },
+ {
+  "raw": "prefix {\"verdicts\": [{\"id\": \"f1\", \"verdict\": \"stated\"}]} and {\"other\": 1}",
+  "fact_ids": [
+   "f1",
+   "f2",
+   "f3"
+  ],
+  "stmt_ids": [
+   "n1",
+   "n2"
+  ],
+  "facts": {
+   "f1": "absent",
+   "f2": "absent",
+   "f3": "absent"
+  },
+  "stmts": {
+   "n1": "not_asserted",
+   "n2": "not_asserted"
+  },
+  "errors": 5
+ },
+ {
+  "raw": "{\"verdicts\": [{\"id\": \"f1\", \"verdict\": \"stated\"}",
+  "fact_ids": [
+   "f1",
+   "f2",
+   "f3"
+  ],
+  "stmt_ids": [
+   "n1",
+   "n2"
+  ],
+  "facts": {
+   "f1": "absent",
+   "f2": "absent",
+   "f3": "absent"
+  },
+  "stmts": {
+   "n1": "not_asserted",
+   "n2": "not_asserted"
+  },
+  "errors": 5
+ },
+ {
+  "raw": "{'verdicts': []}",
+  "fact_ids": [
+   "f1",
+   "f2",
+   "f3"
+  ],
+  "stmt_ids": [
+   "n1",
+   "n2"
+  ],
+  "facts": {
+   "f1": "absent",
+   "f2": "absent",
+   "f3": "absent"
+  },
+  "stmts": {
+   "n1": "not_asserted",
+   "n2": "not_asserted"
+  },
+  "errors": 5
+ },
+ {
+  "raw": "{\"verdicts\": [{\"id\": true, \"verdict\": \"stated\"}, {\"id\": 1.5, \"verdict\": \"absent\"}]}",
+  "fact_ids": [
+   "f1",
+   "f2",
+   "f3"
+  ],
+  "stmt_ids": [
+   "n1",
+   "n2"
+  ],
+  "facts": {
+   "f1": "absent",
+   "f2": "absent",
+   "f3": "absent"
+  },
+  "stmts": {
+   "n1": "not_asserted",
+   "n2": "not_asserted"
+  },
+  "errors": 5
+ },
+ {
+  "raw": "\u00e9 {\"verdicts\": [{\"id\": \"f1\", \"verdict\": \"stated\"}]}",
+  "fact_ids": [
+   "f1",
+   "f2",
+   "f3"
+  ],
+  "stmt_ids": [
+   "n1",
+   "n2"
+  ],
+  "facts": {
+   "f1": "stated",
+   "f2": "absent",
+   "f3": "absent"
+  },
+  "stmts": {
+   "n1": "not_asserted",
+   "n2": "not_asserted"
+  },
+  "errors": 4
+ }
+]
