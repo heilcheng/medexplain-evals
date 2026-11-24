@@ -5,6 +5,7 @@
 //! network I/O.
 
 pub mod error;
+pub mod fixtures;
 pub mod judge;
 pub mod metrics;
 pub mod prompts;

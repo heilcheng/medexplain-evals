@@ -31,7 +31,12 @@ pub(crate) fn regex_split<'a>(re: &Regex, text: &'a str) -> Vec<&'a str> {
 
 pub fn sentences(text: &str) -> Vec<String> {
     let cleaned = clean(text);
-    regex_split(&SENT_SPLIT, &cleaned).into_iter().map(str::trim).filter(|s| !s.is_empty()).map(String::from).collect()
+    regex_split(&SENT_SPLIT, &cleaned)
+        .into_iter()
+        .map(str::trim)
+        .filter(|s| !s.is_empty())
+        .map(String::from)
+        .collect()
 }
 
 /// Cut at a sentence boundary at or under `max_words` (at least one sentence).

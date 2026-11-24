@@ -1,6 +1,6 @@
 use crate::{ChatClient, ClientError, Message};
 use async_trait::async_trait;
-use serde_json::{json, Map, Value};
+use serde_json::{Map, Value, json};
 use std::time::Duration;
 
 /// Settings for [`OpenAiCompatClient`].
@@ -72,7 +72,10 @@ impl OpenAiCompatClient {
             // Auth or request errors will not fix themselves; fail at once.
             let text = resp.text().await.unwrap_or_default();
             let body: String = text.chars().take(200).collect();
-            return Err(ClientError::Http { status: status.as_u16(), body });
+            return Err(ClientError::Http {
+                status: status.as_u16(),
+                body,
+            });
         }
         if !status.is_success() {
             return Ok(Err(format!("HTTP {}", status.as_u16())));
@@ -114,6 +117,9 @@ impl ChatClient for OpenAiCompatClient {
                 tokio::time::sleep(self.config.backoff * 2u32.pow(attempt)).await;
             }
         }
-        Err(ClientError::Exhausted { attempts: self.config.retries, last })
+        Err(ClientError::Exhausted {
+            attempts: self.config.retries,
+            last,
+        })
     }
 }

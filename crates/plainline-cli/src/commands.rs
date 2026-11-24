@@ -1,14 +1,14 @@
 //! The subcommands. Each returns its stdout and stderr text instead of printing, so the
 //! same code serves the binary and the Python binding.
 
-use crate::runner::{run, RunOptions};
+use crate::runner::{RunOptions, run};
 use clap::{Args, Parser, Subcommand, ValueEnum};
 use plainline_client::{ChatClient, MockClient, OpenAiCompatClient};
-use plainline_core::judge::{agreement, Label};
+use plainline_core::judge::{Label, agreement};
 use plainline_core::readers::conditions;
 use plainline_core::report::write_report;
-use plainline_core::schema::{load_items, read_jsonl, validate_factset, write_jsonl, FactSet, Source, DRAFT_STATUS};
-use plainline_pipeline::build::{build_pilot, py_list, Endpoints, PILOT_DRUGS, PILOT_TOPICS};
+use plainline_core::schema::{DRAFT_STATUS, FactSet, Source, load_items, read_jsonl, validate_factset, write_jsonl};
+use plainline_pipeline::build::{Endpoints, PILOT_DRUGS, PILOT_TOPICS, build_pilot, py_list};
 use plainline_pipeline::draft::llm_draft;
 use serde::Serialize;
 use serde_json::Value;
@@ -35,7 +35,11 @@ impl<E: std::fmt::Display> From<E> for CliError {
 type CmdResult = Result<Output, CliError>;
 
 #[derive(Parser, Debug)]
-#[command(name = "plainline", version, about = "Fidelity under audience adaptation for medical explanations. Works with any OpenAI-compatible chat endpoint.")]
+#[command(
+    name = "plainline",
+    version,
+    about = "Fidelity under audience adaptation for medical explanations. Works with any OpenAI-compatible chat endpoint."
+)]
 pub struct Cli {
     #[arg(long, global = true, default_value = "data")]
     pub data_dir: PathBuf,
@@ -171,15 +175,29 @@ fn judge_client(a: &RunArgs) -> Result<Box<dyn ChatClient>, CliError> {
     if a.endpoint.mock {
         return Ok(Box::new(MockClient));
     }
-    let base = a.judge_base_url.as_deref().filter(|s| !s.is_empty()).or(a.endpoint.base_url.as_deref());
-    let model = a.judge_model.as_deref().filter(|s| !s.is_empty()).or(a.endpoint.model.as_deref());
-    let key = a.judge_api_key_env.as_deref().filter(|s| !s.is_empty()).unwrap_or(&a.endpoint.api_key_env);
+    let base = a
+        .judge_base_url
+        .as_deref()
+        .filter(|s| !s.is_empty())
+        .or(a.endpoint.base_url.as_deref());
+    let model = a
+        .judge_model
+        .as_deref()
+        .filter(|s| !s.is_empty())
+        .or(a.endpoint.model.as_deref());
+    let key = a
+        .judge_api_key_env
+        .as_deref()
+        .filter(|s| !s.is_empty())
+        .unwrap_or(&a.endpoint.api_key_env);
     build_client(base, model, key)
 }
 
 /// Today's date (UTC) as YYYY-MM-DD.
 pub fn today() -> String {
-    let secs = std::time::SystemTime::now().duration_since(std::time::UNIX_EPOCH).map_or(0, |d| d.as_secs());
+    let secs = std::time::SystemTime::now()
+        .duration_since(std::time::UNIX_EPOCH)
+        .map_or(0, |d| d.as_secs());
     let z = (secs / 86_400) as i64 + 719_468;
     let era = z.div_euclid(146_097);
     let doe = z.rem_euclid(146_097);
@@ -193,8 +211,17 @@ pub fn today() -> String {
 }
 
 fn cmd_build_pilot(data_dir: &Path) -> CmdResult {
-    let rep = block_on(build_pilot(data_dir, &PILOT_DRUGS, &PILOT_TOPICS, &Endpoints::default(), &today()))?;
-    Ok(Output { stdout: format!("{}\n", serde_json::to_string_pretty(&rep)?), ..Default::default() })
+    let rep = block_on(build_pilot(
+        data_dir,
+        &PILOT_DRUGS,
+        &PILOT_TOPICS,
+        &Endpoints::default(),
+        &today(),
+    ))?;
+    Ok(Output {
+        stdout: format!("{}\n", serde_json::to_string_pretty(&rep)?),
+        ..Default::default()
+    })
 }
 
 fn cmd_draft(data_dir: &Path, a: &DraftArgs) -> CmdResult {
@@ -206,13 +233,18 @@ fn cmd_draft(data_dir: &Path, a: &DraftArgs) -> CmdResult {
         let fs = block_on(llm_draft(client.as_ref(), s))?;
         let probs = validate_factset(&fs, true);
         if !probs.is_empty() {
-            out.stderr.push_str(&format!("skip {}: {}\n", s.source_id, py_list(&probs)));
+            out.stderr
+                .push_str(&format!("skip {}: {}\n", s.source_id, py_list(&probs)));
             continue;
         }
         drafts.push(fs);
     }
     write_jsonl(&a.out, &drafts)?;
-    out.stdout = format!("wrote {} draft fact sets to {} (status: {DRAFT_STATUS})\n", drafts.len(), a.out.display());
+    out.stdout = format!(
+        "wrote {} draft fact sets to {} (status: {DRAFT_STATUS})\n",
+        drafts.len(),
+        a.out.display()
+    );
     Ok(out)
 }
 
@@ -224,7 +256,8 @@ fn cmd_validate(data_dir: &Path) -> CmdResult {
         let probs = validate_factset(&it.facts, true);
         if !probs.is_empty() {
             bad += 1;
-            out.stdout.push_str(&format!("{}: {}\n", it.source.source_id, py_list(&probs)));
+            out.stdout
+                .push_str(&format!("{}: {}\n", it.source.source_id, py_list(&probs)));
         }
     }
     let n_facts: usize = items.iter().map(|i| i.facts.facts.len()).sum();
@@ -247,7 +280,8 @@ fn cmd_run(data_dir: &Path, a: &RunArgs) -> CmdResult {
     let judge = judge_client(a)?;
     let mut out = Output::default();
     if !a.endpoint.mock && judge.name() == writer.name() {
-        out.stderr.push_str("warning: judge and writer are the same model; self-preference is not controlled\n");
+        out.stderr
+            .push_str("warning: judge and writer are the same model; self-preference is not controlled\n");
     }
     let opts = RunOptions {
         n_samples: a.samples,
@@ -274,12 +308,22 @@ fn cmd_report(a: &ReportArgs) -> CmdResult {
         None => {
             // Infer from the run so a cue run is not silently reported as adapt.
             let rows: Vec<Value> = read_jsonl(&scored)?;
-            if rows.iter().any(|r| r.get("kind").and_then(Value::as_str) == Some("cue")) { Mode::Cue } else { Mode::Adapt }
+            if rows
+                .iter()
+                .any(|r| r.get("kind").and_then(Value::as_str) == Some("cue"))
+            {
+                Mode::Cue
+            } else {
+                Mode::Adapt
+            }
         }
     };
     let ids: Vec<String> = conditions(mode.as_str(), None)?.iter().map(|c| c.id.clone()).collect();
     write_report(&scored, &ids, &a.run, a.boot, 0)?;
-    Ok(Output { stdout: format!("{}\n", read_text(&a.run.join("results.md"))?), ..Default::default() })
+    Ok(Output {
+        stdout: format!("{}\n", read_text(&a.run.join("results.md"))?),
+        ..Default::default()
+    })
 }
 
 #[derive(Serialize)]
@@ -294,12 +338,16 @@ struct LabelRow {
 
 /// Write a sheet for human labelling: one row per (output, fact).
 fn cmd_export_labels(data_dir: &Path, a: &ExportArgs) -> CmdResult {
-    let items: HashMap<String, _> =
-        load_items(data_dir, None)?.into_iter().map(|i| (i.source.source_id.clone(), i)).collect();
+    let items: HashMap<String, _> = load_items(data_dir, None)?
+        .into_iter()
+        .map(|i| (i.source.source_id.clone(), i))
+        .collect();
     let scored: Vec<plainline_core::metrics::ScoredRow> = read_jsonl(a.run.join("scored.jsonl"))?;
     let mut rows = Vec::new();
     for r in &scored {
-        let item = items.get(&r.item_id).ok_or_else(|| CliError(format!("item {} is not in the data", r.item_id)))?;
+        let item = items
+            .get(&r.item_id)
+            .ok_or_else(|| CliError(format!("item {} is not in the data", r.item_id)))?;
         for f in &item.facts.facts {
             let verdict = r
                 .fact_verdicts
@@ -317,7 +365,11 @@ fn cmd_export_labels(data_dir: &Path, a: &ExportArgs) -> CmdResult {
     }
     write_jsonl(&a.out, &rows)?;
     Ok(Output {
-        stdout: format!("wrote {} rows to {}; fill human_stated with true or false\n", rows.len(), a.out.display()),
+        stdout: format!(
+            "wrote {} rows to {}; fill human_stated with true or false\n",
+            rows.len(),
+            a.out.display()
+        ),
         ..Default::default()
     })
 }
@@ -336,17 +388,36 @@ fn truthy(v: &Value) -> bool {
 fn cmd_agreement(a: &AgreementArgs) -> CmdResult {
     let sheet: Vec<Value> = read_jsonl(&a.labels)?;
     let (mut judged, mut human) = (Vec::new(), Vec::new());
-    for r in sheet.iter().filter(|r| r.get("human_stated").is_some_and(|v| !v.is_null())) {
-        let key = r.get("key").and_then(Value::as_str).ok_or_else(|| CliError("a label row has no key".into()))?;
-        judged.push(Label { key: key.into(), stated: truthy(&r["judge_stated"]) });
-        human.push(Label { key: key.into(), stated: truthy(&r["human_stated"]) });
+    for r in sheet
+        .iter()
+        .filter(|r| r.get("human_stated").is_some_and(|v| !v.is_null()))
+    {
+        let key = r
+            .get("key")
+            .and_then(Value::as_str)
+            .ok_or_else(|| CliError("a label row has no key".into()))?;
+        judged.push(Label {
+            key: key.into(),
+            stated: truthy(&r["judge_stated"]),
+        });
+        human.push(Label {
+            key: key.into(),
+            stated: truthy(&r["human_stated"]),
+        });
     }
-    Ok(Output { stdout: format!("{}\n", serde_json::to_string_pretty(&agreement(&judged, &human))?), ..Default::default() })
+    Ok(Output {
+        stdout: format!("{}\n", serde_json::to_string_pretty(&agreement(&judged, &human))?),
+        ..Default::default()
+    })
 }
 
 /// Run a future to completion on a fresh multi-threaded runtime.
 pub fn block_on<F: std::future::Future>(f: F) -> F::Output {
-    tokio::runtime::Builder::new_multi_thread().enable_all().build().expect("tokio runtime").block_on(f)
+    tokio::runtime::Builder::new_multi_thread()
+        .enable_all()
+        .build()
+        .expect("tokio runtime")
+        .block_on(f)
 }
 
 /// Run one parsed command.
@@ -361,7 +432,11 @@ pub fn execute(cli: &Cli) -> Output {
         Cmd::ExportLabels(a) => cmd_export_labels(d, a),
         Cmd::Agreement(a) => cmd_agreement(a),
     };
-    res.unwrap_or_else(|e| Output { stderr: format!("error: {}\n", e.0), code: 1, ..Default::default() })
+    res.unwrap_or_else(|e| Output {
+        stderr: format!("error: {}\n", e.0),
+        code: 1,
+        ..Default::default()
+    })
 }
 
 /// Parse `args` (program name first) and run. Returns the process exit code.
@@ -380,11 +455,18 @@ pub fn run_cli_captured(args: &[String]) -> Output {
             let code = e.exit_code();
             let text = e.render().to_string();
             if code == 0 {
-                Output { stdout: text, code, ..Default::default() }
+                Output {
+                    stdout: text,
+                    code,
+                    ..Default::default()
+                }
             } else {
-                Output { stderr: text, code, ..Default::default() }
+                Output {
+                    stderr: text,
+                    code,
+                    ..Default::default()
+                }
             }
         }
     }
 }
-

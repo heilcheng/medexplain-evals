@@ -69,7 +69,10 @@ pub fn parse_verdicts(
             for v in list {
                 // A malformed entry stops the scan; entries before it are kept.
                 let Some(obj) = v.as_object() else { break };
-                got.insert(py_str(obj.get("id"), "None"), py_str(obj.get("verdict"), "").trim().to_lowercase());
+                got.insert(
+                    py_str(obj.get("id"), "None"),
+                    py_str(obj.get("verdict"), "").trim().to_lowercase(),
+                );
             }
         }
     }
@@ -120,11 +123,19 @@ pub struct Agreement {
 /// Compare judge verdicts with human labels: raw agreement and Cohen's kappa on the overlap.
 pub fn agreement(judged: &[Label], human: &[Label]) -> Agreement {
     let h: HashMap<&str, bool> = human.iter().map(|r| (r.key.as_str(), r.stated)).collect();
-    let pairs: Vec<(bool, bool)> =
-        judged.iter().filter_map(|r| h.get(r.key.as_str()).map(|&y| (r.stated, y))).collect();
+    let pairs: Vec<(bool, bool)> = judged
+        .iter()
+        .filter_map(|r| h.get(r.key.as_str()).map(|&y| (r.stated, y)))
+        .collect();
     let n = pairs.len();
     if n == 0 {
-        return Agreement { n: 0, agreement: None, kappa: None, judge_stated_rate: None, human_stated_rate: None };
+        return Agreement {
+            n: 0,
+            agreement: None,
+            kappa: None,
+            judge_stated_rate: None,
+            human_stated_rate: None,
+        };
     }
     let nf = n as f64;
     let a = pairs.iter().filter(|(x, y)| x == y).count() as f64 / nf;

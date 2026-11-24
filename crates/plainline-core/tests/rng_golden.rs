@@ -15,7 +15,12 @@ fn matches_numpy_integers() {
         for call in case["calls"].as_array().unwrap() {
             let n = call["n"].as_u64().unwrap() as usize;
             let size = call["size"].as_u64().unwrap() as usize;
-            let want: Vec<usize> = call["draws"].as_array().unwrap().iter().map(|v| v.as_u64().unwrap() as usize).collect();
+            let want: Vec<usize> = call["draws"]
+                .as_array()
+                .unwrap()
+                .iter()
+                .map(|v| v.as_u64().unwrap() as usize)
+                .collect();
             let mut got = vec![0usize; size];
             g.fill_integers(n, &mut got);
             assert_eq!(got, want, "seed {seed} n {n}");

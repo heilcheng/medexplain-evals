@@ -13,9 +13,15 @@ struct Tables {
 }
 
 static TABLES: LazyLock<Tables> = LazyLock::new(|| {
-    let mut t = Tables { named: HashMap::new(), replaced: HashMap::new(), invalid: HashSet::new() };
+    let mut t = Tables {
+        named: HashMap::new(),
+        replaced: HashMap::new(),
+        invalid: HashSet::new(),
+    };
     let cps = |s: &str| -> String {
-        s.split(' ').map(|h| char::from_u32(u32::from_str_radix(h, 16).unwrap()).unwrap()).collect()
+        s.split(' ')
+            .map(|h| char::from_u32(u32::from_str_radix(h, 16).unwrap()).unwrap())
+            .collect()
     };
     for line in include_str!("../data/entities.tsv").lines() {
         let f: Vec<&str> = line.split('\t').collect();
@@ -24,7 +30,10 @@ static TABLES: LazyLock<Tables> = LazyLock::new(|| {
                 t.named.insert(f[1].to_string(), cps(f[2]));
             }
             "R" => {
-                t.replaced.insert(u32::from_str_radix(f[1], 16).unwrap(), cps(f[2]).chars().next().unwrap());
+                t.replaced.insert(
+                    u32::from_str_radix(f[1], 16).unwrap(),
+                    cps(f[2]).chars().next().unwrap(),
+                );
             }
             "X" => {
                 t.invalid.insert(u32::from_str_radix(f[1], 16).unwrap());

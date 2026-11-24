@@ -33,6 +33,10 @@ impl ChatClient for ScriptedClient {
     async fn complete(&self, messages: &[Message], _temperature: f64, _max_tokens: u32) -> Result<String, ClientError> {
         self.calls.lock().unwrap().push(messages.to_vec());
         let mut r = self.replies.lock().unwrap();
-        Ok(if r.len() > 1 { r.remove(0) } else { r.first().cloned().unwrap_or_default() })
+        Ok(if r.len() > 1 {
+            r.remove(0)
+        } else {
+            r.first().cloned().unwrap_or_default()
+        })
     }
 }

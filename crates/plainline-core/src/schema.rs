@@ -157,10 +157,7 @@ pub fn read_jsonl<T: serde::de::DeserializeOwned>(path: impl AsRef<Path>) -> Res
         if line.is_empty() {
             continue;
         }
-        out.push(
-            serde_json::from_str(line)
-                .map_err(|e| Error::json(format!("{}:{}", path.display(), n + 1), e))?,
-        );
+        out.push(serde_json::from_str(line).map_err(|e| Error::json(format!("{}:{}", path.display(), n + 1), e))?);
     }
     Ok(out)
 }
@@ -202,7 +199,10 @@ pub fn load_items(data_dir: impl AsRef<Path>, split: Option<&str>) -> Result<Vec
         if let Some(fs) = facts.get(&sid) {
             let source = sources.remove(&sid).expect("source recorded in order");
             if split.is_none_or(|sp| source.split.as_str() == sp) {
-                items.push(Item { source, facts: fs.clone() });
+                items.push(Item {
+                    source,
+                    facts: fs.clone(),
+                });
             }
         }
     }

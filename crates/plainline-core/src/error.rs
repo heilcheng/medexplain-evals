@@ -16,10 +16,16 @@ pub type Result<T> = std::result::Result<T, Error>;
 
 impl Error {
     pub fn io(path: impl Into<PathBuf>, source: std::io::Error) -> Self {
-        Error::Io { path: path.into(), source }
+        Error::Io {
+            path: path.into(),
+            source,
+        }
     }
     pub fn json(context: impl Into<String>, source: serde_json::Error) -> Self {
-        Error::Json { context: context.into(), source }
+        Error::Json {
+            context: context.into(),
+            source,
+        }
     }
     pub fn data(msg: impl Into<String>) -> Self {
         Error::Data(msg.into())

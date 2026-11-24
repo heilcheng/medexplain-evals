@@ -28,8 +28,10 @@ static HARD: LazyLock<regex::Regex> = LazyLock::new(|| {
     .unwrap()
 });
 static SERIOUS: LazyLock<regex::Regex> = LazyLock::new(|| {
-    regex::Regex::new(r"(?i)\b(risk|serious|monitor|bleeding|toxicity|overdose|suicid|pregnan|reaction|symptoms?|warning)\b")
-        .unwrap()
+    regex::Regex::new(
+        r"(?i)\b(risk|serious|monitor|bleeding|toxicity|overdose|suicid|pregnan|reaction|symptoms?|warning)\b",
+    )
+    .unwrap()
 });
 static DOSE: LazyLock<regex::Regex> = LazyLock::new(|| regex::Regex::new(r"\b\d+\s?(mg|mcg|g|mL|units?)\b").unwrap());
 static URGENT: LazyLock<regex::Regex> =
@@ -105,7 +107,12 @@ impl Drafter {
         }
         self.seen.insert(key);
         let fact_id = format!("f{}", self.facts.len() + 1);
-        self.facts.push(Fact { fact_id, text: sent, tier, section: section.to_string() });
+        self.facts.push(Fact {
+            fact_id,
+            text: sent,
+            tier,
+            section: section.to_string(),
+        });
     }
 
     fn add_cap(&mut self, sent: &str, tier: Tier, section: &str) {
@@ -126,7 +133,11 @@ impl Drafter {
 pub fn rule_draft(src: &Source) -> FactSet {
     let secs = split_sections(&src.text);
     let sec = |k: &str| secs.get(k).map_or("", String::as_str);
-    let mut d = Drafter { facts: Vec::new(), seen: HashSet::new(), counts: HashMap::new() };
+    let mut d = Drafter {
+        facts: Vec::new(),
+        seen: HashSet::new(),
+        counts: HashMap::new(),
+    };
 
     if src.kind == SourceKind::DailymedLabel {
         for s in sentences(sec("boxed warning")) {
@@ -194,7 +205,12 @@ pub async fn llm_draft(client: &dyn ChatClient, src: &Source) -> Result<FactSet>
     let raw = client.complete(&extract_messages(&src.text), 0.0, 2000).await?;
     let data = extract_json(&raw).map_err(|e| PipelineError::Data(format!("draft reply is not JSON: {e}")))?;
     let mut facts = Vec::new();
-    for f in data.get("facts").and_then(Value::as_array).map(Vec::as_slice).unwrap_or(&[]) {
+    for f in data
+        .get("facts")
+        .and_then(Value::as_array)
+        .map(Vec::as_slice)
+        .unwrap_or(&[])
+    {
         let tier = f.get("tier").and_then(Value::as_str).and_then(Tier::parse);
         let text = f.get("text").and_then(Value::as_str).filter(|t| !t.is_empty());
         if let (Some(tier), Some(text)) = (tier, text) {
@@ -203,7 +219,12 @@ pub async fn llm_draft(client: &dyn ChatClient, src: &Source) -> Result<FactSet>
                 Some(Value::String(s)) => s.clone(),
                 Some(other) => other.to_string(),
             };
-            facts.push(Fact { fact_id: format!("f{}", facts.len() + 1), text: text.trim().to_string(), tier, section });
+            facts.push(Fact {
+                fact_id: format!("f{}", facts.len() + 1),
+                text: text.trim().to_string(),
+                tier,
+                section,
+            });
         }
     }
     let must_not_say: Vec<String> = data
@@ -225,4 +246,3 @@ pub async fn llm_draft(client: &dyn ChatClient, src: &Source) -> Result<FactSet>
         reviewers: Vec::new(),
     })
 }
-

@@ -40,7 +40,9 @@ impl MockClient {
     }
 
     fn judge(user: &str) -> String {
-        let expl_text = EXPL.captures(user).map_or(String::new(), |c| c.get(1).unwrap().as_str().to_lowercase());
+        let expl_text = EXPL
+            .captures(user)
+            .map_or(String::new(), |c| c.get(1).unwrap().as_str().to_lowercase());
         let expl: HashSet<&str> = WORD.find_iter(&expl_text).map(|m| m.as_str()).collect();
         let tail = user.rsplit("</explanation>").next().unwrap_or("");
         let mut out = Vec::new();
@@ -50,7 +52,11 @@ impl MockClient {
                 out.push(json!({"id": fid, "verdict": "not_asserted"}));
                 continue;
             }
-            let words: Vec<&str> = WORD.find_iter(&text).map(|m| m.as_str()).filter(|w| w.len() > 3).collect();
+            let words: Vec<&str> = WORD
+                .find_iter(&text)
+                .map(|m| m.as_str())
+                .filter(|w| w.len() > 3)
+                .collect();
             let hit = words.iter().filter(|w| expl.contains(*w)).count() as f64 / words.len().max(1) as f64;
             out.push(json!({"id": fid, "verdict": if hit >= 0.6 { "stated" } else { "absent" }}));
         }

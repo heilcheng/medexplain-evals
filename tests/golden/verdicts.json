@@ -550,7 +550,7 @@
   "errors": 5
  },
  {
-  "raw": "é {\"verdicts\": [{\"id\": \"f1\", \"verdict\": \"stated\"}]}",
+  "raw": "\u00e9 {\"verdicts\": [{\"id\": \"f1\", \"verdict\": \"stated\"}]}",
   "fact_ids": [
    "f1",
    "f2",

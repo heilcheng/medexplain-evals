@@ -50,10 +50,16 @@ pub struct Message {
 
 impl Message {
     pub fn system(content: impl Into<String>) -> Self {
-        Message { role: "system".into(), content: content.into() }
+        Message {
+            role: "system".into(),
+            content: content.into(),
+        }
     }
     pub fn user(content: impl Into<String>) -> Self {
-        Message { role: "user".into(), content: content.into() }
+        Message {
+            role: "user".into(),
+            content: content.into(),
+        }
     }
 }
 
@@ -76,5 +82,8 @@ pub fn judge_messages(explanation: &str, facts: &[(String, String)], statements:
 }
 
 pub fn extract_messages(source_text: &str) -> Vec<Message> {
-    vec![Message::system(EXTRACT_SYSTEM), Message::user(format!("<source>\n{source_text}\n</source>"))]
+    vec![
+        Message::system(EXTRACT_SYSTEM),
+        Message::user(format!("<source>\n{source_text}\n</source>")),
+    ]
 }

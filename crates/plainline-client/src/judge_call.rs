@@ -1,5 +1,5 @@
 use crate::{ChatClient, ClientError};
-use plainline_core::judge::{parse_verdicts, JudgeResult};
+use plainline_core::judge::{JudgeResult, parse_verdicts};
 use plainline_core::prompts::judge_messages;
 use plainline_core::schema::FactSet;
 
@@ -16,7 +16,12 @@ pub async fn judge_explanation(
     per_fact: bool,
 ) -> Result<JudgeResult, ClientError> {
     let facts: Pairs = fs.facts.iter().map(|f| (f.fact_id.clone(), f.text.clone())).collect();
-    let stmts: Pairs = fs.must_not_say.iter().enumerate().map(|(i, t)| (format!("n{}", i + 1), t.clone())).collect();
+    let stmts: Pairs = fs
+        .must_not_say
+        .iter()
+        .enumerate()
+        .map(|(i, t)| (format!("n{}", i + 1), t.clone()))
+        .collect();
     let groups: Vec<(Pairs, Pairs)> = if per_fact {
         facts
             .iter()
@@ -28,7 +33,9 @@ pub async fn judge_explanation(
     };
     let mut res = JudgeResult::default();
     for (fgrp, sgrp) in groups {
-        let raw = client.complete(&judge_messages(explanation, &fgrp, &sgrp), 0.0, 800).await?;
+        let raw = client
+            .complete(&judge_messages(explanation, &fgrp, &sgrp), 0.0, 800)
+            .await?;
         let fids: Vec<String> = fgrp.iter().map(|p| p.0.clone()).collect();
         let sids: Vec<String> = sgrp.iter().map(|p| p.0.clone()).collect();
         let (fv, sv, err) = parse_verdicts(&raw, &fids, &sids);

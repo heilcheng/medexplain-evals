@@ -5,7 +5,7 @@ use crate::readability::Band;
 use serde::Deserialize;
 use std::path::Path;
 
-const DEFAULT_YAML: &str = include_str!("../../../plainline/data/readers.yaml");
+const DEFAULT_YAML: &str = include_str!("../data/readers.yaml");
 
 /// One way of asking: neutral, an explicit reader, or an implicit cue.
 #[derive(Debug, Clone, PartialEq)]

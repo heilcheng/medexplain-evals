@@ -9,8 +9,7 @@ use std::sync::LazyLock;
 static WORD: LazyLock<Regex> = LazyLock::new(|| Regex::new(r"[A-Za-z][A-Za-z'-]*").unwrap());
 static SENT: LazyLock<Regex> = LazyLock::new(|| Regex::new(r"[.!?]+(?:\s|$)|\n{2,}").unwrap());
 static VOWELS: LazyLock<Regex> = LazyLock::new(|| Regex::new(r"[aeiouy]+").unwrap());
-static ED_OK: LazyLock<Regex> =
-    LazyLock::new(|| Regex::new(r"(t|d)ed$|(s|x|z|ch|sh|ce|ge)s$").unwrap());
+static ED_OK: LazyLock<Regex> = LazyLock::new(|| Regex::new(r"(t|d)ed$|(s|x|z|ch|sh|ce|ge)s$").unwrap());
 
 /// Syllables in one word (vowel groups with a few silent-ending corrections), at least 1.
 pub fn syllables(word: &str) -> usize {

@@ -5,7 +5,7 @@
 
 use crate::text::{clean, truncate_words};
 use crate::{PipelineError, Result};
-use plainline_core::schema::{Source, SourceKind, Split, CANARY};
+use plainline_core::schema::{CANARY, Source, SourceKind, Split};
 use regex::Regex;
 use std::collections::{BTreeSet, HashMap};
 use std::time::Duration;
@@ -32,32 +32,53 @@ pub fn latest_topics_name(index_html: &str) -> Result<String> {
 
 /// Map lowercase English title to the topic.
 pub fn parse_topics(xml: &str) -> Result<HashMap<String, Topic>> {
-    let opts = roxmltree::ParsingOptions { allow_dtd: true, ..Default::default() };
+    let opts = roxmltree::ParsingOptions {
+        allow_dtd: true,
+        ..Default::default()
+    };
     let doc = roxmltree::Document::parse_with_options(xml, opts)?;
     let mut out = HashMap::new();
-    for ht in doc.descendants().filter(|n| n.is_element() && n.tag_name().name() == "health-topic") {
+    for ht in doc
+        .descendants()
+        .filter(|n| n.is_element() && n.tag_name().name() == "health-topic")
+    {
         if ht.attribute("language") != Some("English") {
             continue;
         }
-        let Some(fs) = ht.children().find(|c| c.is_element() && c.tag_name().name() == "full-summary") else {
+        let Some(fs) = ht
+            .children()
+            .find(|c| c.is_element() && c.tag_name().name() == "full-summary")
+        else {
             continue;
         };
         // ElementTree's `.text`: the text before the first child element.
-        let text = fs.first_child().filter(|c| c.is_text()).and_then(|c| c.text()).unwrap_or("");
+        let text = fs
+            .first_child()
+            .filter(|c| c.is_text())
+            .and_then(|c| c.text())
+            .unwrap_or("");
         if text.trim().is_empty() {
             continue;
         }
         let title = ht.attribute("title").unwrap_or("").to_string();
         out.insert(
             title.to_lowercase(),
-            Topic { title, url: ht.attribute("url").unwrap_or("").to_string(), summary: clean(text) },
+            Topic {
+                title,
+                url: ht.attribute("url").unwrap_or("").to_string(),
+                summary: clean(text),
+            },
         );
     }
     Ok(out)
 }
 
 pub fn build_source(topic: &Topic, xml_name: &str, fetched: &str) -> Source {
-    let slug = Regex::new(r"[^a-z0-9]+").unwrap().replace_all(&topic.title.to_lowercase(), "-").trim_matches('-').to_string();
+    let slug = Regex::new(r"[^a-z0-9]+")
+        .unwrap()
+        .replace_all(&topic.title.to_lowercase(), "-")
+        .trim_matches('-')
+        .to_string();
     Source {
         source_id: format!("mp-{slug}"),
         kind: SourceKind::MedlineplusTopic,

@@ -4,19 +4,44 @@ use crate::dailymed;
 use crate::draft::rule_draft;
 use crate::medlineplus;
 use crate::{PipelineError, Result};
-use plainline_core::schema::{validate_factset, write_jsonl, FactSet, Source};
+use plainline_core::schema::{FactSet, Source, validate_factset, write_jsonl};
 use serde::Serialize;
 use std::path::Path;
 use std::time::Duration;
 
 pub const PILOT_DRUGS: [&str; 20] = [
-    "warfarin", "methotrexate", "hydrocodone bitartrate and acetaminophen", "metformin", "lisinopril", "amiodarone",
-    "digoxin", "levothyroxine", "isotretinoin", "lithium carbonate", "ciprofloxacin", "ibuprofen", "apixaban",
-    "clozapine", "sertraline", "tramadol", "prednisone", "gabapentin", "zolpidem", "colchicine",
+    "warfarin",
+    "methotrexate",
+    "hydrocodone bitartrate and acetaminophen",
+    "metformin",
+    "lisinopril",
+    "amiodarone",
+    "digoxin",
+    "levothyroxine",
+    "isotretinoin",
+    "lithium carbonate",
+    "ciprofloxacin",
+    "ibuprofen",
+    "apixaban",
+    "clozapine",
+    "sertraline",
+    "tramadol",
+    "prednisone",
+    "gabapentin",
+    "zolpidem",
+    "colchicine",
 ];
 pub const PILOT_TOPICS: [&str; 10] = [
-    "Anaphylaxis", "Appendicitis", "Heart Attack", "Hypothermia", "Meningitis", "Heat Illness", "Stroke", "Sepsis",
-    "Seizures", "Concussion",
+    "Anaphylaxis",
+    "Appendicitis",
+    "Heart Attack",
+    "Hypothermia",
+    "Meningitis",
+    "Heat Illness",
+    "Stroke",
+    "Sepsis",
+    "Seizures",
+    "Concussion",
 ];
 pub const USER_AGENT: &str = "plainline-research-pipeline/0.1 (open benchmark; contact via GitHub repo)";
 
@@ -54,7 +79,10 @@ pub async fn build_pilot(
     endpoints: &Endpoints,
     fetched: &str,
 ) -> Result<PilotReport> {
-    let client = reqwest::Client::builder().user_agent(USER_AGENT).timeout(Duration::from_secs(60)).build()?;
+    let client = reqwest::Client::builder()
+        .user_agent(USER_AGENT)
+        .timeout(Duration::from_secs(60))
+        .build()?;
     let mut sources: Vec<Source> = Vec::new();
     let mut skipped: Vec<String> = Vec::new();
     for d in drugs {
@@ -96,7 +124,11 @@ pub async fn build_pilot(
     let out = out_dir.as_ref();
     write_jsonl(out.join("sources").join("sources.jsonl"), &kept)?;
     write_jsonl(out.join("facts").join("facts.jsonl"), &facts)?;
-    Ok(PilotReport { sources: kept.len(), facts: facts.iter().map(|f| f.facts.len()).sum(), skipped })
+    Ok(PilotReport {
+        sources: kept.len(),
+        facts: facts.iter().map(|f| f.facts.len()).sum(),
+        skipped,
+    })
 }
 
 /// A list of strings printed as Python prints it, e.g. `['a', 'b']`.

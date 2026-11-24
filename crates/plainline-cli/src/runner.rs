@@ -1,9 +1,9 @@
 //! Generate, judge and score. Outputs are JSONL and the run is resumable.
 
 use futures::stream::{self, StreamExt};
-use plainline_client::{judge_explanation, ChatClient};
-use plainline_core::metrics::{score_output, ScoredRow};
-use plainline_core::prompts::{writer_messages, JUDGE_VERSION};
+use plainline_client::{ChatClient, judge_explanation};
+use plainline_core::metrics::{ScoredRow, score_output};
+use plainline_core::prompts::{JUDGE_VERSION, writer_messages};
 use plainline_core::pyjson;
 use plainline_core::readers::Condition;
 use plainline_core::schema::Item;
@@ -25,7 +25,14 @@ pub struct RunOptions {
 
 impl Default for RunOptions {
     fn default() -> Self {
-        RunOptions { n_samples: 1, per_fact: false, workers: 4, max_tokens: 1024, temperature: 0.0, mock: false }
+        RunOptions {
+            n_samples: 1,
+            per_fact: false,
+            workers: 4,
+            max_tokens: 1024,
+            temperature: 0.0,
+            mock: false,
+        }
     }
 }
 
@@ -76,10 +83,16 @@ async fn do_job(
     opts: &RunOptions,
 ) -> Result<ScoredRow, String> {
     let text = writer
-        .complete(&writer_messages(&item.source.text, &cond.instruction), opts.temperature, opts.max_tokens)
+        .complete(
+            &writer_messages(&item.source.text, &cond.instruction),
+            opts.temperature,
+            opts.max_tokens,
+        )
         .await
         .map_err(|e| e.to_string())?;
-    let jr = judge_explanation(judge, &text, &item.facts, opts.per_fact).await.map_err(|e| e.to_string())?;
+    let jr = judge_explanation(judge, &text, &item.facts, opts.per_fact)
+        .await
+        .map_err(|e| e.to_string())?;
     let mut row = score_output(&text, &item.facts, &jr, cond);
     row.output_id = output_id(writer.name(), &item.source.source_id, &cond.id, sample);
     row.item_id = item.source.source_id.clone();
@@ -127,14 +140,18 @@ pub async fn run(
         .open(&scored_path)
         .map_err(|e| RunError::Io(format!("{}: {e}", scored_path.display())))?;
     // `buffered` keeps the jobs' order, so rows land in the file in job order.
-    let mut results = stream::iter(jobs.iter()).map(|j| do_job(j.item, j.cond, j.sample, writer, judge, opts)).buffered(opts.workers.max(1));
+    let mut results = stream::iter(jobs.iter())
+        .map(|j| do_job(j.item, j.cond, j.sample, writer, judge, opts))
+        .buffered(opts.workers.max(1));
     let mut failures: Vec<(usize, String)> = Vec::new();
     let mut n = 0;
     while let Some(res) = results.next().await {
         match res {
             Ok(row) => {
                 let line = pyjson::to_string(&row).map_err(|e| RunError::Io(e.to_string()))?;
-                writeln!(file, "{line}").and_then(|_| file.flush()).map_err(|e| RunError::Io(e.to_string()))?;
+                writeln!(file, "{line}")
+                    .and_then(|_| file.flush())
+                    .map_err(|e| RunError::Io(e.to_string()))?;
             }
             Err(e) => failures.push((n, e)),
         }

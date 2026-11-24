@@ -5,6 +5,7 @@ mod judge_call;
 mod mock;
 mod openai;
 mod scripted;
+pub mod stub;
 
 pub use judge_call::judge_explanation;
 pub use mock::MockClient;

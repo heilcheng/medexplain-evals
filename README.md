@@ -3,7 +3,7 @@
 **Does a model keep the safety-critical facts when it explains a medical source to a particular reader?**
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue.svg)](pyproject.toml)
+[![Rust 1.85+](https://img.shields.io/badge/rust-1.85%2B-orange.svg)](Cargo.toml)
 [![CI](https://github.com/heilcheng/plainline/actions/workflows/ci.yml/badge.svg)](https://github.com/heilcheng/plainline/actions/workflows/ci.yml)
 [![Status: pilot](https://img.shields.io/badge/status-pilot-orange.svg)](#current-status)
 
@@ -11,7 +11,7 @@
 
 ## Abstract
 
-Language models are often asked to rewrite medical information for a specific reader: a nurse, a parent, an adult who reads at a sixth-grade level, a person still learning English. Fluent, friendly output is easy to get. What is less clear is whether the facts that could hurt the reader if lost, such as a boxed warning, a dose limit or a sign that means "go to the emergency department", survive the rewrite. Plainline is a benchmark for that question. Each item is a short open-licensed source (an FDA drug label excerpt or a MedlinePlus topic summary) with a list of facts tiered by how harmful their omission would be. A model explains the source for each of several readers, and always once for a neutral reader. A narrow judge checks, fact by fact, whether the explanation states, contradicts or omits it. The headline quantities are Critical Fact Retention (CFR), the paired Adaptation Tax (how much CFR drops against the neutral control), and a reader-cue slice that tests whether stating who you are changes the safety content you receive. The repository is a pilot: 30 sources and 339 draft facts, with the pipeline, metrics and an Inspect AI task in place and tested on mock models.
+Language models are often asked to rewrite medical information for a specific reader: a nurse, a parent, an adult who reads at a sixth-grade level, a person still learning English. Fluent, friendly output is easy to get. What is less clear is whether the facts that could hurt the reader if lost, such as a boxed warning, a dose limit or a sign that means "go to the emergency department", survive the rewrite. Plainline is a benchmark for that question. Each item is a short open-licensed source (an FDA drug label excerpt or a MedlinePlus topic summary) with a list of facts tiered by how harmful their omission would be. A model explains the source for each of several readers, and always once for a neutral reader. A narrow judge checks, fact by fact, whether the explanation states, contradicts or omits it. The headline quantities are Critical Fact Retention (CFR), the paired Adaptation Tax (how much CFR drops against the neutral control), and a reader-cue slice that tests whether stating who you are changes the safety content you receive. The repository is a pilot: 30 sources and 339 draft facts, with the pipeline, metrics and command line in place and tested on mock models.
 
 ![Plainline pipeline](docs/figures/pipeline.svg)
 
@@ -76,12 +76,19 @@ Excerpts are short and cut at sentence boundaries. No UMLS, SNOMED CT, DrugBank,
 | Held-out test split | Not built |
 | Paper | Workshop skeleton in [paper/](paper/main.tex), no results |
 
+## Install
+
+Plainline is a Rust workspace (`rust-version` 1.85). Build and install the `plainline` binary:
+
+```bash
+git clone https://github.com/heilcheng/plainline && cd plainline
+cargo install --path crates/plainline-cli      # or: cargo build --release, binary in target/release/
+```
+
 ## Quickstart
 
 ```bash
-python -m venv .venv && source .venv/bin/activate
-pip install -e ".[dev]"
-pytest                                  # all model calls are mocked
+cargo test --workspace                  # all model calls are mocked or served by a local stub
 plainline validate-data
 
 # offline smoke run, measures nothing about any model
@@ -96,33 +103,38 @@ plainline run --base-url https://api.openai.com/v1 --model MODEL_UNDER_TEST \
 plainline report --run runs/my-run      # recompute tables and CIs
 ```
 
-Use a judge from a different family than the model under test; the CLI warns when they match. Output goes to `runs/<name>/` as `scored.jsonl` (one row per generation with the text and every verdict), `summary.json` and `results.md`. Runs resume if interrupted, and if one job in a batch fails the completed rows are kept.
+Use a judge from a different family than the model under test; the CLI warns when they match. Use `--judge-api-key-env` when the judge needs a different key variable. Output goes to `runs/<name>/` as `scored.jsonl` (one JSON row per generation with the text and every verdict), `summary.json` (all metrics with bootstrap intervals; undefined values are `null`) and `results.md`. Runs resume if interrupted, and if one job in a batch fails the completed rows are kept.
 
-As an Inspect AI task:
+### Using Plainline from another evaluation harness
 
-```bash
-inspect eval plainline/inspect_task.py --model openai/MODEL_UNDER_TEST \
-    -T judge_model=openai/JUDGE_MODEL -T mode=adapt
-```
+Plainline runs as a standalone command line against any OpenAI-compatible chat endpoint, so a harness only needs to start the process and read the files:
 
-The task reports `worst_reader_cfr`, `adaptation_tax`, and means of CFR, SFR, distortion, must-not-say and band pass.
+1. Call `plainline run --base-url ... --model ... --judge-base-url ... --judge-model ... --out DIR` (exit code 0 on success, 1 on error, 2 on a usage error).
+2. Read `DIR/summary.json` for the headline numbers (`models.<name>.headline.worst_reader_cfr`, `mean_adaptation_tax`, `cfr_spread`, and per-condition tables) or `DIR/scored.jsonl` for per-output rows.
+
+An Inspect AI task is future work; the previous Python wrapper was removed with the Python implementation.
 
 Rebuild the pilot data (needs network): `plainline build-pilot`. Draft facts with a model instead of the rule-based drafter: `plainline draft --base-url ... --model ...`. Either way the output is marked as a draft.
 
 ## Repository layout
 
 ```
-plainline/            package: schema, readers, prompts, judge, metrics, runner, report, cli, inspect_task
-plainline/pipeline/   DailyMed and MedlinePlus fetchers, chunking, draft fact extraction
-data/                 sources.jsonl and facts.jsonl (pilot, dev split)
-docs/design.md        design reasoning and landscape review behind the rebuild
-docs/related_work.md  related work and what is new here
-docs/judge_validation.md   how to validate the judge against human labels
-docs/figures/         pipeline diagram
-paper/                workshop paper skeleton (LaTeX)
-references.bib        verified references
-DATA_LICENSES.md      terms found for each source
+crates/plainline-core/       schema, readers, prompts, judge parsing, readability, metrics, bootstrap, report
+crates/plainline-client/     async OpenAI-compatible client, mock and scripted clients, judge calls
+crates/plainline-pipeline/   DailyMed and MedlinePlus fetchers, text cleaning, draft fact extraction
+crates/plainline-cli/        the `plainline` binary and the resumable runner
+data/                        sources.jsonl and facts.jsonl (pilot, dev split)
+tests/golden/                outputs recorded from the original Python implementation, used as parity references
+docs/design.md               design reasoning and landscape review behind the rebuild
+docs/related_work.md         related work and what is new here
+docs/judge_validation.md     how to validate the judge against human labels
+docs/figures/                pipeline diagram
+paper/                       workshop paper skeleton (LaTeX)
+references.bib               verified references
+DATA_LICENSES.md             terms found for each source
 ```
+
+The bootstrap draws item indices with a port of NumPy's PCG64 generator, so intervals computed with a given seed match those of the Python version (v0.1.0) draw for draw. The reader specs and cue wording are in `crates/plainline-core/data/readers.yaml`; the judge prompt is `JUDGE_SYSTEM` in `crates/plainline-core/src/prompts.rs`.
 
 ## Roadmap
 

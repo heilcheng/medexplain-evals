@@ -1,7 +1,7 @@
 //! Turn scored.jsonl into summary.json and a markdown table.
 
 use crate::error::{Error, Result};
-use crate::metrics::{summarize_model, Est, ModelSummary, ScoredRow};
+use crate::metrics::{Est, ModelSummary, ScoredRow, summarize_model};
 use crate::schema::read_jsonl;
 use indexmap::IndexMap;
 use serde::Serialize;
@@ -58,16 +58,34 @@ pub fn summarize_rows(rows: &[ScoredRow], cond_order: &[String], n_boot: usize, 
     let flags = Flags {
         mock: rows.iter().any(|r| r.mock),
         all_facts_validated: !rows.is_empty() && rows.iter().all(|r| r.facts_status == "clinician_reviewed"),
-        judge_versions: rows.iter().map(|r| r.judge_version.clone()).collect::<BTreeSet<_>>().into_iter().collect(),
-        judges: rows.iter().map(|r| r.judge.clone()).collect::<BTreeSet<_>>().into_iter().collect(),
+        judge_versions: rows
+            .iter()
+            .map(|r| r.judge_version.clone())
+            .collect::<BTreeSet<_>>()
+            .into_iter()
+            .collect(),
+        judges: rows
+            .iter()
+            .map(|r| r.judge.clone())
+            .collect::<BTreeSet<_>>()
+            .into_iter()
+            .collect(),
     };
     Summary {
         flags,
-        models: by_model.into_iter().map(|(m, rs)| (m, summarize_model(&rs, cond_order, n_boot, seed))).collect(),
+        models: by_model
+            .into_iter()
+            .map(|(m, rs)| (m, summarize_model(&rs, cond_order, n_boot, seed)))
+            .collect(),
     }
 }
 
-pub fn build_summary(scored_path: impl AsRef<Path>, cond_order: &[String], n_boot: usize, seed: u64) -> Result<Summary> {
+pub fn build_summary(
+    scored_path: impl AsRef<Path>,
+    cond_order: &[String],
+    n_boot: usize,
+    seed: u64,
+) -> Result<Summary> {
     let rows: Vec<ScoredRow> = read_jsonl(scored_path)?;
     Ok(summarize_rows(&rows, cond_order, n_boot, seed))
 }
@@ -131,11 +149,24 @@ pub fn to_markdown(summary: &Summary) -> String {
             let parts: Vec<String> = lc
                 .by_length_tercile
                 .iter()
-                .map(|(k, v)| format!("{k} ({} words, n={}): {}%", ff(v.mean_words, 0), v.n, ff(v.cfr * 100.0, 1)))
+                .map(|(k, v)| {
+                    format!(
+                        "{k} ({} words, n={}): {}%",
+                        ff(v.mean_words, 0),
+                        v.n,
+                        ff(v.cfr * 100.0, 1)
+                    )
+                })
                 .collect();
-            lines.extend([String::new(), format!("CFR by output-length tercile: {}", parts.join("; "))]);
+            lines.extend([
+                String::new(),
+                format!("CFR by output-length tercile: {}", parts.join("; ")),
+            ]);
             if let Some(rho) = lc.spearman_cfr_vs_words {
-                lines.push(format!("Spearman correlation of CFR with output length: {}.", ff(rho, 2)));
+                lines.push(format!(
+                    "Spearman correlation of CFR with output length: {}.",
+                    ff(rho, 2)
+                ));
             }
         }
         lines.push(String::new());

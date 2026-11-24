@@ -3,9 +3,9 @@
 //! Only selected clinically important sections are kept, each truncated at a
 //! sentence boundary, so the chunk is a short excerpt and not a full label copy.
 
-use crate::text::{clean, dedupe_sentences, truncate_words};
 use crate::Result;
-use plainline_core::schema::{Source, SourceKind, Split, CANARY};
+use crate::text::{clean, dedupe_sentences, truncate_words};
+use plainline_core::schema::{CANARY, Source, SourceKind, Split};
 use regex::Regex;
 use serde::Deserialize;
 use serde_json::Value;
@@ -31,9 +31,26 @@ pub fn section_spec(code: &str) -> Option<(&'static str, usize)> {
 pub const ORDER: [&str; 6] = ["34066-1", "34067-9", "34068-7", "34070-3", "43685-7", "34071-1"];
 
 pub const REPACKAGERS: &[&str] = &[
-    "repack", "bryant", "a-s medication", "proficient rx", "nucare", "preferred pharm", "quality care", "direct_rx",
-    "direct rx", "henry schein", "medsource", "rebel dist", "northwind", "asclemed", "enovachem", "lake erie",
-    "denton", "unit dose", "pd-rx", "aphena",
+    "repack",
+    "bryant",
+    "a-s medication",
+    "proficient rx",
+    "nucare",
+    "preferred pharm",
+    "quality care",
+    "direct_rx",
+    "direct rx",
+    "henry schein",
+    "medsource",
+    "rebel dist",
+    "northwind",
+    "asclemed",
+    "enovachem",
+    "lake erie",
+    "denton",
+    "unit dose",
+    "pd-rx",
+    "aphena",
 ];
 
 /// One entry of the DailyMed label list.
@@ -46,8 +63,7 @@ pub struct SplRow {
 }
 
 static SEE: LazyLock<Regex> = LazyLock::new(|| Regex::new(r"(?i)\[\s*see[^\]]*\]").unwrap());
-static NUMREF: LazyLock<Regex> =
-    LazyLock::new(|| Regex::new(r"\(\s*\d+(\.\d+)?(\s*,\s*\d+(\.\d+)?)*\s*\)").unwrap());
+static NUMREF: LazyLock<Regex> = LazyLock::new(|| Regex::new(r"\(\s*\d+(\.\d+)?(\s*,\s*\d+(\.\d+)?)*\s*\)").unwrap());
 static FULLPI: LazyLock<Regex> =
     LazyLock::new(|| Regex::new(r"(?i)See full prescribing information for complete boxed warning\.?").unwrap());
 static WARN_HEAD: LazyLock<fancy_regex::Regex> =
@@ -68,7 +84,11 @@ pub async fn find_setid(client: &reqwest::Client, api: &str, drug_name: &str) ->
     let rows: Vec<SplRow> = body
         .get("data")
         .and_then(Value::as_array)
-        .map(|a| a.iter().filter_map(|v| serde_json::from_value(v.clone()).ok()).collect())
+        .map(|a| {
+            a.iter()
+                .filter_map(|v| serde_json::from_value(v.clone()).ok())
+                .collect()
+        })
         .unwrap_or_default();
     let first = drug_name.split_whitespace().next().unwrap_or("").to_lowercase();
     Ok(rows.into_iter().find(|row| {
@@ -92,7 +112,10 @@ fn tidy(text: &str) -> String {
 
 /// Return {loinc_code: text} for the sections of interest.
 pub fn parse_spl(xml: &str) -> Result<HashMap<String, String>> {
-    let opts = roxmltree::ParsingOptions { allow_dtd: true, ..Default::default() };
+    let opts = roxmltree::ParsingOptions {
+        allow_dtd: true,
+        ..Default::default()
+    };
     let doc = roxmltree::Document::parse_with_options(xml, opts)?;
     let mut found: HashMap<String, String> = HashMap::new();
     let is = |n: &roxmltree::Node, name: &str| {
@@ -110,7 +133,13 @@ pub fn parse_spl(xml: &str) -> Result<HashMap<String, String>> {
         let pieces: Vec<String> = sec
             .children()
             .filter(|c| c.is_element() && !is(c, "title"))
-            .map(|c| c.descendants().filter(|d| d.is_text()).filter_map(|d| d.text()).collect::<Vec<_>>().join(" "))
+            .map(|c| {
+                c.descendants()
+                    .filter(|d| d.is_text())
+                    .filter_map(|d| d.text())
+                    .collect::<Vec<_>>()
+                    .join(" ")
+            })
             .collect();
         let txt = tidy(&clean(&pieces.join(" ")));
         // Highlights sections reuse the same codes as the full text; keep the longest.
@@ -176,11 +205,20 @@ pub fn build_source(drug_name: &str, row: &SplRow, sections: &HashMap<String, St
     }
 }
 
-pub async fn fetch_label(client: &reqwest::Client, api: &str, drug_name: &str, fetched: &str) -> Result<Option<Source>> {
+pub async fn fetch_label(
+    client: &reqwest::Client,
+    api: &str,
+    drug_name: &str,
+    fetched: &str,
+) -> Result<Option<Source>> {
     let Some(row) = find_setid(client, api, drug_name).await? else {
         return Ok(None);
     };
-    let r = client.get(format!("{api}/spls/{}.xml", row.setid)).send().await?.error_for_status()?;
+    let r = client
+        .get(format!("{api}/spls/{}.xml", row.setid))
+        .send()
+        .await?
+        .error_for_status()?;
     let xml = r.text().await?;
     let sections = parse_spl(&xml)?;
     if sections.is_empty() {

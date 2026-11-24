@@ -20,6 +20,16 @@ use indexmap::IndexMap;
 use serde::{Deserialize, Serialize, Serializer};
 use std::collections::{BTreeSet, HashMap};
 
+/// A word count that may arrive as a float (Inspect AI passes score values as floats).
+fn lenient_count<'de, D: serde::Deserializer<'de>>(d: D) -> Result<u64, D::Error> {
+    let v = f64::deserialize(d)?;
+    if v.is_finite() && v >= 0.0 {
+        Ok(v.round() as u64)
+    } else {
+        Err(serde::de::Error::custom("word count must be a non-negative number"))
+    }
+}
+
 /// One judged output. This is the row layout of `scored.jsonl`; every field has a default so
 /// partial rows (for example from the Inspect task) can be summarised too.
 #[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
@@ -28,7 +38,7 @@ pub struct ScoredRow {
     pub condition: String,
     #[serde(default)]
     pub kind: String,
-    #[serde(default)]
+    #[serde(default, deserialize_with = "lenient_count")]
     pub words: u64,
     #[serde(default)]
     pub fk_grade: f64,
@@ -99,8 +109,13 @@ pub fn score_output(explanation: &str, fs: &FactSet, jr: &JudgeResult, cond: &Co
         sfr: frac(&should),
         distortion: (n_all > 0)
             .then(|| v.values().filter(|x| x.as_str() == "contradicted").count() as f64 / n_all as f64),
-        mns: (!mns.is_empty()).then(|| mns.iter().filter(|x| x.as_str() == "asserted").count() as f64 / mns.len() as f64),
-        must_missing: must.iter().filter(|i| verdict(i) != Some("stated")).map(|s| s.to_string()).collect(),
+        mns: (!mns.is_empty())
+            .then(|| mns.iter().filter(|x| x.as_str() == "asserted").count() as f64 / mns.len() as f64),
+        must_missing: must
+            .iter()
+            .filter(|i| verdict(i) != Some("stated"))
+            .map(|s| s.to_string())
+            .collect(),
         parse_errors: jr.parse_errors,
         ..ScoredRow::default()
     }
@@ -117,7 +132,11 @@ pub struct Est {
 
 impl Est {
     pub fn nan() -> Est {
-        Est { point: f64::NAN, lo: f64::NAN, hi: f64::NAN }
+        Est {
+            point: f64::NAN,
+            lo: f64::NAN,
+            hi: f64::NAN,
+        }
     }
 }
 
@@ -137,7 +156,11 @@ pub fn nanquantile(values: &[f64], qs: &[f64]) -> Vec<f64> {
             let gamma = vi - prev as f64;
             let (a, b) = (v[prev], v[next]);
             let diff = b - a;
-            if gamma >= 0.5 { b - diff * (1.0 - gamma) } else { a + diff * gamma }
+            if gamma >= 0.5 {
+                b - diff * (1.0 - gamma)
+            } else {
+                a + diff * gamma
+            }
         })
         .collect()
 }
@@ -147,7 +170,11 @@ pub fn bootstrap(mut stat: impl FnMut(&[usize]) -> f64, n_items: usize, n_boot: 
     let identity: Vec<usize> = (0..n_items).collect();
     let full = stat(&identity);
     if n_items < 2 || full.is_nan() {
-        return Est { point: full, lo: f64::NAN, hi: f64::NAN };
+        return Est {
+            point: full,
+            lo: f64::NAN,
+            hi: f64::NAN,
+        };
     }
     let mut rng = Generator::new(seed);
     let mut ix = vec![0usize; n_items];
@@ -158,7 +185,11 @@ pub fn bootstrap(mut stat: impl FnMut(&[usize]) -> f64, n_items: usize, n_boot: 
     }
     let a = (1.0 - level) / 2.0;
     let q = nanquantile(&draws, &[a, 1.0 - a]);
-    Est { point: full, lo: q[0], hi: q[1] }
+    Est {
+        point: full,
+        lo: q[0],
+        hi: q[1],
+    }
 }
 
 // -------------------------------------------------------------- aggregation
@@ -180,7 +211,9 @@ fn matrix(rows: &[ScoredRow], get: impl Fn(&ScoredRow) -> Option<f64>, items: &[
     let mut acc: HashMap<(&str, &str), Vec<f64>> = HashMap::new();
     for r in rows {
         if let Some(val) = get(r) {
-            acc.entry((r.item_id.as_str(), r.condition.as_str())).or_default().push(val);
+            acc.entry((r.item_id.as_str(), r.condition.as_str()))
+                .or_default()
+                .push(val);
         }
     }
     let mut data = vec![f64::NAN; items.len() * conds.len()];
@@ -191,7 +224,10 @@ fn matrix(rows: &[ScoredRow], get: impl Fn(&ScoredRow) -> Option<f64>, items: &[
             }
         }
     }
-    Matrix { data, cols: conds.len() }
+    Matrix {
+        data,
+        cols: conds.len(),
+    }
 }
 
 /// Mean ignoring NaN; NaN when nothing is left.
@@ -207,18 +243,22 @@ fn nm(vals: impl IntoIterator<Item = f64>) -> f64 {
 }
 
 fn nanmin(vals: impl IntoIterator<Item = f64>) -> f64 {
-    vals.into_iter().filter(|x| !x.is_nan()).fold(f64::NAN, |a, x| if a.is_nan() || x < a { x } else { a })
+    vals.into_iter()
+        .filter(|x| !x.is_nan())
+        .fold(f64::NAN, |a, x| if a.is_nan() || x < a { x } else { a })
 }
 
 fn nanmax(vals: impl IntoIterator<Item = f64>) -> f64 {
-    vals.into_iter().filter(|x| !x.is_nan()).fold(f64::NAN, |a, x| if a.is_nan() || x > a { x } else { a })
+    vals.into_iter()
+        .filter(|x| !x.is_nan())
+        .fold(f64::NAN, |a, x| if a.is_nan() || x > a { x } else { a })
 }
 
 fn row_nanmean(m: &Matrix, i: usize, cols: &[usize]) -> f64 {
     nm(cols.iter().map(|&j| m.at(i, j)))
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize)]
+#[derive(Debug, Clone, Copy, PartialEq, Serialize)]
 pub struct MatchedLengthTax {
     pub point: f64,
     pub lo: f64,
@@ -284,9 +324,17 @@ pub struct ModelSummary {
 
 /// Aggregate one model's scored rows. `cond_order` starts with "neutral".
 pub fn summarize_model(rows: &[ScoredRow], cond_order: &[String], n_boot: usize, seed: u64) -> ModelSummary {
-    let items: Vec<String> = rows.iter().map(|r| r.item_id.clone()).collect::<BTreeSet<_>>().into_iter().collect();
-    let conds: Vec<String> =
-        cond_order.iter().filter(|c| rows.iter().any(|r| &r.condition == *c)).cloned().collect();
+    let items: Vec<String> = rows
+        .iter()
+        .map(|r| r.item_id.clone())
+        .collect::<BTreeSet<_>>()
+        .into_iter()
+        .collect();
+    let conds: Vec<String> = cond_order
+        .iter()
+        .filter(|c| rows.iter().any(|r| &r.condition == *c))
+        .cloned()
+        .collect();
     let n = items.len();
     let cfr = matrix(rows, |r| r.cfr, &items, &conds);
     let sfr = matrix(rows, |r| r.sfr, &items, &conds);
@@ -305,7 +353,8 @@ pub fn summarize_model(rows: &[ScoredRow], cond_order: &[String], n_boot: usize,
             distortion: colmean(&dist, j),
             mns: colmean(&mns, j),
             band_pass: (!band.is_empty()).then(|| band.iter().filter(|&&b| b).count() as f64 / band.len() as f64),
-            mean_words: (!of_c.is_empty()).then(|| of_c.iter().map(|r| r.words as f64).sum::<f64>() / of_c.len() as f64),
+            mean_words: (!of_c.is_empty())
+                .then(|| of_c.iter().map(|r| r.words as f64).sum::<f64>() / of_c.len() as f64),
             mean_fk_grade: of_c.iter().map(|r| r.fk_grade).sum::<f64>() / of_c.len() as f64,
             adaptation_tax: None,
             matched_length_tax: None,
@@ -387,7 +436,9 @@ fn matched_length_tax(
 ) -> Option<MatchedLengthTax> {
     let mut w: HashMap<(&str, &str), Vec<f64>> = HashMap::new();
     for r in rows {
-        w.entry((r.item_id.as_str(), r.condition.as_str())).or_default().push(r.words as f64);
+        w.entry((r.item_id.as_str(), r.condition.as_str()))
+            .or_default()
+            .push(r.words as f64);
     }
     let mean = |v: &Vec<f64>| v.iter().sum::<f64>() / v.len() as f64;
     let mut diffs = Vec::new();
@@ -405,7 +456,12 @@ fn matched_length_tax(
         return None;
     }
     let est = bootstrap(|ix| nm(ix.iter().map(|&i| diffs[i])), diffs.len(), n_boot, seed, 0.95);
-    Some(MatchedLengthTax { point: est.point, lo: est.lo, hi: est.hi, n_items: diffs.len() })
+    Some(MatchedLengthTax {
+        point: est.point,
+        lo: est.lo,
+        hi: est.hi,
+        n_items: diffs.len(),
+    })
 }
 
 /// Ranks with ties given their average rank (needed for a correct Spearman).
@@ -445,8 +501,10 @@ fn all_equal(x: &[f64]) -> bool {
 
 /// CFR by length tercile over all outputs, and rank correlation of CFR with length.
 pub fn length_control(rows: &[ScoredRow]) -> Option<LengthControl> {
-    let ok: Vec<(f64, f64)> =
-        rows.iter().filter_map(|r| r.cfr.filter(|_| r.words > 0).map(|c| (r.words as f64, c))).collect();
+    let ok: Vec<(f64, f64)> = rows
+        .iter()
+        .filter_map(|r| r.cfr.filter(|_| r.words > 0).map(|c| (r.words as f64, c)))
+        .collect();
     if ok.len() < 6 {
         return None;
     }
@@ -473,7 +531,10 @@ pub fn length_control(rows: &[ScoredRow]) -> Option<LengthControl> {
     }
     let (rw, rc) = (avg_rank(&words), avg_rank(&cfr));
     let rho = (!all_equal(&rw) && !all_equal(&rc)).then(|| pearson(&rw, &rc));
-    Some(LengthControl { by_length_tercile: by, spearman_cfr_vs_words: rho })
+    Some(LengthControl {
+        by_length_tercile: by,
+        spearman_cfr_vs_words: rho,
+    })
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
@@ -484,9 +545,17 @@ pub struct HeadlinePoints {
 
 /// Point estimates only (no bootstrap): worst-reader CFR and mean adaptation tax.
 pub fn headline_points(rows: &[ScoredRow], cond_order: &[String]) -> Option<HeadlinePoints> {
-    let items: Vec<String> = rows.iter().map(|r| r.item_id.clone()).collect::<BTreeSet<_>>().into_iter().collect();
-    let conds: Vec<String> =
-        cond_order.iter().filter(|c| rows.iter().any(|r| &r.condition == *c)).cloned().collect();
+    let items: Vec<String> = rows
+        .iter()
+        .map(|r| r.item_id.clone())
+        .collect::<BTreeSet<_>>()
+        .into_iter()
+        .collect();
+    let conds: Vec<String> = cond_order
+        .iter()
+        .filter(|c| rows.iter().any(|r| &r.condition == *c))
+        .cloned()
+        .collect();
     let ni = conds.iter().position(|c| c == "neutral")?;
     if conds.len() < 2 {
         return None;

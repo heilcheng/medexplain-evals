@@ -1068,7 +1068,7 @@
     },
     {
      "fact_id": "f2",
-     "text": "Addiction, Abuse, and Misuse Because the use of hydrocodone bitartrate and acetaminophen tablets exposes patients and other users to the risks of opioid addiction, abuse, and misuse, which can lead to overdose and death, assess each patient’s risk prior to prescribing and reassess all patients regularly for the development of these behaviors and conditions.",
+     "text": "Addiction, Abuse, and Misuse Because the use of hydrocodone bitartrate and acetaminophen tablets exposes patients and other users to the risks of opioid addiction, abuse, and misuse, which can lead to overdose and death, assess each patient\u2019s risk prior to prescribing and reassess all patients regularly for the development of these behaviors and conditions.",
      "tier": "must_keep",
      "section": "boxed warning"
     },
@@ -1122,7 +1122,7 @@
     },
     {
      "fact_id": "f11",
-     "text": "Assess each patient’s risk for opioid addiction, abuse, or misuse prior to prescribing hydrocodone bitartrate and acetaminophen tablets, and reassess all patients receiving hydrocodone bitartrate and acetaminophen tablets for the development of these behaviors and conditions.",
+     "text": "Assess each patient\u2019s risk for opioid addiction, abuse, or misuse prior to prescribing hydrocodone bitartrate and acetaminophen tablets, and reassess all patients receiving hydrocodone bitartrate and acetaminophen tablets for the development of these behaviors and conditions.",
      "tier": "optional",
      "section": "warnings"
     },
@@ -1215,7 +1215,7 @@
     },
     {
      "fact_id": "f2",
-     "text": "Addiction, Abuse, and Misuse Because the use of hydrocodone bitartrate and acetaminophen tablets exposes patients and other users to the risks of opioid addiction, abuse, and misuse, which can lead to overdose and death, assess each patient’s risk prior to prescribing and reassess all patients regularly for the development of these behaviors and conditions.",
+     "text": "Addiction, Abuse, and Misuse Because the use of hydrocodone bitartrate and acetaminophen tablets exposes patients and other users to the risks of opioid addiction, abuse, and misuse, which can lead to overdose and death, assess each patient\u2019s risk prior to prescribing and reassess all patients regularly for the development of these behaviors and conditions.",
      "tier": "must_keep",
      "section": "boxed warning"
     },
@@ -1269,7 +1269,7 @@
     },
     {
      "fact_id": "f11",
-     "text": "Assess each patient’s risk for opioid addiction, abuse, or misuse prior to prescribing hydrocodone bitartrate and acetaminophen tablets, and reassess all patients receiving hydrocodone bitartrate and acetaminophen tablets for the development of these behaviors and conditions.",
+     "text": "Assess each patient\u2019s risk for opioid addiction, abuse, or misuse prior to prescribing hydrocodone bitartrate and acetaminophen tablets, and reassess all patients receiving hydrocodone bitartrate and acetaminophen tablets for the development of these behaviors and conditions.",
      "tier": "optional",
      "section": "warnings"
     },
@@ -1365,7 +1365,7 @@
     },
     {
      "fact_id": "f2",
-     "text": "Addiction, Abuse, and Misuse Because the use of hydrocodone bitartrate and acetaminophen tablets exposes patients and other users to the risks of opioid addiction, abuse, and misuse, which can lead to overdose and death, assess each patient’s risk prior to prescribing and reassess all patients regularly for the development of these behaviors and conditions.",
+     "text": "Addiction, Abuse, and Misuse Because the use of hydrocodone bitartrate and acetaminophen tablets exposes patients and other users to the risks of opioid addiction, abuse, and misuse, which can lead to overdose and death, assess each patient\u2019s risk prior to prescribing and reassess all patients regularly for the development of these behaviors and conditions.",
      "tier": "must_keep",
      "section": "boxed warning"
     },
@@ -1419,7 +1419,7 @@
     },
     {
      "fact_id": "f11",
-     "text": "Assess each patient’s risk for opioid addiction, abuse, or misuse prior to prescribing hydrocodone bitartrate and acetaminophen tablets, and reassess all patients receiving hydrocodone bitartrate and acetaminophen tablets for the development of these behaviors and conditions.",
+     "text": "Assess each patient\u2019s risk for opioid addiction, abuse, or misuse prior to prescribing hydrocodone bitartrate and acetaminophen tablets, and reassess all patients receiving hydrocodone bitartrate and acetaminophen tablets for the development of these behaviors and conditions.",
      "tier": "optional",
      "section": "warnings"
     },
@@ -2014,7 +2014,7 @@
     },
     {
      "fact_id": "f11",
-     "text": "Followed by 5 mg after 24 hours, then 10 mg once daily Renal Impairment: For patients with creatinine clearance ≥ 10 mL/min and ≤ 30 mL/min, halve usual initial dose.",
+     "text": "Followed by 5 mg after 24 hours, then 10 mg once daily Renal Impairment: For patients with creatinine clearance \u2265 10 mL/min and \u2264 30 mL/min, halve usual initial dose.",
      "tier": "should_keep",
      "section": "dosage and administration"
     },
@@ -2152,7 +2152,7 @@
     },
     {
      "fact_id": "f11",
-     "text": "Followed by 5 mg after 24 hours, then 10 mg once daily Renal Impairment: For patients with creatinine clearance ≥ 10 mL/min and ≤ 30 mL/min, halve usual initial dose.",
+     "text": "Followed by 5 mg after 24 hours, then 10 mg once daily Renal Impairment: For patients with creatinine clearance \u2265 10 mL/min and \u2264 30 mL/min, halve usual initial dose.",
      "tier": "should_keep",
      "section": "dosage and administration"
     },
@@ -2293,7 +2293,7 @@
     },
     {
      "fact_id": "f11",
-     "text": "Followed by 5 mg after 24 hours, then 10 mg once daily Renal Impairment: For patients with creatinine clearance ≥ 10 mL/min and ≤ 30 mL/min, halve usual initial dose.",
+     "text": "Followed by 5 mg after 24 hours, then 10 mg once daily Renal Impairment: For patients with creatinine clearance \u2265 10 mL/min and \u2264 30 mL/min, halve usual initial dose.",
      "tier": "should_keep",
      "section": "dosage and administration"
     },
@@ -2374,13 +2374,13 @@
    "facts": [
     {
      "fact_id": "f1",
-     "text": "Amiodarone is contraindicated in patients with: • Known hypersensitivity to any of the components of Amiodarone Hydrochloride Injection, USP, including iodine.",
+     "text": "Amiodarone is contraindicated in patients with: \u2022 Known hypersensitivity to any of the components of Amiodarone Hydrochloride Injection, USP, including iodine.",
      "tier": "must_keep",
      "section": "contraindications"
     },
     {
      "fact_id": "f2",
-     "text": "Hypersensitivity reactions may involve rash, angioedema, cutaneous/mucosal hemorrhage (bleeding), fever, arthralgias (joint pains), eosinophilia (abnormal blood counts), urticaria (hives), thrombotic thrombocytopenic purpura, or severe periateritis (inflammation around blood vessels) • Cardiogenic shock • Marked sinus bradycardia • Second- or third-degree atrio-ventricular (AV) block unless of a functioning pacemaker is available.",
+     "text": "Hypersensitivity reactions may involve rash, angioedema, cutaneous/mucosal hemorrhage (bleeding), fever, arthralgias (joint pains), eosinophilia (abnormal blood counts), urticaria (hives), thrombotic thrombocytopenic purpura, or severe periateritis (inflammation around blood vessels) \u2022 Cardiogenic shock \u2022 Marked sinus bradycardia \u2022 Second- or third-degree atrio-ventricular (AV) block unless of a functioning pacemaker is available.",
      "tier": "must_keep",
      "section": "contraindications"
     },
@@ -2494,13 +2494,13 @@
    "facts": [
     {
      "fact_id": "f1",
-     "text": "Amiodarone is contraindicated in patients with: • Known hypersensitivity to any of the components of Amiodarone Hydrochloride Injection, USP, including iodine.",
+     "text": "Amiodarone is contraindicated in patients with: \u2022 Known hypersensitivity to any of the components of Amiodarone Hydrochloride Injection, USP, including iodine.",
      "tier": "must_keep",
      "section": "contraindications"
     },
     {
      "fact_id": "f2",
-     "text": "Hypersensitivity reactions may involve rash, angioedema, cutaneous/mucosal hemorrhage (bleeding), fever, arthralgias (joint pains), eosinophilia (abnormal blood counts), urticaria (hives), thrombotic thrombocytopenic purpura, or severe periateritis (inflammation around blood vessels) • Cardiogenic shock • Marked sinus bradycardia • Second- or third-degree atrio-ventricular (AV) block unless of a functioning pacemaker is available.",
+     "text": "Hypersensitivity reactions may involve rash, angioedema, cutaneous/mucosal hemorrhage (bleeding), fever, arthralgias (joint pains), eosinophilia (abnormal blood counts), urticaria (hives), thrombotic thrombocytopenic purpura, or severe periateritis (inflammation around blood vessels) \u2022 Cardiogenic shock \u2022 Marked sinus bradycardia \u2022 Second- or third-degree atrio-ventricular (AV) block unless of a functioning pacemaker is available.",
      "tier": "must_keep",
      "section": "contraindications"
     },
@@ -2617,13 +2617,13 @@
    "facts": [
     {
      "fact_id": "f1",
-     "text": "Amiodarone is contraindicated in patients with: • Known hypersensitivity to any of the components of Amiodarone Hydrochloride Injection, USP, including iodine.",
+     "text": "Amiodarone is contraindicated in patients with: \u2022 Known hypersensitivity to any of the components of Amiodarone Hydrochloride Injection, USP, including iodine.",
      "tier": "must_keep",
      "section": "contraindications"
     },
     {
      "fact_id": "f2",
-     "text": "Hypersensitivity reactions may involve rash, angioedema, cutaneous/mucosal hemorrhage (bleeding), fever, arthralgias (joint pains), eosinophilia (abnormal blood counts), urticaria (hives), thrombotic thrombocytopenic purpura, or severe periateritis (inflammation around blood vessels) • Cardiogenic shock • Marked sinus bradycardia • Second- or third-degree atrio-ventricular (AV) block unless of a functioning pacemaker is available.",
+     "text": "Hypersensitivity reactions may involve rash, angioedema, cutaneous/mucosal hemorrhage (bleeding), fever, arthralgias (joint pains), eosinophilia (abnormal blood counts), urticaria (hives), thrombotic thrombocytopenic purpura, or severe periateritis (inflammation around blood vessels) \u2022 Cardiogenic shock \u2022 Marked sinus bradycardia \u2022 Second- or third-degree atrio-ventricular (AV) block unless of a functioning pacemaker is available.",
      "tier": "must_keep",
      "section": "contraindications"
     },
@@ -2738,25 +2738,25 @@
    "facts": [
     {
      "fact_id": "f1",
-     "text": "Digoxin Tablets are contraindicated in patients with: • Ventricular fibrillation • Known hypersensitivity to digoxin (reactions seen include unexplained rash, swelling of the mouth, lips or throat or a difficulty in breathing).",
+     "text": "Digoxin Tablets are contraindicated in patients with: \u2022 Ventricular fibrillation \u2022 Known hypersensitivity to digoxin (reactions seen include unexplained rash, swelling of the mouth, lips or throat or a difficulty in breathing).",
      "tier": "must_keep",
      "section": "contraindications"
     },
     {
      "fact_id": "f2",
-     "text": "A hypersensitivity reaction to other digitalis preparations usually constitutes a contraindication to digoxin. • Ventricular fibrillation. • Known hypersensitivity to digoxin or other forms of digitalis.",
+     "text": "A hypersensitivity reaction to other digitalis preparations usually constitutes a contraindication to digoxin. \u2022 Ventricular fibrillation. \u2022 Known hypersensitivity to digoxin or other forms of digitalis.",
      "tier": "must_keep",
      "section": "contraindications"
     },
     {
      "fact_id": "f3",
-     "text": "• Risk of rapid ventricular response leading to ventricular fibrillation in patients with AV accessory pathway. • Risk of advanced or complete heart block in patients with sinus node disease and AV block. • Digoxin toxicity: Indicated by nausea, vomiting, visual disturbances, and cardiac arrhythmias.",
+     "text": "\u2022 Risk of rapid ventricular response leading to ventricular fibrillation in patients with AV accessory pathway. \u2022 Risk of advanced or complete heart block in patients with sinus node disease and AV block. \u2022 Digoxin toxicity: Indicated by nausea, vomiting, visual disturbances, and cardiac arrhythmias.",
      "tier": "optional",
      "section": "warnings and precautions"
     },
     {
      "fact_id": "f4",
-     "text": "Advanced age, low body weight, impaired renal function and electrolyte abnormalities predispose to toxicity. • Risk of ventricular arrhythmias during electrical cardioversion. • Not recommended in patients with acute myocardial infarction. • Avoid Digoxin Tablets in patients with myocarditis.",
+     "text": "Advanced age, low body weight, impaired renal function and electrolyte abnormalities predispose to toxicity. \u2022 Risk of ventricular arrhythmias during electrical cardioversion. \u2022 Not recommended in patients with acute myocardial infarction. \u2022 Avoid Digoxin Tablets in patients with myocarditis.",
      "tier": "should_keep",
      "section": "warnings and precautions"
     },
@@ -2774,7 +2774,7 @@
     },
     {
      "fact_id": "f7",
-     "text": "Digoxin Tablets are a cardiac glycoside indicated for: • Treatment of mild to moderate heart failure in adults. • Increasing myocardial contractility in pediatric patients with heart failure. • Control of resting ventricular rate in patients with chronic atrial fibrillation in adults.",
+     "text": "Digoxin Tablets are a cardiac glycoside indicated for: \u2022 Treatment of mild to moderate heart failure in adults. \u2022 Increasing myocardial contractility in pediatric patients with heart failure. \u2022 Control of resting ventricular rate in patients with chronic atrial fibrillation in adults.",
      "tier": "should_keep",
      "section": "indications and usage"
     },
@@ -2835,25 +2835,25 @@
    "facts": [
     {
      "fact_id": "f1",
-     "text": "Digoxin Tablets are contraindicated in patients with: • Ventricular fibrillation • Known hypersensitivity to digoxin (reactions seen include unexplained rash, swelling of the mouth, lips or throat or a difficulty in breathing).",
+     "text": "Digoxin Tablets are contraindicated in patients with: \u2022 Ventricular fibrillation \u2022 Known hypersensitivity to digoxin (reactions seen include unexplained rash, swelling of the mouth, lips or throat or a difficulty in breathing).",
      "tier": "must_keep",
      "section": "contraindications"
     },
     {
      "fact_id": "f2",
-     "text": "A hypersensitivity reaction to other digitalis preparations usually constitutes a contraindication to digoxin. • Ventricular fibrillation. • Known hypersensitivity to digoxin or other forms of digitalis.",
+     "text": "A hypersensitivity reaction to other digitalis preparations usually constitutes a contraindication to digoxin. \u2022 Ventricular fibrillation. \u2022 Known hypersensitivity to digoxin or other forms of digitalis.",
      "tier": "must_keep",
      "section": "contraindications"
     },
     {
      "fact_id": "f3",
-     "text": "• Risk of rapid ventricular response leading to ventricular fibrillation in patients with AV accessory pathway. • Risk of advanced or complete heart block in patients with sinus node disease and AV block. • Digoxin toxicity: Indicated by nausea, vomiting, visual disturbances, and cardiac arrhythmias.",
+     "text": "\u2022 Risk of rapid ventricular response leading to ventricular fibrillation in patients with AV accessory pathway. \u2022 Risk of advanced or complete heart block in patients with sinus node disease and AV block. \u2022 Digoxin toxicity: Indicated by nausea, vomiting, visual disturbances, and cardiac arrhythmias.",
      "tier": "optional",
      "section": "warnings and precautions"
     },
     {
      "fact_id": "f4",
-     "text": "Advanced age, low body weight, impaired renal function and electrolyte abnormalities predispose to toxicity. • Risk of ventricular arrhythmias during electrical cardioversion. • Not recommended in patients with acute myocardial infarction. • Avoid Digoxin Tablets in patients with myocarditis.",
+     "text": "Advanced age, low body weight, impaired renal function and electrolyte abnormalities predispose to toxicity. \u2022 Risk of ventricular arrhythmias during electrical cardioversion. \u2022 Not recommended in patients with acute myocardial infarction. \u2022 Avoid Digoxin Tablets in patients with myocarditis.",
      "tier": "should_keep",
      "section": "warnings and precautions"
     },
@@ -2871,7 +2871,7 @@
     },
     {
      "fact_id": "f7",
-     "text": "Digoxin Tablets are a cardiac glycoside indicated for: • Treatment of mild to moderate heart failure in adults. • Increasing myocardial contractility in pediatric patients with heart failure. • Control of resting ventricular rate in patients with chronic atrial fibrillation in adults.",
+     "text": "Digoxin Tablets are a cardiac glycoside indicated for: \u2022 Treatment of mild to moderate heart failure in adults. \u2022 Increasing myocardial contractility in pediatric patients with heart failure. \u2022 Control of resting ventricular rate in patients with chronic atrial fibrillation in adults.",
      "tier": "should_keep",
      "section": "indications and usage"
     },
@@ -2935,25 +2935,25 @@
    "facts": [
     {
      "fact_id": "f1",
-     "text": "Digoxin Tablets are contraindicated in patients with: • Ventricular fibrillation • Known hypersensitivity to digoxin (reactions seen include unexplained rash, swelling of the mouth, lips or throat or a difficulty in breathing).",
+     "text": "Digoxin Tablets are contraindicated in patients with: \u2022 Ventricular fibrillation \u2022 Known hypersensitivity to digoxin (reactions seen include unexplained rash, swelling of the mouth, lips or throat or a difficulty in breathing).",
      "tier": "must_keep",
      "section": "contraindications"
     },
     {
      "fact_id": "f2",
-     "text": "A hypersensitivity reaction to other digitalis preparations usually constitutes a contraindication to digoxin. • Ventricular fibrillation. • Known hypersensitivity to digoxin or other forms of digitalis.",
+     "text": "A hypersensitivity reaction to other digitalis preparations usually constitutes a contraindication to digoxin. \u2022 Ventricular fibrillation. \u2022 Known hypersensitivity to digoxin or other forms of digitalis.",
      "tier": "must_keep",
      "section": "contraindications"
     },
     {
      "fact_id": "f3",
-     "text": "• Risk of rapid ventricular response leading to ventricular fibrillation in patients with AV accessory pathway. • Risk of advanced or complete heart block in patients with sinus node disease and AV block. • Digoxin toxicity: Indicated by nausea, vomiting, visual disturbances, and cardiac arrhythmias.",
+     "text": "\u2022 Risk of rapid ventricular response leading to ventricular fibrillation in patients with AV accessory pathway. \u2022 Risk of advanced or complete heart block in patients with sinus node disease and AV block. \u2022 Digoxin toxicity: Indicated by nausea, vomiting, visual disturbances, and cardiac arrhythmias.",
      "tier": "optional",
      "section": "warnings and precautions"
     },
     {
      "fact_id": "f4",
-     "text": "Advanced age, low body weight, impaired renal function and electrolyte abnormalities predispose to toxicity. • Risk of ventricular arrhythmias during electrical cardioversion. • Not recommended in patients with acute myocardial infarction. • Avoid Digoxin Tablets in patients with myocarditis.",
+     "text": "Advanced age, low body weight, impaired renal function and electrolyte abnormalities predispose to toxicity. \u2022 Risk of ventricular arrhythmias during electrical cardioversion. \u2022 Not recommended in patients with acute myocardial infarction. \u2022 Avoid Digoxin Tablets in patients with myocarditis.",
      "tier": "should_keep",
      "section": "warnings and precautions"
     },
@@ -2971,7 +2971,7 @@
     },
     {
      "fact_id": "f7",
-     "text": "Digoxin Tablets are a cardiac glycoside indicated for: • Treatment of mild to moderate heart failure in adults. • Increasing myocardial contractility in pediatric patients with heart failure. • Control of resting ventricular rate in patients with chronic atrial fibrillation in adults.",
+     "text": "Digoxin Tablets are a cardiac glycoside indicated for: \u2022 Treatment of mild to moderate heart failure in adults. \u2022 Increasing myocardial contractility in pediatric patients with heart failure. \u2022 Control of resting ventricular rate in patients with chronic atrial fibrillation in adults.",
      "tier": "should_keep",
      "section": "indications and usage"
     },
@@ -3055,19 +3055,19 @@
     },
     {
      "fact_id": "f4",
-     "text": "Thyroid hormones, including levothyroxine sodium tablet, should not be used for the treatment of obesity or for weight loss. • Doses beyond the range of daily hormonal requirements may produce serious or even life-threatening manifestations of toxicity.",
+     "text": "Thyroid hormones, including levothyroxine sodium tablet, should not be used for the treatment of obesity or for weight loss. \u2022 Doses beyond the range of daily hormonal requirements may produce serious or even life-threatening manifestations of toxicity.",
      "tier": "must_keep",
      "section": "boxed warning"
     },
     {
      "fact_id": "f5",
-     "text": "Levothyroxine sodium tablets are contraindicated in patients with uncorrected adrenal insufficiency. • Uncorrected adrenal insufficiency.",
+     "text": "Levothyroxine sodium tablets are contraindicated in patients with uncorrected adrenal insufficiency. \u2022 Uncorrected adrenal insufficiency.",
      "tier": "must_keep",
      "section": "contraindications"
     },
     {
      "fact_id": "f6",
-     "text": "Carefully monitor glycemic control after starting, changing, or discontinuing thyroid hormone therapy. • Decreased bone mineral density associated with thyroid hormone over-replacement: Over-replacement can increase bone resorption and decrease bone mineral density.",
+     "text": "Carefully monitor glycemic control after starting, changing, or discontinuing thyroid hormone therapy. \u2022 Decreased bone mineral density associated with thyroid hormone over-replacement: Over-replacement can increase bone resorption and decrease bone mineral density.",
      "tier": "optional",
      "section": "warnings and precautions"
     },
@@ -3171,19 +3171,19 @@
     },
     {
      "fact_id": "f4",
-     "text": "Thyroid hormones, including levothyroxine sodium tablet, should not be used for the treatment of obesity or for weight loss. • Doses beyond the range of daily hormonal requirements may produce serious or even life-threatening manifestations of toxicity.",
+     "text": "Thyroid hormones, including levothyroxine sodium tablet, should not be used for the treatment of obesity or for weight loss. \u2022 Doses beyond the range of daily hormonal requirements may produce serious or even life-threatening manifestations of toxicity.",
      "tier": "must_keep",
      "section": "boxed warning"
     },
     {
      "fact_id": "f5",
-     "text": "Levothyroxine sodium tablets are contraindicated in patients with uncorrected adrenal insufficiency. • Uncorrected adrenal insufficiency.",
+     "text": "Levothyroxine sodium tablets are contraindicated in patients with uncorrected adrenal insufficiency. \u2022 Uncorrected adrenal insufficiency.",
      "tier": "must_keep",
      "section": "contraindications"
     },
     {
      "fact_id": "f6",
-     "text": "Carefully monitor glycemic control after starting, changing, or discontinuing thyroid hormone therapy. • Decreased bone mineral density associated with thyroid hormone over-replacement: Over-replacement can increase bone resorption and decrease bone mineral density.",
+     "text": "Carefully monitor glycemic control after starting, changing, or discontinuing thyroid hormone therapy. \u2022 Decreased bone mineral density associated with thyroid hormone over-replacement: Over-replacement can increase bone resorption and decrease bone mineral density.",
      "tier": "optional",
      "section": "warnings and precautions"
     },
@@ -3290,19 +3290,19 @@
     },
     {
      "fact_id": "f4",
-     "text": "Thyroid hormones, including levothyroxine sodium tablet, should not be used for the treatment of obesity or for weight loss. • Doses beyond the range of daily hormonal requirements may produce serious or even life-threatening manifestations of toxicity.",
+     "text": "Thyroid hormones, including levothyroxine sodium tablet, should not be used for the treatment of obesity or for weight loss. \u2022 Doses beyond the range of daily hormonal requirements may produce serious or even life-threatening manifestations of toxicity.",
      "tier": "must_keep",
      "section": "boxed warning"
     },
     {
      "fact_id": "f5",
-     "text": "Levothyroxine sodium tablets are contraindicated in patients with uncorrected adrenal insufficiency. • Uncorrected adrenal insufficiency.",
+     "text": "Levothyroxine sodium tablets are contraindicated in patients with uncorrected adrenal insufficiency. \u2022 Uncorrected adrenal insufficiency.",
      "tier": "must_keep",
      "section": "contraindications"
     },
     {
      "fact_id": "f6",
-     "text": "Carefully monitor glycemic control after starting, changing, or discontinuing thyroid hormone therapy. • Decreased bone mineral density associated with thyroid hormone over-replacement: Over-replacement can increase bone resorption and decrease bone mineral density.",
+     "text": "Carefully monitor glycemic control after starting, changing, or discontinuing thyroid hormone therapy. \u2022 Decreased bone mineral density associated with thyroid hormone over-replacement: Over-replacement can increase bone resorption and decrease bone mineral density.",
      "tier": "optional",
      "section": "warnings and precautions"
     },
@@ -3434,7 +3434,7 @@
     },
     {
      "fact_id": "f8",
-     "text": "Isotretinoin are available only through a restricted program called the iPLEDGE ® REMS.",
+     "text": "Isotretinoin are available only through a restricted program called the iPLEDGE \u00ae REMS.",
      "tier": "must_keep",
      "section": "boxed warning"
     },
@@ -3558,7 +3558,7 @@
     },
     {
      "fact_id": "f8",
-     "text": "Isotretinoin are available only through a restricted program called the iPLEDGE ® REMS.",
+     "text": "Isotretinoin are available only through a restricted program called the iPLEDGE \u00ae REMS.",
      "tier": "must_keep",
      "section": "boxed warning"
     },
@@ -3685,7 +3685,7 @@
     },
     {
      "fact_id": "f8",
-     "text": "Isotretinoin are available only through a restricted program called the iPLEDGE ® REMS.",
+     "text": "Isotretinoin are available only through a restricted program called the iPLEDGE \u00ae REMS.",
      "tier": "must_keep",
      "section": "boxed warning"
     },
@@ -3814,7 +3814,7 @@
     },
     {
      "fact_id": "f8",
-     "text": "Discontinue lithium or treat with amiloride as a therapeutic agent. • Hyponatremia: Symptoms are more severe with faster-onset hyponatremia.",
+     "text": "Discontinue lithium or treat with amiloride as a therapeutic agent. \u2022 Hyponatremia: Symptoms are more severe with faster-onset hyponatremia.",
      "tier": "should_keep",
      "section": "warnings and precautions"
     },
@@ -3922,7 +3922,7 @@
     },
     {
      "fact_id": "f8",
-     "text": "Discontinue lithium or treat with amiloride as a therapeutic agent. • Hyponatremia: Symptoms are more severe with faster-onset hyponatremia.",
+     "text": "Discontinue lithium or treat with amiloride as a therapeutic agent. \u2022 Hyponatremia: Symptoms are more severe with faster-onset hyponatremia.",
      "tier": "should_keep",
      "section": "warnings and precautions"
     },
@@ -4034,7 +4034,7 @@
     },
     {
      "fact_id": "f8",
-     "text": "Discontinue lithium or treat with amiloride as a therapeutic agent. • Hyponatremia: Symptoms are more severe with faster-onset hyponatremia.",
+     "text": "Discontinue lithium or treat with amiloride as a therapeutic agent. \u2022 Hyponatremia: Symptoms are more severe with faster-onset hyponatremia.",
      "tier": "should_keep",
      "section": "warnings and precautions"
     },

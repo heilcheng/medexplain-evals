@@ -4,4 +4,4 @@
 pub mod commands;
 pub mod runner;
 
-pub use commands::{run_cli, run_cli_captured, Output};
+pub use commands::{Output, run_cli, run_cli_captured};

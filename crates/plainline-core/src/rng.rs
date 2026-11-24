@@ -71,7 +71,10 @@ pub fn seed_sequence_state(seed: u128, n_words: usize) -> Vec<u64> {
             v ^ (v >> XSHIFT)
         })
         .collect();
-    words32.chunks(2).map(|c| u64::from(c[0]) | (u64::from(c[1]) << 32)).collect()
+    words32
+        .chunks(2)
+        .map(|c| u64::from(c[0]) | (u64::from(c[1]) << 32))
+        .collect()
 }
 
 /// The PCG64 bit generator as NumPy seeds and steps it, with its 32-bit output buffer.
@@ -89,7 +92,12 @@ impl Pcg64 {
         let v = seed_sequence_state(seed, 4);
         let initstate = (u128::from(v[0]) << 64) | u128::from(v[1]);
         let initseq = (u128::from(v[2]) << 64) | u128::from(v[3]);
-        let mut g = Pcg64 { state: 0, inc: (initseq << 1) | 1, has_uint32: false, uinteger: 0 };
+        let mut g = Pcg64 {
+            state: 0,
+            inc: (initseq << 1) | 1,
+            has_uint32: false,
+            uinteger: 0,
+        };
         g.step();
         g.state = g.state.wrapping_add(initstate);
         g.step();
@@ -120,7 +128,7 @@ impl Pcg64 {
 
     /// One draw of `Generator.integers(0, n)` (int64) for 0 < n <= 2^32 (Lemire's method).
     pub fn bounded(&mut self, n: u64) -> u64 {
-        assert!(n >= 1 && n <= (1u64 << 32), "range must fit 32 bits");
+        assert!((1..=(1u64 << 32)).contains(&n), "range must fit 32 bits");
         let rng = (n - 1) as u32;
         if rng == 0 {
             return 0;
