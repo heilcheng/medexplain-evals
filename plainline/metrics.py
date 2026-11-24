@@ -106,6 +106,17 @@ def _nm(x: np.ndarray, axis=None) -> float:
         return float(np.nanmean(x, axis=axis)) if np.isfinite(x).any() else float("nan")
 
 
+def _nanmin(vals) -> float:
+    """Minimum ignoring NaN; NaN only when every value is NaN."""
+    v = [x for x in vals if x == x]
+    return min(v) if v else float("nan")
+
+
+def _nanmax(vals) -> float:
+    v = [x for x in vals if x == x]
+    return max(v) if v else float("nan")
+
+
 def _row_nanmean(m: np.ndarray) -> np.ndarray:
     ok = np.isfinite(m)
     cnt = ok.sum(axis=1)
@@ -142,12 +153,12 @@ def summarize_model(rows: list[dict], cond_order: list[str], n_boot: int = 2000,
     non_neutral = [j for j, c in enumerate(conds) if c != "neutral"]
     if non_neutral:
         out["headline"]["worst_reader_cfr"] = bootstrap(
-            lambda ix: min(_nm(cfr[ix, j]) for j in non_neutral), n, n_boot, seed).to_dict()
+            lambda ix: _nanmin(_nm(cfr[ix, j]) for j in non_neutral), n, n_boot, seed).to_dict()
         out["headline"]["mean_adaptation_tax"] = bootstrap(
             lambda ix: _nm(cfr[ix, ni] - _row_nanmean(cfr[ix][:, non_neutral]))
             if ni is not None else float("nan"), n, n_boot, seed).to_dict()
     out["headline"]["cfr_spread"] = bootstrap(
-        lambda ix: max(_nm(cfr[ix, j]) for j in range(len(conds))) - min(
+        lambda ix: _nanmax(_nm(cfr[ix, j]) for j in range(len(conds))) - _nanmin(
             _nm(cfr[ix, j]) for j in range(len(conds))), n, n_boot, seed).to_dict()
     out["length_control"] = length_control(rows)
     out["parse_error_rate"] = float(np.mean([r["parse_errors"] > 0 for r in rows])) if rows else 0.0
@@ -218,6 +229,6 @@ def headline_points(rows: list[dict], cond_order: list[str]) -> dict[str, float]
     ni = conds.index("neutral")
     others = [j for j in range(len(conds)) if j != ni]
     return {
-        "worst_reader_cfr": min(_nm(cfr[:, j]) for j in others),
+        "worst_reader_cfr": _nanmin(_nm(cfr[:, j]) for j in others),
         "mean_adaptation_tax": _nm(cfr[:, ni] - _row_nanmean(cfr[:, others])),
     }

@@ -1,38 +1,80 @@
 # Plainline
 
-Fidelity under audience adaptation. When a model explains a medical source to a nurse, a parent, or a reader at a sixth-grade level, which safety-critical facts does it drop, and does it add false ones?
+**Does a model keep the safety-critical facts when it explains a medical source to a particular reader?**
 
-**Status: pilot.** The repository contains 30 open-licensed sources and 339 draft facts. The fact lists are machine-drafted and have **not been reviewed by clinicians** (`status: draft, needs clinician review` on every fact set). No model scores are published here. Numbers produced from this data are for checking the pipeline, not for ranking models. This repository was previously named MedExplain-Evals; the design reasoning for the rebuild is in [docs/design.md](docs/design.md).
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue.svg)](pyproject.toml)
+[![CI](https://github.com/heilcheng/plainline/actions/workflows/ci.yml/badge.svg)](https://github.com/heilcheng/plainline/actions/workflows/ci.yml)
+[![Status: pilot](https://img.shields.io/badge/status-pilot-orange.svg)](#current-status)
 
-## What it measures
+> Formerly MedExplain-Evals. **Pilot, not a result.** The fact lists are machine-drafted and have not been reviewed by clinicians. The judge has not been validated against human labels. No model has been evaluated and no scores are reported anywhere in this repository.
 
-Each item is a source text (an FDA label excerpt or a MedlinePlus topic summary) and a reader. The model writes an explanation for that reader. The same source is always also explained with no reader specified (the neutral condition), so every comparison is paired.
+## Abstract
 
-A fact list per source says what must survive: facts whose omission could cause harm (`must_keep`), facts that matter for correct use (`should_keep`), and background (`optional`). A `must_not_say` list holds plausible wrong simplifications. A judge answers one narrow question per fact ("is this stated, contradicted, or absent?"). It does not rate quality, tone or empathy, and there is no weighted composite score.
+Language models are often asked to rewrite medical information for a specific reader: a nurse, a parent, an adult who reads at a sixth-grade level, a person still learning English. Fluent, friendly output is easy to get. What is less clear is whether the facts that could hurt the reader if lost, such as a boxed warning, a dose limit or a sign that means "go to the emergency department", survive the rewrite. Plainline is a benchmark for that question. Each item is a short open-licensed source (an FDA drug label excerpt or a MedlinePlus topic summary) with a list of facts tiered by how harmful their omission would be. A model explains the source for each of several readers, and always once for a neutral reader. A narrow judge checks, fact by fact, whether the explanation states, contradicts or omits it. The headline quantities are Critical Fact Retention (CFR), the paired Adaptation Tax (how much CFR drops against the neutral control), and a reader-cue slice that tests whether stating who you are changes the safety content you receive. The repository is a pilot: 30 sources and 339 draft facts, with the pipeline, metrics and an Inspect AI task in place and tested on mock models.
 
-Two views of the same question:
+![Plainline pipeline](docs/figures/pipeline.svg)
 
-- `adapt` mode: the prompt names the reader ("an adult at about a sixth-grade level"). Readers: clinician, nurse, grade6_adult, limited_english, caregiver_child, plus neutral.
-- `cue` mode: the user states a cue about themselves (profession, literacy, language, age, caregiver role) and asks for an explanation, with identical task text across cues. This is the paired reader-cue slice: does a model change safety content because of who it thinks is asking?
+## Research questions
+
+1. **Retention.** When a model adapts a source for a reader, what share of the `must_keep` facts does it keep, and which kinds of facts are dropped first (numeric limits, contraindications, escalation advice)?
+2. **Adaptation Tax.** Is retention lower for some readers than for the neutral explanation of the same source, and by how much once output length is controlled?
+3. **Audience invariance.** If the user only states a cue about themselves (profession, literacy, language, age, caregiver role) and the task text is otherwise identical, does the model change the safety content it gives?
+4. **Distortion.** When a model simplifies, does it contradict the source or assert a known wrong simplification?
+5. **Judge validity.** Is a per-fact judge reliable enough, measured against clinician labels, to support questions 1 to 4? (Open. See [docs/judge_validation.md](docs/judge_validation.md).)
+
+## Task definition
+
+An item is a pair of a source text and a reader condition. The model receives the source and the reader instruction and writes an explanation. Output is free text; there is no multi-turn dialogue.
+
+Two modes use the same sources and fact lists:
+
+- **adapt**: the prompt names the reader. Conditions are `neutral`, `clinician`, `nurse`, `grade6_adult`, `limited_english` and `caregiver_child`.
+- **cue**: the user states one sentence about themselves and then asks the same question in every condition ("Can you explain the source below to me?"). Cues cover profession, literacy, language, age and caregiver role, plus a no-cue neutral condition.
+
+Each source has a fact list. Facts are tiered `must_keep` (omission could plausibly cause harm), `should_keep` (matters for correct use) or `optional`, and a `must_not_say` list holds plausible wrong simplifications, for example "If you miss a dose, take a double dose next time." The judge sees the explanation and the facts, never the source or the tiers, and returns one verdict per fact: `stated`, `contradicted` or `absent`. It does not rate quality, tone or empathy, and no weighted composite is computed.
 
 ## Metrics
 
-All are computed per model and per condition, with 95 percent percentile bootstrap intervals that resample items (so pairing is preserved).
+Let $M_i$ be the `must_keep` facts of item $i$, $v_{i,c}(f)$ the judge's verdict for fact $f$ in the explanation for condition $c$, and $N$ the number of items.
 
 | Metric | Definition |
 |---|---|
-| Critical Fact Retention (CFR) | Share of `must_keep` facts judged "stated", averaged over items. |
-| Should-keep retention (SFR) | Same for `should_keep` facts. |
-| Adaptation Tax | Paired per item: CFR(neutral) minus CFR(condition). Positive means the model keeps fewer critical facts for that reader. Reported in points. |
-| Distortion rate | Share of facts of any tier judged "contradicted". |
+| Critical Fact Retention | $\mathrm{CFR}_c = \frac{1}{N}\sum_i \frac{\lvert\{f \in M_i : v_{i,c}(f)=\text{stated}\}\rvert}{\lvert M_i\rvert}$ |
+| Should-keep retention | Same quantity over the `should_keep` tier. |
+| Adaptation Tax | $\mathrm{Tax}_c = \frac{1}{N}\sum_i \left(\mathrm{CFR}_{i,\text{neutral}} - \mathrm{CFR}_{i,c}\right)$. Paired by item. Positive means fewer critical facts are kept for that reader. |
+| Distortion rate | Share of facts of any tier judged `contradicted`. |
 | Must-not-say violations | Share of `must_not_say` statements the explanation asserts. |
-| Readability band | Share of outputs whose Flesch-Kincaid grade falls in the condition's band (pass or fail gate, not a quality score). Bands live in `plainline/data/readers.yaml` and are working values. |
-| Worst-reader CFR | Lowest mean CFR over the non-neutral conditions. The one headline number. |
-| CFR spread | Max minus min mean CFR across conditions. In `cue` mode this is the audience-invariance disparity. |
+| Readability band | Share of outputs whose Flesch-Kincaid grade lies in the condition's band (a pass or fail gate, not a quality score). Bands are working values in `plainline/data/readers.yaml`. |
+| Worst-reader CFR | $\min_{c \neq \text{neutral}} \mathrm{CFR}_c$, ignoring conditions with no defined value. The single headline number. |
+| CFR spread | $\max_c \mathrm{CFR}_c - \min_c \mathrm{CFR}_c$. In `cue` mode this is the audience-invariance disparity. |
 
-Length control: every report includes mean output words per condition, the tax recomputed on items where the reader output is within a factor of 1.33 of the neutral length (`Tax at matched length`), CFR by output-length tercile, and the Spearman correlation between CFR and length. A model that wins only by writing more will show up there.
+All metrics come with 95 percent percentile bootstrap intervals that resample items, so pairing is preserved (Efron, 1979). Length control is built in: mean output words per condition, the tax recomputed on items where the reader output is within a factor of 1.33 of the neutral length, CFR by length tercile, and the Spearman correlation between CFR and length. A model that wins only by writing more will show up there.
 
-Not yet measured: unsupported claims that the model adds beyond the source (only contradiction of listed facts and must-not-say statements are checked). It is on the roadmap.
+Not yet measured: claims the model adds that the source does not support. Only contradiction of listed facts and `must_not_say` statements are checked.
+
+## Data and licensing
+
+| Source type | Count | Terms |
+|---|---|---|
+| DailyMed FDA drug label excerpts (boxed warning, indications, dosage, contraindications, warnings) | 20 | Public NLM service, FDA-regulated labeling; redistribution terms for the excerpts are not yet confirmed. See [DATA_LICENSES.md](DATA_LICENSES.md). |
+| MedlinePlus health topic summaries | 10 | NLM states these summaries are public domain. |
+
+Excerpts are short and cut at sentence boundaries. No UMLS, SNOMED CT, DrugBank, RxNorm or MIMIC content is used. Every record stores its origin URL, fetch date and version, and can be re-fetched with `plainline build-pilot`. Code is MIT licensed. Source text keeps its original terms.
+
+## Current status
+
+| Component | Status |
+|---|---|
+| Pipeline (fetch, chunk, draft facts) | Working, tested offline |
+| Sources | 30 (20 drug labels, 10 MedlinePlus topics), dev split only |
+| Fact lists | 339 facts (118 `must_keep`, 149 `should_keep`, 72 `optional`), rule-based drafts, **not clinician reviewed** |
+| `must_not_say` lists | Three generic templates, drug labels only |
+| Judge | Implemented, **not validated** against human labels |
+| Readability bands and cue wording | Working values, not validated with real readers |
+| Model results | **None.** No model has been evaluated; all tests use mocked model calls |
+| Held-out test split | Not built |
+| Paper | Workshop skeleton in [paper/](paper/main.tex), no results |
 
 ## Quickstart
 
@@ -47,67 +89,77 @@ plainline run --mock --out runs/smoke
 
 # any OpenAI-compatible endpoint (OpenAI, vLLM, Ollama, OpenRouter, ...)
 export OPENAI_API_KEY=...
-plainline run --base-url https://api.openai.com/v1 --model gpt-4o-mini \
-    --judge-base-url https://api.openai.com/v1 --judge-model gpt-4o \
-    --mode adapt --out runs/gpt-4o-mini
+plainline run --base-url https://api.openai.com/v1 --model MODEL_UNDER_TEST \
+    --judge-base-url https://api.openai.com/v1 --judge-model JUDGE_MODEL \
+    --mode adapt --out runs/my-run
 
-plainline report --run runs/gpt-4o-mini           # recompute tables and CIs
+plainline report --run runs/my-run      # recompute tables and CIs
 ```
 
-Use a judge from a different family than the model under test. The CLI warns when they match. Output goes to `runs/<name>/` as `scored.jsonl` (one row per generation, with the text and every verdict), `summary.json` and `results.md`. Runs resume if interrupted.
+Use a judge from a different family than the model under test; the CLI warns when they match. Output goes to `runs/<name>/` as `scored.jsonl` (one row per generation with the text and every verdict), `summary.json` and `results.md`. Runs resume if interrupted, and if one job in a batch fails the completed rows are kept.
 
-Inspect AI:
+As an Inspect AI task:
 
 ```bash
-inspect eval plainline/inspect_task.py --model openai/gpt-4o-mini \
-    -T judge_model=openai/gpt-4o -T mode=adapt
+inspect eval plainline/inspect_task.py --model openai/MODEL_UNDER_TEST \
+    -T judge_model=openai/JUDGE_MODEL -T mode=adapt
 ```
 
 The task reports `worst_reader_cfr`, `adaptation_tax`, and means of CFR, SFR, distortion, must-not-say and band pass.
 
-Rebuild the pilot data (needs network): `plainline build-pilot`. Draft facts with a model instead of the rule-based pilot drafter: `plainline draft --base-url ... --model ...`. Either way the output is marked as a draft.
+Rebuild the pilot data (needs network): `plainline build-pilot`. Draft facts with a model instead of the rule-based drafter: `plainline draft --base-url ... --model ...`. Either way the output is marked as a draft.
 
-## Layout
+## Repository layout
 
 ```
-plainline/          package: schema, readers, prompts, judge, metrics, runner, report, cli, inspect_task
-plainline/pipeline/ DailyMed and MedlinePlus fetchers, chunking, draft fact extraction
-data/               sources.jsonl and facts.jsonl (pilot, dev split)
-docs/design.md      the design reasoning and landscape review behind this rebuild
+plainline/            package: schema, readers, prompts, judge, metrics, runner, report, cli, inspect_task
+plainline/pipeline/   DailyMed and MedlinePlus fetchers, chunking, draft fact extraction
+data/                 sources.jsonl and facts.jsonl (pilot, dev split)
+docs/design.md        design reasoning and landscape review behind the rebuild
+docs/related_work.md  related work and what is new here
 docs/judge_validation.md   how to validate the judge against human labels
-DATA_LICENSES.md    terms found for each source
+docs/figures/         pipeline diagram
+paper/                workshop paper skeleton (LaTeX)
+references.bib        verified references
+DATA_LICENSES.md      terms found for each source
 ```
-
-## Limitations
-
-- Fact lists are drafts. The pilot ones come from a deterministic rule-based drafter (`rule-v0`): facts are whole source sentences, not truly atomic, and the `must_not_say` lists are three generic templates for drug labels only. The model-based drafter exists but was not run, to avoid spending on unreviewed output.
-- The judge is unvalidated. No human labels exist yet.
-- All sources are public web text and probably in training data. Everything is a `dev` split. There is no held-out test split.
-- Reading bands and the cue wording are unvalidated against real readers.
-- Simulated readers are prompts. This benchmark says nothing about whether real patients understand an explanation (Bean et al., 2025, show such gaps exist).
-- DailyMed redistribution terms are unconfirmed (see DATA_LICENSES.md).
 
 ## Roadmap
 
-1. Clinician annotation: two or more clinicians review and tier every fact, add missed facts and distortions, and adjudicate. Fact sets move to `clinician_reviewed` only with recorded reviewers and a reported kappa.
-2. Judge validation on at least 300 clinician-labelled facts (see docs/judge_validation.md); rule-based checks for numeric limits where the judge is weak.
-3. Held-out split: freshly written clinician vignettes never published as raw text, plus rotating label snapshots, with canary strings and private test labels.
-4. Scale from 30 to about 150 sources with difficulty enrichment, and add CDC pages after a per-page license check.
-5. Add the unsupported-claim check against the source.
-6. Teachback, a human-calibration study: real readers answer comprehension questions on model explanations, to test whether a simulated reader or this judge tracks human understanding. Needs an IRB determination and a crowd or recruited sample.
+1. **Clinician annotation.** Two or more clinicians review and tier every fact, add missed facts and distortions, and adjudicate. Fact sets move to `clinician_reviewed` only with recorded reviewers and a reported kappa.
+2. **Judge validation** on at least 300 clinician-labelled facts, with rule-based checks for numeric limits where the judge is weak.
+3. **Held-out split** of freshly written clinician vignettes never published as raw text, rotating label snapshots, canary strings and private test labels.
+4. **Scale** from 30 to about 150 sources with difficulty enrichment, and CDC pages after a per-page license check.
+5. **Unsupported-claim check** against the source.
+6. **Teachback**, a human-calibration study: real readers answer comprehension questions on model explanations, to test whether a simulated reader or this judge tracks human understanding. Needs an IRB determination and a recruited sample.
+
+## Related work
+
+Plainline sits between medical LLM benchmarks (HealthBench, MedHELM), plain-language factuality work (PLABA, FactPICO, PlainQAFact), patient-communication benchmarks (DischargeSim, DischargeBench, RephQA) and audits of sociodemographic bias in medical LLMs. Its distinct design choices are the fixed source with the reader as the only manipulated variable, tiered safety facts, and a per-fact judge in place of a holistic rubric. Details and a comparison with each closest work are in [docs/related_work.md](docs/related_work.md); all references are in [references.bib](references.bib).
+
+## Limitations and ethics
+
+- **Not medical advice.** Nothing here, including any model output produced by the code, is a clinical recommendation. Drug label excerpts are for evaluation only; read the full current label.
+- **Not clinician validated.** Fact lists are drafts from a rule-based drafter (`rule-v0`): facts are whole source sentences, not atomic, and tiers are heuristic. Errors in tiers or missed facts directly affect every metric.
+- **Unvalidated judge.** No human labels exist yet, so reported retention would carry unknown judge error.
+- **Contamination.** All sources are public web text and probably in training data. Everything is a `dev` split.
+- **Simulated readers.** Readers are prompts. The benchmark says nothing about whether real people understand an explanation, and Bean et al. (2026) show that benchmark performance can fail to predict human outcomes.
+- **Narrow scope.** English, single-turn, two source types, US labeling and US public-health text. The cue slice audits one behaviour and is not a general bias evaluation; cue sentences are short and stereotype-free by design but unvalidated.
+- **Licensing.** DailyMed redistribution terms for excerpts are unconfirmed.
+- **No human subjects.** The pilot involves none. The Teachback study would require ethics review first.
 
 ## Citation
 
-No paper yet. If you use this code or data, cite the repository:
+No paper yet. If you use the code or data, please cite the repository (also in [CITATION.cff](CITATION.cff)):
 
 ```bibtex
-@misc{plainline2026,
+@misc{lam2026plainline,
   author = {Cheng Hei Lam},
-  title = {Plainline: fidelity under audience adaptation for medical explanations},
-  year = {2026},
-  note = {Pilot, fact lists are unreviewed drafts},
-  url = {https://github.com/heilcheng/medexplain-evals}
+  title  = {Plainline: Fidelity of Safety-Critical Facts Under Audience Adaptation in Medical Explanations},
+  year   = {2026},
+  note   = {Pilot; fact lists are unreviewed drafts; no model results},
+  url    = {https://github.com/heilcheng/plainline}
 }
 ```
 
-MIT license for the code. Source text keeps its original terms (see DATA_LICENSES.md).
+References for the methods named above are in [references.bib](references.bib). MIT license for the code; source text keeps its original terms.

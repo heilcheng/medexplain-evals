@@ -89,3 +89,10 @@ def test_validate_rejects_fake_review():
 def test_source_requires_fields():
     with pytest.raises(Exception):
         Source(source_id="x")
+
+
+def test_dedupe_sentences_and_aphena_filtered():
+    from plainline.pipeline.dailymed import REPACKAGERS
+    from plainline.pipeline.text import dedupe_sentences
+    assert dedupe_sentences("Bleeding can be fatal. Check INR. Bleeding can be fatal.") == "Bleeding can be fatal. Check INR."
+    assert "aphena" in REPACKAGERS

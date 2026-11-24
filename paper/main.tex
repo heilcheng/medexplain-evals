@@ -1,0 +1,93 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage[hidelinks]{hyperref}
+
+\title{Plainline: Do Language Models Keep the Safety-Critical Facts\\When They Explain a Medical Source to Different Readers?}
+\author{Cheng Hei Lam\\\small Code and data: \url{https://github.com/heilcheng/plainline}}
+\date{Draft, November 2026. No model results are reported.}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Language models are often asked to rewrite medical information for a particular reader, such as a nurse, a parent, or an adult with limited English. Fluent output is easy to produce. It is much less clear whether the facts that could harm the reader if they are lost, such as a boxed warning or a dose limit, survive the rewrite. We describe Plainline, a benchmark for this question. Each item is an open-licensed source text with a list of facts tiered by how harmful their omission would be. A model explains the source for several readers and once for a neutral reader, and a per-fact judge records whether each fact is stated, contradicted or absent. We define Critical Fact Retention, a paired Adaptation Tax against the neutral explanation, and a reader-cue slice that holds the task text fixed while the user states who they are. We release a pilot of 30 sources and 339 draft facts. The fact lists are not yet reviewed by clinicians, the judge is not yet validated, and we report no model results. This paper describes the design, the pilot data and the planned experiments.
+\end{abstract}
+
+\section{Introduction}
+
+A person who asks a model to explain a drug label in plain words is relying on it to keep what matters. The label may say that a medicine can cause fatal bleeding, that it must not be taken in pregnancy, or that a certain symptom means going to the emergency department. A good explanation for a sixth-grade reader will use shorter sentences and everyday words. A bad one may do that by leaving those facts out, and the shorter, friendlier text can look better to a reader and to a model grader at the same time.
+
+Existing medical benchmarks do not isolate this failure. Exam-style tests measure knowledge \citep{jin2021medqa,singhal2023medpalm}. Rubric-based benchmarks score open-ended health conversations \citep{arora2025healthbench,hicks2026healthbenchprofessional,bedi2026medhelm}. Work on plain-language summarisation checks factual consistency of lay summaries \citep{joseph2024factpico,you2026plainqafact}. None of these holds the source fixed, varies only the reader, and scores the survival of a pre-specified list of safety-critical facts. A randomised trial found that strong performance of models on their own did not carry over to people using them \citep{bean2026reliability}, which makes the communication step worth measuring directly.
+
+We make three contributions. First, a task and metric design: Critical Fact Retention, a paired Adaptation Tax, and a worst-reader headline number. Second, a reader-cue slice that tests whether stating who the user is changes the safety content a model gives. Third, an open pilot dataset and an Inspect-based evaluation harness \citep{aisi2024inspect}, with tests that run without any model. We also state plainly what is missing: clinician review, judge validation, and results.
+
+\section{Related Work}
+
+\paragraph{Medical LLM evaluation.}
+MedQA and MultiMedQA made exam accuracy the standard measure of medical knowledge \citep{jin2021medqa,singhal2023medpalm,singhal2025medpalm2}. HealthBench and HealthBench Professional score open-ended conversations against physician-written rubrics \citep{arora2025healthbench,hicks2026healthbenchprofessional}, and MedHELM organises medical tasks into a clinician-validated taxonomy \citep{bedi2026medhelm}. Interactive benchmarks place models in simulated encounters or electronic health record environments \citep{schmidgall2026agentclinic,johri2025craftmd,jiang2025medagentbench}. Communication is one axis among many in these suites. Our design differs by fixing the content and varying only the reader.
+
+\paragraph{Plain-language adaptation and factuality.}
+PLABA, CELLS and the work of \citet{devaraj2021paragraph} provide data and methods for rewriting biomedical text for lay readers \citep{attal2023plaba,guo2024cells}. FactPICO collects expert factuality ratings of LLM plain-language summaries of trial abstracts \citep{joseph2024factpico}, and PlainQAFact proposes a consistency metric for them \citep{you2026plainqafact}. General consistency and factuality tools score a text against a source or decompose it into atomic facts \citep{laban2022summac,zha2023alignscore,min2023factscore}. We use the atomic-fact idea in the direction of recall: every required fact must be found in the output. We do not claim novelty for per-fact verification itself.
+
+\paragraph{Patient communication.}
+DischargeSim and DischargeBench simulate patients receiving discharge education \citep{yao2025dischargesim,jang2026dischargebench}, and RephQA studies whether LLM answers to public-health questions reach target reading levels \citep{qiu2025rephqa}. Low health literacy is associated with worse outcomes \citep{berkman2011literacy}, which motivates reader-aware explanation.
+
+\paragraph{Judges and bias.}
+LLM judges are useful but biased, including toward their own outputs \citep{zheng2023judging,panickssery2024selfpref}. Studies of medical LLMs have varied patient attributes and found race- and gender-linked differences \citep{omiye2023race,zack2024gpt4bias}, and a toolbox exists for surfacing health-equity harms \citep{pfohl2024equity}. Our cue slice varies the stated identity of the reader rather than the patient, with the safety facts held fixed.
+
+\section{Task and Method}
+
+\paragraph{Items.}
+An item pairs a source text with a reader condition. Sources are short excerpts from FDA drug labels on DailyMed (boxed warning, indications, dosage, contraindications, warnings) and health topic summaries from MedlinePlus. In \emph{adapt} mode the prompt names the reader: a physician, a registered nurse, an adult reading at about sixth-grade level, an adult with limited English, or a parent or caregiver of a child. In \emph{cue} mode the user writes one sentence about themselves (profession, literacy, language, age or caregiver role) and then asks the same question in every condition. Both modes include a neutral condition, so each source is always explained at least once without a stated reader and every comparison is paired.
+
+\paragraph{Fact lists.}
+Each source has a fact list. A fact is tiered \texttt{must\_keep} if its omission could plausibly cause harm, \texttt{should\_keep} if it matters for correct use, and \texttt{optional} otherwise. A separate \texttt{must\_not\_say} list holds plausible wrong simplifications, such as advice to double a missed dose. In the pilot, lists are drafted by a deterministic rule-based drafter that takes whole source sentences, so facts are not atomic and tiers are heuristic. The release plan requires two clinicians to review and adjudicate every list.
+
+\paragraph{Judge.}
+For each explanation, a language model receives the explanation and the facts, never the source or tiers, and returns one verdict per fact: \emph{stated}, \emph{contradicted} or \emph{absent}, and one verdict per \texttt{must\_not\_say} statement. It does not rate quality. We recommend a judge from a different model family than the model under test because of self-preference \citep{panickssery2024selfpref}. Agreement with human labels will be reported as Cohen's $\kappa$ \citep{cohen1960kappa}.
+
+\section{Metrics}
+
+Let $M_i$ be the \texttt{must\_keep} facts of item $i$, $v_{i,c}(f)$ the verdict for fact $f$ under condition $c$, and $N$ the number of items.
+\begin{align}
+\mathrm{CFR}_c &= \frac{1}{N}\sum_{i}\frac{\lvert\{f\in M_i : v_{i,c}(f)=\text{stated}\}\rvert}{\lvert M_i\rvert},\\
+\mathrm{Tax}_c &= \frac{1}{N}\sum_{i}\bigl(\mathrm{CFR}_{i,\text{neutral}}-\mathrm{CFR}_{i,c}\bigr),\\
+\text{Worst-reader CFR} &= \min_{c\neq\text{neutral}}\mathrm{CFR}_c,\qquad
+\text{Spread} = \max_c \mathrm{CFR}_c-\min_c\mathrm{CFR}_c .
+\end{align}
+Conditions with no defined value are ignored in the minimum and maximum. We also report retention of \texttt{should\_keep} facts, the share of facts judged contradicted, the rate of asserted \texttt{must\_not\_say} statements, and the share of outputs whose Flesch-Kincaid grade \citep{flesch1948yardstick,kincaid1975derivation} lies in the condition's target band. The band is a gate, not a quality score; the bands are working values not yet checked against real readers. SMOG \citep{mclaughlin1969smog} is available as an alternative. Intervals are 95\% percentile bootstrap intervals over items \citep{efron1979bootstrap}. Because longer answers can win simply by saying more, we report mean words per condition, the tax on items whose reader output is within a factor of 1.33 of the neutral length, retention by length tercile, and the Spearman correlation between retention and length.
+
+\section{Pilot Data}
+
+The pilot contains 30 sources: 20 drug label excerpts and 10 MedlinePlus topic summaries (for example anaphylaxis, sepsis and stroke). The rule-based drafter produced 339 facts: 118 \texttt{must\_keep}, 149 \texttt{should\_keep} and 72 \texttt{optional}. The \texttt{must\_not\_say} lists are three generic templates, used for drug labels only. All fact lists are marked as drafts needing clinician review, and every generated report carries a banner saying so. All sources are public web text, so they are probably in model training data; the pilot is a development split. We follow \citet{jacovi2023stop} in planning a held-out split that is not published as plain text, and sources carry a canary string in the manner of \citet{srivastava2023bigbench}. No UMLS, SNOMED CT, DrugBank or patient-record data is used.
+
+\section{Planned Experiments}
+
+None of the following has been run.
+\begin{enumerate}
+\item \textbf{Judge validation.} Two clinicians label at least 300 (explanation, fact) pairs, stratified by tier and reader. We report judge-human and human-human $\kappa$, and switch fact types with low agreement, such as numeric limits, to rule-based checks.
+\item \textbf{Fact review.} Two or more clinicians review and tier every fact, add missed facts and distortions, and adjudicate. Only then are fact sets marked as reviewed.
+\item \textbf{Model comparison.} Run a set of open and closed models in both modes and report Worst-reader CFR, Adaptation Tax by reader with intervals, and the length controls.
+\item \textbf{Cue invariance.} Test whether CFR differs across the cue conditions, and whether any difference survives length control.
+\item \textbf{Teachback.} A human-calibration study in which real readers answer comprehension questions on model explanations, to test whether the judge or a simulated reader tracks human understanding, following the concern raised by \citet{bean2026reliability}. This requires ethics review.
+\end{enumerate}
+
+\section{Limitations}
+
+The fact lists are unreviewed drafts, and errors in tiers or missed facts affect every metric. The judge has no human validation yet. Readers are prompts, so the benchmark says nothing about real comprehension. Sources are public and likely seen in training. The pilot is English only, single-turn, and covers two source types from US sources. Reading bands and cue wording are unvalidated. Unsupported additions by the model are not yet measured. The cue slice audits one behaviour and is not a general study of bias. Nothing here is medical advice.
+
+\section*{Ethics}
+
+The data are public-domain or openly published health texts, and no human subjects are involved in the pilot. Model outputs must not be used as clinical guidance. A future study with real readers would require an ethics determination first.
+
+\bibliographystyle{plainnat}
+\bibliography{../references}
+
+\end{document}

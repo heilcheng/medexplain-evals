@@ -30,3 +30,16 @@ def truncate_words(text: str, max_words: int) -> str:
         out.append(s)
         n += w
     return " ".join(out)
+
+
+def dedupe_sentences(text: str) -> str:
+    """Drop sentences that repeat an earlier one (SPL highlights are often repeated in the full text)."""
+    seen: set[str] = set()
+    out: list[str] = []
+    for s in sentences(text):
+        key = re.sub(r"\W+", "", s.lower())
+        if key in seen:
+            continue
+        seen.add(key)
+        out.append(s)
+    return " ".join(out)

@@ -13,7 +13,7 @@ import xml.etree.ElementTree as ET
 import httpx
 
 from ..schema import Source
-from .text import clean, truncate_words
+from .text import clean, dedupe_sentences, truncate_words
 
 API = "https://dailymed.nlm.nih.gov/dailymed/services/v2"
 NS = {"h": "urn:hl7-org:v3"}
@@ -31,7 +31,8 @@ SECTIONS = {
 ORDER = ["34066-1", "34067-9", "34068-7", "34070-3", "43685-7", "34071-1"]
 REPACKAGERS = ("repack", "bryant", "a-s medication", "proficient rx", "nucare", "preferred pharm",
                "quality care", "direct_rx", "direct rx", "henry schein", "medsource", "rebel dist",
-               "northwind", "asclemed", "enovachem", "lake erie", "denton", "unit dose", "pd-rx")
+               "northwind", "asclemed", "enovachem", "lake erie", "denton", "unit dose", "pd-rx",
+               "aphena")
 
 
 def find_setid(client: httpx.Client, drug_name: str) -> dict | None:
@@ -83,7 +84,7 @@ def build_source(drug_name: str, row: dict, sections: dict[str, str]) -> Source:
             continue  # prefer the PLR-format section when both exist
         if code in sections:
             heading, cap = SECTIONS[code]
-            body = truncate_words(sections[code], cap)
+            body = truncate_words(dedupe_sentences(sections[code]), cap)
             used[heading] = body
             parts.append(f"{heading.upper()}\n{body}")
     sid = "dm-" + drug_name.lower().replace(" ", "-").replace("/", "-")

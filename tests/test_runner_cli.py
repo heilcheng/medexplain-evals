@@ -103,3 +103,23 @@ def test_openai_client_retries(monkeypatch):
     monkeypatch.setattr(httpx, "post", fake_post)
     monkeypatch.setattr("time.sleep", lambda s: None)
     assert OpenAICompatClient("http://x", "m").complete([]) == "ok" and len(calls) == 2
+
+
+def test_run_keeps_completed_rows_when_one_job_fails(item, tmp_path):
+    class FlakyWriter:
+        name = "flaky"
+
+        def complete(self, messages, *, temperature=0.0, max_tokens=1024):
+            if "grade" in messages[-1]["content"].lower() or "sixth" in messages[-1]["content"].lower():
+                raise RuntimeError("boom")
+            return "Can cause liver damage."
+
+    conds = conditions("adapt")
+    judge = ScriptedClient([verdict_json(f1="stated", f2="stated", f3="stated", f4="stated", n1="not_asserted")])
+    with pytest.raises(RuntimeError, match="jobs failed"):
+        run([item], conds, FlakyWriter(), judge, tmp_path, workers=1)
+    rows = [json.loads(l) for l in (tmp_path / "scored.jsonl").read_text().splitlines()]
+    assert 0 < len(rows) < len(conds)
+    # a rerun with a healthy writer only does the missing jobs
+    run([item], conds, ScriptedClient(["ok"], name="flaky"), judge, tmp_path, workers=1)
+    assert len((tmp_path / "scored.jsonl").read_text().splitlines()) == len(conds)

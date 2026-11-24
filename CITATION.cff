@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "If you use this software or data, please cite it as below. The fact lists are unreviewed drafts and no model results are reported."
+title: "Plainline: Fidelity of Safety-Critical Facts Under Audience Adaptation in Medical Explanations"
+type: software
+authors:
+  - family-names: "Lam"
+    given-names: "Cheng Hei"
+repository-code: "https://github.com/heilcheng/plainline"
+license: MIT
+version: 0.1.0
+date-released: "2026-11-25"
+keywords:
+  - medical
+  - llm
+  - evaluation
+  - benchmark
+  - health-literacy

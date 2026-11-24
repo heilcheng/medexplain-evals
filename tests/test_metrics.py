@@ -79,3 +79,15 @@ def test_length_control_detects_length_confound():
     lc = length_control(rows)
     assert lc["spearman_cfr_vs_words"] > 0.99
     assert lc["by_length_tercile"]["long"]["cfr"] > lc["by_length_tercile"]["short"]["cfr"]
+
+
+def test_worst_reader_cfr_ignores_nan_condition():
+    rows = _rows()
+    for r in rows:
+        if r["condition"] == "clinician":
+            r["cfr"] = None
+    s = summarize_model(rows, ["neutral", "clinician", "grade6_adult"], n_boot=100)
+    w = s["headline"]["worst_reader_cfr"]["point"]
+    assert w == w and abs(w - s["conditions"]["grade6_adult"]["cfr"]["point"]) < 1e-9
+    h = headline_points(rows, ["neutral", "clinician", "grade6_adult"])
+    assert h["worst_reader_cfr"] == h["worst_reader_cfr"]

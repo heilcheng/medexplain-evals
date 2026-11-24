@@ -50,8 +50,20 @@ def run(items: list[Item], conds: list[Condition], writer: ChatClient, judge: Ch
         })
         return row
 
+    failures: list[tuple[tuple, BaseException]] = []
     with open(scored_path, "a", encoding="utf-8") as fh, ThreadPoolExecutor(workers) as ex:
-        for row in ex.map(work, jobs):
+        futures = [(job, ex.submit(work, job)) for job in jobs]
+        for job, fut in futures:
+            try:
+                row = fut.result()
+            except Exception as e:  # keep the rows that did finish; failed jobs rerun on resume
+                failures.append((job, e))
+                continue
             fh.write(json.dumps(row, ensure_ascii=False) + "\n")
             fh.flush()
+    if failures:
+        (it, c, s), err = failures[0]
+        raise RuntimeError(
+            f"{len(failures)} of {len(jobs)} jobs failed (first: item {it.source.source_id}, "
+            f"condition {c.id}: {err!r}). Completed rows were kept; rerun to resume.") from err
     return scored_path
