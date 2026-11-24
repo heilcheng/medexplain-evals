@@ -1,0 +1,24 @@
+[package]
+name = "plainline-py"
+description = "PyO3 bindings: the Plainline Rust core as the Python module plainline._core."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+authors.workspace = true
+repository.workspace = true
+publish = false
+
+[lib]
+name = "_core"
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+plainline-core.workspace = true
+plainline-client.workspace = true
+plainline-pipeline.workspace = true
+plainline-cli.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+tokio.workspace = true
+pyo3 = { version = "0.30", features = ["extension-module", "abi3-py310"] }

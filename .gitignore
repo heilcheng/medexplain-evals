@@ -5,3 +5,7 @@ __pycache__/
 runs/
 data/raw/
 .DS_Store
+target/
+*.so
+*.pyd
+*.dylib

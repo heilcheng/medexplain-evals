@@ -1,22 +1,23 @@
 [build-system]
-requires = ["hatchling>=1.21.0"]
-build-backend = "hatchling.build"
+requires = ["maturin>=1.7,<2.0"]
+build-backend = "maturin"
 
 [project]
 name = "plainline"
-version = "0.1.0"
+version = "0.2.0"
 description = "Fidelity under audience adaptation: which safety-critical facts a model drops when it explains a medical source to different readers."
 readme = "README.md"
 license = "MIT"
 requires-python = ">=3.10"
 authors = [{ name = "Cheng Hei Lam" }]
 keywords = ["medical", "llm", "evaluation", "benchmark", "health-literacy", "inspect-ai"]
-dependencies = [
-    "numpy>=1.24",
-    "pydantic>=2.5",
-    "PyYAML>=6.0",
-    "httpx>=0.27",
+classifiers = [
+    "Programming Language :: Rust",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.12",
 ]
+dependencies = []
 
 [project.urls]
 Homepage = "https://github.com/heilcheng/plainline"
@@ -26,14 +27,17 @@ Documentation = "https://github.com/heilcheng/plainline/blob/main/docs/design.md
 
 [project.optional-dependencies]
 inspect = ["inspect_ai>=0.3.100"]
-pipeline = ["lxml>=5.0"]
-dev = ["pytest>=8.0", "inspect_ai>=0.3.100", "lxml>=5.0"]
+dev = ["pytest>=8.0", "inspect_ai>=0.3.100", "maturin>=1.7,<2.0"]
 
 [project.scripts]
 plainline = "plainline.cli:main"
 
-[tool.hatch.build.targets.wheel]
-packages = ["plainline"]
+[tool.maturin]
+manifest-path = "crates/plainline-py/Cargo.toml"
+module-name = "plainline._core"
+python-source = "."
+python-packages = ["plainline"]
+include = [{ path = "plainline/data/readers.yaml", format = ["sdist", "wheel"] }]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

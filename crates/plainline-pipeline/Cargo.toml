@@ -1,0 +1,21 @@
+[package]
+name = "plainline-pipeline"
+description = "Source fetching, text cleaning and rule-based fact drafting for Plainline."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+authors.workspace = true
+repository.workspace = true
+
+[dependencies]
+plainline-core.workspace = true
+plainline-client.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+regex.workspace = true
+fancy-regex.workspace = true
+thiserror.workspace = true
+tokio.workspace = true
+roxmltree = "0.21"
+reqwest = { version = "0.13", default-features = false, features = ["json", "query", "rustls"] }

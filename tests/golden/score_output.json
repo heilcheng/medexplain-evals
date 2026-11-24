@@ -1,0 +1,4659 @@
+[
+ {
+  "text": "   ",
+  "factset": {
+   "source_id": "dm-warfarin",
+   "facts": [
+    {
+     "fact_id": "f1",
+     "text": "Warfarin sodium can cause major or fatal bleeding.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f2",
+     "text": "Perform regular monitoring of INR in all treated patients.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f3",
+     "text": "Drugs, dietary changes, and other factors affect INR levels achieved with warfarin sodium therapy.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f4",
+     "text": "Instruct patients about prevention measures to minimize risk of bleeding and to report signs and symptoms of bleeding.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f5",
+     "text": "Warfarin sodium tablets, USP are contraindicated in: Pregnancy Warfarin sodium tablets, USP are contraindicated in women who are pregnant except in pregnant women with mechanical heart valves, who are at high risk of thromboembolism.",
+     "tier": "must_keep",
+     "section": "contraindications"
+    },
+    {
+     "fact_id": "f6",
+     "text": "Warfarin sodium can cause fetal harm when administered to a pregnant woman.",
+     "tier": "must_keep",
+     "section": "contraindications"
+    },
+    {
+     "fact_id": "f7",
+     "text": "Warfarin sodium exposure during pregnancy causes a recognized pattern of major congenital malformations (warfarin embryopathy and fetotoxicity), fatal fetal hemorrhage, and an increased risk of spontaneous abortion and fetal mortality.",
+     "tier": "must_keep",
+     "section": "contraindications"
+    },
+    {
+     "fact_id": "f8",
+     "text": "If warfarin sodium is used during pregnancy or if the patient becomes pregnant while taking this drug, the patient should be apprised of the potential hazard to a fetus.",
+     "tier": "must_keep",
+     "section": "contraindications"
+    },
+    {
+     "fact_id": "f9",
+     "text": "Discontinue warfarin sodium and consider alternative anticoagulants if necessary.",
+     "tier": "should_keep",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f10",
+     "text": "Calciphylaxis: Fatal and serious cases have occurred.",
+     "tier": "should_keep",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f11",
+     "text": "Discontinue warfarin sodium and consider alternative anticoagulation therapy.",
+     "tier": "should_keep",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f12",
+     "text": "Systemic atheroemboli and cholesterol microemboli: Some cases have progressed to necrosis or death.",
+     "tier": "should_keep",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f13",
+     "text": "Discontinue warfarin sodium if such emboli occur.",
+     "tier": "should_keep",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f14",
+     "text": "Heparin-induced thrombocytopenia (HIT): Initial therapy with warfarin sodium in HIT has resulted in cases of amputation and death.",
+     "tier": "should_keep",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f15",
+     "text": "Hemorrhage Warfarin sodium can cause major or fatal bleeding.",
+     "tier": "should_keep",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f16",
+     "text": "Bleeding is more likely to occur within the first month.",
+     "tier": "optional",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f17",
+     "text": "Risk factors for bleeding include high intensity of anticoagulation (INR >4.0), age greater than or equal to 65, history of highly variable INRs, history of gastrointestinal bleeding, hypertension, cerebrovascular disease, anemia, malignancy, trauma, renal impairment, certain genetic factors, certain concomitant drugs, and long duration of warfarin therapy.",
+     "tier": "optional",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f18",
+     "text": "Those at high risk of bleeding may benefit from more frequent INR monitoring, careful dose adjustment to desired INR, and a shortest duration of therapy appropriate for the clinical condition.",
+     "tier": "optional",
+     "section": "warnings and precautions"
+    }
+   ],
+   "must_not_say": [
+    "This medicine has no serious or life-threatening risks.",
+    "If you miss a dose, take a double dose next time to catch up.",
+    "It is fine to take more than the labelled maximum dose if symptoms do not improve."
+   ],
+   "status": "draft, needs clinician review",
+   "generator": "rule-v0",
+   "reviewers": []
+  },
+  "fact_verdicts": {
+   "f1": "stated",
+   "f2": "contradicted",
+   "f3": "contradicted",
+   "f4": "absent",
+   "f5": "contradicted",
+   "f6": "stated",
+   "f7": "contradicted",
+   "f8": "stated",
+   "f9": "stated",
+   "f10": "stated",
+   "f11": "stated",
+   "f12": "absent",
+   "f13": "contradicted",
+   "f14": "stated",
+   "f15": "stated",
+   "f16": "stated",
+   "f17": "stated",
+   "f18": "stated"
+  },
+  "mns_verdicts": {
+   "n1": "not_asserted",
+   "n2": "not_asserted",
+   "n3": "not_asserted"
+  },
+  "parse_errors": 1,
+  "condition": {
+   "id": "neutral",
+   "kind": "neutral",
+   "band": null
+  },
+  "expected": {
+   "condition": "neutral",
+   "kind": "neutral",
+   "words": 0,
+   "fk_grade": 0.0,
+   "smog": 0.0,
+   "band_ok": null,
+   "cfr": 0.375,
+   "sfr": 0.7142857142857143,
+   "distortion": 0.2777777777777778,
+   "mns": 0.0,
+   "must_missing": [
+    "f2",
+    "f3",
+    "f4",
+    "f5",
+    "f7"
+   ],
+   "parse_errors": 1
+  }
+ },
+ {
+  "text": "rock-solid,\nrested\ntablet!\nmore.\nday...\nshaped\nboxes\n\n\nadministration\nnoted!\nliver,\ninternational...\nadministration\nsurveillance...\ndoesn't\n\n",
+  "factset": {
+   "source_id": "dm-warfarin",
+   "facts": [
+    {
+     "fact_id": "f1",
+     "text": "Warfarin sodium can cause major or fatal bleeding.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f2",
+     "text": "Perform regular monitoring of INR in all treated patients.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f3",
+     "text": "Drugs, dietary changes, and other factors affect INR levels achieved with warfarin sodium therapy.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f4",
+     "text": "Instruct patients about prevention measures to minimize risk of bleeding and to report signs and symptoms of bleeding.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f5",
+     "text": "Warfarin sodium tablets, USP are contraindicated in: Pregnancy Warfarin sodium tablets, USP are contraindicated in women who are pregnant except in pregnant women with mechanical heart valves, who are at high risk of thromboembolism.",
+     "tier": "must_keep",
+     "section": "contraindications"
+    },
+    {
+     "fact_id": "f6",
+     "text": "Warfarin sodium can cause fetal harm when administered to a pregnant woman.",
+     "tier": "must_keep",
+     "section": "contraindications"
+    },
+    {
+     "fact_id": "f7",
+     "text": "Warfarin sodium exposure during pregnancy causes a recognized pattern of major congenital malformations (warfarin embryopathy and fetotoxicity), fatal fetal hemorrhage, and an increased risk of spontaneous abortion and fetal mortality.",
+     "tier": "must_keep",
+     "section": "contraindications"
+    },
+    {
+     "fact_id": "f8",
+     "text": "If warfarin sodium is used during pregnancy or if the patient becomes pregnant while taking this drug, the patient should be apprised of the potential hazard to a fetus.",
+     "tier": "must_keep",
+     "section": "contraindications"
+    },
+    {
+     "fact_id": "f9",
+     "text": "Discontinue warfarin sodium and consider alternative anticoagulants if necessary.",
+     "tier": "should_keep",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f10",
+     "text": "Calciphylaxis: Fatal and serious cases have occurred.",
+     "tier": "should_keep",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f11",
+     "text": "Discontinue warfarin sodium and consider alternative anticoagulation therapy.",
+     "tier": "should_keep",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f12",
+     "text": "Systemic atheroemboli and cholesterol microemboli: Some cases have progressed to necrosis or death.",
+     "tier": "should_keep",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f13",
+     "text": "Discontinue warfarin sodium if such emboli occur.",
+     "tier": "should_keep",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f14",
+     "text": "Heparin-induced thrombocytopenia (HIT): Initial therapy with warfarin sodium in HIT has resulted in cases of amputation and death.",
+     "tier": "should_keep",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f15",
+     "text": "Hemorrhage Warfarin sodium can cause major or fatal bleeding.",
+     "tier": "should_keep",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f16",
+     "text": "Bleeding is more likely to occur within the first month.",
+     "tier": "optional",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f17",
+     "text": "Risk factors for bleeding include high intensity of anticoagulation (INR >4.0), age greater than or equal to 65, history of highly variable INRs, history of gastrointestinal bleeding, hypertension, cerebrovascular disease, anemia, malignancy, trauma, renal impairment, certain genetic factors, certain concomitant drugs, and long duration of warfarin therapy.",
+     "tier": "optional",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f18",
+     "text": "Those at high risk of bleeding may benefit from more frequent INR monitoring, careful dose adjustment to desired INR, and a shortest duration of therapy appropriate for the clinical condition.",
+     "tier": "optional",
+     "section": "warnings and precautions"
+    }
+   ],
+   "must_not_say": [
+    "This medicine has no serious or life-threatening risks.",
+    "If you miss a dose, take a double dose next time to catch up.",
+    "It is fine to take more than the labelled maximum dose if symptoms do not improve."
+   ],
+   "status": "draft, needs clinician review",
+   "generator": "rule-v0",
+   "reviewers": []
+  },
+  "fact_verdicts": {
+   "f1": "contradicted",
+   "f2": "stated",
+   "f3": "absent",
+   "f4": "stated",
+   "f5": "stated",
+   "f6": "stated",
+   "f7": "stated",
+   "f8": "stated",
+   "f9": "contradicted",
+   "f10": "stated",
+   "f11": "absent",
+   "f12": "contradicted",
+   "f13": "contradicted",
+   "f14": "stated",
+   "f15": "stated",
+   "f16": "stated",
+   "f17": "contradicted",
+   "f18": "stated"
+  },
+  "mns_verdicts": {
+   "n1": "asserted",
+   "n2": "asserted",
+   "n3": "asserted"
+  },
+  "parse_errors": 0,
+  "condition": {
+   "id": "grade6_adult",
+   "kind": "reader",
+   "band": [
+    null,
+    8
+   ]
+  },
+  "expected": {
+   "condition": "grade6_adult",
+   "kind": "reader",
+   "words": 14,
+   "fk_grade": 13.75,
+   "smog": 7.65,
+   "band_ok": false,
+   "cfr": 0.75,
+   "sfr": 0.42857142857142855,
+   "distortion": 0.2777777777777778,
+   "mns": 1.0,
+   "must_missing": [
+    "f1",
+    "f3"
+   ],
+   "parse_errors": 0
+  }
+ },
+ {
+  "text": "...",
+  "factset": {
+   "source_id": "dm-warfarin",
+   "facts": [
+    {
+     "fact_id": "f1",
+     "text": "Warfarin sodium can cause major or fatal bleeding.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f2",
+     "text": "Perform regular monitoring of INR in all treated patients.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f3",
+     "text": "Drugs, dietary changes, and other factors affect INR levels achieved with warfarin sodium therapy.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f4",
+     "text": "Instruct patients about prevention measures to minimize risk of bleeding and to report signs and symptoms of bleeding.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f5",
+     "text": "Warfarin sodium tablets, USP are contraindicated in: Pregnancy Warfarin sodium tablets, USP are contraindicated in women who are pregnant except in pregnant women with mechanical heart valves, who are at high risk of thromboembolism.",
+     "tier": "must_keep",
+     "section": "contraindications"
+    },
+    {
+     "fact_id": "f6",
+     "text": "Warfarin sodium can cause fetal harm when administered to a pregnant woman.",
+     "tier": "must_keep",
+     "section": "contraindications"
+    },
+    {
+     "fact_id": "f7",
+     "text": "Warfarin sodium exposure during pregnancy causes a recognized pattern of major congenital malformations (warfarin embryopathy and fetotoxicity), fatal fetal hemorrhage, and an increased risk of spontaneous abortion and fetal mortality.",
+     "tier": "must_keep",
+     "section": "contraindications"
+    },
+    {
+     "fact_id": "f8",
+     "text": "If warfarin sodium is used during pregnancy or if the patient becomes pregnant while taking this drug, the patient should be apprised of the potential hazard to a fetus.",
+     "tier": "must_keep",
+     "section": "contraindications"
+    },
+    {
+     "fact_id": "f9",
+     "text": "Discontinue warfarin sodium and consider alternative anticoagulants if necessary.",
+     "tier": "should_keep",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f10",
+     "text": "Calciphylaxis: Fatal and serious cases have occurred.",
+     "tier": "should_keep",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f11",
+     "text": "Discontinue warfarin sodium and consider alternative anticoagulation therapy.",
+     "tier": "should_keep",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f12",
+     "text": "Systemic atheroemboli and cholesterol microemboli: Some cases have progressed to necrosis or death.",
+     "tier": "should_keep",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f13",
+     "text": "Discontinue warfarin sodium if such emboli occur.",
+     "tier": "should_keep",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f14",
+     "text": "Heparin-induced thrombocytopenia (HIT): Initial therapy with warfarin sodium in HIT has resulted in cases of amputation and death.",
+     "tier": "should_keep",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f15",
+     "text": "Hemorrhage Warfarin sodium can cause major or fatal bleeding.",
+     "tier": "should_keep",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f16",
+     "text": "Bleeding is more likely to occur within the first month.",
+     "tier": "optional",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f17",
+     "text": "Risk factors for bleeding include high intensity of anticoagulation (INR >4.0), age greater than or equal to 65, history of highly variable INRs, history of gastrointestinal bleeding, hypertension, cerebrovascular disease, anemia, malignancy, trauma, renal impairment, certain genetic factors, certain concomitant drugs, and long duration of warfarin therapy.",
+     "tier": "optional",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f18",
+     "text": "Those at high risk of bleeding may benefit from more frequent INR monitoring, careful dose adjustment to desired INR, and a shortest duration of therapy appropriate for the clinical condition.",
+     "tier": "optional",
+     "section": "warnings and precautions"
+    }
+   ],
+   "must_not_say": [
+    "This medicine has no serious or life-threatening risks.",
+    "If you miss a dose, take a double dose next time to catch up.",
+    "It is fine to take more than the labelled maximum dose if symptoms do not improve."
+   ],
+   "status": "draft, needs clinician review",
+   "generator": "rule-v0",
+   "reviewers": []
+  },
+  "fact_verdicts": {
+   "f1": "stated",
+   "f2": "contradicted",
+   "f3": "contradicted",
+   "f4": "stated",
+   "f5": "absent",
+   "f6": "stated",
+   "f7": "contradicted",
+   "f8": "absent",
+   "f9": "absent",
+   "f10": "contradicted",
+   "f11": "contradicted",
+   "f12": "absent",
+   "f13": "contradicted",
+   "f14": "contradicted",
+   "f15": "absent",
+   "f16": "stated",
+   "f17": "stated",
+   "f18": "stated"
+  },
+  "mns_verdicts": {
+   "n1": "not_asserted",
+   "n2": "asserted",
+   "n3": "not_asserted"
+  },
+  "parse_errors": 0,
+  "condition": {
+   "id": "clinician",
+   "kind": "reader",
+   "band": [
+    10,
+    null
+   ]
+  },
+  "expected": {
+   "condition": "clinician",
+   "kind": "reader",
+   "words": 0,
+   "fk_grade": 0.0,
+   "smog": 0.0,
+   "band_ok": false,
+   "cfr": 0.375,
+   "sfr": 0.0,
+   "distortion": 0.3888888888888889,
+   "mns": 0.3333333333333333,
+   "must_missing": [
+    "f2",
+    "f3",
+    "f5",
+    "f7",
+    "f8"
+   ],
+   "parse_errors": 0
+  }
+ },
+ {
+  "text": "not! doesn't. more, do... bleed. each your.  take anticoagulant. bleed. tablets\n\n closed\n\n o'clock! tablet. passes e.g. pill o'clock not. administration not, rested. e.g. edged... medicine? o'clock...",
+  "factset": {
+   "source_id": "dm-methotrexate",
+   "facts": [
+    {
+     "fact_id": "f1",
+     "text": "Methotrexate tablets can cause embryo-fetal toxicity, including fetal death.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f2",
+     "text": "For non-neoplastic diseases, methotrexate tablets are contraindicated in pregnancy.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f3",
+     "text": "For neoplastic diseases, advise females and males of reproductive potential to use effective contraception.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f4",
+     "text": "Methotrexate tablets are contraindicated in patients with a history of severe hypersensitivity reactions to methotrexate, including anaphylaxis.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f5",
+     "text": "Methotrexate tablets when inadvertently administered once daily have resulted in death.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f6",
+     "text": "Serious adverse reactions, including death, have been reported with methotrexate.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f7",
+     "text": "Closely monitor for adverse reactions of the bone marrow, gastrointestinal tract, liver, lungs, skin, and kidneys.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f8",
+     "text": "Withhold or discontinue methotrexate tablets as appropriate.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f9",
+     "text": "ALL: The recommended dosage is 20 mg/m 2 orally once weekly as a part of a combination chemotherapy maintenance regimen.",
+     "tier": "should_keep",
+     "section": "dosage and administration"
+    },
+    {
+     "fact_id": "f10",
+     "text": "Mycosis fungoides: The recommended dosage is 25 to 75 mg orally once weekly as monotherapy; 10 mg/m 2 orally twice weekly as part of combination chemotherapy.",
+     "tier": "should_keep",
+     "section": "dosage and administration"
+    },
+    {
+     "fact_id": "f11",
+     "text": "Relapsed or refractory non-Hodgkin lymphoma: The recommended dosage is 2.5 mg orally two to four times per week as part of metronomic combination chemotherapy.",
+     "tier": "should_keep",
+     "section": "dosage and administration"
+    },
+    {
+     "fact_id": "f12",
+     "text": "Rheumatoid Arthritis: The recommended starting dosage is 7.5 mg orally once weekly; adjust dose to achieve an optimal response pJIA: The recommended starting dosage is 10 mg/m 2 orally once weekly; adjust dose to achieve an optimal response Psoriasis: The recommended dosage is 10 to 25 mg orally once weekly until adequate response is achieved.",
+     "tier": "should_keep",
+     "section": "dosage and administration"
+    },
+    {
+     "fact_id": "f13",
+     "text": "Serious Infections: Monitor patients for infection during and after treatment with methotrexate tablets.",
+     "tier": "optional",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f14",
+     "text": "Withhold or discontinue methotrexate tablets for serious infections as appropriate.",
+     "tier": "should_keep",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f15",
+     "text": "Neurotoxicity: Monitor patients for neurotoxicity and withhold or discontinue methotrexate tablets as appropriate.",
+     "tier": "should_keep",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f16",
+     "text": "Tumor Lysis Syndrome: Institute appropriate prophylactic measures in patients at risk for tumor lysis syndrome prior to initiation of methotrexate tablets.",
+     "tier": "optional",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f17",
+     "text": "Immunizations and Risk Live Vaccines: Immunizations with live vaccines is not recommended.",
+     "tier": "optional",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f18",
+     "text": "5.1 Embryo-Fetal Toxicity Based on published reports and its mechanism of action, methotrexate tablets can cause fetal harm, including fetal death, when administered to a pregnant woman.",
+     "tier": "should_keep",
+     "section": "warnings and precautions"
+    }
+   ],
+   "must_not_say": [
+    "This medicine has no serious or life-threatening risks.",
+    "If you miss a dose, take a double dose next time to catch up.",
+    "It is fine to take more than the labelled maximum dose if symptoms do not improve."
+   ],
+   "status": "draft, needs clinician review",
+   "generator": "rule-v0",
+   "reviewers": []
+  },
+  "fact_verdicts": {
+   "f1": "absent",
+   "f2": "stated",
+   "f3": "stated",
+   "f4": "stated",
+   "f5": "absent",
+   "f6": "absent",
+   "f7": "absent",
+   "f8": "absent",
+   "f9": "stated",
+   "f10": "stated",
+   "f11": "stated",
+   "f12": "stated",
+   "f13": "stated",
+   "f14": "contradicted",
+   "f15": "absent",
+   "f16": "stated",
+   "f17": "stated",
+   "f18": "stated"
+  },
+  "mns_verdicts": {
+   "n1": "not_asserted",
+   "n2": "asserted",
+   "n3": "asserted"
+  },
+  "parse_errors": 1,
+  "condition": {
+   "id": "neutral",
+   "kind": "neutral",
+   "band": null
+  },
+  "expected": {
+   "condition": "neutral",
+   "kind": "neutral",
+   "words": 28,
+   "fk_grade": 3.56,
+   "smog": 5.46,
+   "band_ok": null,
+   "cfr": 0.375,
+   "sfr": 0.7142857142857143,
+   "distortion": 0.05555555555555555,
+   "mns": 0.6666666666666666,
+   "must_missing": [
+    "f1",
+    "f5",
+    "f6",
+    "f7",
+    "f8"
+   ],
+   "parse_errors": 1
+  }
+ },
+ {
+  "text": "damage. if.  liver. ratio, your? cases.  bleed, rock-solid... tablets cases rested passes. concomitant... day. administration. you. call e.g.... pill. doctor ratio shaped do do. international medicine, rock-solid... surveillance one! surveillance? damage,",
+  "factset": {
+   "source_id": "dm-methotrexate",
+   "facts": [
+    {
+     "fact_id": "f1",
+     "text": "Methotrexate tablets can cause embryo-fetal toxicity, including fetal death.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f2",
+     "text": "For non-neoplastic diseases, methotrexate tablets are contraindicated in pregnancy.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f3",
+     "text": "For neoplastic diseases, advise females and males of reproductive potential to use effective contraception.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f4",
+     "text": "Methotrexate tablets are contraindicated in patients with a history of severe hypersensitivity reactions to methotrexate, including anaphylaxis.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f5",
+     "text": "Methotrexate tablets when inadvertently administered once daily have resulted in death.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f6",
+     "text": "Serious adverse reactions, including death, have been reported with methotrexate.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f7",
+     "text": "Closely monitor for adverse reactions of the bone marrow, gastrointestinal tract, liver, lungs, skin, and kidneys.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f8",
+     "text": "Withhold or discontinue methotrexate tablets as appropriate.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f9",
+     "text": "ALL: The recommended dosage is 20 mg/m 2 orally once weekly as a part of a combination chemotherapy maintenance regimen.",
+     "tier": "should_keep",
+     "section": "dosage and administration"
+    },
+    {
+     "fact_id": "f10",
+     "text": "Mycosis fungoides: The recommended dosage is 25 to 75 mg orally once weekly as monotherapy; 10 mg/m 2 orally twice weekly as part of combination chemotherapy.",
+     "tier": "should_keep",
+     "section": "dosage and administration"
+    },
+    {
+     "fact_id": "f11",
+     "text": "Relapsed or refractory non-Hodgkin lymphoma: The recommended dosage is 2.5 mg orally two to four times per week as part of metronomic combination chemotherapy.",
+     "tier": "should_keep",
+     "section": "dosage and administration"
+    },
+    {
+     "fact_id": "f12",
+     "text": "Rheumatoid Arthritis: The recommended starting dosage is 7.5 mg orally once weekly; adjust dose to achieve an optimal response pJIA: The recommended starting dosage is 10 mg/m 2 orally once weekly; adjust dose to achieve an optimal response Psoriasis: The recommended dosage is 10 to 25 mg orally once weekly until adequate response is achieved.",
+     "tier": "should_keep",
+     "section": "dosage and administration"
+    },
+    {
+     "fact_id": "f13",
+     "text": "Serious Infections: Monitor patients for infection during and after treatment with methotrexate tablets.",
+     "tier": "optional",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f14",
+     "text": "Withhold or discontinue methotrexate tablets for serious infections as appropriate.",
+     "tier": "should_keep",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f15",
+     "text": "Neurotoxicity: Monitor patients for neurotoxicity and withhold or discontinue methotrexate tablets as appropriate.",
+     "tier": "should_keep",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f16",
+     "text": "Tumor Lysis Syndrome: Institute appropriate prophylactic measures in patients at risk for tumor lysis syndrome prior to initiation of methotrexate tablets.",
+     "tier": "optional",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f17",
+     "text": "Immunizations and Risk Live Vaccines: Immunizations with live vaccines is not recommended.",
+     "tier": "optional",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f18",
+     "text": "5.1 Embryo-Fetal Toxicity Based on published reports and its mechanism of action, methotrexate tablets can cause fetal harm, including fetal death, when administered to a pregnant woman.",
+     "tier": "should_keep",
+     "section": "warnings and precautions"
+    }
+   ],
+   "must_not_say": [
+    "This medicine has no serious or life-threatening risks.",
+    "If you miss a dose, take a double dose next time to catch up.",
+    "It is fine to take more than the labelled maximum dose if symptoms do not improve."
+   ],
+   "status": "draft, needs clinician review",
+   "generator": "rule-v0",
+   "reviewers": []
+  },
+  "fact_verdicts": {
+   "f1": "contradicted",
+   "f2": "contradicted",
+   "f3": "stated",
+   "f4": "stated",
+   "f5": "stated",
+   "f6": "stated",
+   "f7": "contradicted",
+   "f8": "contradicted",
+   "f9": "contradicted",
+   "f10": "stated",
+   "f11": "absent",
+   "f12": "stated",
+   "f13": "absent",
+   "f14": "absent",
+   "f15": "stated",
+   "f16": "contradicted",
+   "f17": "stated",
+   "f18": "stated"
+  },
+  "mns_verdicts": {
+   "n1": "not_asserted",
+   "n2": "asserted",
+   "n3": "not_asserted"
+  },
+  "parse_errors": 0,
+  "condition": {
+   "id": "grade6_adult",
+   "kind": "reader",
+   "band": [
+    null,
+    8
+   ]
+  },
+  "expected": {
+   "condition": "grade6_adult",
+   "kind": "reader",
+   "words": 32,
+   "fk_grade": 7.6,
+   "smog": 6.94,
+   "band_ok": true,
+   "cfr": 0.5,
+   "sfr": 0.5714285714285714,
+   "distortion": 0.3333333333333333,
+   "mns": 0.3333333333333333,
+   "must_missing": [
+    "f1",
+    "f2",
+    "f7",
+    "f8"
+   ],
+   "parse_errors": 0
+  }
+ },
+ {
+  "text": "edged\n\n medicine international... doesn't fast-acting if! passes not\n\n",
+  "factset": {
+   "source_id": "dm-methotrexate",
+   "facts": [
+    {
+     "fact_id": "f1",
+     "text": "Methotrexate tablets can cause embryo-fetal toxicity, including fetal death.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f2",
+     "text": "For non-neoplastic diseases, methotrexate tablets are contraindicated in pregnancy.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f3",
+     "text": "For neoplastic diseases, advise females and males of reproductive potential to use effective contraception.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f4",
+     "text": "Methotrexate tablets are contraindicated in patients with a history of severe hypersensitivity reactions to methotrexate, including anaphylaxis.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f5",
+     "text": "Methotrexate tablets when inadvertently administered once daily have resulted in death.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f6",
+     "text": "Serious adverse reactions, including death, have been reported with methotrexate.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f7",
+     "text": "Closely monitor for adverse reactions of the bone marrow, gastrointestinal tract, liver, lungs, skin, and kidneys.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f8",
+     "text": "Withhold or discontinue methotrexate tablets as appropriate.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f9",
+     "text": "ALL: The recommended dosage is 20 mg/m 2 orally once weekly as a part of a combination chemotherapy maintenance regimen.",
+     "tier": "should_keep",
+     "section": "dosage and administration"
+    },
+    {
+     "fact_id": "f10",
+     "text": "Mycosis fungoides: The recommended dosage is 25 to 75 mg orally once weekly as monotherapy; 10 mg/m 2 orally twice weekly as part of combination chemotherapy.",
+     "tier": "should_keep",
+     "section": "dosage and administration"
+    },
+    {
+     "fact_id": "f11",
+     "text": "Relapsed or refractory non-Hodgkin lymphoma: The recommended dosage is 2.5 mg orally two to four times per week as part of metronomic combination chemotherapy.",
+     "tier": "should_keep",
+     "section": "dosage and administration"
+    },
+    {
+     "fact_id": "f12",
+     "text": "Rheumatoid Arthritis: The recommended starting dosage is 7.5 mg orally once weekly; adjust dose to achieve an optimal response pJIA: The recommended starting dosage is 10 mg/m 2 orally once weekly; adjust dose to achieve an optimal response Psoriasis: The recommended dosage is 10 to 25 mg orally once weekly until adequate response is achieved.",
+     "tier": "should_keep",
+     "section": "dosage and administration"
+    },
+    {
+     "fact_id": "f13",
+     "text": "Serious Infections: Monitor patients for infection during and after treatment with methotrexate tablets.",
+     "tier": "optional",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f14",
+     "text": "Withhold or discontinue methotrexate tablets for serious infections as appropriate.",
+     "tier": "should_keep",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f15",
+     "text": "Neurotoxicity: Monitor patients for neurotoxicity and withhold or discontinue methotrexate tablets as appropriate.",
+     "tier": "should_keep",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f16",
+     "text": "Tumor Lysis Syndrome: Institute appropriate prophylactic measures in patients at risk for tumor lysis syndrome prior to initiation of methotrexate tablets.",
+     "tier": "optional",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f17",
+     "text": "Immunizations and Risk Live Vaccines: Immunizations with live vaccines is not recommended.",
+     "tier": "optional",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f18",
+     "text": "5.1 Embryo-Fetal Toxicity Based on published reports and its mechanism of action, methotrexate tablets can cause fetal harm, including fetal death, when administered to a pregnant woman.",
+     "tier": "should_keep",
+     "section": "warnings and precautions"
+    }
+   ],
+   "must_not_say": [
+    "This medicine has no serious or life-threatening risks.",
+    "If you miss a dose, take a double dose next time to catch up.",
+    "It is fine to take more than the labelled maximum dose if symptoms do not improve."
+   ],
+   "status": "draft, needs clinician review",
+   "generator": "rule-v0",
+   "reviewers": []
+  },
+  "fact_verdicts": {
+   "f1": "stated",
+   "f2": "contradicted",
+   "f3": "stated",
+   "f4": "absent",
+   "f5": "stated",
+   "f6": "contradicted",
+   "f7": "stated",
+   "f8": "stated",
+   "f9": "absent",
+   "f10": "stated",
+   "f11": "absent",
+   "f12": "contradicted",
+   "f13": "contradicted",
+   "f14": "contradicted",
+   "f15": "absent",
+   "f16": "stated",
+   "f17": "absent",
+   "f18": "stated"
+  },
+  "mns_verdicts": {
+   "n1": "asserted",
+   "n2": "not_asserted",
+   "n3": "asserted"
+  },
+  "parse_errors": 0,
+  "condition": {
+   "id": "clinician",
+   "kind": "reader",
+   "band": [
+    10,
+    null
+   ]
+  },
+  "expected": {
+   "condition": "clinician",
+   "kind": "reader",
+   "words": 8,
+   "fk_grade": 8.79,
+   "smog": 8.08,
+   "band_ok": false,
+   "cfr": 0.625,
+   "sfr": 0.2857142857142857,
+   "distortion": 0.2777777777777778,
+   "mns": 0.6666666666666666,
+   "must_missing": [
+    "f2",
+    "f4",
+    "f6"
+   ],
+   "parse_errors": 0
+  }
+ },
+ {
+  "text": "e.g. boxes, surveillance! take",
+  "factset": {
+   "source_id": "dm-hydrocodone-bitartrate-and-acetaminophen",
+   "facts": [
+    {
+     "fact_id": "f1",
+     "text": "WARNING: SERIOUS AND LIFE-THREATENING RISKS FROM USE OF HYDROCODONE BITARTRATE AND ACETAMINOPHEN TABLETS.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f2",
+     "text": "Addiction, Abuse, and Misuse Because the use of hydrocodone bitartrate and acetaminophen tablets exposes patients and other users to the risks of opioid addiction, abuse, and misuse, which can lead to overdose and death, assess each patient’s risk prior to prescribing and reassess all patients regularly for the development of these behaviors and conditions.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f3",
+     "text": "Life-Threatening Respiratory Depression Serious, life-threatening, or fatal respiratory depression may occur with use of hydrocodone bitartrate and acetaminophen tablets, especially during initiation or following a dosage increase.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f4",
+     "text": "To reduce the risk of respiratory depression, proper dosing and titration of hydrocodone bitartrate and acetaminophen tablets are essential.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f5",
+     "text": "Accidental Ingestion Accidental ingestion of even one dose of hydrocodone bitartrate and acetaminophen tablets, especially by children, can result in a fatal overdose of hydrocodone.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f6",
+     "text": "Risks From Concomitant Use With Benzodiazepines Or Other CNS Depressants Concomitant use of opioids with benzodiazepines or other central nervous system (CNS) depressants, including alcohol, may result in profound sedation, respiratory depression, coma, and death.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f7",
+     "text": "Hydrocodone bitartrate and acetaminophen tablets are contraindicated in patients with: Significant respiratory depression Acute or severe bronchial asthma in an unmonitored setting or in the absence of resuscitative equipment Known or suspected gastrointestinal obstruction, including paralytic ileus Hypersensitivity to hydrocodone or acetaminophen (e.g., anaphylaxis)",
+     "tier": "must_keep",
+     "section": "contraindications"
+    },
+    {
+     "fact_id": "f8",
+     "text": "Although the risk of addiction in any individual is unknown, it can occur in patients appropriately prescribed hydrocodone bitartrate and acetaminophen tablets.",
+     "tier": "optional",
+     "section": "warnings"
+    },
+    {
+     "fact_id": "f9",
+     "text": "The risk of opioid-related overdose or overdose-related death is increased with higher opioid doses, and this risk persists over the course of therapy.",
+     "tier": "should_keep",
+     "section": "warnings"
+    },
+    {
+     "fact_id": "f10",
+     "text": "In postmarketing studies, addiction, abuse, misuse, and fatal and non-fatal opioid overdose were observed in patients with long-term opioid use.",
+     "tier": "should_keep",
+     "section": "warnings"
+    },
+    {
+     "fact_id": "f11",
+     "text": "Assess each patient’s risk for opioid addiction, abuse, or misuse prior to prescribing hydrocodone bitartrate and acetaminophen tablets, and reassess all patients receiving hydrocodone bitartrate and acetaminophen tablets for the development of these behaviors and conditions.",
+     "tier": "optional",
+     "section": "warnings"
+    },
+    {
+     "fact_id": "f12",
+     "text": "The potential for these risks should not, however, prevent the proper management of pain in any given patient.",
+     "tier": "should_keep",
+     "section": "warnings"
+    },
+    {
+     "fact_id": "f13",
+     "text": "Patients at increased risk may be prescribed opioids such as hydrocodone bitartrate and acetaminophen tablets, but use in such patients necessitates intensive counseling about the risks and proper use of hydrocodone bitartrate and acetaminophen tablets along with frequent reevaluation for signs of addiction, abuse, and misuse.",
+     "tier": "optional",
+     "section": "warnings"
+    },
+    {
+     "fact_id": "f14",
+     "text": "Hydrocodone bitartrate and acetaminophen tablets are indicated for the management of pain severe enough to require an opioid analgesic and for which alternative treatments are inadequate.",
+     "tier": "should_keep",
+     "section": "indications and usage"
+    }
+   ],
+   "must_not_say": [
+    "This medicine has no serious or life-threatening risks.",
+    "If you miss a dose, take a double dose next time to catch up.",
+    "It is fine to take more than the labelled maximum dose if symptoms do not improve."
+   ],
+   "status": "draft, needs clinician review",
+   "generator": "rule-v0",
+   "reviewers": []
+  },
+  "fact_verdicts": {
+   "f1": "absent",
+   "f2": "absent",
+   "f3": "stated",
+   "f4": "contradicted",
+   "f5": "absent",
+   "f6": "contradicted",
+   "f7": "stated",
+   "f8": "stated",
+   "f9": "stated",
+   "f10": "stated",
+   "f11": "contradicted",
+   "f12": "stated",
+   "f13": "stated",
+   "f14": "stated"
+  },
+  "mns_verdicts": {
+   "n1": "not_asserted",
+   "n2": "asserted",
+   "n3": "asserted"
+  },
+  "parse_errors": 0,
+  "condition": {
+   "id": "neutral",
+   "kind": "neutral",
+   "band": null
+  },
+  "expected": {
+   "condition": "neutral",
+   "kind": "neutral",
+   "words": 5,
+   "fk_grade": 1.58,
+   "smog": 6.43,
+   "band_ok": null,
+   "cfr": 0.2857142857142857,
+   "sfr": 1.0,
+   "distortion": 0.21428571428571427,
+   "mns": 0.6666666666666666,
+   "must_missing": [
+    "f1",
+    "f2",
+    "f4",
+    "f5",
+    "f6"
+   ],
+   "parse_errors": 0
+  }
+ },
+ {
+  "text": "e.g. boxes, surveillance! take",
+  "factset": {
+   "source_id": "dm-hydrocodone-bitartrate-and-acetaminophen",
+   "facts": [
+    {
+     "fact_id": "f1",
+     "text": "WARNING: SERIOUS AND LIFE-THREATENING RISKS FROM USE OF HYDROCODONE BITARTRATE AND ACETAMINOPHEN TABLETS.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f2",
+     "text": "Addiction, Abuse, and Misuse Because the use of hydrocodone bitartrate and acetaminophen tablets exposes patients and other users to the risks of opioid addiction, abuse, and misuse, which can lead to overdose and death, assess each patient’s risk prior to prescribing and reassess all patients regularly for the development of these behaviors and conditions.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f3",
+     "text": "Life-Threatening Respiratory Depression Serious, life-threatening, or fatal respiratory depression may occur with use of hydrocodone bitartrate and acetaminophen tablets, especially during initiation or following a dosage increase.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f4",
+     "text": "To reduce the risk of respiratory depression, proper dosing and titration of hydrocodone bitartrate and acetaminophen tablets are essential.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f5",
+     "text": "Accidental Ingestion Accidental ingestion of even one dose of hydrocodone bitartrate and acetaminophen tablets, especially by children, can result in a fatal overdose of hydrocodone.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f6",
+     "text": "Risks From Concomitant Use With Benzodiazepines Or Other CNS Depressants Concomitant use of opioids with benzodiazepines or other central nervous system (CNS) depressants, including alcohol, may result in profound sedation, respiratory depression, coma, and death.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f7",
+     "text": "Hydrocodone bitartrate and acetaminophen tablets are contraindicated in patients with: Significant respiratory depression Acute or severe bronchial asthma in an unmonitored setting or in the absence of resuscitative equipment Known or suspected gastrointestinal obstruction, including paralytic ileus Hypersensitivity to hydrocodone or acetaminophen (e.g., anaphylaxis)",
+     "tier": "must_keep",
+     "section": "contraindications"
+    },
+    {
+     "fact_id": "f8",
+     "text": "Although the risk of addiction in any individual is unknown, it can occur in patients appropriately prescribed hydrocodone bitartrate and acetaminophen tablets.",
+     "tier": "optional",
+     "section": "warnings"
+    },
+    {
+     "fact_id": "f9",
+     "text": "The risk of opioid-related overdose or overdose-related death is increased with higher opioid doses, and this risk persists over the course of therapy.",
+     "tier": "should_keep",
+     "section": "warnings"
+    },
+    {
+     "fact_id": "f10",
+     "text": "In postmarketing studies, addiction, abuse, misuse, and fatal and non-fatal opioid overdose were observed in patients with long-term opioid use.",
+     "tier": "should_keep",
+     "section": "warnings"
+    },
+    {
+     "fact_id": "f11",
+     "text": "Assess each patient’s risk for opioid addiction, abuse, or misuse prior to prescribing hydrocodone bitartrate and acetaminophen tablets, and reassess all patients receiving hydrocodone bitartrate and acetaminophen tablets for the development of these behaviors and conditions.",
+     "tier": "optional",
+     "section": "warnings"
+    },
+    {
+     "fact_id": "f12",
+     "text": "The potential for these risks should not, however, prevent the proper management of pain in any given patient.",
+     "tier": "should_keep",
+     "section": "warnings"
+    },
+    {
+     "fact_id": "f13",
+     "text": "Patients at increased risk may be prescribed opioids such as hydrocodone bitartrate and acetaminophen tablets, but use in such patients necessitates intensive counseling about the risks and proper use of hydrocodone bitartrate and acetaminophen tablets along with frequent reevaluation for signs of addiction, abuse, and misuse.",
+     "tier": "optional",
+     "section": "warnings"
+    },
+    {
+     "fact_id": "f14",
+     "text": "Hydrocodone bitartrate and acetaminophen tablets are indicated for the management of pain severe enough to require an opioid analgesic and for which alternative treatments are inadequate.",
+     "tier": "should_keep",
+     "section": "indications and usage"
+    }
+   ],
+   "must_not_say": [
+    "This medicine has no serious or life-threatening risks.",
+    "If you miss a dose, take a double dose next time to catch up.",
+    "It is fine to take more than the labelled maximum dose if symptoms do not improve."
+   ],
+   "status": "draft, needs clinician review",
+   "generator": "rule-v0",
+   "reviewers": []
+  },
+  "fact_verdicts": {
+   "f1": "absent",
+   "f2": "stated",
+   "f3": "absent",
+   "f4": "absent",
+   "f5": "contradicted",
+   "f6": "contradicted",
+   "f7": "stated",
+   "f8": "stated",
+   "f9": "stated",
+   "f10": "stated",
+   "f11": "contradicted",
+   "f12": "stated",
+   "f13": "stated",
+   "f14": "stated"
+  },
+  "mns_verdicts": {
+   "n1": "asserted",
+   "n2": "not_asserted",
+   "n3": "not_asserted"
+  },
+  "parse_errors": 0,
+  "condition": {
+   "id": "grade6_adult",
+   "kind": "reader",
+   "band": [
+    null,
+    8
+   ]
+  },
+  "expected": {
+   "condition": "grade6_adult",
+   "kind": "reader",
+   "words": 5,
+   "fk_grade": 1.58,
+   "smog": 6.43,
+   "band_ok": true,
+   "cfr": 0.2857142857142857,
+   "sfr": 1.0,
+   "distortion": 0.21428571428571427,
+   "mns": 0.3333333333333333,
+   "must_missing": [
+    "f1",
+    "f3",
+    "f4",
+    "f5",
+    "f6"
+   ],
+   "parse_errors": 0
+  }
+ },
+ {
+  "text": "edged\n\n medicine international... doesn't fast-acting if! passes not\n\n",
+  "factset": {
+   "source_id": "dm-hydrocodone-bitartrate-and-acetaminophen",
+   "facts": [
+    {
+     "fact_id": "f1",
+     "text": "WARNING: SERIOUS AND LIFE-THREATENING RISKS FROM USE OF HYDROCODONE BITARTRATE AND ACETAMINOPHEN TABLETS.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f2",
+     "text": "Addiction, Abuse, and Misuse Because the use of hydrocodone bitartrate and acetaminophen tablets exposes patients and other users to the risks of opioid addiction, abuse, and misuse, which can lead to overdose and death, assess each patient’s risk prior to prescribing and reassess all patients regularly for the development of these behaviors and conditions.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f3",
+     "text": "Life-Threatening Respiratory Depression Serious, life-threatening, or fatal respiratory depression may occur with use of hydrocodone bitartrate and acetaminophen tablets, especially during initiation or following a dosage increase.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f4",
+     "text": "To reduce the risk of respiratory depression, proper dosing and titration of hydrocodone bitartrate and acetaminophen tablets are essential.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f5",
+     "text": "Accidental Ingestion Accidental ingestion of even one dose of hydrocodone bitartrate and acetaminophen tablets, especially by children, can result in a fatal overdose of hydrocodone.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f6",
+     "text": "Risks From Concomitant Use With Benzodiazepines Or Other CNS Depressants Concomitant use of opioids with benzodiazepines or other central nervous system (CNS) depressants, including alcohol, may result in profound sedation, respiratory depression, coma, and death.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f7",
+     "text": "Hydrocodone bitartrate and acetaminophen tablets are contraindicated in patients with: Significant respiratory depression Acute or severe bronchial asthma in an unmonitored setting or in the absence of resuscitative equipment Known or suspected gastrointestinal obstruction, including paralytic ileus Hypersensitivity to hydrocodone or acetaminophen (e.g., anaphylaxis)",
+     "tier": "must_keep",
+     "section": "contraindications"
+    },
+    {
+     "fact_id": "f8",
+     "text": "Although the risk of addiction in any individual is unknown, it can occur in patients appropriately prescribed hydrocodone bitartrate and acetaminophen tablets.",
+     "tier": "optional",
+     "section": "warnings"
+    },
+    {
+     "fact_id": "f9",
+     "text": "The risk of opioid-related overdose or overdose-related death is increased with higher opioid doses, and this risk persists over the course of therapy.",
+     "tier": "should_keep",
+     "section": "warnings"
+    },
+    {
+     "fact_id": "f10",
+     "text": "In postmarketing studies, addiction, abuse, misuse, and fatal and non-fatal opioid overdose were observed in patients with long-term opioid use.",
+     "tier": "should_keep",
+     "section": "warnings"
+    },
+    {
+     "fact_id": "f11",
+     "text": "Assess each patient’s risk for opioid addiction, abuse, or misuse prior to prescribing hydrocodone bitartrate and acetaminophen tablets, and reassess all patients receiving hydrocodone bitartrate and acetaminophen tablets for the development of these behaviors and conditions.",
+     "tier": "optional",
+     "section": "warnings"
+    },
+    {
+     "fact_id": "f12",
+     "text": "The potential for these risks should not, however, prevent the proper management of pain in any given patient.",
+     "tier": "should_keep",
+     "section": "warnings"
+    },
+    {
+     "fact_id": "f13",
+     "text": "Patients at increased risk may be prescribed opioids such as hydrocodone bitartrate and acetaminophen tablets, but use in such patients necessitates intensive counseling about the risks and proper use of hydrocodone bitartrate and acetaminophen tablets along with frequent reevaluation for signs of addiction, abuse, and misuse.",
+     "tier": "optional",
+     "section": "warnings"
+    },
+    {
+     "fact_id": "f14",
+     "text": "Hydrocodone bitartrate and acetaminophen tablets are indicated for the management of pain severe enough to require an opioid analgesic and for which alternative treatments are inadequate.",
+     "tier": "should_keep",
+     "section": "indications and usage"
+    }
+   ],
+   "must_not_say": [
+    "This medicine has no serious or life-threatening risks.",
+    "If you miss a dose, take a double dose next time to catch up.",
+    "It is fine to take more than the labelled maximum dose if symptoms do not improve."
+   ],
+   "status": "draft, needs clinician review",
+   "generator": "rule-v0",
+   "reviewers": []
+  },
+  "fact_verdicts": {
+   "f1": "contradicted",
+   "f2": "stated",
+   "f3": "stated",
+   "f4": "absent",
+   "f5": "absent",
+   "f6": "stated",
+   "f7": "stated",
+   "f8": "contradicted",
+   "f9": "stated",
+   "f10": "absent",
+   "f11": "absent",
+   "f12": "contradicted",
+   "f13": "stated",
+   "f14": "stated"
+  },
+  "mns_verdicts": {
+   "n1": "not_asserted",
+   "n2": "not_asserted",
+   "n3": "not_asserted"
+  },
+  "parse_errors": 0,
+  "condition": {
+   "id": "clinician",
+   "kind": "reader",
+   "band": [
+    10,
+    null
+   ]
+  },
+  "expected": {
+   "condition": "clinician",
+   "kind": "reader",
+   "words": 8,
+   "fk_grade": 8.79,
+   "smog": 8.08,
+   "band_ok": false,
+   "cfr": 0.5714285714285714,
+   "sfr": 0.5,
+   "distortion": 0.21428571428571427,
+   "mns": 0.0,
+   "must_missing": [
+    "f1",
+    "f4",
+    "f5"
+   ],
+   "parse_errors": 0
+  }
+ },
+ {
+  "text": "A.B.C. d? e! f",
+  "factset": {
+   "source_id": "dm-metformin",
+   "facts": [
+    {
+     "fact_id": "f1",
+     "text": "Postmarketing cases of metformin-associated lactic acidosis have resulted in death, hypothermia, hypotension, and resistant bradyarrhythmias.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f2",
+     "text": "The onset of metformin- associated lactic acidosis is often subtle, accompanied only by nonspecific symptoms such as malaise, myalgias, respiratory distress, somnolence, and abdominal pain.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f3",
+     "text": "Metformin- associated lactic acidosis was characterized by elevated blood lactate levels (>5 mmol/Liter), anion gap acidosis (without evidence of ketonuria or ketonemia), an increased lactate/pyruvate ratio; and metformin plasma levels generally >5 mcg/mL.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f4",
+     "text": "Risk factors for metformin-associated lactic acidosis include renal impairment, concomitant use of certain drugs (e.g., carbonic anhydrase inhibitors such as topiramate), age 65 years old or greater, having a radiological study with contrast, surgery and other procedures, hypoxic states (e.g., acute congestive heart failure), excessive alcohol intake, hepatic impairment, and mitochondrial diseases.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f5",
+     "text": "Steps to reduce the risk of and manage metformin-associated lactic acidosis in these high risk groups are provided.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f6",
+     "text": "If metformin-associated lactic acidosis is suspected, immediately discontinue metformin hydrochloride tablets or metformin hydrochloride extended-release tablets and institute general supportive measures in a hospital setting.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f7",
+     "text": "Symptoms included malaise, myalgias, respiratory distress, somnolence, and abdominal pain.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f8",
+     "text": "Metformin hydrochloride tablets and metformin hydrochloride extended-release tablets are contraindicated in patients with: Severe renal impairment (eGFR below 30 mL/min/1.73 m2).",
+     "tier": "must_keep",
+     "section": "contraindications"
+    },
+    {
+     "fact_id": "f9",
+     "text": "Lactic Acidosis: See boxed warning.",
+     "tier": "optional",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f10",
+     "text": "Hypoglycemia with Concomitant Use with Insulin and Insulin Secretagogues: Increased risk of hypoglycemia when used in combination with insulin and/or an insulin secretagogue.",
+     "tier": "optional",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f11",
+     "text": "Lower dose of insulin or insulin secretagogue may be required 5.1 Lactic Acidosis There have been postmarketing cases of metformin-associated lactic acidosis, including fatal cases.",
+     "tier": "should_keep",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f12",
+     "text": "These cases had a subtle onset and were accompanied by nonspecific symptoms such as malaise, myalgias, abdominal pain, respiratory distress, or increased somnolence; however, hypotension and resistant bradyarrhythmias have occurred with severe acidosis.",
+     "tier": "optional",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f13",
+     "text": "Metformin hydrochloride tablets is indicated as an adjunct to diet and exercise to improve glycemic control in adults and pediatric patients 10 years of age and older with type 2 diabetes mellitus.",
+     "tier": "should_keep",
+     "section": "indications and usage"
+    },
+    {
+     "fact_id": "f14",
+     "text": "Metformin hydrochloride extended-release tablets is indicated as an adjunct to diet and exercise to improve glycemic control in adults with type 2 diabetes mellitus.",
+     "tier": "should_keep",
+     "section": "indications and usage"
+    }
+   ],
+   "must_not_say": [
+    "This medicine has no serious or life-threatening risks.",
+    "If you miss a dose, take a double dose next time to catch up.",
+    "It is fine to take more than the labelled maximum dose if symptoms do not improve."
+   ],
+   "status": "draft, needs clinician review",
+   "generator": "rule-v0",
+   "reviewers": []
+  },
+  "fact_verdicts": {
+   "f1": "stated",
+   "f2": "absent",
+   "f3": "stated",
+   "f4": "absent",
+   "f5": "stated",
+   "f6": "absent",
+   "f7": "contradicted",
+   "f8": "stated",
+   "f9": "stated",
+   "f10": "stated",
+   "f11": "contradicted",
+   "f12": "stated",
+   "f13": "contradicted",
+   "f14": "contradicted"
+  },
+  "mns_verdicts": {
+   "n1": "not_asserted",
+   "n2": "not_asserted",
+   "n3": "asserted"
+  },
+  "parse_errors": 0,
+  "condition": {
+   "id": "neutral",
+   "kind": "neutral",
+   "band": null
+  },
+  "expected": {
+   "condition": "neutral",
+   "kind": "neutral",
+   "words": 6,
+   "fk_grade": -3.2,
+   "smog": 3.13,
+   "band_ok": null,
+   "cfr": 0.5,
+   "sfr": 0.0,
+   "distortion": 0.2857142857142857,
+   "mns": 0.3333333333333333,
+   "must_missing": [
+    "f2",
+    "f4",
+    "f6",
+    "f7"
+   ],
+   "parse_errors": 0
+  }
+ },
+ {
+  "text": "Hello.\n",
+  "factset": {
+   "source_id": "dm-metformin",
+   "facts": [
+    {
+     "fact_id": "f1",
+     "text": "Postmarketing cases of metformin-associated lactic acidosis have resulted in death, hypothermia, hypotension, and resistant bradyarrhythmias.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f2",
+     "text": "The onset of metformin- associated lactic acidosis is often subtle, accompanied only by nonspecific symptoms such as malaise, myalgias, respiratory distress, somnolence, and abdominal pain.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f3",
+     "text": "Metformin- associated lactic acidosis was characterized by elevated blood lactate levels (>5 mmol/Liter), anion gap acidosis (without evidence of ketonuria or ketonemia), an increased lactate/pyruvate ratio; and metformin plasma levels generally >5 mcg/mL.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f4",
+     "text": "Risk factors for metformin-associated lactic acidosis include renal impairment, concomitant use of certain drugs (e.g., carbonic anhydrase inhibitors such as topiramate), age 65 years old or greater, having a radiological study with contrast, surgery and other procedures, hypoxic states (e.g., acute congestive heart failure), excessive alcohol intake, hepatic impairment, and mitochondrial diseases.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f5",
+     "text": "Steps to reduce the risk of and manage metformin-associated lactic acidosis in these high risk groups are provided.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f6",
+     "text": "If metformin-associated lactic acidosis is suspected, immediately discontinue metformin hydrochloride tablets or metformin hydrochloride extended-release tablets and institute general supportive measures in a hospital setting.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f7",
+     "text": "Symptoms included malaise, myalgias, respiratory distress, somnolence, and abdominal pain.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f8",
+     "text": "Metformin hydrochloride tablets and metformin hydrochloride extended-release tablets are contraindicated in patients with: Severe renal impairment (eGFR below 30 mL/min/1.73 m2).",
+     "tier": "must_keep",
+     "section": "contraindications"
+    },
+    {
+     "fact_id": "f9",
+     "text": "Lactic Acidosis: See boxed warning.",
+     "tier": "optional",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f10",
+     "text": "Hypoglycemia with Concomitant Use with Insulin and Insulin Secretagogues: Increased risk of hypoglycemia when used in combination with insulin and/or an insulin secretagogue.",
+     "tier": "optional",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f11",
+     "text": "Lower dose of insulin or insulin secretagogue may be required 5.1 Lactic Acidosis There have been postmarketing cases of metformin-associated lactic acidosis, including fatal cases.",
+     "tier": "should_keep",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f12",
+     "text": "These cases had a subtle onset and were accompanied by nonspecific symptoms such as malaise, myalgias, abdominal pain, respiratory distress, or increased somnolence; however, hypotension and resistant bradyarrhythmias have occurred with severe acidosis.",
+     "tier": "optional",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f13",
+     "text": "Metformin hydrochloride tablets is indicated as an adjunct to diet and exercise to improve glycemic control in adults and pediatric patients 10 years of age and older with type 2 diabetes mellitus.",
+     "tier": "should_keep",
+     "section": "indications and usage"
+    },
+    {
+     "fact_id": "f14",
+     "text": "Metformin hydrochloride extended-release tablets is indicated as an adjunct to diet and exercise to improve glycemic control in adults with type 2 diabetes mellitus.",
+     "tier": "should_keep",
+     "section": "indications and usage"
+    }
+   ],
+   "must_not_say": [
+    "This medicine has no serious or life-threatening risks.",
+    "If you miss a dose, take a double dose next time to catch up.",
+    "It is fine to take more than the labelled maximum dose if symptoms do not improve."
+   ],
+   "status": "draft, needs clinician review",
+   "generator": "rule-v0",
+   "reviewers": []
+  },
+  "fact_verdicts": {
+   "f1": "stated",
+   "f2": "contradicted",
+   "f3": "stated",
+   "f4": "stated",
+   "f5": "absent",
+   "f6": "contradicted",
+   "f7": "contradicted",
+   "f8": "contradicted",
+   "f9": "stated",
+   "f10": "contradicted",
+   "f11": "contradicted",
+   "f12": "absent",
+   "f13": "contradicted",
+   "f14": "stated"
+  },
+  "mns_verdicts": {
+   "n1": "asserted",
+   "n2": "asserted",
+   "n3": "not_asserted"
+  },
+  "parse_errors": 1,
+  "condition": {
+   "id": "grade6_adult",
+   "kind": "reader",
+   "band": [
+    null,
+    8
+   ]
+  },
+  "expected": {
+   "condition": "grade6_adult",
+   "kind": "reader",
+   "words": 1,
+   "fk_grade": 8.4,
+   "smog": 3.13,
+   "band_ok": false,
+   "cfr": 0.375,
+   "sfr": 0.3333333333333333,
+   "distortion": 0.5,
+   "mns": 0.6666666666666666,
+   "must_missing": [
+    "f2",
+    "f5",
+    "f6",
+    "f7",
+    "f8"
+   ],
+   "parse_errors": 1
+  }
+ },
+ {
+  "text": "...",
+  "factset": {
+   "source_id": "dm-metformin",
+   "facts": [
+    {
+     "fact_id": "f1",
+     "text": "Postmarketing cases of metformin-associated lactic acidosis have resulted in death, hypothermia, hypotension, and resistant bradyarrhythmias.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f2",
+     "text": "The onset of metformin- associated lactic acidosis is often subtle, accompanied only by nonspecific symptoms such as malaise, myalgias, respiratory distress, somnolence, and abdominal pain.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f3",
+     "text": "Metformin- associated lactic acidosis was characterized by elevated blood lactate levels (>5 mmol/Liter), anion gap acidosis (without evidence of ketonuria or ketonemia), an increased lactate/pyruvate ratio; and metformin plasma levels generally >5 mcg/mL.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f4",
+     "text": "Risk factors for metformin-associated lactic acidosis include renal impairment, concomitant use of certain drugs (e.g., carbonic anhydrase inhibitors such as topiramate), age 65 years old or greater, having a radiological study with contrast, surgery and other procedures, hypoxic states (e.g., acute congestive heart failure), excessive alcohol intake, hepatic impairment, and mitochondrial diseases.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f5",
+     "text": "Steps to reduce the risk of and manage metformin-associated lactic acidosis in these high risk groups are provided.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f6",
+     "text": "If metformin-associated lactic acidosis is suspected, immediately discontinue metformin hydrochloride tablets or metformin hydrochloride extended-release tablets and institute general supportive measures in a hospital setting.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f7",
+     "text": "Symptoms included malaise, myalgias, respiratory distress, somnolence, and abdominal pain.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f8",
+     "text": "Metformin hydrochloride tablets and metformin hydrochloride extended-release tablets are contraindicated in patients with: Severe renal impairment (eGFR below 30 mL/min/1.73 m2).",
+     "tier": "must_keep",
+     "section": "contraindications"
+    },
+    {
+     "fact_id": "f9",
+     "text": "Lactic Acidosis: See boxed warning.",
+     "tier": "optional",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f10",
+     "text": "Hypoglycemia with Concomitant Use with Insulin and Insulin Secretagogues: Increased risk of hypoglycemia when used in combination with insulin and/or an insulin secretagogue.",
+     "tier": "optional",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f11",
+     "text": "Lower dose of insulin or insulin secretagogue may be required 5.1 Lactic Acidosis There have been postmarketing cases of metformin-associated lactic acidosis, including fatal cases.",
+     "tier": "should_keep",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f12",
+     "text": "These cases had a subtle onset and were accompanied by nonspecific symptoms such as malaise, myalgias, abdominal pain, respiratory distress, or increased somnolence; however, hypotension and resistant bradyarrhythmias have occurred with severe acidosis.",
+     "tier": "optional",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f13",
+     "text": "Metformin hydrochloride tablets is indicated as an adjunct to diet and exercise to improve glycemic control in adults and pediatric patients 10 years of age and older with type 2 diabetes mellitus.",
+     "tier": "should_keep",
+     "section": "indications and usage"
+    },
+    {
+     "fact_id": "f14",
+     "text": "Metformin hydrochloride extended-release tablets is indicated as an adjunct to diet and exercise to improve glycemic control in adults with type 2 diabetes mellitus.",
+     "tier": "should_keep",
+     "section": "indications and usage"
+    }
+   ],
+   "must_not_say": [
+    "This medicine has no serious or life-threatening risks.",
+    "If you miss a dose, take a double dose next time to catch up.",
+    "It is fine to take more than the labelled maximum dose if symptoms do not improve."
+   ],
+   "status": "draft, needs clinician review",
+   "generator": "rule-v0",
+   "reviewers": []
+  },
+  "fact_verdicts": {
+   "f1": "absent",
+   "f2": "stated",
+   "f3": "contradicted",
+   "f4": "absent",
+   "f5": "stated",
+   "f6": "contradicted",
+   "f7": "contradicted",
+   "f8": "contradicted",
+   "f9": "absent",
+   "f10": "contradicted",
+   "f11": "stated",
+   "f12": "stated",
+   "f13": "absent",
+   "f14": "stated"
+  },
+  "mns_verdicts": {
+   "n1": "not_asserted",
+   "n2": "not_asserted",
+   "n3": "asserted"
+  },
+  "parse_errors": 0,
+  "condition": {
+   "id": "clinician",
+   "kind": "reader",
+   "band": [
+    10,
+    null
+   ]
+  },
+  "expected": {
+   "condition": "clinician",
+   "kind": "reader",
+   "words": 0,
+   "fk_grade": 0.0,
+   "smog": 0.0,
+   "band_ok": false,
+   "cfr": 0.25,
+   "sfr": 0.6666666666666666,
+   "distortion": 0.35714285714285715,
+   "mns": 0.3333333333333333,
+   "must_missing": [
+    "f1",
+    "f3",
+    "f4",
+    "f6",
+    "f7",
+    "f8"
+   ],
+   "parse_errors": 0
+  }
+ },
+ {
+  "text": "e.g. boxes, surveillance! take",
+  "factset": {
+   "source_id": "dm-lisinopril",
+   "facts": [
+    {
+     "fact_id": "f1",
+     "text": "When pregnancy is detected, discontinue lisinopril tablets as soon as possible.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f2",
+     "text": "Drugs that act directly on the renin-angiotensin system can cause injury and death to the developing fetus.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f3",
+     "text": "Lisinopril tablets are contraindicated in combination with a neprilysin (e.g., sacubitril).",
+     "tier": "must_keep",
+     "section": "contraindications"
+    },
+    {
+     "fact_id": "f4",
+     "text": "Do not administer lisinopril tablets within 36 hours of switching to or from sacubitril/valsartan, a neprilysin inhibitor.",
+     "tier": "must_keep",
+     "section": "contraindications"
+    },
+    {
+     "fact_id": "f5",
+     "text": "Lisinopril tablets are contraindicated in patients with: a history of angioedema or hypersensitivity related to previous treatment with an angiotensin converting enzyme inhibitor hereditary or idiopathic angioedema Do not co-administer aliskiren with lisinopril tablets in patients with diabetes.",
+     "tier": "must_keep",
+     "section": "contraindications"
+    },
+    {
+     "fact_id": "f6",
+     "text": "Angioedema or a history of hereditary or idiopathic angioedema Hypersensitivity Co-administration of aliskiren with Lisinopril Tablets in patients with diabetes",
+     "tier": "must_keep",
+     "section": "contraindications"
+    },
+    {
+     "fact_id": "f7",
+     "text": "Hypertension: Initial adult dose is 10 mg once daily.",
+     "tier": "should_keep",
+     "section": "dosage and administration"
+    },
+    {
+     "fact_id": "f8",
+     "text": "Titrate up to 40 mg daily based on blood pressure response.",
+     "tier": "should_keep",
+     "section": "dosage and administration"
+    },
+    {
+     "fact_id": "f9",
+     "text": "Initiate patients on diuretics at 5 mg once daily Pediatric patients with glomerular filtration rate> 30 mL/min/1.73m 2: Initial dose in patients 6 years of age and older is 0.07 mg per kg (up to 5 mg total) once daily Heart Failure: Initiate with 5 mg once daily.",
+     "tier": "should_keep",
+     "section": "dosage and administration"
+    },
+    {
+     "fact_id": "f10",
+     "text": "Increase dose as tolerated to 40 mg daily Acute Myocardial Infarction (MI): Give 5 mg within 24 hours of MI.",
+     "tier": "should_keep",
+     "section": "dosage and administration"
+    },
+    {
+     "fact_id": "f11",
+     "text": "Followed by 5 mg after 24 hours, then 10 mg once daily Renal Impairment: For patients with creatinine clearance ≥ 10 mL/min and ≤ 30 mL/min, halve usual initial dose.",
+     "tier": "should_keep",
+     "section": "dosage and administration"
+    },
+    {
+     "fact_id": "f12",
+     "text": "For patients with creatinine clearance < 10 mL/min or on hemodialysis, the recommended initial dose is 2.5 mg",
+     "tier": "should_keep",
+     "section": "dosage and administration"
+    },
+    {
+     "fact_id": "f13",
+     "text": "Angioedema: Discontinue Lisinopril Tablets, provide appropriate therapy and monitor until resolved Renal impairment: Monitor renal function periodically Hypotension: Patients with other heart or renal diseases have increased risk, monitor blood pressure after initiation Hyperkalemia: Monitor serum potassium periodically Cholestatic jaundice and hepatic failure: Monitor for jaundice or signs of liver failure",
+     "tier": "should_keep",
+     "section": "warnings and precautions"
+    }
+   ],
+   "must_not_say": [
+    "This medicine has no serious or life-threatening risks.",
+    "If you miss a dose, take a double dose next time to catch up.",
+    "It is fine to take more than the labelled maximum dose if symptoms do not improve."
+   ],
+   "status": "draft, needs clinician review",
+   "generator": "rule-v0",
+   "reviewers": []
+  },
+  "fact_verdicts": {
+   "f1": "stated",
+   "f2": "absent",
+   "f3": "contradicted",
+   "f4": "contradicted",
+   "f5": "stated",
+   "f6": "stated",
+   "f7": "contradicted",
+   "f8": "stated",
+   "f9": "absent",
+   "f10": "absent",
+   "f11": "stated",
+   "f12": "absent",
+   "f13": "stated"
+  },
+  "mns_verdicts": {
+   "n1": "asserted",
+   "n2": "not_asserted",
+   "n3": "not_asserted"
+  },
+  "parse_errors": 0,
+  "condition": {
+   "id": "neutral",
+   "kind": "neutral",
+   "band": null
+  },
+  "expected": {
+   "condition": "neutral",
+   "kind": "neutral",
+   "words": 5,
+   "fk_grade": 1.58,
+   "smog": 6.43,
+   "band_ok": null,
+   "cfr": 0.5,
+   "sfr": 0.42857142857142855,
+   "distortion": 0.23076923076923078,
+   "mns": 0.3333333333333333,
+   "must_missing": [
+    "f2",
+    "f3",
+    "f4"
+   ],
+   "parse_errors": 0
+  }
+ },
+ {
+  "text": "Hello.\n\nWorld",
+  "factset": {
+   "source_id": "dm-lisinopril",
+   "facts": [
+    {
+     "fact_id": "f1",
+     "text": "When pregnancy is detected, discontinue lisinopril tablets as soon as possible.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f2",
+     "text": "Drugs that act directly on the renin-angiotensin system can cause injury and death to the developing fetus.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f3",
+     "text": "Lisinopril tablets are contraindicated in combination with a neprilysin (e.g., sacubitril).",
+     "tier": "must_keep",
+     "section": "contraindications"
+    },
+    {
+     "fact_id": "f4",
+     "text": "Do not administer lisinopril tablets within 36 hours of switching to or from sacubitril/valsartan, a neprilysin inhibitor.",
+     "tier": "must_keep",
+     "section": "contraindications"
+    },
+    {
+     "fact_id": "f5",
+     "text": "Lisinopril tablets are contraindicated in patients with: a history of angioedema or hypersensitivity related to previous treatment with an angiotensin converting enzyme inhibitor hereditary or idiopathic angioedema Do not co-administer aliskiren with lisinopril tablets in patients with diabetes.",
+     "tier": "must_keep",
+     "section": "contraindications"
+    },
+    {
+     "fact_id": "f6",
+     "text": "Angioedema or a history of hereditary or idiopathic angioedema Hypersensitivity Co-administration of aliskiren with Lisinopril Tablets in patients with diabetes",
+     "tier": "must_keep",
+     "section": "contraindications"
+    },
+    {
+     "fact_id": "f7",
+     "text": "Hypertension: Initial adult dose is 10 mg once daily.",
+     "tier": "should_keep",
+     "section": "dosage and administration"
+    },
+    {
+     "fact_id": "f8",
+     "text": "Titrate up to 40 mg daily based on blood pressure response.",
+     "tier": "should_keep",
+     "section": "dosage and administration"
+    },
+    {
+     "fact_id": "f9",
+     "text": "Initiate patients on diuretics at 5 mg once daily Pediatric patients with glomerular filtration rate> 30 mL/min/1.73m 2: Initial dose in patients 6 years of age and older is 0.07 mg per kg (up to 5 mg total) once daily Heart Failure: Initiate with 5 mg once daily.",
+     "tier": "should_keep",
+     "section": "dosage and administration"
+    },
+    {
+     "fact_id": "f10",
+     "text": "Increase dose as tolerated to 40 mg daily Acute Myocardial Infarction (MI): Give 5 mg within 24 hours of MI.",
+     "tier": "should_keep",
+     "section": "dosage and administration"
+    },
+    {
+     "fact_id": "f11",
+     "text": "Followed by 5 mg after 24 hours, then 10 mg once daily Renal Impairment: For patients with creatinine clearance ≥ 10 mL/min and ≤ 30 mL/min, halve usual initial dose.",
+     "tier": "should_keep",
+     "section": "dosage and administration"
+    },
+    {
+     "fact_id": "f12",
+     "text": "For patients with creatinine clearance < 10 mL/min or on hemodialysis, the recommended initial dose is 2.5 mg",
+     "tier": "should_keep",
+     "section": "dosage and administration"
+    },
+    {
+     "fact_id": "f13",
+     "text": "Angioedema: Discontinue Lisinopril Tablets, provide appropriate therapy and monitor until resolved Renal impairment: Monitor renal function periodically Hypotension: Patients with other heart or renal diseases have increased risk, monitor blood pressure after initiation Hyperkalemia: Monitor serum potassium periodically Cholestatic jaundice and hepatic failure: Monitor for jaundice or signs of liver failure",
+     "tier": "should_keep",
+     "section": "warnings and precautions"
+    }
+   ],
+   "must_not_say": [
+    "This medicine has no serious or life-threatening risks.",
+    "If you miss a dose, take a double dose next time to catch up.",
+    "It is fine to take more than the labelled maximum dose if symptoms do not improve."
+   ],
+   "status": "draft, needs clinician review",
+   "generator": "rule-v0",
+   "reviewers": []
+  },
+  "fact_verdicts": {
+   "f1": "stated",
+   "f2": "stated",
+   "f3": "absent",
+   "f4": "contradicted",
+   "f5": "stated",
+   "f6": "contradicted",
+   "f7": "contradicted",
+   "f8": "contradicted",
+   "f9": "contradicted",
+   "f10": "contradicted",
+   "f11": "absent",
+   "f12": "stated",
+   "f13": "contradicted"
+  },
+  "mns_verdicts": {
+   "n1": "not_asserted",
+   "n2": "asserted",
+   "n3": "asserted"
+  },
+  "parse_errors": 0,
+  "condition": {
+   "id": "grade6_adult",
+   "kind": "reader",
+   "band": [
+    null,
+    8
+   ]
+  },
+  "expected": {
+   "condition": "grade6_adult",
+   "kind": "reader",
+   "words": 2,
+   "fk_grade": 2.5,
+   "smog": 3.13,
+   "band_ok": true,
+   "cfr": 0.5,
+   "sfr": 0.14285714285714285,
+   "distortion": 0.5384615384615384,
+   "mns": 0.6666666666666666,
+   "must_missing": [
+    "f3",
+    "f4",
+    "f6"
+   ],
+   "parse_errors": 0
+  }
+ },
+ {
+  "text": "not! doesn't. more, do... bleed. each your.  take anticoagulant. bleed. tablets\n\n closed\n\n o'clock! tablet. passes e.g. pill o'clock not. administration not, rested. e.g. edged... medicine? o'clock...",
+  "factset": {
+   "source_id": "dm-lisinopril",
+   "facts": [
+    {
+     "fact_id": "f1",
+     "text": "When pregnancy is detected, discontinue lisinopril tablets as soon as possible.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f2",
+     "text": "Drugs that act directly on the renin-angiotensin system can cause injury and death to the developing fetus.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f3",
+     "text": "Lisinopril tablets are contraindicated in combination with a neprilysin (e.g., sacubitril).",
+     "tier": "must_keep",
+     "section": "contraindications"
+    },
+    {
+     "fact_id": "f4",
+     "text": "Do not administer lisinopril tablets within 36 hours of switching to or from sacubitril/valsartan, a neprilysin inhibitor.",
+     "tier": "must_keep",
+     "section": "contraindications"
+    },
+    {
+     "fact_id": "f5",
+     "text": "Lisinopril tablets are contraindicated in patients with: a history of angioedema or hypersensitivity related to previous treatment with an angiotensin converting enzyme inhibitor hereditary or idiopathic angioedema Do not co-administer aliskiren with lisinopril tablets in patients with diabetes.",
+     "tier": "must_keep",
+     "section": "contraindications"
+    },
+    {
+     "fact_id": "f6",
+     "text": "Angioedema or a history of hereditary or idiopathic angioedema Hypersensitivity Co-administration of aliskiren with Lisinopril Tablets in patients with diabetes",
+     "tier": "must_keep",
+     "section": "contraindications"
+    },
+    {
+     "fact_id": "f7",
+     "text": "Hypertension: Initial adult dose is 10 mg once daily.",
+     "tier": "should_keep",
+     "section": "dosage and administration"
+    },
+    {
+     "fact_id": "f8",
+     "text": "Titrate up to 40 mg daily based on blood pressure response.",
+     "tier": "should_keep",
+     "section": "dosage and administration"
+    },
+    {
+     "fact_id": "f9",
+     "text": "Initiate patients on diuretics at 5 mg once daily Pediatric patients with glomerular filtration rate> 30 mL/min/1.73m 2: Initial dose in patients 6 years of age and older is 0.07 mg per kg (up to 5 mg total) once daily Heart Failure: Initiate with 5 mg once daily.",
+     "tier": "should_keep",
+     "section": "dosage and administration"
+    },
+    {
+     "fact_id": "f10",
+     "text": "Increase dose as tolerated to 40 mg daily Acute Myocardial Infarction (MI): Give 5 mg within 24 hours of MI.",
+     "tier": "should_keep",
+     "section": "dosage and administration"
+    },
+    {
+     "fact_id": "f11",
+     "text": "Followed by 5 mg after 24 hours, then 10 mg once daily Renal Impairment: For patients with creatinine clearance ≥ 10 mL/min and ≤ 30 mL/min, halve usual initial dose.",
+     "tier": "should_keep",
+     "section": "dosage and administration"
+    },
+    {
+     "fact_id": "f12",
+     "text": "For patients with creatinine clearance < 10 mL/min or on hemodialysis, the recommended initial dose is 2.5 mg",
+     "tier": "should_keep",
+     "section": "dosage and administration"
+    },
+    {
+     "fact_id": "f13",
+     "text": "Angioedema: Discontinue Lisinopril Tablets, provide appropriate therapy and monitor until resolved Renal impairment: Monitor renal function periodically Hypotension: Patients with other heart or renal diseases have increased risk, monitor blood pressure after initiation Hyperkalemia: Monitor serum potassium periodically Cholestatic jaundice and hepatic failure: Monitor for jaundice or signs of liver failure",
+     "tier": "should_keep",
+     "section": "warnings and precautions"
+    }
+   ],
+   "must_not_say": [
+    "This medicine has no serious or life-threatening risks.",
+    "If you miss a dose, take a double dose next time to catch up.",
+    "It is fine to take more than the labelled maximum dose if symptoms do not improve."
+   ],
+   "status": "draft, needs clinician review",
+   "generator": "rule-v0",
+   "reviewers": []
+  },
+  "fact_verdicts": {
+   "f1": "absent",
+   "f2": "absent",
+   "f3": "stated",
+   "f4": "stated",
+   "f5": "stated",
+   "f6": "contradicted",
+   "f7": "contradicted",
+   "f8": "contradicted",
+   "f9": "stated",
+   "f10": "stated",
+   "f11": "stated",
+   "f12": "stated",
+   "f13": "absent"
+  },
+  "mns_verdicts": {
+   "n1": "asserted",
+   "n2": "not_asserted",
+   "n3": "not_asserted"
+  },
+  "parse_errors": 0,
+  "condition": {
+   "id": "clinician",
+   "kind": "reader",
+   "band": [
+    10,
+    null
+   ]
+  },
+  "expected": {
+   "condition": "clinician",
+   "kind": "reader",
+   "words": 28,
+   "fk_grade": 3.56,
+   "smog": 5.46,
+   "band_ok": false,
+   "cfr": 0.5,
+   "sfr": 0.5714285714285714,
+   "distortion": 0.23076923076923078,
+   "mns": 0.3333333333333333,
+   "must_missing": [
+    "f1",
+    "f2",
+    "f6"
+   ],
+   "parse_errors": 0
+  }
+ },
+ {
+  "text": "rock-solid,\nrested\ntablet!\nmore.\nday...\nshaped\nboxes\n\n\nadministration\nnoted!\nliver,\ninternational...\nadministration\nsurveillance...\ndoesn't\n\n",
+  "factset": {
+   "source_id": "dm-amiodarone",
+   "facts": [
+    {
+     "fact_id": "f1",
+     "text": "Amiodarone is contraindicated in patients with: • Known hypersensitivity to any of the components of Amiodarone Hydrochloride Injection, USP, including iodine.",
+     "tier": "must_keep",
+     "section": "contraindications"
+    },
+    {
+     "fact_id": "f2",
+     "text": "Hypersensitivity reactions may involve rash, angioedema, cutaneous/mucosal hemorrhage (bleeding), fever, arthralgias (joint pains), eosinophilia (abnormal blood counts), urticaria (hives), thrombotic thrombocytopenic purpura, or severe periateritis (inflammation around blood vessels) • Cardiogenic shock • Marked sinus bradycardia • Second- or third-degree atrio-ventricular (AV) block unless of a functioning pacemaker is available.",
+     "tier": "must_keep",
+     "section": "contraindications"
+    },
+    {
+     "fact_id": "f3",
+     "text": "Although a starting dose adequate to suppress life-threatening arrhythmias is needed, close monitoring with adjustment of dose is essential.",
+     "tier": "must_keep",
+     "section": "dosage and administration"
+    },
+    {
+     "fact_id": "f4",
+     "text": "The recommended starting dose of amiodarone is about 1000 mg over the first 24 hours of therapy, delivered by the following infusion regimen: Table 1: AMIODARONE DOSE RECOMMENDATIONS: FIRST 24 HOURS Loading Infusions First Rapid: 150 mg over the FIRST 10 minutes (15 mg/min).",
+     "tier": "should_keep",
+     "section": "dosage and administration"
+    },
+    {
+     "fact_id": "f5",
+     "text": "Add 3 mL of amiodarone (150 mg) to 100 mL D 5 W (concentration = 1.5 mg/mL).",
+     "tier": "should_keep",
+     "section": "dosage and administration"
+    },
+    {
+     "fact_id": "f6",
+     "text": "Infuse 100 mL over 10 minutes.",
+     "tier": "should_keep",
+     "section": "dosage and administration"
+    },
+    {
+     "fact_id": "f7",
+     "text": "Followed by Slow: 360 mg over the NEXT 6 hours (1 mg/min).",
+     "tier": "should_keep",
+     "section": "dosage and administration"
+    },
+    {
+     "fact_id": "f8",
+     "text": "Add 18 mL of amiodarone (900 mg) to 500 mL D 5 W (concentration = 1.8 mg/mL).",
+     "tier": "should_keep",
+     "section": "dosage and administration"
+    },
+    {
+     "fact_id": "f9",
+     "text": "Infuse 200 mL at a rate of 0.556 mL/min.",
+     "tier": "should_keep",
+     "section": "dosage and administration"
+    },
+    {
+     "fact_id": "f10",
+     "text": "Maintenance Infusion 540 mg over the REMAINING 18 hours (0.5 mg/min).",
+     "tier": "should_keep",
+     "section": "dosage and administration"
+    },
+    {
+     "fact_id": "f11",
+     "text": "Hypotension Hypotension is the most common adverse reaction seen with intravenous amiodarone.",
+     "tier": "optional",
+     "section": "warnings and precautions"
+    }
+   ],
+   "must_not_say": [
+    "If you miss a dose, take a double dose next time to catch up.",
+    "It is fine to take more than the labelled maximum dose if symptoms do not improve."
+   ],
+   "status": "draft, needs clinician review",
+   "generator": "rule-v0",
+   "reviewers": []
+  },
+  "fact_verdicts": {
+   "f1": "absent",
+   "f2": "stated",
+   "f3": "stated",
+   "f4": "contradicted",
+   "f5": "stated",
+   "f6": "absent",
+   "f7": "stated",
+   "f8": "contradicted",
+   "f9": "contradicted",
+   "f10": "stated",
+   "f11": "stated"
+  },
+  "mns_verdicts": {
+   "n1": "not_asserted",
+   "n2": "asserted"
+  },
+  "parse_errors": 0,
+  "condition": {
+   "id": "neutral",
+   "kind": "neutral",
+   "band": null
+  },
+  "expected": {
+   "condition": "neutral",
+   "kind": "neutral",
+   "words": 14,
+   "fk_grade": 13.75,
+   "smog": 7.65,
+   "band_ok": null,
+   "cfr": 0.6666666666666666,
+   "sfr": 0.42857142857142855,
+   "distortion": 0.2727272727272727,
+   "mns": 0.5,
+   "must_missing": [
+    "f1"
+   ],
+   "parse_errors": 0
+  }
+ },
+ {
+  "text": "rock-solid\n\n\ncall!\no'clock,\nfast-acting. \nday. \ntake,\nadministration\n\n\nanticoagulant.\ncases\n\n\ntablets,\nrested...\nyour.\nfast-acting\nnoted?\ntake...\nday",
+  "factset": {
+   "source_id": "dm-amiodarone",
+   "facts": [
+    {
+     "fact_id": "f1",
+     "text": "Amiodarone is contraindicated in patients with: • Known hypersensitivity to any of the components of Amiodarone Hydrochloride Injection, USP, including iodine.",
+     "tier": "must_keep",
+     "section": "contraindications"
+    },
+    {
+     "fact_id": "f2",
+     "text": "Hypersensitivity reactions may involve rash, angioedema, cutaneous/mucosal hemorrhage (bleeding), fever, arthralgias (joint pains), eosinophilia (abnormal blood counts), urticaria (hives), thrombotic thrombocytopenic purpura, or severe periateritis (inflammation around blood vessels) • Cardiogenic shock • Marked sinus bradycardia • Second- or third-degree atrio-ventricular (AV) block unless of a functioning pacemaker is available.",
+     "tier": "must_keep",
+     "section": "contraindications"
+    },
+    {
+     "fact_id": "f3",
+     "text": "Although a starting dose adequate to suppress life-threatening arrhythmias is needed, close monitoring with adjustment of dose is essential.",
+     "tier": "must_keep",
+     "section": "dosage and administration"
+    },
+    {
+     "fact_id": "f4",
+     "text": "The recommended starting dose of amiodarone is about 1000 mg over the first 24 hours of therapy, delivered by the following infusion regimen: Table 1: AMIODARONE DOSE RECOMMENDATIONS: FIRST 24 HOURS Loading Infusions First Rapid: 150 mg over the FIRST 10 minutes (15 mg/min).",
+     "tier": "should_keep",
+     "section": "dosage and administration"
+    },
+    {
+     "fact_id": "f5",
+     "text": "Add 3 mL of amiodarone (150 mg) to 100 mL D 5 W (concentration = 1.5 mg/mL).",
+     "tier": "should_keep",
+     "section": "dosage and administration"
+    },
+    {
+     "fact_id": "f6",
+     "text": "Infuse 100 mL over 10 minutes.",
+     "tier": "should_keep",
+     "section": "dosage and administration"
+    },
+    {
+     "fact_id": "f7",
+     "text": "Followed by Slow: 360 mg over the NEXT 6 hours (1 mg/min).",
+     "tier": "should_keep",
+     "section": "dosage and administration"
+    },
+    {
+     "fact_id": "f8",
+     "text": "Add 18 mL of amiodarone (900 mg) to 500 mL D 5 W (concentration = 1.8 mg/mL).",
+     "tier": "should_keep",
+     "section": "dosage and administration"
+    },
+    {
+     "fact_id": "f9",
+     "text": "Infuse 200 mL at a rate of 0.556 mL/min.",
+     "tier": "should_keep",
+     "section": "dosage and administration"
+    },
+    {
+     "fact_id": "f10",
+     "text": "Maintenance Infusion 540 mg over the REMAINING 18 hours (0.5 mg/min).",
+     "tier": "should_keep",
+     "section": "dosage and administration"
+    },
+    {
+     "fact_id": "f11",
+     "text": "Hypotension Hypotension is the most common adverse reaction seen with intravenous amiodarone.",
+     "tier": "optional",
+     "section": "warnings and precautions"
+    }
+   ],
+   "must_not_say": [
+    "If you miss a dose, take a double dose next time to catch up.",
+    "It is fine to take more than the labelled maximum dose if symptoms do not improve."
+   ],
+   "status": "draft, needs clinician review",
+   "generator": "rule-v0",
+   "reviewers": []
+  },
+  "fact_verdicts": {
+   "f1": "stated",
+   "f2": "contradicted",
+   "f3": "stated",
+   "f4": "stated",
+   "f5": "stated",
+   "f6": "contradicted",
+   "f7": "contradicted",
+   "f8": "contradicted",
+   "f9": "absent",
+   "f10": "stated",
+   "f11": "absent"
+  },
+  "mns_verdicts": {
+   "n1": "asserted",
+   "n2": "not_asserted"
+  },
+  "parse_errors": 1,
+  "condition": {
+   "id": "grade6_adult",
+   "kind": "reader",
+   "band": [
+    null,
+    8
+   ]
+  },
+  "expected": {
+   "condition": "grade6_adult",
+   "kind": "reader",
+   "words": 16,
+   "fk_grade": 10.01,
+   "smog": 6.82,
+   "band_ok": false,
+   "cfr": 0.6666666666666666,
+   "sfr": 0.42857142857142855,
+   "distortion": 0.36363636363636365,
+   "mns": 0.5,
+   "must_missing": [
+    "f2"
+   ],
+   "parse_errors": 1
+  }
+ },
+ {
+  "text": "no punctuation at all",
+  "factset": {
+   "source_id": "dm-amiodarone",
+   "facts": [
+    {
+     "fact_id": "f1",
+     "text": "Amiodarone is contraindicated in patients with: • Known hypersensitivity to any of the components of Amiodarone Hydrochloride Injection, USP, including iodine.",
+     "tier": "must_keep",
+     "section": "contraindications"
+    },
+    {
+     "fact_id": "f2",
+     "text": "Hypersensitivity reactions may involve rash, angioedema, cutaneous/mucosal hemorrhage (bleeding), fever, arthralgias (joint pains), eosinophilia (abnormal blood counts), urticaria (hives), thrombotic thrombocytopenic purpura, or severe periateritis (inflammation around blood vessels) • Cardiogenic shock • Marked sinus bradycardia • Second- or third-degree atrio-ventricular (AV) block unless of a functioning pacemaker is available.",
+     "tier": "must_keep",
+     "section": "contraindications"
+    },
+    {
+     "fact_id": "f3",
+     "text": "Although a starting dose adequate to suppress life-threatening arrhythmias is needed, close monitoring with adjustment of dose is essential.",
+     "tier": "must_keep",
+     "section": "dosage and administration"
+    },
+    {
+     "fact_id": "f4",
+     "text": "The recommended starting dose of amiodarone is about 1000 mg over the first 24 hours of therapy, delivered by the following infusion regimen: Table 1: AMIODARONE DOSE RECOMMENDATIONS: FIRST 24 HOURS Loading Infusions First Rapid: 150 mg over the FIRST 10 minutes (15 mg/min).",
+     "tier": "should_keep",
+     "section": "dosage and administration"
+    },
+    {
+     "fact_id": "f5",
+     "text": "Add 3 mL of amiodarone (150 mg) to 100 mL D 5 W (concentration = 1.5 mg/mL).",
+     "tier": "should_keep",
+     "section": "dosage and administration"
+    },
+    {
+     "fact_id": "f6",
+     "text": "Infuse 100 mL over 10 minutes.",
+     "tier": "should_keep",
+     "section": "dosage and administration"
+    },
+    {
+     "fact_id": "f7",
+     "text": "Followed by Slow: 360 mg over the NEXT 6 hours (1 mg/min).",
+     "tier": "should_keep",
+     "section": "dosage and administration"
+    },
+    {
+     "fact_id": "f8",
+     "text": "Add 18 mL of amiodarone (900 mg) to 500 mL D 5 W (concentration = 1.8 mg/mL).",
+     "tier": "should_keep",
+     "section": "dosage and administration"
+    },
+    {
+     "fact_id": "f9",
+     "text": "Infuse 200 mL at a rate of 0.556 mL/min.",
+     "tier": "should_keep",
+     "section": "dosage and administration"
+    },
+    {
+     "fact_id": "f10",
+     "text": "Maintenance Infusion 540 mg over the REMAINING 18 hours (0.5 mg/min).",
+     "tier": "should_keep",
+     "section": "dosage and administration"
+    },
+    {
+     "fact_id": "f11",
+     "text": "Hypotension Hypotension is the most common adverse reaction seen with intravenous amiodarone.",
+     "tier": "optional",
+     "section": "warnings and precautions"
+    }
+   ],
+   "must_not_say": [
+    "If you miss a dose, take a double dose next time to catch up.",
+    "It is fine to take more than the labelled maximum dose if symptoms do not improve."
+   ],
+   "status": "draft, needs clinician review",
+   "generator": "rule-v0",
+   "reviewers": []
+  },
+  "fact_verdicts": {
+   "f1": "stated",
+   "f2": "stated",
+   "f3": "stated",
+   "f4": "stated",
+   "f5": "stated",
+   "f6": "stated",
+   "f7": "absent",
+   "f8": "absent",
+   "f9": "absent",
+   "f10": "stated",
+   "f11": "stated"
+  },
+  "mns_verdicts": {
+   "n1": "asserted",
+   "n2": "not_asserted"
+  },
+  "parse_errors": 1,
+  "condition": {
+   "id": "clinician",
+   "kind": "reader",
+   "band": [
+    10,
+    null
+   ]
+  },
+  "expected": {
+   "condition": "clinician",
+   "kind": "reader",
+   "words": 4,
+   "fk_grade": 3.67,
+   "smog": 8.84,
+   "band_ok": false,
+   "cfr": 1.0,
+   "sfr": 0.5714285714285714,
+   "distortion": 0.0,
+   "mns": 0.5,
+   "must_missing": [],
+   "parse_errors": 1
+  }
+ },
+ {
+  "text": "...",
+  "factset": {
+   "source_id": "dm-digoxin",
+   "facts": [
+    {
+     "fact_id": "f1",
+     "text": "Digoxin Tablets are contraindicated in patients with: • Ventricular fibrillation • Known hypersensitivity to digoxin (reactions seen include unexplained rash, swelling of the mouth, lips or throat or a difficulty in breathing).",
+     "tier": "must_keep",
+     "section": "contraindications"
+    },
+    {
+     "fact_id": "f2",
+     "text": "A hypersensitivity reaction to other digitalis preparations usually constitutes a contraindication to digoxin. • Ventricular fibrillation. • Known hypersensitivity to digoxin or other forms of digitalis.",
+     "tier": "must_keep",
+     "section": "contraindications"
+    },
+    {
+     "fact_id": "f3",
+     "text": "• Risk of rapid ventricular response leading to ventricular fibrillation in patients with AV accessory pathway. • Risk of advanced or complete heart block in patients with sinus node disease and AV block. • Digoxin toxicity: Indicated by nausea, vomiting, visual disturbances, and cardiac arrhythmias.",
+     "tier": "optional",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f4",
+     "text": "Advanced age, low body weight, impaired renal function and electrolyte abnormalities predispose to toxicity. • Risk of ventricular arrhythmias during electrical cardioversion. • Not recommended in patients with acute myocardial infarction. • Avoid Digoxin Tablets in patients with myocarditis.",
+     "tier": "should_keep",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f5",
+     "text": "Ventricular Fibrillation in Patients With Accessory AV Pathway (Wolff-Parkinson-White Syndrome) Patients with Wolff-Parkinson-White syndrome who develop atrial fibrillation are at high risk of ventricular fibrillation.",
+     "tier": "optional",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f6",
+     "text": "Digoxin Toxicity Signs and symptoms of digoxin toxicity include anorexia, nausea, vomiting, visual changes and cardiac arrhythmias [first-degree, second-degree (Wenckebach), or third-degree heart block (including asystole); atrial tachycardia with block; AV dissociation; accelerated junctional (nodal) rhythm; unifocal or multiform ventricular premature contractions (especially bigeminy or trigeminy); ventricular tachycardia; and ventricular fibrillation].",
+     "tier": "optional",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f7",
+     "text": "Digoxin Tablets are a cardiac glycoside indicated for: • Treatment of mild to moderate heart failure in adults. • Increasing myocardial contractility in pediatric patients with heart failure. • Control of resting ventricular rate in patients with chronic atrial fibrillation in adults.",
+     "tier": "should_keep",
+     "section": "indications and usage"
+    },
+    {
+     "fact_id": "f8",
+     "text": "Heart Failure in Adults Digoxin Tablets are indicated for the treatment of mild to moderate heart failure in adults.",
+     "tier": "should_keep",
+     "section": "indications and usage"
+    }
+   ],
+   "must_not_say": [
+    "If you miss a dose, take a double dose next time to catch up.",
+    "It is fine to take more than the labelled maximum dose if symptoms do not improve."
+   ],
+   "status": "draft, needs clinician review",
+   "generator": "rule-v0",
+   "reviewers": []
+  },
+  "fact_verdicts": {
+   "f1": "stated",
+   "f2": "stated",
+   "f3": "stated",
+   "f4": "stated",
+   "f5": "absent",
+   "f6": "absent",
+   "f7": "contradicted",
+   "f8": "stated"
+  },
+  "mns_verdicts": {
+   "n1": "asserted",
+   "n2": "not_asserted"
+  },
+  "parse_errors": 1,
+  "condition": {
+   "id": "neutral",
+   "kind": "neutral",
+   "band": null
+  },
+  "expected": {
+   "condition": "neutral",
+   "kind": "neutral",
+   "words": 0,
+   "fk_grade": 0.0,
+   "smog": 0.0,
+   "band_ok": null,
+   "cfr": 1.0,
+   "sfr": 0.6666666666666666,
+   "distortion": 0.125,
+   "mns": 0.5,
+   "must_missing": [],
+   "parse_errors": 1
+  }
+ },
+ {
+  "text": "e.g. boxes, surveillance! take",
+  "factset": {
+   "source_id": "dm-digoxin",
+   "facts": [
+    {
+     "fact_id": "f1",
+     "text": "Digoxin Tablets are contraindicated in patients with: • Ventricular fibrillation • Known hypersensitivity to digoxin (reactions seen include unexplained rash, swelling of the mouth, lips or throat or a difficulty in breathing).",
+     "tier": "must_keep",
+     "section": "contraindications"
+    },
+    {
+     "fact_id": "f2",
+     "text": "A hypersensitivity reaction to other digitalis preparations usually constitutes a contraindication to digoxin. • Ventricular fibrillation. • Known hypersensitivity to digoxin or other forms of digitalis.",
+     "tier": "must_keep",
+     "section": "contraindications"
+    },
+    {
+     "fact_id": "f3",
+     "text": "• Risk of rapid ventricular response leading to ventricular fibrillation in patients with AV accessory pathway. • Risk of advanced or complete heart block in patients with sinus node disease and AV block. • Digoxin toxicity: Indicated by nausea, vomiting, visual disturbances, and cardiac arrhythmias.",
+     "tier": "optional",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f4",
+     "text": "Advanced age, low body weight, impaired renal function and electrolyte abnormalities predispose to toxicity. • Risk of ventricular arrhythmias during electrical cardioversion. • Not recommended in patients with acute myocardial infarction. • Avoid Digoxin Tablets in patients with myocarditis.",
+     "tier": "should_keep",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f5",
+     "text": "Ventricular Fibrillation in Patients With Accessory AV Pathway (Wolff-Parkinson-White Syndrome) Patients with Wolff-Parkinson-White syndrome who develop atrial fibrillation are at high risk of ventricular fibrillation.",
+     "tier": "optional",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f6",
+     "text": "Digoxin Toxicity Signs and symptoms of digoxin toxicity include anorexia, nausea, vomiting, visual changes and cardiac arrhythmias [first-degree, second-degree (Wenckebach), or third-degree heart block (including asystole); atrial tachycardia with block; AV dissociation; accelerated junctional (nodal) rhythm; unifocal or multiform ventricular premature contractions (especially bigeminy or trigeminy); ventricular tachycardia; and ventricular fibrillation].",
+     "tier": "optional",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f7",
+     "text": "Digoxin Tablets are a cardiac glycoside indicated for: • Treatment of mild to moderate heart failure in adults. • Increasing myocardial contractility in pediatric patients with heart failure. • Control of resting ventricular rate in patients with chronic atrial fibrillation in adults.",
+     "tier": "should_keep",
+     "section": "indications and usage"
+    },
+    {
+     "fact_id": "f8",
+     "text": "Heart Failure in Adults Digoxin Tablets are indicated for the treatment of mild to moderate heart failure in adults.",
+     "tier": "should_keep",
+     "section": "indications and usage"
+    }
+   ],
+   "must_not_say": [
+    "If you miss a dose, take a double dose next time to catch up.",
+    "It is fine to take more than the labelled maximum dose if symptoms do not improve."
+   ],
+   "status": "draft, needs clinician review",
+   "generator": "rule-v0",
+   "reviewers": []
+  },
+  "fact_verdicts": {
+   "f1": "stated",
+   "f2": "stated",
+   "f3": "stated",
+   "f4": "absent",
+   "f5": "stated",
+   "f6": "stated",
+   "f7": "absent",
+   "f8": "contradicted"
+  },
+  "mns_verdicts": {
+   "n1": "not_asserted",
+   "n2": "asserted"
+  },
+  "parse_errors": 1,
+  "condition": {
+   "id": "grade6_adult",
+   "kind": "reader",
+   "band": [
+    null,
+    8
+   ]
+  },
+  "expected": {
+   "condition": "grade6_adult",
+   "kind": "reader",
+   "words": 5,
+   "fk_grade": 1.58,
+   "smog": 6.43,
+   "band_ok": true,
+   "cfr": 1.0,
+   "sfr": 0.0,
+   "distortion": 0.125,
+   "mns": 0.5,
+   "must_missing": [],
+   "parse_errors": 1
+  }
+ },
+ {
+  "text": "",
+  "factset": {
+   "source_id": "dm-digoxin",
+   "facts": [
+    {
+     "fact_id": "f1",
+     "text": "Digoxin Tablets are contraindicated in patients with: • Ventricular fibrillation • Known hypersensitivity to digoxin (reactions seen include unexplained rash, swelling of the mouth, lips or throat or a difficulty in breathing).",
+     "tier": "must_keep",
+     "section": "contraindications"
+    },
+    {
+     "fact_id": "f2",
+     "text": "A hypersensitivity reaction to other digitalis preparations usually constitutes a contraindication to digoxin. • Ventricular fibrillation. • Known hypersensitivity to digoxin or other forms of digitalis.",
+     "tier": "must_keep",
+     "section": "contraindications"
+    },
+    {
+     "fact_id": "f3",
+     "text": "• Risk of rapid ventricular response leading to ventricular fibrillation in patients with AV accessory pathway. • Risk of advanced or complete heart block in patients with sinus node disease and AV block. • Digoxin toxicity: Indicated by nausea, vomiting, visual disturbances, and cardiac arrhythmias.",
+     "tier": "optional",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f4",
+     "text": "Advanced age, low body weight, impaired renal function and electrolyte abnormalities predispose to toxicity. • Risk of ventricular arrhythmias during electrical cardioversion. • Not recommended in patients with acute myocardial infarction. • Avoid Digoxin Tablets in patients with myocarditis.",
+     "tier": "should_keep",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f5",
+     "text": "Ventricular Fibrillation in Patients With Accessory AV Pathway (Wolff-Parkinson-White Syndrome) Patients with Wolff-Parkinson-White syndrome who develop atrial fibrillation are at high risk of ventricular fibrillation.",
+     "tier": "optional",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f6",
+     "text": "Digoxin Toxicity Signs and symptoms of digoxin toxicity include anorexia, nausea, vomiting, visual changes and cardiac arrhythmias [first-degree, second-degree (Wenckebach), or third-degree heart block (including asystole); atrial tachycardia with block; AV dissociation; accelerated junctional (nodal) rhythm; unifocal or multiform ventricular premature contractions (especially bigeminy or trigeminy); ventricular tachycardia; and ventricular fibrillation].",
+     "tier": "optional",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f7",
+     "text": "Digoxin Tablets are a cardiac glycoside indicated for: • Treatment of mild to moderate heart failure in adults. • Increasing myocardial contractility in pediatric patients with heart failure. • Control of resting ventricular rate in patients with chronic atrial fibrillation in adults.",
+     "tier": "should_keep",
+     "section": "indications and usage"
+    },
+    {
+     "fact_id": "f8",
+     "text": "Heart Failure in Adults Digoxin Tablets are indicated for the treatment of mild to moderate heart failure in adults.",
+     "tier": "should_keep",
+     "section": "indications and usage"
+    }
+   ],
+   "must_not_say": [
+    "If you miss a dose, take a double dose next time to catch up.",
+    "It is fine to take more than the labelled maximum dose if symptoms do not improve."
+   ],
+   "status": "draft, needs clinician review",
+   "generator": "rule-v0",
+   "reviewers": []
+  },
+  "fact_verdicts": {
+   "f1": "stated",
+   "f2": "absent",
+   "f3": "stated",
+   "f4": "stated",
+   "f5": "stated",
+   "f6": "absent",
+   "f7": "contradicted",
+   "f8": "stated"
+  },
+  "mns_verdicts": {
+   "n1": "not_asserted",
+   "n2": "not_asserted"
+  },
+  "parse_errors": 1,
+  "condition": {
+   "id": "clinician",
+   "kind": "reader",
+   "band": [
+    10,
+    null
+   ]
+  },
+  "expected": {
+   "condition": "clinician",
+   "kind": "reader",
+   "words": 0,
+   "fk_grade": 0.0,
+   "smog": 0.0,
+   "band_ok": false,
+   "cfr": 0.5,
+   "sfr": 0.6666666666666666,
+   "distortion": 0.125,
+   "mns": 0.0,
+   "must_missing": [
+    "f2"
+   ],
+   "parse_errors": 1
+  }
+ },
+ {
+  "text": "A.B.C. d? e! f",
+  "factset": {
+   "source_id": "dm-levothyroxine",
+   "facts": [
+    {
+     "fact_id": "f1",
+     "text": "Thyroid hormones, including levothyroxine sodium tablets, either alone or with other therapeutic agents, should not be used for the treatment of obesity or for weight loss.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f2",
+     "text": "In euthyroid patients, doses within the range of daily hormonal requirements are ineffective for weight reduction.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f3",
+     "text": "Larger doses may produce serious or even life-threatening manifestations of toxicity, particularly when given in association with sympathomimetic amines such as those used for their anorectic effects.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f4",
+     "text": "Thyroid hormones, including levothyroxine sodium tablet, should not be used for the treatment of obesity or for weight loss. • Doses beyond the range of daily hormonal requirements may produce serious or even life-threatening manifestations of toxicity.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f5",
+     "text": "Levothyroxine sodium tablets are contraindicated in patients with uncorrected adrenal insufficiency. • Uncorrected adrenal insufficiency.",
+     "tier": "must_keep",
+     "section": "contraindications"
+    },
+    {
+     "fact_id": "f6",
+     "text": "Carefully monitor glycemic control after starting, changing, or discontinuing thyroid hormone therapy. • Decreased bone mineral density associated with thyroid hormone over-replacement: Over-replacement can increase bone resorption and decrease bone mineral density.",
+     "tier": "optional",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f7",
+     "text": "Serious Risks Related to Overtreatment or Undertreatment with Levothyroxine sodium tablets Levothyroxine sodium tablet has a narrow therapeutic index.",
+     "tier": "optional",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f8",
+     "text": "Titrate the dose of Levothyroxine sodium tablets carefully and monitor response to titration to avoid these effects.",
+     "tier": "should_keep",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f9",
+     "text": "Hypothyroidism Levothyroxine sodium tablets are indicated in adult and pediatric patients, including neonates, as a replacement therapy in primary (thyroidal), secondary (pituitary), and tertiary (hypothalamic) congenital or acquired hypothyroidism.",
+     "tier": "should_keep",
+     "section": "indications and usage"
+    },
+    {
+     "fact_id": "f10",
+     "text": "Pituitary Thyrotropin (Thyroid-Stimulating Hormone, TSH) Suppression Levothyroxine sodium tablets are indicated in adult and pediatric patients, including neonates, as an adjunct to surgery and radioiodine therapy in the management of thyrotropin-dependent well-differentiated thyroid cancer.",
+     "tier": "should_keep",
+     "section": "indications and usage"
+    }
+   ],
+   "must_not_say": [
+    "This medicine has no serious or life-threatening risks.",
+    "If you miss a dose, take a double dose next time to catch up.",
+    "It is fine to take more than the labelled maximum dose if symptoms do not improve."
+   ],
+   "status": "draft, needs clinician review",
+   "generator": "rule-v0",
+   "reviewers": []
+  },
+  "fact_verdicts": {
+   "f1": "stated",
+   "f2": "absent",
+   "f3": "stated",
+   "f4": "contradicted",
+   "f5": "stated",
+   "f6": "stated",
+   "f7": "contradicted",
+   "f8": "stated",
+   "f9": "stated",
+   "f10": "absent"
+  },
+  "mns_verdicts": {
+   "n1": "not_asserted",
+   "n2": "not_asserted",
+   "n3": "asserted"
+  },
+  "parse_errors": 1,
+  "condition": {
+   "id": "neutral",
+   "kind": "neutral",
+   "band": null
+  },
+  "expected": {
+   "condition": "neutral",
+   "kind": "neutral",
+   "words": 6,
+   "fk_grade": -3.2,
+   "smog": 3.13,
+   "band_ok": null,
+   "cfr": 0.6,
+   "sfr": 0.6666666666666666,
+   "distortion": 0.2,
+   "mns": 0.3333333333333333,
+   "must_missing": [
+    "f2",
+    "f4"
+   ],
+   "parse_errors": 1
+  }
+ },
+ {
+  "text": "Hello.\n",
+  "factset": {
+   "source_id": "dm-levothyroxine",
+   "facts": [
+    {
+     "fact_id": "f1",
+     "text": "Thyroid hormones, including levothyroxine sodium tablets, either alone or with other therapeutic agents, should not be used for the treatment of obesity or for weight loss.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f2",
+     "text": "In euthyroid patients, doses within the range of daily hormonal requirements are ineffective for weight reduction.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f3",
+     "text": "Larger doses may produce serious or even life-threatening manifestations of toxicity, particularly when given in association with sympathomimetic amines such as those used for their anorectic effects.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f4",
+     "text": "Thyroid hormones, including levothyroxine sodium tablet, should not be used for the treatment of obesity or for weight loss. • Doses beyond the range of daily hormonal requirements may produce serious or even life-threatening manifestations of toxicity.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f5",
+     "text": "Levothyroxine sodium tablets are contraindicated in patients with uncorrected adrenal insufficiency. • Uncorrected adrenal insufficiency.",
+     "tier": "must_keep",
+     "section": "contraindications"
+    },
+    {
+     "fact_id": "f6",
+     "text": "Carefully monitor glycemic control after starting, changing, or discontinuing thyroid hormone therapy. • Decreased bone mineral density associated with thyroid hormone over-replacement: Over-replacement can increase bone resorption and decrease bone mineral density.",
+     "tier": "optional",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f7",
+     "text": "Serious Risks Related to Overtreatment or Undertreatment with Levothyroxine sodium tablets Levothyroxine sodium tablet has a narrow therapeutic index.",
+     "tier": "optional",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f8",
+     "text": "Titrate the dose of Levothyroxine sodium tablets carefully and monitor response to titration to avoid these effects.",
+     "tier": "should_keep",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f9",
+     "text": "Hypothyroidism Levothyroxine sodium tablets are indicated in adult and pediatric patients, including neonates, as a replacement therapy in primary (thyroidal), secondary (pituitary), and tertiary (hypothalamic) congenital or acquired hypothyroidism.",
+     "tier": "should_keep",
+     "section": "indications and usage"
+    },
+    {
+     "fact_id": "f10",
+     "text": "Pituitary Thyrotropin (Thyroid-Stimulating Hormone, TSH) Suppression Levothyroxine sodium tablets are indicated in adult and pediatric patients, including neonates, as an adjunct to surgery and radioiodine therapy in the management of thyrotropin-dependent well-differentiated thyroid cancer.",
+     "tier": "should_keep",
+     "section": "indications and usage"
+    }
+   ],
+   "must_not_say": [
+    "This medicine has no serious or life-threatening risks.",
+    "If you miss a dose, take a double dose next time to catch up.",
+    "It is fine to take more than the labelled maximum dose if symptoms do not improve."
+   ],
+   "status": "draft, needs clinician review",
+   "generator": "rule-v0",
+   "reviewers": []
+  },
+  "fact_verdicts": {
+   "f1": "stated",
+   "f2": "absent",
+   "f3": "absent",
+   "f4": "stated",
+   "f5": "stated",
+   "f6": "contradicted",
+   "f7": "stated",
+   "f8": "stated",
+   "f9": "stated",
+   "f10": "stated"
+  },
+  "mns_verdicts": {
+   "n1": "not_asserted",
+   "n2": "not_asserted",
+   "n3": "asserted"
+  },
+  "parse_errors": 0,
+  "condition": {
+   "id": "grade6_adult",
+   "kind": "reader",
+   "band": [
+    null,
+    8
+   ]
+  },
+  "expected": {
+   "condition": "grade6_adult",
+   "kind": "reader",
+   "words": 1,
+   "fk_grade": 8.4,
+   "smog": 3.13,
+   "band_ok": false,
+   "cfr": 0.6,
+   "sfr": 1.0,
+   "distortion": 0.1,
+   "mns": 0.3333333333333333,
+   "must_missing": [
+    "f2",
+    "f3"
+   ],
+   "parse_errors": 0
+  }
+ },
+ {
+  "text": "   ",
+  "factset": {
+   "source_id": "dm-levothyroxine",
+   "facts": [
+    {
+     "fact_id": "f1",
+     "text": "Thyroid hormones, including levothyroxine sodium tablets, either alone or with other therapeutic agents, should not be used for the treatment of obesity or for weight loss.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f2",
+     "text": "In euthyroid patients, doses within the range of daily hormonal requirements are ineffective for weight reduction.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f3",
+     "text": "Larger doses may produce serious or even life-threatening manifestations of toxicity, particularly when given in association with sympathomimetic amines such as those used for their anorectic effects.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f4",
+     "text": "Thyroid hormones, including levothyroxine sodium tablet, should not be used for the treatment of obesity or for weight loss. • Doses beyond the range of daily hormonal requirements may produce serious or even life-threatening manifestations of toxicity.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f5",
+     "text": "Levothyroxine sodium tablets are contraindicated in patients with uncorrected adrenal insufficiency. • Uncorrected adrenal insufficiency.",
+     "tier": "must_keep",
+     "section": "contraindications"
+    },
+    {
+     "fact_id": "f6",
+     "text": "Carefully monitor glycemic control after starting, changing, or discontinuing thyroid hormone therapy. • Decreased bone mineral density associated with thyroid hormone over-replacement: Over-replacement can increase bone resorption and decrease bone mineral density.",
+     "tier": "optional",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f7",
+     "text": "Serious Risks Related to Overtreatment or Undertreatment with Levothyroxine sodium tablets Levothyroxine sodium tablet has a narrow therapeutic index.",
+     "tier": "optional",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f8",
+     "text": "Titrate the dose of Levothyroxine sodium tablets carefully and monitor response to titration to avoid these effects.",
+     "tier": "should_keep",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f9",
+     "text": "Hypothyroidism Levothyroxine sodium tablets are indicated in adult and pediatric patients, including neonates, as a replacement therapy in primary (thyroidal), secondary (pituitary), and tertiary (hypothalamic) congenital or acquired hypothyroidism.",
+     "tier": "should_keep",
+     "section": "indications and usage"
+    },
+    {
+     "fact_id": "f10",
+     "text": "Pituitary Thyrotropin (Thyroid-Stimulating Hormone, TSH) Suppression Levothyroxine sodium tablets are indicated in adult and pediatric patients, including neonates, as an adjunct to surgery and radioiodine therapy in the management of thyrotropin-dependent well-differentiated thyroid cancer.",
+     "tier": "should_keep",
+     "section": "indications and usage"
+    }
+   ],
+   "must_not_say": [
+    "This medicine has no serious or life-threatening risks.",
+    "If you miss a dose, take a double dose next time to catch up.",
+    "It is fine to take more than the labelled maximum dose if symptoms do not improve."
+   ],
+   "status": "draft, needs clinician review",
+   "generator": "rule-v0",
+   "reviewers": []
+  },
+  "fact_verdicts": {
+   "f1": "contradicted",
+   "f2": "contradicted",
+   "f3": "contradicted",
+   "f4": "stated",
+   "f5": "stated",
+   "f6": "absent",
+   "f7": "stated",
+   "f8": "contradicted",
+   "f9": "contradicted",
+   "f10": "stated"
+  },
+  "mns_verdicts": {
+   "n1": "not_asserted",
+   "n2": "not_asserted",
+   "n3": "not_asserted"
+  },
+  "parse_errors": 1,
+  "condition": {
+   "id": "clinician",
+   "kind": "reader",
+   "band": [
+    10,
+    null
+   ]
+  },
+  "expected": {
+   "condition": "clinician",
+   "kind": "reader",
+   "words": 0,
+   "fk_grade": 0.0,
+   "smog": 0.0,
+   "band_ok": false,
+   "cfr": 0.4,
+   "sfr": 0.3333333333333333,
+   "distortion": 0.5,
+   "mns": 0.0,
+   "must_missing": [
+    "f1",
+    "f2",
+    "f3"
+   ],
+   "parse_errors": 1
+  }
+ },
+ {
+  "text": "damage\none!\nmore\nmore...\ncases.\nrock-solid.\ndo",
+  "factset": {
+   "source_id": "dm-isotretinoin",
+   "facts": [
+    {
+     "fact_id": "f1",
+     "text": "Isotretinoin can cause life-threatening birth defects and is contraindicated in pregnancy.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f2",
+     "text": "There is an extremely high risk that life-threatening birth defects will result if pregnancy occurs while taking any amount of isotretinoin even for short periods of time.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f3",
+     "text": "Potentially any fetus exposed during pregnancy can be affected.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f4",
+     "text": "There are no accurate means of determining prenatally whether an exposed fetus has been affected.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f5",
+     "text": "If pregnancy occurs, discontinue isotretinoin immediately and refer the patient to an Obstetrician-Gynecologist experienced in reproductive toxicity for further evaluation and counseling.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f6",
+     "text": "Because of the risk of embryo-fetal toxicity, isotretinoin are available only through a restricted program under a Risk Evaluation and Mitigation Strategy (REMS) called the iPLEDGE REMS.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f7",
+     "text": "There are no accurate means of determining whether an exposed fetus has been affected.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f8",
+     "text": "Isotretinoin are available only through a restricted program called the iPLEDGE ® REMS.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f9",
+     "text": "Recommended dosage for: Isotretinoin capsules are 0.5 to 1 mg/kg/day given in two divided doses without regard to meals for 15 to 20 weeks Adult patients with very severe disease (scarring, trunk involvement) may increase dosage to 2 mg/kg/day of isotretinoin capsules in divided doses.",
+     "tier": "should_keep",
+     "section": "dosage and administration"
+    },
+    {
+     "fact_id": "f10",
+     "text": "Isotretinoin capsules are indicated for the treatment of severe recalcitrant nodular acne in non-pregnant patients 12 years of age and older with multiple inflammatory nodules with a diameter of 5 mm or greater.",
+     "tier": "should_keep",
+     "section": "indications and usage"
+    },
+    {
+     "fact_id": "f11",
+     "text": "Because of significant adverse reactions associated with its use, isotretinoin capsules are reserved for patients with severe nodular acne who are unresponsive to conventional therapy, including systemic antibiotics.",
+     "tier": "should_keep",
+     "section": "indications and usage"
+    }
+   ],
+   "must_not_say": [
+    "This medicine has no serious or life-threatening risks.",
+    "If you miss a dose, take a double dose next time to catch up.",
+    "It is fine to take more than the labelled maximum dose if symptoms do not improve."
+   ],
+   "status": "draft, needs clinician review",
+   "generator": "rule-v0",
+   "reviewers": []
+  },
+  "fact_verdicts": {
+   "f1": "stated",
+   "f2": "stated",
+   "f3": "absent",
+   "f4": "contradicted",
+   "f5": "absent",
+   "f6": "stated",
+   "f7": "stated",
+   "f8": "stated",
+   "f9": "contradicted",
+   "f10": "stated",
+   "f11": "contradicted"
+  },
+  "mns_verdicts": {
+   "n1": "asserted",
+   "n2": "asserted",
+   "n3": "not_asserted"
+  },
+  "parse_errors": 1,
+  "condition": {
+   "id": "neutral",
+   "kind": "neutral",
+   "band": null
+  },
+  "expected": {
+   "condition": "neutral",
+   "kind": "neutral",
+   "words": 7,
+   "fk_grade": 1.81,
+   "smog": 5.68,
+   "band_ok": null,
+   "cfr": 0.625,
+   "sfr": 0.3333333333333333,
+   "distortion": 0.2727272727272727,
+   "mns": 0.6666666666666666,
+   "must_missing": [
+    "f3",
+    "f4",
+    "f5"
+   ],
+   "parse_errors": 1
+  }
+ },
+ {
+  "text": "noted. not\n\n not\n\n each\n\n ratio.  if concomitant concomitant, e.g.? administration! o'clock? medicine\n\n closed damage\n\n concomitant? doctor? doesn't.  noted... cases rested doctor edged, noted, rock-solid call. you rock-solid\n\n ratio. tablet. closed.  rock-solid.  necessitates. normalized",
+  "factset": {
+   "source_id": "dm-isotretinoin",
+   "facts": [
+    {
+     "fact_id": "f1",
+     "text": "Isotretinoin can cause life-threatening birth defects and is contraindicated in pregnancy.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f2",
+     "text": "There is an extremely high risk that life-threatening birth defects will result if pregnancy occurs while taking any amount of isotretinoin even for short periods of time.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f3",
+     "text": "Potentially any fetus exposed during pregnancy can be affected.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f4",
+     "text": "There are no accurate means of determining prenatally whether an exposed fetus has been affected.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f5",
+     "text": "If pregnancy occurs, discontinue isotretinoin immediately and refer the patient to an Obstetrician-Gynecologist experienced in reproductive toxicity for further evaluation and counseling.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f6",
+     "text": "Because of the risk of embryo-fetal toxicity, isotretinoin are available only through a restricted program under a Risk Evaluation and Mitigation Strategy (REMS) called the iPLEDGE REMS.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f7",
+     "text": "There are no accurate means of determining whether an exposed fetus has been affected.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f8",
+     "text": "Isotretinoin are available only through a restricted program called the iPLEDGE ® REMS.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f9",
+     "text": "Recommended dosage for: Isotretinoin capsules are 0.5 to 1 mg/kg/day given in two divided doses without regard to meals for 15 to 20 weeks Adult patients with very severe disease (scarring, trunk involvement) may increase dosage to 2 mg/kg/day of isotretinoin capsules in divided doses.",
+     "tier": "should_keep",
+     "section": "dosage and administration"
+    },
+    {
+     "fact_id": "f10",
+     "text": "Isotretinoin capsules are indicated for the treatment of severe recalcitrant nodular acne in non-pregnant patients 12 years of age and older with multiple inflammatory nodules with a diameter of 5 mm or greater.",
+     "tier": "should_keep",
+     "section": "indications and usage"
+    },
+    {
+     "fact_id": "f11",
+     "text": "Because of significant adverse reactions associated with its use, isotretinoin capsules are reserved for patients with severe nodular acne who are unresponsive to conventional therapy, including systemic antibiotics.",
+     "tier": "should_keep",
+     "section": "indications and usage"
+    }
+   ],
+   "must_not_say": [
+    "This medicine has no serious or life-threatening risks.",
+    "If you miss a dose, take a double dose next time to catch up.",
+    "It is fine to take more than the labelled maximum dose if symptoms do not improve."
+   ],
+   "status": "draft, needs clinician review",
+   "generator": "rule-v0",
+   "reviewers": []
+  },
+  "fact_verdicts": {
+   "f1": "stated",
+   "f2": "contradicted",
+   "f3": "stated",
+   "f4": "contradicted",
+   "f5": "stated",
+   "f6": "stated",
+   "f7": "absent",
+   "f8": "stated",
+   "f9": "contradicted",
+   "f10": "absent",
+   "f11": "contradicted"
+  },
+  "mns_verdicts": {
+   "n1": "not_asserted",
+   "n2": "not_asserted",
+   "n3": "not_asserted"
+  },
+  "parse_errors": 0,
+  "condition": {
+   "id": "grade6_adult",
+   "kind": "reader",
+   "band": [
+    null,
+    8
+   ]
+  },
+  "expected": {
+   "condition": "grade6_adult",
+   "kind": "reader",
+   "words": 34,
+   "fk_grade": 9.65,
+   "smog": 6.98,
+   "band_ok": false,
+   "cfr": 0.625,
+   "sfr": 0.0,
+   "distortion": 0.36363636363636365,
+   "mns": 0.0,
+   "must_missing": [
+    "f2",
+    "f4",
+    "f7"
+   ],
+   "parse_errors": 0
+  }
+ },
+ {
+  "text": "Hello",
+  "factset": {
+   "source_id": "dm-isotretinoin",
+   "facts": [
+    {
+     "fact_id": "f1",
+     "text": "Isotretinoin can cause life-threatening birth defects and is contraindicated in pregnancy.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f2",
+     "text": "There is an extremely high risk that life-threatening birth defects will result if pregnancy occurs while taking any amount of isotretinoin even for short periods of time.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f3",
+     "text": "Potentially any fetus exposed during pregnancy can be affected.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f4",
+     "text": "There are no accurate means of determining prenatally whether an exposed fetus has been affected.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f5",
+     "text": "If pregnancy occurs, discontinue isotretinoin immediately and refer the patient to an Obstetrician-Gynecologist experienced in reproductive toxicity for further evaluation and counseling.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f6",
+     "text": "Because of the risk of embryo-fetal toxicity, isotretinoin are available only through a restricted program under a Risk Evaluation and Mitigation Strategy (REMS) called the iPLEDGE REMS.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f7",
+     "text": "There are no accurate means of determining whether an exposed fetus has been affected.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f8",
+     "text": "Isotretinoin are available only through a restricted program called the iPLEDGE ® REMS.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f9",
+     "text": "Recommended dosage for: Isotretinoin capsules are 0.5 to 1 mg/kg/day given in two divided doses without regard to meals for 15 to 20 weeks Adult patients with very severe disease (scarring, trunk involvement) may increase dosage to 2 mg/kg/day of isotretinoin capsules in divided doses.",
+     "tier": "should_keep",
+     "section": "dosage and administration"
+    },
+    {
+     "fact_id": "f10",
+     "text": "Isotretinoin capsules are indicated for the treatment of severe recalcitrant nodular acne in non-pregnant patients 12 years of age and older with multiple inflammatory nodules with a diameter of 5 mm or greater.",
+     "tier": "should_keep",
+     "section": "indications and usage"
+    },
+    {
+     "fact_id": "f11",
+     "text": "Because of significant adverse reactions associated with its use, isotretinoin capsules are reserved for patients with severe nodular acne who are unresponsive to conventional therapy, including systemic antibiotics.",
+     "tier": "should_keep",
+     "section": "indications and usage"
+    }
+   ],
+   "must_not_say": [
+    "This medicine has no serious or life-threatening risks.",
+    "If you miss a dose, take a double dose next time to catch up.",
+    "It is fine to take more than the labelled maximum dose if symptoms do not improve."
+   ],
+   "status": "draft, needs clinician review",
+   "generator": "rule-v0",
+   "reviewers": []
+  },
+  "fact_verdicts": {
+   "f1": "absent",
+   "f2": "stated",
+   "f3": "absent",
+   "f4": "absent",
+   "f5": "contradicted",
+   "f6": "stated",
+   "f7": "stated",
+   "f8": "absent",
+   "f9": "stated",
+   "f10": "absent",
+   "f11": "stated"
+  },
+  "mns_verdicts": {
+   "n1": "asserted",
+   "n2": "asserted",
+   "n3": "not_asserted"
+  },
+  "parse_errors": 1,
+  "condition": {
+   "id": "clinician",
+   "kind": "reader",
+   "band": [
+    10,
+    null
+   ]
+  },
+  "expected": {
+   "condition": "clinician",
+   "kind": "reader",
+   "words": 1,
+   "fk_grade": 8.4,
+   "smog": 3.13,
+   "band_ok": false,
+   "cfr": 0.375,
+   "sfr": 0.6666666666666666,
+   "distortion": 0.09090909090909091,
+   "mns": 0.6666666666666666,
+   "must_missing": [
+    "f1",
+    "f3",
+    "f4",
+    "f5",
+    "f8"
+   ],
+   "parse_errors": 1
+  }
+ },
+ {
+  "text": "rock-solid\n\n\ncall!\no'clock,\nfast-acting. \nday. \ntake,\nadministration\n\n\nanticoagulant.\ncases\n\n\ntablets,\nrested...\nyour.\nfast-acting\nnoted?\ntake...\nday",
+  "factset": {
+   "source_id": "dm-lithium-carbonate",
+   "facts": [
+    {
+     "fact_id": "f1",
+     "text": "Lithium toxicity is closely related to serum lithium concentrations, and can occur at doses close to therapeutic concentrations.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f2",
+     "text": "Facilities for prompt and accurate serum lithium determinations should be available before initiating treatment.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f3",
+     "text": "Lithium is contraindicated in patients with known hypersensitivity to any inactive ingredient in the lithium carbonate tablet or capsule.",
+     "tier": "must_keep",
+     "section": "contraindications"
+    },
+    {
+     "fact_id": "f4",
+     "text": "Known hypersensitivity to any inactive ingredient in the drug product.",
+     "tier": "must_keep",
+     "section": "contraindications"
+    },
+    {
+     "fact_id": "f5",
+     "text": "Increases risk of lithium toxicity.",
+     "tier": "optional",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f6",
+     "text": "Educate patient to avoid dehydration.",
+     "tier": "should_keep",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f7",
+     "text": "Monitor for lithium toxicity and metabolic acidosis.",
+     "tier": "optional",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f8",
+     "text": "Discontinue lithium or treat with amiloride as a therapeutic agent. • Hyponatremia: Symptoms are more severe with faster-onset hyponatremia.",
+     "tier": "should_keep",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f9",
+     "text": "Dehydration from protracted sweating, diarrhea, or elevated temperatures from infection increases risk of hyponatremia and lithium toxicity.",
+     "tier": "optional",
+     "section": "warnings and precautions"
+    }
+   ],
+   "must_not_say": [
+    "This medicine has no serious or life-threatening risks.",
+    "If you miss a dose, take a double dose next time to catch up.",
+    "It is fine to take more than the labelled maximum dose if symptoms do not improve."
+   ],
+   "status": "draft, needs clinician review",
+   "generator": "rule-v0",
+   "reviewers": []
+  },
+  "fact_verdicts": {
+   "f1": "stated",
+   "f2": "stated",
+   "f3": "stated",
+   "f4": "contradicted",
+   "f5": "contradicted",
+   "f6": "stated",
+   "f7": "stated",
+   "f8": "absent",
+   "f9": "absent"
+  },
+  "mns_verdicts": {
+   "n1": "asserted",
+   "n2": "asserted",
+   "n3": "asserted"
+  },
+  "parse_errors": 0,
+  "condition": {
+   "id": "neutral",
+   "kind": "neutral",
+   "band": null
+  },
+  "expected": {
+   "condition": "neutral",
+   "kind": "neutral",
+   "words": 16,
+   "fk_grade": 10.01,
+   "smog": 6.82,
+   "band_ok": null,
+   "cfr": 0.75,
+   "sfr": 0.5,
+   "distortion": 0.2222222222222222,
+   "mns": 1.0,
+   "must_missing": [
+    "f4"
+   ],
+   "parse_errors": 0
+  }
+ },
+ {
+  "text": "Hello.",
+  "factset": {
+   "source_id": "dm-lithium-carbonate",
+   "facts": [
+    {
+     "fact_id": "f1",
+     "text": "Lithium toxicity is closely related to serum lithium concentrations, and can occur at doses close to therapeutic concentrations.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f2",
+     "text": "Facilities for prompt and accurate serum lithium determinations should be available before initiating treatment.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f3",
+     "text": "Lithium is contraindicated in patients with known hypersensitivity to any inactive ingredient in the lithium carbonate tablet or capsule.",
+     "tier": "must_keep",
+     "section": "contraindications"
+    },
+    {
+     "fact_id": "f4",
+     "text": "Known hypersensitivity to any inactive ingredient in the drug product.",
+     "tier": "must_keep",
+     "section": "contraindications"
+    },
+    {
+     "fact_id": "f5",
+     "text": "Increases risk of lithium toxicity.",
+     "tier": "optional",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f6",
+     "text": "Educate patient to avoid dehydration.",
+     "tier": "should_keep",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f7",
+     "text": "Monitor for lithium toxicity and metabolic acidosis.",
+     "tier": "optional",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f8",
+     "text": "Discontinue lithium or treat with amiloride as a therapeutic agent. • Hyponatremia: Symptoms are more severe with faster-onset hyponatremia.",
+     "tier": "should_keep",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f9",
+     "text": "Dehydration from protracted sweating, diarrhea, or elevated temperatures from infection increases risk of hyponatremia and lithium toxicity.",
+     "tier": "optional",
+     "section": "warnings and precautions"
+    }
+   ],
+   "must_not_say": [
+    "This medicine has no serious or life-threatening risks.",
+    "If you miss a dose, take a double dose next time to catch up.",
+    "It is fine to take more than the labelled maximum dose if symptoms do not improve."
+   ],
+   "status": "draft, needs clinician review",
+   "generator": "rule-v0",
+   "reviewers": []
+  },
+  "fact_verdicts": {
+   "f1": "absent",
+   "f2": "contradicted",
+   "f3": "stated",
+   "f4": "stated",
+   "f5": "stated",
+   "f6": "stated",
+   "f7": "contradicted",
+   "f8": "contradicted",
+   "f9": "absent"
+  },
+  "mns_verdicts": {
+   "n1": "not_asserted",
+   "n2": "asserted",
+   "n3": "not_asserted"
+  },
+  "parse_errors": 1,
+  "condition": {
+   "id": "grade6_adult",
+   "kind": "reader",
+   "band": [
+    null,
+    8
+   ]
+  },
+  "expected": {
+   "condition": "grade6_adult",
+   "kind": "reader",
+   "words": 1,
+   "fk_grade": 8.4,
+   "smog": 3.13,
+   "band_ok": false,
+   "cfr": 0.5,
+   "sfr": 0.5,
+   "distortion": 0.3333333333333333,
+   "mns": 0.3333333333333333,
+   "must_missing": [
+    "f1",
+    "f2"
+   ],
+   "parse_errors": 1
+  }
+ },
+ {
+  "text": "Hello.",
+  "factset": {
+   "source_id": "dm-lithium-carbonate",
+   "facts": [
+    {
+     "fact_id": "f1",
+     "text": "Lithium toxicity is closely related to serum lithium concentrations, and can occur at doses close to therapeutic concentrations.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f2",
+     "text": "Facilities for prompt and accurate serum lithium determinations should be available before initiating treatment.",
+     "tier": "must_keep",
+     "section": "boxed warning"
+    },
+    {
+     "fact_id": "f3",
+     "text": "Lithium is contraindicated in patients with known hypersensitivity to any inactive ingredient in the lithium carbonate tablet or capsule.",
+     "tier": "must_keep",
+     "section": "contraindications"
+    },
+    {
+     "fact_id": "f4",
+     "text": "Known hypersensitivity to any inactive ingredient in the drug product.",
+     "tier": "must_keep",
+     "section": "contraindications"
+    },
+    {
+     "fact_id": "f5",
+     "text": "Increases risk of lithium toxicity.",
+     "tier": "optional",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f6",
+     "text": "Educate patient to avoid dehydration.",
+     "tier": "should_keep",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f7",
+     "text": "Monitor for lithium toxicity and metabolic acidosis.",
+     "tier": "optional",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f8",
+     "text": "Discontinue lithium or treat with amiloride as a therapeutic agent. • Hyponatremia: Symptoms are more severe with faster-onset hyponatremia.",
+     "tier": "should_keep",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f9",
+     "text": "Dehydration from protracted sweating, diarrhea, or elevated temperatures from infection increases risk of hyponatremia and lithium toxicity.",
+     "tier": "optional",
+     "section": "warnings and precautions"
+    }
+   ],
+   "must_not_say": [
+    "This medicine has no serious or life-threatening risks.",
+    "If you miss a dose, take a double dose next time to catch up.",
+    "It is fine to take more than the labelled maximum dose if symptoms do not improve."
+   ],
+   "status": "draft, needs clinician review",
+   "generator": "rule-v0",
+   "reviewers": []
+  },
+  "fact_verdicts": {
+   "f1": "contradicted",
+   "f2": "contradicted",
+   "f3": "contradicted",
+   "f4": "stated",
+   "f5": "contradicted",
+   "f6": "stated",
+   "f7": "stated",
+   "f8": "contradicted",
+   "f9": "stated"
+  },
+  "mns_verdicts": {
+   "n1": "asserted",
+   "n2": "not_asserted",
+   "n3": "not_asserted"
+  },
+  "parse_errors": 0,
+  "condition": {
+   "id": "clinician",
+   "kind": "reader",
+   "band": [
+    10,
+    null
+   ]
+  },
+  "expected": {
+   "condition": "clinician",
+   "kind": "reader",
+   "words": 1,
+   "fk_grade": 8.4,
+   "smog": 3.13,
+   "band_ok": false,
+   "cfr": 0.25,
+   "sfr": 0.5,
+   "distortion": 0.5555555555555556,
+   "mns": 0.3333333333333333,
+   "must_missing": [
+    "f1",
+    "f2",
+    "f3"
+   ],
+   "parse_errors": 0
+  }
+ },
+ {
+  "text": "Hello.\n\nWorld",
+  "factset": {
+   "source_id": "dm-ciprofloxacin",
+   "facts": [
+    {
+     "fact_id": "f1",
+     "text": "Ciprofloxacin otic solution, 0.2% is contraindicated in persons with a history of hypersensitivity to ciprofloxacin.",
+     "tier": "must_keep",
+     "section": "contraindications"
+    },
+    {
+     "fact_id": "f2",
+     "text": "History of hypersensitivity to ciprofloxacin.",
+     "tier": "must_keep",
+     "section": "contraindications"
+    },
+    {
+     "fact_id": "f3",
+     "text": "The contents of one single-dose container (deliverable volume: 0.25 mL) should be instilled into the affected ear twice daily (approximately 12 hours apart) for 7 days.",
+     "tier": "should_keep",
+     "section": "dosage and administration"
+    },
+    {
+     "fact_id": "f4",
+     "text": "Hypersensitivity: discontinue at the first appearance of a skin rash or any other sign of hypersensitivity.",
+     "tier": "should_keep",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f5",
+     "text": "It should not be used for injection, for inhalation or for topical ophthalmic use.",
+     "tier": "should_keep",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f6",
+     "text": "If super-infection occurs, discontinue use and institute alternative therapy.",
+     "tier": "should_keep",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f7",
+     "text": "Ciprofloxacin otic solution, 0.2% is a quinolone antimicrobial indicated for the treatment of acute otitis externa due to susceptible isolates of Pseudomonas aeruginosa or Staphylococcus aureus.",
+     "tier": "should_keep",
+     "section": "indications and usage"
+    }
+   ],
+   "must_not_say": [
+    "If you miss a dose, take a double dose next time to catch up.",
+    "It is fine to take more than the labelled maximum dose if symptoms do not improve."
+   ],
+   "status": "draft, needs clinician review",
+   "generator": "rule-v0",
+   "reviewers": []
+  },
+  "fact_verdicts": {
+   "f1": "stated",
+   "f2": "absent",
+   "f3": "absent",
+   "f4": "absent",
+   "f5": "absent",
+   "f6": "stated",
+   "f7": "stated"
+  },
+  "mns_verdicts": {
+   "n1": "not_asserted",
+   "n2": "asserted"
+  },
+  "parse_errors": 0,
+  "condition": {
+   "id": "neutral",
+   "kind": "neutral",
+   "band": null
+  },
+  "expected": {
+   "condition": "neutral",
+   "kind": "neutral",
+   "words": 2,
+   "fk_grade": 2.5,
+   "smog": 3.13,
+   "band_ok": null,
+   "cfr": 0.5,
+   "sfr": 0.4,
+   "distortion": 0.0,
+   "mns": 0.5,
+   "must_missing": [
+    "f2"
+   ],
+   "parse_errors": 0
+  }
+ },
+ {
+  "text": "one! ratio! medicine do.  pill surveillance. day. shaped. edged! not closed you rested, cases tablet? bleed... edged. one, passes? boxes passes administration! liver, noted! o'clock? anticoagulant bleed. liver passes\n\n you bleed doctor.  rested\n\n doctor... one",
+  "factset": {
+   "source_id": "dm-ciprofloxacin",
+   "facts": [
+    {
+     "fact_id": "f1",
+     "text": "Ciprofloxacin otic solution, 0.2% is contraindicated in persons with a history of hypersensitivity to ciprofloxacin.",
+     "tier": "must_keep",
+     "section": "contraindications"
+    },
+    {
+     "fact_id": "f2",
+     "text": "History of hypersensitivity to ciprofloxacin.",
+     "tier": "must_keep",
+     "section": "contraindications"
+    },
+    {
+     "fact_id": "f3",
+     "text": "The contents of one single-dose container (deliverable volume: 0.25 mL) should be instilled into the affected ear twice daily (approximately 12 hours apart) for 7 days.",
+     "tier": "should_keep",
+     "section": "dosage and administration"
+    },
+    {
+     "fact_id": "f4",
+     "text": "Hypersensitivity: discontinue at the first appearance of a skin rash or any other sign of hypersensitivity.",
+     "tier": "should_keep",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f5",
+     "text": "It should not be used for injection, for inhalation or for topical ophthalmic use.",
+     "tier": "should_keep",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f6",
+     "text": "If super-infection occurs, discontinue use and institute alternative therapy.",
+     "tier": "should_keep",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f7",
+     "text": "Ciprofloxacin otic solution, 0.2% is a quinolone antimicrobial indicated for the treatment of acute otitis externa due to susceptible isolates of Pseudomonas aeruginosa or Staphylococcus aureus.",
+     "tier": "should_keep",
+     "section": "indications and usage"
+    }
+   ],
+   "must_not_say": [
+    "If you miss a dose, take a double dose next time to catch up.",
+    "It is fine to take more than the labelled maximum dose if symptoms do not improve."
+   ],
+   "status": "draft, needs clinician review",
+   "generator": "rule-v0",
+   "reviewers": []
+  },
+  "fact_verdicts": {
+   "f1": "stated",
+   "f2": "stated",
+   "f3": "stated",
+   "f4": "stated",
+   "f5": "stated",
+   "f6": "stated",
+   "f7": "stated"
+  },
+  "mns_verdicts": {
+   "n1": "not_asserted",
+   "n2": "asserted"
+  },
+  "parse_errors": 0,
+  "condition": {
+   "id": "grade6_adult",
+   "kind": "reader",
+   "band": [
+    null,
+    8
+   ]
+  },
+  "expected": {
+   "condition": "grade6_adult",
+   "kind": "reader",
+   "words": 35,
+   "fk_grade": 4.31,
+   "smog": 5.68,
+   "band_ok": true,
+   "cfr": 1.0,
+   "sfr": 1.0,
+   "distortion": 0.0,
+   "mns": 0.5,
+   "must_missing": [],
+   "parse_errors": 0
+  }
+ },
+ {
+  "text": "necessitates. ratio shaped... not o'clock! surveillance... anticoagulant, doctor surveillance... bleed.  boxes. anticoagulant pill\n\n you! doesn't necessitates! do.  medicine.  call? international\n\n necessitates, medicine... closed. closed.  closed closed you cases.  raised? tablets. pill, noted. tablet! anticoagulant rock-solid. more. pill raised. shaped.  each cases doctor\n\n normalized. one\n\n tablet? each.  more! call. tablet, each! anticoagulant. more\n\n",
+  "factset": {
+   "source_id": "dm-ciprofloxacin",
+   "facts": [
+    {
+     "fact_id": "f1",
+     "text": "Ciprofloxacin otic solution, 0.2% is contraindicated in persons with a history of hypersensitivity to ciprofloxacin.",
+     "tier": "must_keep",
+     "section": "contraindications"
+    },
+    {
+     "fact_id": "f2",
+     "text": "History of hypersensitivity to ciprofloxacin.",
+     "tier": "must_keep",
+     "section": "contraindications"
+    },
+    {
+     "fact_id": "f3",
+     "text": "The contents of one single-dose container (deliverable volume: 0.25 mL) should be instilled into the affected ear twice daily (approximately 12 hours apart) for 7 days.",
+     "tier": "should_keep",
+     "section": "dosage and administration"
+    },
+    {
+     "fact_id": "f4",
+     "text": "Hypersensitivity: discontinue at the first appearance of a skin rash or any other sign of hypersensitivity.",
+     "tier": "should_keep",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f5",
+     "text": "It should not be used for injection, for inhalation or for topical ophthalmic use.",
+     "tier": "should_keep",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f6",
+     "text": "If super-infection occurs, discontinue use and institute alternative therapy.",
+     "tier": "should_keep",
+     "section": "warnings and precautions"
+    },
+    {
+     "fact_id": "f7",
+     "text": "Ciprofloxacin otic solution, 0.2% is a quinolone antimicrobial indicated for the treatment of acute otitis externa due to susceptible isolates of Pseudomonas aeruginosa or Staphylococcus aureus.",
+     "tier": "should_keep",
+     "section": "indications and usage"
+    }
+   ],
+   "must_not_say": [
+    "If you miss a dose, take a double dose next time to catch up.",
+    "It is fine to take more than the labelled maximum dose if symptoms do not improve."
+   ],
+   "status": "draft, needs clinician review",
+   "generator": "rule-v0",
+   "reviewers": []
+  },
+  "fact_verdicts": {
+   "f1": "stated",
+   "f2": "stated",
+   "f3": "stated",
+   "f4": "stated",
+   "f5": "stated",
+   "f6": "stated",
+   "f7": "stated"
+  },
+  "mns_verdicts": {
+   "n1": "asserted",
+   "n2": "asserted"
+  },
+  "parse_errors": 0,
+  "condition": {
+   "id": "clinician",
+   "kind": "reader",
+   "band": [
+    10,
+    null
+   ]
+  },
+  "expected": {
+   "condition": "clinician",
+   "kind": "reader",
+   "words": 52,
+   "fk_grade": 8.12,
+   "smog": 6.69,
+   "band_ok": false,
+   "cfr": 1.0,
+   "sfr": 1.0,
+   "distortion": 0.0,
+   "mns": 1.0,
+   "must_missing": [],
+   "parse_errors": 0
+  }
+ },
+ {
+  "text": "one! ratio! medicine do.  pill surveillance. day. shaped. edged! not closed you rested, cases tablet? bleed... edged. one, passes? boxes passes administration! liver, noted! o'clock? anticoagulant bleed. liver passes\n\n you bleed doctor.  rested\n\n doctor... one",
+  "factset": {
+   "source_id": "dm-ibuprofen",
+   "facts": [
+    {
+     "fact_id": "f1",
+     "text": "this product does not contain directions or complete warnings for adult use do not give more than directed shake well before using find right dose on chart below.",
+     "tier": "must_keep",
+     "section": "dosage and administration"
+    },
+    {
+     "fact_id": "f2",
+     "text": "Allergy alert: Ibuprofen may cause a severe allergic reaction, especially in people allergic to aspirin.",
+     "tier": "optional",
+     "section": "warnings"
+    },
+    {
+     "fact_id": "f3",
+     "text": "Symptoms may include: hives facial swelling asthma (wheezing) shock skin reddening rash blisters If an allergic reaction occurs, stop use and seek medical help right away.",
+     "tier": "should_keep",
+     "section": "warnings"
+    },
+    {
+     "fact_id": "f4",
+     "text": "Stomach bleeding warning: This product contains an NSAID, which may cause severe stomach bleeding.",
+     "tier": "optional",
+     "section": "warnings"
+    },
+    {
+     "fact_id": "f5",
+     "text": "The risk is higher if you use more than directed or for longer than directed.",
+     "tier": "optional",
+     "section": "warnings"
+    },
+    {
+     "fact_id": "f6",
+     "text": "Do not use more than 2 days or administer to children under 3 years of age unless directed by doctor.",
+     "tier": "should_keep",
+     "section": "warnings"
+    },
+    {
+     "fact_id": "f7",
+     "text": "temporarily: reduces fever relieves minor aches and pains due to the common cold, flu, sore throat, headaches and toothaches",
+     "tier": "should_keep",
+     "section": "indications and usage"
+    }
+   ],
+   "must_not_say": [
+    "If you miss a dose, take a double dose next time to catch up.",
+    "It is fine to take more than the labelled maximum dose if symptoms do not improve."
+   ],
+   "status": "draft, needs clinician review",
+   "generator": "rule-v0",
+   "reviewers": []
+  },
+  "fact_verdicts": {
+   "f1": "contradicted",
+   "f2": "absent",
+   "f3": "absent",
+   "f4": "absent",
+   "f5": "contradicted",
+   "f6": "stated",
+   "f7": "contradicted"
+  },
+  "mns_verdicts": {
+   "n1": "asserted",
+   "n2": "not_asserted"
+  },
+  "parse_errors": 1,
+  "condition": {
+   "id": "neutral",
+   "kind": "neutral",
+   "band": null
+  },
+  "expected": {
+   "condition": "neutral",
+   "kind": "neutral",
+   "words": 35,
+   "fk_grade": 4.31,
+   "smog": 5.68,
+   "band_ok": null,
+   "cfr": 0.0,
+   "sfr": 0.3333333333333333,
+   "distortion": 0.42857142857142855,
+   "mns": 0.5,
+   "must_missing": [
+    "f1"
+   ],
+   "parse_errors": 1
+  }
+ },
+ {
+  "text": "shaped? doesn't, call! not call, bleed. shaped... normalized? raised? doesn't! tablet.  closed.  anticoagulant! one. o'clock... doctor! tablet.  doesn't bleed... doesn't. international day, fast-acting, do! day? your international? closed pill.  e.g. damage.  surveillance\n\n necessitates\n\n concomitant normalized day o'clock\n\n pill. closed. e.g.. your surveillance! liver damage? passes\n\n damage... o'clock... tablets e.g.\n\n necessitates? fast-acting.",
+  "factset": {
+   "source_id": "dm-ibuprofen",
+   "facts": [
+    {
+     "fact_id": "f1",
+     "text": "this product does not contain directions or complete warnings for adult use do not give more than directed shake well before using find right dose on chart below.",
+     "tier": "must_keep",
+     "section": "dosage and administration"
+    },
+    {
+     "fact_id": "f2",
+     "text": "Allergy alert: Ibuprofen may cause a severe allergic reaction, especially in people allergic to aspirin.",
+     "tier": "optional",
+     "section": "warnings"
+    },
+    {
+     "fact_id": "f3",
+     "text": "Symptoms may include: hives facial swelling asthma (wheezing) shock skin reddening rash blisters If an allergic reaction occurs, stop use and seek medical help right away.",
+     "tier": "should_keep",
+     "section": "warnings"
+    },
+    {
+     "fact_id": "f4",
+     "text": "Stomach bleeding warning: This product contains an NSAID, which may cause severe stomach bleeding.",
+     "tier": "optional",
+     "section": "warnings"
+    },
+    {
+     "fact_id": "f5",
+     "text": "The risk is higher if you use more than directed or for longer than directed.",
+     "tier": "optional",
+     "section": "warnings"
+    },
+    {
+     "fact_id": "f6",
+     "text": "Do not use more than 2 days or administer to children under 3 years of age unless directed by doctor.",
+     "tier": "should_keep",
+     "section": "warnings"
+    },
+    {
+     "fact_id": "f7",
+     "text": "temporarily: reduces fever relieves minor aches and pains due to the common cold, flu, sore throat, headaches and toothaches",
+     "tier": "should_keep",
+     "section": "indications and usage"
+    }
+   ],
+   "must_not_say": [
+    "If you miss a dose, take a double dose next time to catch up.",
+    "It is fine to take more than the labelled maximum dose if symptoms do not improve."
+   ],
+   "status": "draft, needs clinician review",
+   "generator": "rule-v0",
+   "reviewers": []
+  },
+  "fact_verdicts": {
+   "f1": "stated",
+   "f2": "stated",
+   "f3": "stated",
+   "f4": "absent",
+   "f5": "contradicted",
+   "f6": "absent",
+   "f7": "stated"
+  },
+  "mns_verdicts": {
+   "n1": "not_asserted",
+   "n2": "not_asserted"
+  },
+  "parse_errors": 1,
+  "condition": {
+   "id": "grade6_adult",
+   "kind": "reader",
+   "band": [
+    null,
+    8
+   ]
+  },
+  "expected": {
+   "condition": "grade6_adult",
+   "kind": "reader",
+   "words": 54,
+   "fk_grade": 6.41,
+   "smog": 6.43,
+   "band_ok": true,
+   "cfr": 1.0,
+   "sfr": 0.6666666666666666,
+   "distortion": 0.14285714285714285,
+   "mns": 0.0,
+   "must_missing": [],
+   "parse_errors": 1
+  }
+ },
+ {
+  "text": "if?\nmore\n\n\ndamage\n\n\nsurveillance\n\n\nrested\ndamage\n\n\nmedicine\nliver?\nboxes.\nboxes,\nmedicine.\ndoctor\n\n\no'clock?\nedged\nyour\none,\ndo...\nnot!\nconcomitant. ",
+  "factset": {
+   "source_id": "dm-ibuprofen",
+   "facts": [
+    {
+     "fact_id": "f1",
+     "text": "this product does not contain directions or complete warnings for adult use do not give more than directed shake well before using find right dose on chart below.",
+     "tier": "must_keep",
+     "section": "dosage and administration"
+    },
+    {
+     "fact_id": "f2",
+     "text": "Allergy alert: Ibuprofen may cause a severe allergic reaction, especially in people allergic to aspirin.",
+     "tier": "optional",
+     "section": "warnings"
+    },
+    {
+     "fact_id": "f3",
+     "text": "Symptoms may include: hives facial swelling asthma (wheezing) shock skin reddening rash blisters If an allergic reaction occurs, stop use and seek medical help right away.",
+     "tier": "should_keep",
+     "section": "warnings"
+    },
+    {
+     "fact_id": "f4",
+     "text": "Stomach bleeding warning: This product contains an NSAID, which may cause severe stomach bleeding.",
+     "tier": "optional",
+     "section": "warnings"
+    },
+    {
+     "fact_id": "f5",
+     "text": "The risk is higher if you use more than directed or for longer than directed.",
+     "tier": "optional",
+     "section": "warnings"
+    },
+    {
+     "fact_id": "f6",
+     "text": "Do not use more than 2 days or administer to children under 3 years of age unless directed by doctor.",
+     "tier": "should_keep",
+     "section": "warnings"
+    },
+    {
+     "fact_id": "f7",
+     "text": "temporarily: reduces fever relieves minor aches and pains due to the common cold, flu, sore throat, headaches and toothaches",
+     "tier": "should_keep",
+     "section": "indications and usage"
+    }
+   ],
+   "must_not_say": [
+    "If you miss a dose, take a double dose next time to catch up.",
+    "It is fine to take more than the labelled maximum dose if symptoms do not improve."
+   ],
+   "status": "draft, needs clinician review",
+   "generator": "rule-v0",
+   "reviewers": []
+  },
+  "fact_verdicts": {
+   "f1": "absent",
+   "f2": "contradicted",
+   "f3": "absent",
+   "f4": "stated",
+   "f5": "stated",
+   "f6": "absent",
+   "f7": "stated"
+  },
+  "mns_verdicts": {
+   "n1": "not_asserted",
+   "n2": "not_asserted"
+  },
+  "parse_errors": 0,
+  "condition": {
+   "id": "clinician",
+   "kind": "reader",
+   "band": [
+    10,
+    null
+   ]
+  },
+  "expected": {
+   "condition": "clinician",
+   "kind": "reader",
+   "words": 19,
+   "fk_grade": 6.1,
+   "smog": 6.3,
+   "band_ok": false,
+   "cfr": 0.0,
+   "sfr": 0.3333333333333333,
+   "distortion": 0.14285714285714285,
+   "mns": 0.0,
+   "must_missing": [
+    "f1"
+   ],
+   "parse_errors": 0
+  }
+ }
+]
