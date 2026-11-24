@@ -17,6 +17,7 @@ from .text import clean, truncate_words
 
 API = "https://dailymed.nlm.nih.gov/dailymed/services/v2"
 NS = {"h": "urn:hl7-org:v3"}
+TITLE = "{urn:hl7-org:v3}title"
 
 # LOINC section codes used in SPL labels: key -> (heading, word cap)
 SECTIONS = {
@@ -30,7 +31,7 @@ SECTIONS = {
 ORDER = ["34066-1", "34067-9", "34068-7", "34070-3", "43685-7", "34071-1"]
 REPACKAGERS = ("repack", "bryant", "a-s medication", "proficient rx", "nucare", "preferred pharm",
                "quality care", "direct_rx", "direct rx", "henry schein", "medsource", "rebel dist",
-               "northwind", "asclemed", "enovachem", "lake erie", "denton", "unit dose")
+               "northwind", "asclemed", "enovachem", "lake erie", "denton", "unit dose", "pd-rx")
 
 
 def find_setid(client: httpx.Client, drug_name: str) -> dict | None:
@@ -66,7 +67,7 @@ def parse_spl(xml_bytes: bytes) -> dict[str, str]:
             continue
         c = code.get("code")
         if c in SECTIONS:
-            txt = _tidy(clean(" ".join(sec.itertext())))
+            txt = _tidy(clean(" ".join(" ".join(c.itertext()) for c in sec if c.tag != TITLE)))
             # Highlights sections reuse the same codes as the full text; keep the longest.
             if len(txt) > len(found.get(c, "")):
                 found[c] = txt
@@ -74,7 +75,8 @@ def parse_spl(xml_bytes: bytes) -> dict[str, str]:
 
 
 def build_source(drug_name: str, row: dict, sections: dict[str, str]) -> Source:
-    parts = [f"{row['title'].title()} (prescribing information excerpt)"]
+    name = re.sub(r"\s*\[.*?\]", "", row["title"]).title()
+    parts = [f"{name} (prescribing information excerpt)"]
     used = {}
     for code in ORDER:
         if code == "34071-1" and "43685-7" in sections:

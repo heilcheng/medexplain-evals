@@ -192,3 +192,18 @@ def length_control(rows: list[dict]) -> dict:
     rc = np.argsort(np.argsort(cfr)).astype(float)
     rho = float(np.corrcoef(rw, rc)[0, 1]) if rw.std() > 0 and rc.std() > 0 else None
     return {"by_length_tercile": by, "spearman_cfr_vs_words": rho}
+
+
+def headline_points(rows: list[dict], cond_order: list[str]) -> dict[str, float]:
+    """Point estimates only (no bootstrap): worst-reader CFR and mean adaptation tax."""
+    items = sorted({r["item_id"] for r in rows})
+    conds = [c for c in cond_order if any(r["condition"] == c for r in rows)]
+    if "neutral" not in conds or len(conds) < 2:
+        return {}
+    cfr = _matrix(rows, "cfr", items, conds)
+    ni = conds.index("neutral")
+    others = [j for j in range(len(conds)) if j != ni]
+    return {
+        "worst_reader_cfr": min(_nm(cfr[:, j]) for j in others),
+        "mean_adaptation_tax": _nm(cfr[:, ni] - _row_nanmean(cfr[:, others])),
+    }
