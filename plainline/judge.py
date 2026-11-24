@@ -50,7 +50,7 @@ def parse_verdicts(raw: str, fact_ids: list[str], stmt_ids: list[str]) -> tuple[
     try:
         for v in _extract_json(raw).get("verdicts", []):
             got[str(v.get("id"))] = str(v.get("verdict", "")).strip().lower()
-    except (json.JSONDecodeError, AttributeError):
+    except (json.JSONDecodeError, AttributeError, TypeError):
         pass
     facts: dict[str, str] = {}
     for i in fact_ids:

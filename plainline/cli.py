@@ -84,7 +84,13 @@ def cmd_run(args) -> None:
 
 
 def cmd_report(args) -> None:
-    conds = conditions(args.mode)
+    scored = Path(args.run) / "scored.jsonl"
+    mode = args.mode
+    if mode is None:  # infer from the run so a cue run is not silently reported as adapt
+        first = next(iter(read_jsonl(scored)), {})
+        mode = "cue" if first.get("kind") == "cue" or any(
+            r.get("kind") == "cue" for r in read_jsonl(scored)) else "adapt"
+    conds = conditions(mode)
     write_report(Path(args.run) / "scored.jsonl", [c.id for c in conds], args.run, n_boot=args.boot)
     print((Path(args.run) / "results.md").read_text())
 
@@ -147,7 +153,7 @@ def main(argv: list[str] | None = None) -> None:
 
     rp = sub.add_parser("report", help="recompute the report from a run directory")
     rp.add_argument("--run", required=True)
-    rp.add_argument("--mode", choices=["adapt", "cue"], default="adapt")
+    rp.add_argument("--mode", choices=["adapt", "cue"], default=None, help="default: inferred from the run")
     rp.add_argument("--boot", type=int, default=2000)
     rp.set_defaults(fn=cmd_report)
 

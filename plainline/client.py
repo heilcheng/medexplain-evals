@@ -44,11 +44,15 @@ class OpenAICompatClient:
                                timeout=self.timeout)
                 if r.status_code in (429, 500, 502, 503, 504):
                     raise httpx.HTTPStatusError("retryable", request=r.request, response=r)
+                if 400 <= r.status_code < 500:
+                    # Auth or request errors will not fix themselves; fail at once.
+                    raise RuntimeError(f"model call failed with HTTP {r.status_code}: {r.text[:200]}")
                 r.raise_for_status()
                 return r.json()["choices"][0]["message"]["content"] or ""
-            except (httpx.HTTPError, KeyError, ValueError) as e:
+            except (httpx.HTTPError, KeyError, ValueError, TypeError, IndexError) as e:
                 last = e
-                time.sleep(2 ** attempt)
+                if attempt + 1 < self.retries:
+                    time.sleep(2 ** attempt)
         raise RuntimeError(f"model call failed after {self.retries} attempts: {last}")
 
 

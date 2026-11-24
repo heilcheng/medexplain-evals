@@ -10,7 +10,7 @@ _SENT_SPLIT = re.compile(r"(?<=[.!?])\s+(?=[A-Z0-9\"(\[])")
 
 def clean(text: str) -> str:
     text = html.unescape(text)
-    text = re.sub(r"<[^>]+>", " ", text)
+    text = re.sub(r"</?[A-Za-z][^<>]*>", " ", text)
     text = text.replace(" ", " ")
     return re.sub(r"\s+", " ", text).strip()
 

@@ -175,6 +175,21 @@ def _matched_length_tax(rows: list[dict], items: list[str], cond: str, neutral_c
     return est
 
 
+def _avg_rank(x: np.ndarray) -> np.ndarray:
+    """Ranks with ties given their average rank (needed for a correct Spearman)."""
+    order = np.argsort(x, kind="mergesort")
+    ranks = np.empty(len(x))
+    xs = x[order]
+    i = 0
+    while i < len(x):
+        j = i
+        while j + 1 < len(x) and xs[j + 1] == xs[i]:
+            j += 1
+        ranks[order[i:j + 1]] = (i + j) / 2
+        i = j + 1
+    return ranks
+
+
 def length_control(rows: list[dict]) -> dict:
     """CFR by length tercile over all outputs, and rank correlation of CFR with length."""
     ok = [r for r in rows if r["cfr"] is not None and r["words"] > 0]
@@ -188,8 +203,7 @@ def length_control(rows: list[dict]) -> dict:
     by = {names[b]: {"n": int((bucket == b).sum()),
                      "mean_words": float(words[bucket == b].mean()),
                      "cfr": float(cfr[bucket == b].mean())} for b in range(3) if (bucket == b).any()}
-    rw = np.argsort(np.argsort(words)).astype(float)
-    rc = np.argsort(np.argsort(cfr)).astype(float)
+    rw, rc = _avg_rank(words), _avg_rank(cfr)
     rho = float(np.corrcoef(rw, rc)[0, 1]) if rw.std() > 0 and rc.std() > 0 else None
     return {"by_length_tercile": by, "spearman_cfr_vs_words": rho}
 
