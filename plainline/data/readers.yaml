@@ -1,0 +1,61 @@
+# Reader specs for explicit adaptation (mode "adapt") and reader cues for the
+# paired audience-cue slice (mode "cue"). The neutral condition is the pairing
+# baseline in both modes.
+#
+# band is [min, max] Flesch-Kincaid grade for the readability pass/fail check.
+# null means no bound. Bands are working values, to be calibrated against real
+# readers (see the roadmap in README.md).
+
+neutral:
+  id: neutral
+  instruction: "Rewrite the source below as a clear explanation. No particular reader is specified."
+  band: null
+
+readers:
+  - id: clinician
+    description: Physician reader
+    instruction: "Reader: a physician who wants a concise, precise clinical summary. Clinical terminology is fine."
+    band: [10, null]
+  - id: nurse
+    description: Registered nurse reader
+    instruction: "Reader: a registered nurse who will counsel patients. Use professional language and keep practical, patient-facing points."
+    band: [8, 16]
+  - id: grade6_adult
+    description: Adult reading at about a sixth-grade level
+    instruction: "Reader: an adult who reads at about a sixth-grade level. Use short sentences and everyday words."
+    band: [null, 8]
+  - id: limited_english
+    description: Adult with limited English proficiency
+    instruction: "Reader: an adult who is still learning English. Use simple, common English words, short sentences and no idioms."
+    band: [null, 8]
+  - id: caregiver_child
+    description: Parent or caregiver of a child
+    instruction: "Reader: a parent or caregiver looking after a child, with no medical training. Use plain language and say what to do."
+    band: [null, 9]
+
+# Cues are stated by the user and the task text is the same for every cue, so
+# the only difference between the paired prompts is the cue sentence.
+cues:
+  - id: pharmacist
+    group: profession
+    text: "I am a hospital pharmacist."
+  - id: nurse
+    group: profession
+    text: "I am a registered nurse."
+  - id: low_literacy
+    group: literacy
+    text: "Reading is hard for me and I did not finish school."
+  - id: limited_english
+    group: language
+    text: "English is not my first language."
+  - id: teen
+    group: age
+    text: "I am 15 years old."
+  - id: older_adult
+    group: age
+    text: "I am 82 years old."
+  - id: caregiver
+    group: role
+    text: "I am looking after my elderly mother."
+
+cue_task: "Can you explain the source below to me?"

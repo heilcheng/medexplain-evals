@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 330" width="960" height="330" role="img" aria-labelledby="t d">
+  <title id="t">Plainline pipeline</title>
+  <desc id="d">A source text and a reader spec go to a model, which writes an explanation. A per-fact judge compares the explanation with the fact list, and metrics are computed from the verdicts.</desc>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#44546a"/>
+    </marker>
+    <style>
+      text { font-family: Helvetica, Arial, sans-serif; fill: #1f2933; }
+      .box { fill: #f4f6f8; stroke: #44546a; stroke-width: 1.5; }
+      .key { fill: #e8f1fb; stroke: #2b6cb0; stroke-width: 1.5; }
+      .t { font-size: 15px; font-weight: 700; }
+      .s { font-size: 12px; fill: #52606d; }
+      .l { stroke: #44546a; stroke-width: 1.6; fill: none; marker-end: url(#a); }
+    </style>
+  </defs>
+  <rect width="960" height="330" fill="#ffffff"/>
+
+  <rect class="box" x="20" y="40" width="170" height="86" rx="8"/>
+  <text class="t" x="105" y="72" text-anchor="middle">Source</text>
+  <text class="s" x="105" y="92" text-anchor="middle">FDA label excerpt or</text>
+  <text class="s" x="105" y="108" text-anchor="middle">MedlinePlus summary</text>
+
+  <rect class="box" x="20" y="180" width="170" height="104" rx="8"/>
+  <text class="t" x="105" y="208" text-anchor="middle">Reader spec</text>
+  <text class="s" x="105" y="228" text-anchor="middle">neutral, clinician, nurse,</text>
+  <text class="s" x="105" y="244" text-anchor="middle">grade 6, limited English,</text>
+  <text class="s" x="105" y="260" text-anchor="middle">caregiver, or a stated cue</text>
+
+  <rect class="box" x="260" y="105" width="160" height="100" rx="8"/>
+  <text class="t" x="340" y="145" text-anchor="middle">Model under test</text>
+  <text class="s" x="340" y="167" text-anchor="middle">writes an explanation</text>
+  <text class="s" x="340" y="183" text-anchor="middle">of the source</text>
+
+  <rect class="box" x="490" y="105" width="140" height="100" rx="8"/>
+  <text class="t" x="560" y="145" text-anchor="middle">Explanation</text>
+  <text class="s" x="560" y="167" text-anchor="middle">one per source</text>
+  <text class="s" x="560" y="183" text-anchor="middle">and reader</text>
+
+  <rect class="key" x="500" y="236" width="120" height="58" rx="8"/>
+  <text class="t" x="560" y="261" text-anchor="middle">Fact list</text>
+  <text class="s" x="560" y="279" text-anchor="middle">must_keep, should_keep,</text>
+  <text class="s" x="560" y="291" text-anchor="middle">optional, must_not_say</text>
+
+  <rect class="box" x="700" y="105" width="110" height="100" rx="8"/>
+  <text class="t" x="755" y="143" text-anchor="middle">Per-fact judge</text>
+  <text class="s" x="755" y="165" text-anchor="middle">stated, contradicted,</text>
+  <text class="s" x="755" y="181" text-anchor="middle">or absent</text>
+
+  <rect class="box" x="840" y="40" width="100" height="246" rx="8"/>
+  <text class="t" x="890" y="68" text-anchor="middle">Metrics</text>
+  <text class="s" x="890" y="96" text-anchor="middle">CFR</text>
+  <text class="s" x="890" y="116" text-anchor="middle">Adaptation Tax</text>
+  <text class="s" x="890" y="136" text-anchor="middle">Distortion</text>
+  <text class="s" x="890" y="156" text-anchor="middle">Must-not-say</text>
+  <text class="s" x="890" y="176" text-anchor="middle">Readability band</text>
+  <text class="s" x="890" y="196" text-anchor="middle">Worst-reader CFR</text>
+  <text class="s" x="890" y="216" text-anchor="middle">CFR spread</text>
+  <text class="s" x="890" y="244" text-anchor="middle">with bootstrap</text>
+  <text class="s" x="890" y="260" text-anchor="middle">intervals and</text>
+  <text class="s" x="890" y="276" text-anchor="middle">length control</text>
+
+  <path class="l" d="M190 83 C225 83 225 140 260 148"/>
+  <path class="l" d="M190 232 C225 232 225 172 260 164"/>
+  <path class="l" d="M420 155 L490 155"/>
+  <path class="l" d="M630 155 L700 155"/>
+  <path class="l" d="M620 265 C690 265 755 250 755 205"/>
+  <path class="l" d="M810 155 L840 155"/>
+  <text class="s" x="20" y="22">The same source is always explained once with the neutral reader, so every comparison is paired.</text>
+</svg>
