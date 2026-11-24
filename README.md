@@ -45,7 +45,7 @@ Let $M_i$ be the `must_keep` facts of item $i$, $v_{i,c}(f)$ the judge's verdict
 | Adaptation Tax | $\mathrm{Tax}_c = \frac{1}{N}\sum_i \left(\mathrm{CFR}_{i,\text{neutral}} - \mathrm{CFR}_{i,c}\right)$. Paired by item. Positive means fewer critical facts are kept for that reader. |
 | Distortion rate | Share of facts of any tier judged `contradicted`. |
 | Must-not-say violations | Share of `must_not_say` statements the explanation asserts. |
-| Readability band | Share of outputs whose Flesch-Kincaid grade lies in the condition's band (a pass or fail gate, not a quality score). Bands are working values in `plainline/data/readers.yaml`. |
+| Readability band | Share of outputs whose Flesch-Kincaid grade lies in the condition's band (a pass or fail gate, not a quality score). Bands are working values in `crates/plainline-core/data/readers.yaml`. |
 | Worst-reader CFR | $\min_{c \neq \text{neutral}} \mathrm{CFR}_c$, ignoring conditions with no defined value. The single headline number. |
 | CFR spread | $\max_c \mathrm{CFR}_c - \min_c \mathrm{CFR}_c$. In `cue` mode this is the audience-invariance disparity. |
 

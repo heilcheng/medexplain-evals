@@ -108,17 +108,18 @@ impl ChatClient for OpenAiCompatClient {
             body[k] = v.clone();
         }
         let mut last = String::new();
-        for attempt in 0..self.config.retries {
+        for attempt in 0..self.config.retries.max(1) {
             match self.attempt(&body).await? {
                 Ok(text) => return Ok(text),
                 Err(e) => last = e,
             }
             if attempt + 1 < self.config.retries {
-                tokio::time::sleep(self.config.backoff * 2u32.pow(attempt)).await;
+                let factor = 2u32.checked_pow(attempt).unwrap_or(u32::MAX);
+                tokio::time::sleep(self.config.backoff.saturating_mul(factor)).await;
             }
         }
         Err(ClientError::Exhausted {
-            attempts: self.config.retries,
+            attempts: self.config.retries.max(1),
             last,
         })
     }

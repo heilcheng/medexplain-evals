@@ -1,5 +1,5 @@
 //! The subcommands. Each returns its stdout and stderr text instead of printing, so the
-//! same code serves the binary and the Python binding.
+//! same code serves the binary and the tests.
 
 use crate::runner::{RunOptions, run};
 use clap::{Args, Parser, Subcommand, ValueEnum};

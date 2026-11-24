@@ -1,6 +1,6 @@
 //! Checks against outputs recorded from the original Python implementation
-//! (`tests/golden/`, produced by `tests/golden/generate_from_python.py` at the commit before
-//! the Python logic was removed).
+//! (`tests/golden/`, produced by `tests/golden/generate_from_python.py` at commit a086521,
+//! before the Python logic was removed).
 
 mod common;
 
