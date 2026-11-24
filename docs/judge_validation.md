@@ -1,6 +1,6 @@
 # Validating the fact judge
 
-The judge answers one narrow question per fact: is this fact stated in the explanation, contradicted by it, or absent. Its prompt is `JUDGE_SYSTEM` in `plainline/prompts.py` (version `judge-v1`, stored with every judged output). It never sees the source or the tiers.
+The judge answers one narrow question per fact: is this fact stated in the explanation, contradicted by it, or absent. Its prompt is `JUDGE_SYSTEM` in `crates/plainline-core/src/prompts.rs` (version `judge-v1`, stored with every judged output). It never sees the source or the tiers.
 
 Status: not yet validated against human labels. No human labels exist in this repository.
 
@@ -11,7 +11,7 @@ Status: not yet validated against human labels. No human labels exist in this re
 3. Two or more labelers fill `human_stated` (true or false) without seeing `judge_stated`. For adjudication, keep one file per labeler and merge by majority, then resolve ties by discussion.
 4. `plainline agreement --labels labels.jsonl` prints the number of rows, raw agreement and Cohen's kappa between the judge and the human labels.
 
-The same function (`plainline.judge.agreement`) works on any pair of lists of `{key, stated}`, so inter-annotator agreement between two humans uses the same code.
+The same function (`plainline_core::judge::agreement`) works on any pair of lists of `{key, stated}`, so inter-annotator agreement between two humans uses the same code.
 
 ## Targets before treating CFR as a measurement
 

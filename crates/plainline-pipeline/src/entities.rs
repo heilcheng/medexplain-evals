@@ -1,6 +1,7 @@
 //! `html.unescape` as Python implements it, including named entities written without a
 //! semicolon (`&amp`, `&copy`) and the legacy numeric ranges. The tables in
-//! `data/entities.tsv` come from the Python standard library (see `data/gen_entities.py`).
+//! `data/entities.tsv` were generated once from the Python standard library
+//! (`html.entities`) and are now fixed data.
 
 use regex::{Captures, Regex};
 use std::collections::{HashMap, HashSet};
