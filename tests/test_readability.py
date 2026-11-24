@@ -29,4 +29,4 @@ def test_spearman_handles_ties():
 
     rows = [{"cfr": c, "words": w} for c, w in [(1.0, 10), (1.0, 20), (1.0, 30), (0.5, 40), (0.5, 50), (0.5, 60)]]
     rho = length_control(rows)["spearman_cfr_vs_words"]
-    assert abs(rho - (-0.8660254)) < 1e-4
+    assert abs(rho - (-0.8783101)) < 1e-4
